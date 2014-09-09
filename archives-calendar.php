@@ -231,8 +231,8 @@ class Archives_Calendar extends WP_Widget
 	{
 		$defaults = array(
 			'title' > __( 'Archives' ),
-			'next_text' => '>',
-			'prev_text' => '<',
+			'next_text' => '&gt;',
+			'prev_text' => '&lt;',
 			'post_count' => 1,
 			'month_view' => 0,
 			'post_type' => null,
@@ -663,19 +663,27 @@ function archivesCalendar_shortcode( $atts )
 		'next_text' => '>',
 		'prev_text' => '<',
 		'post_count' => true,
-		'month_view' => false
+        'month_view' => false,
+		'categories' => null,
+		'post_type' => null
 	), $atts ) );
 
 	$post_count = ($post_count == "true") ? true : false;
 	$month_view = ($month_view == "true") ? true : false;
-	$defaults = array(
+    $categories = str_replace(' ', '', $categories);
+    $categories = explode(',', $categories);
+    $categories = (!count($categories)) ? null : $categories;
+
+	$args = array(
 		'next_text' => $next_text,
 		'prev_text' => $prev_text,
 		'post_count' => $post_count,
 		'month_view' => $month_view,
+        'post_type' => $post_type,
+        'categories' => $categories,
 		'function' => 'no',
 	);
-	return archive_calendar($defaults);
+	return archive_calendar($args);
 }
 add_shortcode( 'arcalendar', 'archivesCalendar_shortcode' );
 
@@ -685,14 +693,13 @@ function month_days($year, $month)
     switch(intval($month))
 	{
 		case 4: case 6: case 9: case 11: //april, june, september, november
-			return 30; // have 30 days
+			return 30; // 30 days
 		case 2: //february
 			if( $year%400==0 || ( $year%100 != 00 && $year%4==0 ) ) // intercalary year check
-				return 29; // have 29 days or
+				return 29; // 29 days or
 		return 28; // 28 days
-
 		default:// other months
-			return 31; // have 31 days
+			return 31; // 31 days
 	}
 }
 
@@ -711,58 +718,5 @@ if (!function_exists('isMU'))
 		if (function_exists('is_multisite') && is_multisite())
 			return true;
 		return false;
-	}
-}
-
-
-/***** Walker for categories checkboxes *****/
-class acw_Walker_Category_Checklist extends Walker
-{
-	var $tree_type = 'category';
-	var $db_fields = array ('parent' => 'parent', 'id' => 'term_id'); //TODO: decouple this
-
-	var $conf;
-   	function __construct($conf)
-   	{
-        $this->conf = $conf;
-    }
-	
-	function start_lvl( &$output, $depth = 0, $args = array() )
-	{
-		$indent = str_repeat("\t", $depth);
-		$output .= "$indent<ul class='children' style='margin-left: 18px;'>\n";
-	}
-
-	function end_lvl( &$output, $depth = 0, $args = array() )
-	{
-		$indent = str_repeat("\t", $depth);
-		$output .= "$indent</ul>\n";
-	}
-
-	function start_el( &$output, $category, $depth = 0, $args = array(), $id = 0 )
-	{
-		extract($args);
-		$conf = $this->conf;
-
-		if ( empty($taxonomy) )
-			$taxonomy = 'category';
-
-		if ( $taxonomy == 'category' )
-			$name = 'post_category';
-		else
-			$name = 'tax_input['.$taxonomy.']';
-
-		$class = in_array( $category->term_id, $popular_cats ) ? ' class="popular-category"' : '';
-
-		/** This filter is documented in wp-includes/category-template.php */
-		$output .= "\n<li id='{$taxonomy}-{$category->term_id}'$class>" . '<label class="selectit"><input value="' . $category->term_id . '" 
-		type="checkbox" 
-		id="'.$conf['field_id'].'-'.$cat->slug.'" 
-		name="'.$conf['field_name'].'['.$cat->term_id.']"' . checked( in_array( $category->term_id, $selected_cats ), true, false ) . disabled( empty( $args['disabled'] ), false, false ) . ' /> ' . esc_html( apply_filters( 'the_category', $category->name ) ) . '</label>';
-	}
-
-	function end_el( &$output, $category, $depth = 0, $args = array() )
-	{
-		$output .= "</li>\n";
 	}
 }

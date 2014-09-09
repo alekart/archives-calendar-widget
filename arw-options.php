@@ -375,7 +375,7 @@ function archivesCalendar_options()
 							<h2 style="font-size:24px; margin:0;"><?php _e('More');?></h2>
 							<hr>
 							<p style="text-align: center">
-								<a href="https://github.com/alekart?tab=repositories" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/GitHub.png" alt="alek on GitHub" title="My projects on Github" /></a> 
+								<a href="https://github.com/alekart?tab=repositories" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/GitHub.png" alt="alek on GitHub" title="My projects on Github" /></a>
 								<a href="http://profiles.wordpress.org/alekart/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/wordpress.png" alt="alek´ on WordPress" title="My WordPress projects" /></a>
 								<a href="http://labs.alek.be/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/alabs.png" alt="My blog" /></a>
 								<a href="http://alek.be/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/alek.png" alt="alek´ portfolio" alt="My portfolio" /></a>
@@ -397,4 +397,57 @@ function archivesCalendar_options()
 		</div>
 	</div>
 <?php
+}
+
+
+/***** Walker for categories checkboxes *****/
+class acw_Walker_Category_Checklist extends Walker
+{
+    var $tree_type = 'category';
+    var $db_fields = array ('parent' => 'parent', 'id' => 'term_id');
+
+    var $conf;
+    function __construct($conf)
+    {
+        $this->conf = $conf;
+    }
+
+    function start_lvl( &$output, $depth = 0, $args = array() )
+    {
+        $indent = str_repeat("\t", $depth);
+        $output .= "$indent<ul class='children' style='margin-left: 18px;'>\n";
+    }
+
+    function end_lvl( &$output, $depth = 0, $args = array() )
+    {
+        $indent = str_repeat("\t", $depth);
+        $output .= "$indent</ul>\n";
+    }
+
+    function start_el( &$output, $category, $depth = 0, $args = array(), $id = 0 )
+    {
+        extract($args);
+        $conf = $this->conf;
+
+        if ( empty($taxonomy) )
+            $taxonomy = 'category';
+
+        if ( $taxonomy == 'category' )
+            $name = 'post_category';
+        else
+            $name = 'tax_input['.$taxonomy.']';
+
+        $class = in_array( $category->term_id, $popular_cats ) ? ' class="popular-category"' : '';
+
+        /** This filter is documented in wp-includes/category-template.php */
+        $output .= "\n<li id='{$taxonomy}-{$category->term_id}'$class>" . '<label class="selectit"><input value="' . $category->term_id . '"
+		type="checkbox"
+		id="'.$conf['field_id'].'-'.$cat->slug.'"
+		name="'.$conf['field_name'].'['.$cat->term_id.']"' . checked( in_array( $category->term_id, $selected_cats ), true, false ) . disabled( empty( $args['disabled'] ), false, false ) . ' /> ' . esc_html( apply_filters( 'the_category', $category->name ) ) . '</label>';
+    }
+
+    function end_el( &$output, $category, $depth = 0, $args = array() )
+    {
+        $output .= "</li>\n";
+    }
 }

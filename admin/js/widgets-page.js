@@ -32,3 +32,38 @@
     var d = a(".accordion-section-content");
 
 }(jQuery);
+
+
+jQuery(function($){
+    console.log('bim');
+
+    $('#widgets-right .archives-calendar-widget-wettings').each(function(){
+        var month_view = $(this).find('#arw-view').val();
+        var viewOpt = $(this).find('#arw-month_view-option').parent();
+        var yearOpt = $(this).find('#arw-year_view-option').parent();
+        if( month_view == 0 )
+        {
+            viewOpt.hide();
+        }
+        else{
+            yearOpt.hide();
+        }
+    });
+
+
+    $('#widgets-right').on('change', '#arw-view', function(){
+        console.log('plop');
+        var viewOpt = $(this).parents('.widget-content').find('#arw-month_view-option').parent();
+        var yearOpt = $(this).parents('.widget-content').find('#arw-year_view-option').parent();
+        if($(this).val()==1)
+        {
+            viewOpt.show().css('display', 'inline-block');
+            yearOpt.hide();
+        }
+        else
+        {
+            viewOpt.hide();
+            yearOpt.show();
+        }
+    });
+});
