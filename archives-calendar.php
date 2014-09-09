@@ -224,6 +224,7 @@ class Archives_Calendar extends WP_Widget
 		$instance['month_view'] = $new_instance['month_view'];
         $instance['month_select'] = $new_instance['month_select'];
         $instance['different_theme'] = ($new_instance['different_theme']) ? $new_instance['different_theme'] : 0;
+        $instance['theme'] = $new_instance['theme'];
 
 		$instance['categories'] = $new_instance['categories'];
 		$instance['post_type'] = $new_instance['post_type'];
@@ -251,6 +252,7 @@ class Archives_Calendar extends WP_Widget
 		$month_view = $instance['month_view'];
         $month_select = $instance['month_select'];
         $different_theme = $instance['different_theme'];
+        $arw_theme = $instance['theme'];
 		$cats = $instance['categories'];
 		$post_type = $instance['post_type'];
 

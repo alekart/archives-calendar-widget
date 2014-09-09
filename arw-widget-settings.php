@@ -35,6 +35,7 @@
         <span>&nbsp;</span>
         <span style="display:none">
             <label for="<?php echo $this->get_field_id( 'month_select' ); ?>"><?php _e( 'Show first' ).': '; ?></label>
+            </label> <span style="color: red">"Show first" NOT YET IMPLEMENTED</span>
             <select id="arw-month_view-option" name="<?php echo $this->get_field_name( 'month_select' ); ?>" >
                 <option <?php selected( 'default', $month_select ); ?> value="actual">
                     <?php _e( 'Latest month' ); ?>
@@ -64,14 +65,11 @@
         <label>
             <input id="arw-theme-option" class="selectit" <?php if($different_theme) echo "checked";?> id="<?php echo $this->get_field_id( 'different_theme' ); ?>" name="<?php echo $this->get_field_name( 'different_theme' ); ?>" type="checkbox" value="1" />
             &nbsp;<?php _e( 'Set a different theme', 'arwloc' ); ?>
-        </label> <span style="color: red">NOT YET IMPLEMENTED</span>
+        </label> <span style="color: red">NOT YET IMPLEMENTED, MAYBE NEVER, TESTING</span>
     </p>
     <p id="arw-theme-list">
         <?php
-        foreach($themes as $key=>$value)
-        {
-            echo '<option '.selected( $key, $theme ).' value="'.$key.'">'.$value.'</option>';
-        }
+        themes_list($arw_theme, $this->get_field_name( 'theme' ), $this->get_field_id( 'theme' ));
         ?>
     </p>
 
