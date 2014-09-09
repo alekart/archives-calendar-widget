@@ -1,4 +1,10 @@
-<div class="archives-calendar-widget-wettings">
+<script type="text/javascript">
+
+</script>
+<?php
+
+?>
+<div class="archives-calendar <?php echo $this->id; ?>">
     <p>
         <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
         <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
@@ -28,10 +34,10 @@
         </select>
         <span>&nbsp;</span>
         <span style="display:none">
-            <label for="<?php echo $this->get_field_id( 'month_view_option' ); ?>"><?php _e( 'Show first' ).': '; ?></label>
-            <select id="arw-month_view-option" name="<?php echo $this->get_field_name( 'month_view_option' ); ?>" >
-                <option <?php selected( 'last', $month_select ); ?> value="actual">
-                    <?php _e( 'Last month' ); ?>
+            <label for="<?php echo $this->get_field_id( 'month_select' ); ?>"><?php _e( 'Show first' ).': '; ?></label>
+            <select id="arw-month_view-option" name="<?php echo $this->get_field_name( 'month_select' ); ?>" >
+                <option <?php selected( 'default', $month_select ); ?> value="actual">
+                    <?php _e( 'Latest month' ); ?>
                 </option>
                 <option <?php selected( 'actual', $month_select ); ?> value="actual">
                     <?php _e( 'Actual month' ); ?>
@@ -58,8 +64,15 @@
         <label>
             <input id="arw-theme-option" class="selectit" <?php if($different_theme) echo "checked";?> id="<?php echo $this->get_field_id( 'different_theme' ); ?>" name="<?php echo $this->get_field_name( 'different_theme' ); ?>" type="checkbox" value="1" />
             &nbsp;<?php _e( 'Set a different theme', 'arwloc' ); ?>
-        </label>
-        <div>NOT YET IMPLEMENTED</div>
+        </label> <span style="color: red">NOT YET IMPLEMENTED</span>
+    </p>
+    <p id="arw-theme-list">
+        <?php
+        foreach($themes as $key=>$value)
+        {
+            echo '<option '.selected( $key, $theme ).' value="'.$key.'">'.$value.'</option>';
+        }
+        ?>
     </p>
 
     <hr/>

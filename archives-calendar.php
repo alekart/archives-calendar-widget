@@ -183,7 +183,7 @@ add_action( 'wp_enqueue_scripts', 'archivesCalendar_jquery_plugin' );
 add_action('admin_print_scripts-widgets.php', 'arcw_admin_widgets_scripts');
 function arcw_admin_widgets_scripts()
 {
-	//wp_enqueue_script( 'accordion' );
+	wp_enqueue_script( 'accordion' );
 	wp_register_script( 'wpWidgetsPage', plugins_url(). '/archives-calendar-widget/admin/js/widgets-page.js');
 	wp_enqueue_script( 'wpWidgetsPage');
 	wp_enqueue_style( 'media-views' );
@@ -222,6 +222,9 @@ class Archives_Calendar extends WP_Widget
 		$instance['next_text'] = $new_instance['next_text'];
 		$instance['post_count'] = ($new_instance['post_count']) ? $new_instance['post_count'] : 0;
 		$instance['month_view'] = $new_instance['month_view'];
+        $instance['month_select'] = $new_instance['month_select'];
+        $instance['different_theme'] = ($new_instance['different_theme']) ? $new_instance['different_theme'] : 0;
+
 		$instance['categories'] = $new_instance['categories'];
 		$instance['post_type'] = $new_instance['post_type'];
 		return $instance;
@@ -235,6 +238,9 @@ class Archives_Calendar extends WP_Widget
 			'prev_text' => '&lt;',
 			'post_count' => 1,
 			'month_view' => 0,
+            'month_select' => 'default',
+            'different_theme' => 0,
+            'theme' => null,
 			'post_type' => null,
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
@@ -243,6 +249,8 @@ class Archives_Calendar extends WP_Widget
 		$next = $instance['next_text'];
 		$count = $instance['post_count'];
 		$month_view = $instance['month_view'];
+        $month_select = $instance['month_select'];
+        $different_theme = $instance['different_theme'];
 		$cats = $instance['categories'];
 		$post_type = $instance['post_type'];
 
@@ -259,10 +267,13 @@ function archive_calendar($args = array())
 	global $wpdb;
 
 	$defaults = array(
-		'next_text' => '>',
-		'prev_text' => '<',
+		'next_text' => '&gt;', // >
+		'prev_text' => '&lt;', // <
 		'post_count' => true,
 		'month_view' => false,
+        'month_select' => 'default',
+        'different_theme' => 0,
+        'theme' => null,
 		'categories' => null,
 		'post_type' => null
 	);

@@ -1,69 +1,75 @@
-! function(a) {
-    
-    function b(a) {
-        var b = a.closest(".accordion-section"),
-            e = b.closest(".accordion-container").find(".open"),
-            f = b.find(d);
-        if (!b.hasClass("cannot-expand")) return b.hasClass("control-panel") ? void c(b) : void(b.hasClass("open") ? (b.toggleClass("open"), f.toggle(!0).slideToggle(150)) : (e.removeClass("open"), e.find(d).show().slideUp(150), f.toggle(!1).slideToggle(150), b.toggleClass("open")))
-    }
-
-    function c(a) {
-        var b, c, e = a.closest(".accordion-section"),
-            f = e.closest(".wp-full-overlay"),
-            g = e.closest(".accordion-container"),
-            h = g.find(".open"),
-            i = f.find("#customize-theme-controls > ul > .accordion-section > .accordion-section-title").add("#customize-info > .accordion-section-title"),
-            j = f.find(".control-panel-back"),
-            k = e.find(".accordion-section-title").first(),
-            l = e.find(".control-panel-content");
-        e.hasClass("current-panel") ? (e.toggleClass("current-panel"), f.toggleClass("in-sub-panel"), l.delay(180).hide(0, function() {
-            l.css("margin-top", "inherit")
-        }), i.attr("tabindex", "0"), j.attr("tabindex", "-1"), k.focus(), g.scrollTop(0)) : (h.removeClass("open"), h.find(d).show().slideUp(0), l.show(0, function() {
-            b = l.offset().top, c = g.scrollTop(), l.css("margin-top", 45 - b - c), e.toggleClass("current-panel"), f.toggleClass("in-sub-panel"), g.scrollTop(0)
-        }), i.attr("tabindex", "-1"), j.attr("tabindex", "0"), j.focus())
-    }
-    a(document).ready(function() {
-        a("body").on("click keydown", ".accordion-section-title", function(c) {
-            ("keydown" !== c.type || 13 === c.which) && (c.preventDefault(), b(a(this)))
-        }), a("#customize-header-actions").on("click keydown", ".control-panel-back", function(b) {
-            ("keydown" !== b.type || 13 === b.which) && (b.preventDefault(), c(a(".current-panel")))
-        })
-    });
-    var d = a(".accordion-section-content");
-
-}(jQuery);
-
-
 jQuery(function($){
-    console.log('bim');
-
-    $('#widgets-right .archives-calendar-widget-wettings').each(function(){
-        var month_view = $(this).find('#arw-view').val();
-        var viewOpt = $(this).find('#arw-month_view-option').parent();
-        var yearOpt = $(this).find('#arw-year_view-option').parent();
-        if( month_view == 0 )
+    $(document).on("ajaxStop", function()
+    {
+        if(arcwidget && arcwidget.search('archives_calendar') >= 0 && arcwidget.search('-savewidget') >= 0)
         {
-            viewOpt.hide();
-        }
-        else{
-            yearOpt.hide();
+            arcwidget = arcwidget.replace("-savewidget", "").replace("widget-", "");
+            arcwidget = $('#widgets-right').find('.'+arcwidget);
+            arw_set_view(arcwidget);
+            arw_theme(arcwidget);
+            arcwidget.on('click', '.accordion-section:not(.open)', function(){
+               if(arcwidget.find('.accordion-section.open').length)
+                   $(this).parent().find('.accordion-section.open .accordion-section-content').slideUp('fast', function(){$(this).parent().removeClass('open')});
+               $(this).find('.accordion-section-content').slideDown('fast', function(){$(this).parent().addClass('open')});
+            })
+            .on('click', '.accordion-section.open .accordion-section-title', function(){
+                $(this).parent().find('.accordion-section-content').slideUp('fast', function(){$(this).parent().removeClass('open')});
+            });
         }
     });
+    $(document).on("ajaxStart", function(e){
+        arcwidget = $(e.currentTarget.activeElement).attr('id');
+    });
 
+    $('#widgets-right .archives-calendar').each(function(){
+        arw_set_view($(this));
+        arw_theme($(this));
+    });
 
     $('#widgets-right').on('change', '#arw-view', function(){
-        console.log('plop');
-        var viewOpt = $(this).parents('.widget-content').find('#arw-month_view-option').parent();
-        var yearOpt = $(this).parents('.widget-content').find('#arw-year_view-option').parent();
+        var viewOpt = $(this).parents('.widget-content').find('#arw-month_view-option');
+        var yearOpt = $(this).parents('.widget-content').find('#arw-year_view-option');
         if($(this).val()==1)
         {
-            viewOpt.show().css('display', 'inline-block');
-            yearOpt.hide();
+            viewOpt.parent().show().css('display', 'inline-block');
+            yearOpt.parent().hide();
+            yearOpt.attr('checked', false);
         }
         else
         {
-            viewOpt.hide();
-            yearOpt.show();
+            viewOpt.parent().hide();
+            yearOpt.parent().show();
         }
     });
+
+    $('body').on('change', 'input:checkbox', function () {
+        if($(this).attr('id') == "arw-theme-option"){
+            var widget = $(this).parents('.archives-calendar');
+            arw_theme(widget);
+        }
+    });
+
+    function arw_set_view(elem)
+    {
+        var month_view = elem.find('#arw-view').val();
+        var viewOpt = elem.find('#arw-month_view-option');
+        var yearOpt = elem.find('#arw-year_view-option');
+        if( month_view == 1 )
+        {
+            yearOpt.parent().hide();
+            yearOpt.attr('checked', false);
+            viewOpt.parent().show().css('display', 'inline-block');
+        }
+        else
+            viewOpt.hide();
+    }
+
+    function arw_theme(widget){
+        var themes = widget.find("#arw-theme-list");
+        console.log(themes);
+        if( widget.find('#arw-theme-option').is(':checked'))
+            $(themes).show();
+        else
+            $(themes).hide();
+    }
 });

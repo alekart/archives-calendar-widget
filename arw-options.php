@@ -122,22 +122,30 @@ function archives_calendar_settings()
 }
 add_action('admin_menu', 'ArchivesCalandarSettingsMenu');
 
+function themes_list($selected = 0, $name='', $id="", $class=""){
+    $themes = array(
+        'default' => __('Default', 'arwloc'),
+        'classiclight' => 'Classic',
+        'twentytwelve' => 'Twenty Twelve',
+        'twentythirteen' => 'Twenty Thirteen',
+        'twentyfourteen' => 'Twenty Fourteen',
+        //'custom' => __('Custom', 'arwloc')
+    );
+
+    echo '<select name="'.$name.'" id="'.$id.'" class="'.$class.'">';
+    foreach($themes as $key=>$value)
+        {
+            echo '<option '.selected( $key, $selected ).' value="'.$key.'">'.$value.'</option>';
+        }
+    echo '</select>';
+}
+
 function archivesCalendar_options()
 {
 	global $wp_locale;
 	$options = get_option('archivesCalendar');
 	$theme = $options['theme'];
 	add_thickbox();
-
-	$themes = array(
-		'default' => __('Default', 'arwloc'),
-		'classiclight' => 'Classic',
-		'twentytwelve' => 'Twenty Twelve',
-		'twentythirteen' => 'Twenty Thirteen',
-		'twentyfourteen' => 'Twenty Fourteen',
-		'custom' => __('Custom', 'arwloc')
-	);
-
 ?>
 	<div class="tabs">
 		<div id="arcw-settings" class="tab active-tab metabox-holder columns-2">	
@@ -145,15 +153,10 @@ function archivesCalendar_options()
 				<div id="ac_preview" style="display:none;">
 					<p>
 						<strong><?php _e('Theme');?>:</strong>
-
-						<select id="themepreview">
-							<?php
-							foreach($themes as $key=>$value)
-							{
-								echo '<option '.selected( $key, $theme ).' value="'.$key.'">'.$value.'</option>';
-							}
-							?>
-						</select> <button class="button-primary ok_theme"><?php _e('OK');?></button> <button class="button cancel_theme"><?php _e('Cancel', 'arwloc');?></button>
+                        <?php
+                        themes_list($theme, "themepreview");
+                        ?>
+						<button class="button-primary ok_theme"><?php _e('OK');?></button> <button class="button cancel_theme"><?php _e('Cancel', 'arwloc');?></button>
 						<script type="application/javascript">
 							jQuery(document).ready(function($) {
 								$('.calendar-archives.preview a').on('click', function(e) {
@@ -276,14 +279,10 @@ function archivesCalendar_options()
 					<input type="checkbox" id="css" name="archivesCalendar[css]" <?php ac_checked('css');?> /> <label for="css"><?php _e('Include CSS file', 'arwloc'); ?></label><br />
 					<span class="description"><?php _e( 'Include CSS file from the plugin.<br /><strong>It\'s recommended to copy the CSS code to your theme´s <strong>style.css</strong> and uncheck this option.', 'arwloc' ); ?></strong></span>
 					<p><strong><?php _e('Theme');?>: </strong>
-					<select name="archivesCalendar[theme]" class="theme_select">
-						<?php
-						foreach($themes as $key=>$value)
-						{
-							echo '<option '.selected( $key, $theme ).' value="'.$key.'">'.$value.'</option>';
-						}
-						?>
-					</select> <a href="#TB_inline?width=350&height=400&inlineId=ac_preview" class="thickbox button preview_theme"><?php _e('Preview', 'arwloc');?></a><br />
+                    <?php
+                        themes_list($theme, 'archivesCalendar[theme]', '', 'theme_select');
+                    ?>
+					 <a href="#TB_inline?width=350&height=400&inlineId=ac_preview" class="thickbox button preview_theme"><?php _e('Preview', 'arwloc');?></a><br />
 					<?php _e( "<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be restored on next plugin update.", 'arwloc' ); ?></span>
 					</p>
 				</p>
