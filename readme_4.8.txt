@@ -82,13 +82,12 @@ Note that **if you modify the default CSS** file to skin the calendar, you will 
 == Changelog ==
 
 = 1.0.0 =
-* [updated] Shortcode now supports post_type and categories parameters
 * [new] Options for month view. Show previous, actual or next month in first even if there is no posts, or the last month that has at least one post.
-* [new] [NOT YET] Set a different theme for each widget
-* [new] post_status support, show posts with a different status ('publish', 'future' ...)
-* [NEW] Theme editor
-* [new] Finaly v1
-
+* [new] [NOT YET] Set a different theme for each widget (for example if used in sidebar and footer)
+* [new] [MAYBE] post_status support, show posts with a different status (publish, future, ...)
+* [NEW] [NOT YET] Theme editor
+* [new] Shortcode now supports post_type and categories parameters
+* [new] Russian localization
 
 = 0.4.7 =
 * [fix] post count fix for specified categories
