@@ -61,7 +61,7 @@ jQuery(function($){
             viewOpt.parent().show().css('display', 'inline-block');
         }
         else
-            viewOpt.hide();
+            viewOpt.parent().hide();
     }
 
     function arw_theme(widget){

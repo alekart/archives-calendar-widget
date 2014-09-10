@@ -167,8 +167,8 @@ function archivesCalendar_js()
 function archives_calendar_styles()
 {
 	$archivesCalendar_options = get_option('archivesCalendar');
-	wp_register_style( 'archives-cal-css', plugins_url('themes/'.$archivesCalendar_options['theme'].'.css', __FILE__));
-	wp_enqueue_style('archives-cal-css');
+	wp_register_style( 'archives-cal-'.$archivesCalendar_options['theme'], plugins_url('themes/'.$archivesCalendar_options['theme'].'.css', __FILE__));
+	wp_enqueue_style('archives-cal-'.$archivesCalendar_options['theme']);
 }
 
 if($archivesCalendar_options['css'] == 1)
@@ -188,7 +188,6 @@ function arcw_admin_widgets_scripts()
 	wp_enqueue_script( 'wpWidgetsPage');
 	wp_enqueue_style( 'media-views' );
 }
-
 
 
 /***** WIDGET CLASS *****/
@@ -242,7 +241,7 @@ class Archives_Calendar extends WP_Widget
             'month_select' => 'default',
             'different_theme' => 0,
             'theme' => null,
-			'post_type' => null,
+			'post_type' => array(),
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 		$title = $instance['title'];
@@ -256,6 +255,14 @@ class Archives_Calendar extends WP_Widget
 		$cats = $instance['categories'];
 		$post_type = $instance['post_type'];
 
+        /** Retrocompatibility with 0.4.7 settings **/
+        if(!is_array($post_type))
+            $post_type = explode(',', str_replace(' ', '', $post_type));
+        /**** to remove ****/
+
+        if(count($post_type)==1 && empty($post_type[0]))
+            $post_type = array('post');
+
 		// Widget Settings form is in external file
 		include 'arw-widget-settings.php'; 
 	}
@@ -266,7 +273,7 @@ add_action( 'widgets_init', create_function( '', 'register_widget( "Archives_Cal
 /* can be called directly archive_calendar($args) */
 function archive_calendar($args = array())
 {
-	global $wpdb;
+	global $archivesCalendar_options;
 
 	$defaults = array(
 		'next_text' => '&gt;', // >
@@ -281,47 +288,33 @@ function archive_calendar($args = array())
 	);
 	$args = wp_parse_args( (array) $args, $defaults );
 
-	if($args['month_view'] == false)
-		$cal = archives_year_view($args);
-	else
-		$cal = archives_month_view($args);
+    if(!$args['different_theme'])
+        $args['theme'] = $archivesCalendar_options['theme'];
+
+    if($args['theme'] != $archivesCalendar_options['theme'])
+    {
+        wp_register_style( 'archives-cal-'.$args['theme'], plugins_url('themes/'.$args['theme'].'.css', __FILE__));
+        wp_enqueue_style('archives-cal-'.$args['theme']);
+    }
+
+    if(is_array($args['post_type']) && count($args['post_type']) > 0 )
+       $args['post_type'] = "'".implode("','", $args['post_type'])."'";
+    else
+        $args['post_type'] = "'post'";
+
+    $cal = ($args['month_view'] == false) ? $cal = archives_year_view($args) : $cal = archives_month_view($args);
 
 	if($function == "no")
 		return $cal;
 	echo $cal;
 }
 
-function acw_post_types($post_types){
-	if($post_types == '')
-		return "'post'";
 
-	$post_types = str_replace(' ', '', $post_types);
-	$post_types = explode(',', $post_types);
-	$types = "";
-	for($i = 0; $i < count($post_types); $i++)
-	{
-		$types .= "'".$post_types[$i]."'";
-		$types .= ($i < count($post_types) -1) ? ", " : "";
-	}
-
-	return $types;
-}
-
-/* displays years */
+/***** MONTH DISPLAY MODE *****/
 function archives_year_view($args)
 {
 	global $wpdb, $wp_locale, $post;
 	extract($args);
-
-	$post_type = acw_post_types($post_type);
-
-	$mnames[0] = '';
-
-	for($i=1; $i<13; $i++)
-	{
-		$monthdate = '1970-'. sprintf('%02d', $i) .'-01';		
-		$mnames[$i] = $wp_locale->get_month_abbrev( $wp_locale->get_month(intval($i)) );
-	}
 
 	$cats = "";
 	if($categories)
@@ -399,9 +392,9 @@ function archives_year_view($args)
 
 	$nextyear = ($totalyears > 1) ? '<a href="#" class="next-year"><span>'.$next_text.'</span></a>' : '';
 	$prevyear = ($totalyears > 1) ? '<a href="#" class="prev-year"><span>'.$prev_text.'</span></a>' : '';
-	
+
 	$cal = "\n<!-- Archives Calendar Widget by Aleksei Polechin - alek´ - http://alek.be -->\n";
-	$cal.= '<div class="calendar-archives" id="arc-'.$title.'-'.mt_rand(10,100).'">';
+	$cal.= '<div class="calendar-archives '.$theme.'" id="arc-'.$title.'-'.mt_rand(10,100).'">';
 	$cal.= '<div class="cal-nav">'.$prevyear.'<div class="year-nav">';
 		$cal .=  '<a href="'.get_year_link($archiveYear).'" class="year-title">'.$archiveYear.'</a>';
 		$cal .= '<div class="year-select">';
@@ -440,9 +433,9 @@ function archives_year_view($args)
 			else
 				$postcount = "";
 			if(isset($months[$month]))
-				$cal .= '<div class="month'.$last.'"><a href="'.get_month_link($year, $month).'"><span class="month-name">'.$mnames[$month].'</span>'.$postcount.'</a></div>';
+				$cal .= '<div class="month'.$last.'"><a href="'.get_month_link($year, $month).'"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</a></div>';
 			else
-				$cal .= '<div class="month'.$last.' empty"><span class="month-name">'.$mnames[$month].'</span>'.$postcount.'</div>';
+				$cal .= '<div class="month'.$last.' empty"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</div>';
 		}
 		$cal .= "</div>\n";
 		$i++;
@@ -452,19 +445,17 @@ function archives_year_view($args)
 	return $cal;
 }
 
-/* displays months */
+
+/***** MONTH DISPLAY MODE *****/
 function archives_month_view($args)
 {
 	global $wpdb, $wp_locale, $post;
 	extract($args);
 
-	$post_type = acw_post_types($post_type);
-
 	$cats = "";
 	if($categories)
 		for($i=0; $i < count($categories); $i++)
 			$cats .= ($i < count($categories)-1) ? $categories[$i].', ' : $categories[$i];
-
 
 	$sql = "SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
 		FROM $wpdb->posts wpposts ";
@@ -484,51 +475,64 @@ function archives_month_view($args)
 
 	// Select all months where are posts
 	$months = $wpdb->get_results($sql);
-	$totalmonths = count($months);
 
-	if(is_archive())
-	{
-		$archiveYear = date('Y', strtotime($post->post_date));// year to be visible
-		$archiveMonth = date('m', strtotime($post->post_date)); // year to be visible
+    $archiveYear = (is_archive()) ? intval(date('Y', strtotime($post->post_date))) : intval(date('Y'));
+    $archiveMonth = (is_archive()) ? intval(date('m', strtotime($post->post_date))) : intval(date('m'));
 
-		$found = 0;
-		foreach($months as $struct)
-		{
-			if ($struct->year < $archiveYear);
-			else if($struct->year == $archiveYear)
-			{
-				if($struct->month == $archiveMonth)
-					$found = 1;
-			}
-		}
-		if(!$found)
-		{
-			$archiveYear = $months[0]->year;
-			$archiveMonth = $months[0]->month;
-		}
-	}
-	else
-	{
-		if( $months[0]->month > intval( date('m') ) && intval($months[0]->year) >= intval( date('Y') ) )
-		{
-			$found = false;
-			for( $i=0; $i<count($months) && !$found; $i++ )
-			{
-				if($months[$i]->month <= intval( date('m') ) && intval($months[$i]->year) <= intval( date('Y') ) )
-				{
-					$found = true;
-					$archiveYear = $months[$i]->year;
-					$archiveMonth = $months[$i]->month;
-				}
-			}
-		}
-		else
-		{
-			$archiveMonth = $months[0]->month;
-			$archiveYear = $months[0]->year;
-		}
-	}
+    switch($month_select)
+    {
+        case 'prev':
+            if($archiveMonth == 1)
+            {
+                $archiveMonth = 12;
+                $archiveYear --;
+            }
+            else
+                $archiveMonth --;
+            if(findMonth($archiveYear, $archiveMonth, $months) < 0)
+            {
+                $months[] = (object)array('year' => $archiveYear, 'month' => $archiveMonth);
+                sortMonths($months,array("year","month"));
+            }
+            break;
+        case 'actual':
+            if(findMonth($archiveYear, $archiveMonth, $months) < 0)
+            {
+                $months[] = (object)array('year' => $archiveYear, 'month' => $archiveMonth);
+                sortMonths($months,array("year","month"));
+            }
+            break;
+        case 'next':
+            if($archiveMonth == 12)
+            {
+                $archiveMonth = 1;
+                $archiveYear ++;
+            }
+            else
+                $archiveMonth ++;
+            if(findMonth($archiveYear, $archiveMonth, $months) < 0)
+            {
+                $months[] = (object)array('year' => $archiveYear, 'month' => $archiveMonth);
+                sortMonths($months,array("year","month"));
+            }
+            break;
+        default:
+            if(is_archive())
+            {
+                if(findMonth($refYear, $refMonth, $months) < 0)
+                {
+                    $archiveYear = $months[0]->year;
+                    $archiveMonth = $months[0]->month;
+                }
+            }
+            else
+            {
+                $archiveYear = $months[0]->year;
+                $archiveMonth = $months[0]->month;
+            }
+    }
 
+    $totalmonths = count($months);
 	if(!$totalmonths)
 	{
 		$totalmonths = 1;
@@ -541,7 +545,7 @@ function archives_month_view($args)
 	$prevmonth = ($totalmonths > 1) ? '<a href="#" class="prev-year"><span>'.$prev_text.'</span></a>' : '';
 	
 	$cal = "\n<!-- Archives Calendar Widget by Aleksei Polechin - alek´ - http://alek.be -->\n";
-	$cal.= '<div class="calendar-archives" id="arc-'.$title.'-'.mt_rand(10,100).'">';
+	$cal.= '<div class="calendar-archives '.$theme.'" id="arc-'.$title.'-'.mt_rand(10,100).'">';
 	$cal.= '<div class="cal-nav months">'.$prevmonth.'<div class="year-nav months">';
 		$cal .=  '<a href="'.get_month_link( intval($archiveYear), intval($archiveMonth) ).'" class="year-title">'.$wp_locale->get_month(intval($archiveMonth)).' '.$archiveYear.'</a>';
 		$cal .= '<div class="year-select">';
@@ -677,15 +681,24 @@ function archivesCalendar_shortcode( $atts )
 		'prev_text' => '<',
 		'post_count' => true,
         'month_view' => false,
+
 		'categories' => null,
 		'post_type' => null
-	), $atts ) );
+    ), $atts ) );
 
 	$post_count = ($post_count == "true") ? true : false;
 	$month_view = ($month_view == "true") ? true : false;
-    $categories = str_replace(' ', '', $categories);
-    $categories = explode(',', $categories);
-    $categories = (!count($categories)) ? null : $categories;
+
+    if($categories !== null)
+    {
+        $categories = str_replace(' ', '', $categories);
+        $categories = explode(',', $categories);
+    }
+    if($post_type !== null)
+    {
+        $post_type = str_replace(' ', '', $post_type);
+        $post_type = explode(',', $post_type);
+    }
 
 	$args = array(
 		'next_text' => $next_text,
@@ -700,22 +713,53 @@ function archivesCalendar_shortcode( $atts )
 }
 add_shortcode( 'arcalendar', 'archivesCalendar_shortcode' );
 
-/***** Days in months *****/
+
+/***** FIND NUMBER OF DAYS IN A MONTH *****/
 function month_days($year, $month)
 {
     switch(intval($month))
 	{
-		case 4: case 6: case 9: case 11: //april, june, september, november
+		case 4: case 6: case 9: case 11: // april, june, september, november
 			return 30; // 30 days
 		case 2: //february
 			if( $year%400==0 || ( $year%100 != 00 && $year%4==0 ) ) // intercalary year check
 				return 29; // 29 days or
 		return 28; // 28 days
-		default:// other months
+		default: // other months
 			return 31; // 31 days
 	}
 }
 
+
+/***** MONTH SORT / SEARCH *****/
+function findMonth($year, $month, $months)
+{
+    $i = 0;
+    while( $i < count($months) && intval($months[$i]->year) > $year )
+        $i++;
+    if($months[$i]->year == $year)
+    {
+        while( $i < count($months) && intval($months[$i]->month) > $month )
+            $i++;
+        if($months[$i]->month == $month)
+            return $i; // find on position $i
+        return -1; // not found
+    }
+    else
+        return -1; // not found
+}
+
+function sortMonths(&$data, $props) // sortMonths($months, array("year","month"));
+{
+    usort($data, function($a, $b) use ($props) {
+        if($a->$props[0] == $b->$props[0])
+            return $a->$props[1] < $b->$props[1] ? 1 : -1;
+        return $a->$props[0] < $b->$props[0] ? 1 : -1;
+    });
+}
+
+
+/***** CHECKBOXES CHECK *****/
 function ac_checked($option, $value = 1)
 {
 	$options = get_option('archivesCalendar');
@@ -723,7 +767,8 @@ function ac_checked($option, $value = 1)
 		echo 'checked="checked"';
 }
 
-/***** Function to check if multisite *****/
+
+/***** CHECK MULTISITE NETWORK *****/
 if (!function_exists('isMU'))
 {
 	function isMU()

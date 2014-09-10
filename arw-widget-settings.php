@@ -33,11 +33,11 @@
             </option>
         </select>
         <span>&nbsp;</span>
-        <span style="display:none">
+        <span style="display: none">
             <label for="<?php echo $this->get_field_id( 'month_select' ); ?>"><?php _e( 'Show first' ).': '; ?></label>
-            </label> <span style="color: red">"Show first" NOT YET IMPLEMENTED</span>
+            </label>
             <select id="arw-month_view-option" name="<?php echo $this->get_field_name( 'month_select' ); ?>" >
-                <option <?php selected( 'default', $month_select ); ?> value="actual">
+                <option <?php selected( 'default', $month_select ); ?> value="default">
                     <?php _e( 'Latest month' ); ?>
                 </option>
                 <option <?php selected( 'actual', $month_select ); ?> value="actual">
@@ -65,7 +65,7 @@
         <label>
             <input id="arw-theme-option" class="selectit" <?php if($different_theme) echo "checked";?> id="<?php echo $this->get_field_id( 'different_theme' ); ?>" name="<?php echo $this->get_field_name( 'different_theme' ); ?>" type="checkbox" value="1" />
             &nbsp;<?php _e( 'Set a different theme', 'arwloc' ); ?>
-        </label> <span style="color: red">NOT YET IMPLEMENTED, MAYBE NEVER, TESTING</span>
+        </label>
     </p>
     <p id="arw-theme-list">
         <?php
@@ -120,11 +120,27 @@
                 <div class="accordion-section-title" tabindex="0">
                     <strong>Post type</strong>
                 </div>
-                <div class="accordion-section-content" id="<?php echo $this->get_field_id( 'post_type' );; ?>">
+                <div class="accordion-section-content" id="<?php echo $this->get_field_id( 'post_type' ); ?>">
                     <p>
-                        <label>post_type:</label>
-                        <input class="widefat" id="<?php echo $this->get_field_id( 'post_type' ); ?>" name="<?php echo $this->get_field_name( 'post_type' ); ?>" type="text" value="<?php echo esc_attr( $post_type ); ?>" />
-                        <p class="description" style="font-size: 12px;">Enter post_type separated by a comma ",". If not empty, only the specified types will be shown, don't forget to enter "post" if needed.<br>Example: post, event, film</p>
+                        <ul id="categorychecklist" class="categorychecklist form-no-clear">
+                            <?php
+                            $args = array(
+                                'public'   => true,
+                                '_builtin' => false
+                            );
+                            $post_types = get_post_types($args);
+                            echo '<li class="popular-category"><label class="selectit"><input value="post" type="checkbox" id="'.$this->get_field_id( 'post_type' ).'" name="'.$this->get_field_name( 'post_type' ).'[]" ';
+                            checked( in_array( 'post', $post_type ) );
+                            echo ' > post</label></li>';
+                            foreach($post_types as $type)
+                            {
+                                echo '<li class="popular-category"><label class="selectit"><input value="'.$type.'" type="checkbox" id="'.$this->get_field_id( 'post_type' ).'" name="'.$this->get_field_name( 'post_type' ).'[]" ';
+                                checked( in_array( $type, $post_type ) );
+                                echo ' >'.$type.'</label></li>';
+                            }
+                            //echo $cp;
+                            ?>
+                        </ul>
                     <p>
                 </div>
             </div>
