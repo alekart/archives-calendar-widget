@@ -1,15 +1,11 @@
 .rounded(@val){
-	-webkit-border-radius: @val;
-	-moz-border-radius: @val;
-	-ms-border-radius: @val;
-	-o-border-radius: @val;
+	//-webkit-border-radius: @val;
+	//-moz-border-radius: @val;
+	//-ms-border-radius: @val;
+	//-o-border-radius: @val;
 	border-radius: @val;
 }
-.boxShadow(@x, @y, @dist, @color){
-	-moz-box-shadow: @x @y @dist @color;
-	-webkit-box-shadow: @x @y @dist @color;
-	box-shadow: @x @y @dist @color;
-}
+
 
 .calendar-archives.twentytwelve{
 	position:relative;
@@ -76,7 +72,7 @@
 
 				.arrow-down{
 					.rounded(3px);
-					.boxShadow(0, 1px, 4px, rgba(0, 0, 0, 0.2));
+					box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 					background-color: #e6e6e6;
 					background-repeat: repeat-x;
 					background-image: -moz-linear-gradient(top, #f4f4f4, #e6e6e6);
@@ -126,7 +122,7 @@
 				width:100%;
 				background: #F0F0F0;
 				.rounded(3px);
-				.boxShadow(0, 1px, 6px, rgba(0, 0, 0, 0.4));
+				box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 				overflow: hidden;
 				top:0;
 				.year{
@@ -176,7 +172,7 @@
 				border:none;
 			
 				.rounded(3px);
-				.boxShadow(0, 1px, 4px, rgba(0, 0, 0, 0.2));
+				box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 				
 				a{
 					display:block;
