@@ -28,8 +28,6 @@ License: GPLv3
 	
 ****/
 
-require('arw-options.php');
-
 // LOCALISATION
 add_action('init', 'archivesCalendar_init');
 function archivesCalendar_init()
@@ -64,11 +62,11 @@ function archivesCalendar_activation($network_wide)
 }
 function _archivesCalendar_activate()
 {
-	global $wpdb;	
-	if(!get_option( 'archivesCalendar' ))
+	global $wpdb;
+	if($options = get_option( 'archivesCalendar' ) && $options.count() > 0)
 		$options = array(
 			"css" => 1,
-			"theme" => "default",
+			"theme" => "calendrier",
 			"jquery" => 0,
 			"js" => 1,
 			"show_settings" => 1,
@@ -77,7 +75,7 @@ function _archivesCalendar_activate()
 		);
 	else
 		$options = get_option( 'archivesCalendar' );
-		
+
 	if(isMU())
 	{
 		update_blog_option($wpdb -> blogid, 'archivesCalendar', $options);
@@ -135,18 +133,19 @@ function _archivesCalendar_uninstall()
 register_uninstall_hook(__FILE__, 'archivesCalendar_uninstall');
 
 // ADD Settings link in Plugins page when the plugin is activated
-if(!function_exists('plugin_settings_link'))
+if(!function_exists('arcw_settings_link'))
 {
-	function plugin_settings_link($links)
+	function arcw_settings_link($links)
 	{
-		$settings_link = '<a href="options-general.php?page=archives_calendar">'.__( 'Settings' ).'</a>'; 
-		array_unshift($links, $settings_link); 
-		return $links; 
+		$settings_link = '<a href="options-general.php?page=archives_calendar">'.__( 'Settings' ).'</a>';
+		array_unshift($links, $settings_link);
+		return $links;
 	}
 }
 $acplugin = plugin_basename( __FILE__ );
-add_filter( "plugin_action_links_$acplugin", 'plugin_settings_link' );
+add_filter( "arcw_action_links_$acplugin", 'arcw_settings_link' );
 
+require('arw-options.php');
 
 $archivesCalendar_options = get_option('archivesCalendar');
 
