@@ -23,7 +23,6 @@ function ArchivesCalandarSettingsMenu()
 	//$arcw_page = add_submenu_page( 'options-general.php', 'Archives Calendar Settings', $menu_name, 'manage_options', 'archives_calendar', 'archives_calendar_settings' );
 	add_action('admin_print_scripts-'.$arcw_page, 'arcw_admin_scripts');
 }
-add_action('admin_menu', 'ArchivesCalandarSettingsMenu');
 
 function arcw_admin_scripts() {
 	wp_enqueue_script( 'accordion' );
@@ -113,14 +112,15 @@ function archives_calendar_settings()
 					<form method="post" action="options.php">
 						<?php
 						settings_fields('archivesCalendar_options');
-						do_settings_sections('archivesCalendar_plugin');
+						do_settings_sections('archivesCalendar_plugin');	
 						?>
 					</form>
 				</div>
 			</div>
 		</div>
-	<?php
+	<?php 
 }
+add_action('admin_menu', 'ArchivesCalandarSettingsMenu');
 
 function themes_list($selected = 0, $name='', $id="", $class=""){
     $themes = array(
