@@ -105,7 +105,7 @@ function archives_calendar_settings()
 	<h2>Archives Calendar Widget</h2>
 		<h2 class="nav-tab-wrapper">
 			<a href="#arcw-settings" class="nav-tab nav-tab-active"><?php _e("Settings");?></a>
-			<a href="#arcw-themer" class="nav-tab"><?php _e('Customize');?><sup style="color:red">dev</sup></a>
+			<!--<a href="#arcw-themer" class="nav-tab notab"><?php _e('Customize');?><sup style="color:red">dev</sup></a>-->
 		</h2>
 		<div id="poststuff">
 			<div id="post-body" class="metabox-holder columns-2">
@@ -122,11 +122,8 @@ function archives_calendar_settings()
 	<?php
 }
 
-function themes_list($selected = 0, $name='', $id="", $class="")
-{
-    global $archivesCalendar_options;
+function themes_list($selected = 0, $name='', $id="", $class=""){
     $themes = array(
-        'calendrier' => 'Calendrier',
         'default' => __('Default', 'arwloc'),
         'classiclight' => 'Classic',
         'twentytwelve' => 'Twenty Twelve',
@@ -137,10 +134,9 @@ function themes_list($selected = 0, $name='', $id="", $class="")
 
     echo '<select name="'.$name.'" id="'.$id.'" class="'.$class.'">';
     foreach($themes as $key=>$value)
-    {
-        if($archivesCalendar_options['theme'] != $key)
+        {
             echo '<option '.selected( $key, $selected ).' value="'.$key.'">'.$value.'</option>';
-    }
+        }
     echo '</select>';
 }
 
@@ -247,82 +243,7 @@ function archivesCalendar_options()
 						</div>
 					</div>
 					<div class="arcw preview zone" style="width:250px; float: left; padding-left: 20px; padding-right: 20px ">
-                        <div class="calendar-archives calendrier">
-                            <div class="calandar-navigation">
-                                <a href="#" class="prev-year"><span>&lt;</span></a>
-                                <div class="menu-container months">
-                                    <a href="#" class="title">september 2014</a>
-                                    <ul class="menu" style="top: 0px; display: none;">
-                                        <li><a href="#" class="2011 12 current selected" rel="0">september 2014</a></li>
-                                        <li><a href="#" class="2011 12" rel="0">october 2011</a></li>
-                                        <li><a href="#" class="2011 12" rel="0">june 2011</a></li>
-                                    </ul>
-                                    <div class="arrow-down" title="Select archives year"><span>▼</span></div>
-                                </div><a href="#" class="next-year disabled"><span>&gt;</span></a>
-                            </div>
-                            <div class="week-row weekdays">
-                                <span class="day weekday">mon</span>
-                                <span class="day weekday">thu</span>
-                                <span class="day weekday">wen</span>
-                                <span class="day weekday">tue</span>
-                                <span class="day weekday">fri</span>
-                                <span class="day weekday">sat</span>
-                                <span class="day weekday last">sun</span>
-                            </div>
-                            <div class="archives-years">
-                                <div class="year 12 2011 current" rel="0">
-                                    <div class="week-row">
-                                        <span class="day noday">&nbsp;</span>
-                                        <span class="day noday">&nbsp;</span>
-                                        <span class="day noday">&nbsp;</span>
-                                        <span class="day">1</span>
-                                        <span class="day">2</span>
-                                        <span class="day">3</span>
-                                        <span class="day last">4</span>
-                                    </div>
-                                    <div class="week-row">
-                                        <span class="day">5</span>
-                                        <span class="day">6</span>
-                                        <span class="day has-posts"><a href="#">7</a></span>
-                                        <span class="day">8</span>
-                                        <span class="day">9</span>
-                                        <span class="day">10</span>
-                                        <span class="day has-posts last"><a href="#">11</a></span>
-                                    </div>
-                                    <div class="week-row">
-                                        <span class="day">12</span>
-                                        <span class="day">13</span>
-                                        <span class="day has-posts"><a href="#">14</a></span>
-                                        <span class="day has-posts"><a href="#">15</a></span>
-                                        <span class="day">16</span>
-                                        <span class="day">17</span>
-                                        <span class="day has-posts last"><a href="#">18</a></span>
-                                    </div>
-                                    <div class="week-row">
-                                        <span class="day has-posts"><a href="#">19</a></span>
-                                        <span class="day has-posts"><a href="#">20</a></span>
-                                        <span class="day has-posts"><a href="#">21</a></span>
-                                        <span class="day has-posts"><a href="#">22</a></span>
-                                        <span class="day">23</span><span class="day">24</span>
-                                        <span class="day last">25</span>
-                                    </div>
-                                    <div class="week-row"><span class="day">26</span><span class="day">27</span><span class="day">28</span><span class="day">29</span><span class="day">30</span><span class="day">31</span><span class="day noday last">&nbsp;</span>
-                                    </div>
-                                </div>
-                                <div class="year 12 2010 last" rel="0">
-                                    <div class="week-row"><span class="day last">&nbsp;</span>
-                                    </div>
-                                    <div class="week-row"><span class="day last">&nbsp;</span>
-                                    </div>
-                                    <div class="week-row"><span class="day last">&nbsp;</span>
-                                    </div>
-                                    <div class="week-row"><span class="day last">&nbsp;</span>
-                                    </div>
-                                    <div class="week-row"><span class="day last">&nbsp;</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						<div class="calendar-archives" id="arc-Archives-39"><div class="cal-nav months"><a href="#" class="prev-year"><span>&lt;</span></a><div class="year-nav months"><a href="#" class="year-title">december 2011</a><div class="year-select" style="top: 0px; display: none;"><a href="#" class="year 2011 12 current selected" rel="0">december 2011</a><a href="#" class="year 2011 12" rel="0">october 2011</a><a href="#" class="year 2011 12" rel="0">june 2011</a></div><div class="arrow-down" title="Select archives year"><span>▼</span></div></div><a href="#" class="next-year disabled"><span>&gt;</span></a></div><div class="week-row"><span class="day weekday">mon</span><span class="day weekday">thu</span><span class="day weekday">wen</span><span class="day weekday">tue</span><span class="day weekday">fri</span><span class="day weekday">sat</span><span class="day weekday last">sun</span></div><div class="archives-years"><div class="year 12 2011 current" rel="0"><div class="week-row"><span class="day noday">&nbsp;</span><span class="day noday">&nbsp;</span><span class="day noday">&nbsp;</span><span class="month day empty">1</span><span class="month day empty">2</span><span class="month day empty">3</span><span class="month day empty last">4</span></div><div class="week-row"><span class="month day empty">5</span><span class="month day empty">6</span><span class="month day"><a href="#">7</a></span><span class="month day empty">8</span><span class="month day empty">9</span><span class="month day empty">10</span><span class="month day last"><a href="#">11</a></span></div><div class="week-row"><span class="month day empty">12</span><span class="month day empty">13</span><span class="month day"><a href="#">14</a></span><span class="month day"><a href="#">15</a></span><span class="month day empty">16</span><span class="month day empty">17</span><span class="month day last"><a href="#">18</a></span></div><div class="week-row"><span class="month day"><a href="#">19</a></span><span class="month day"><a href="#">20</a></span><span class="month day"><a href="#">21</a></span><span class="month day"><a href="#">22</a></span><span class="month day empty">23</span><span class="month day empty">24</span><span class="month day empty last">25</span></div><div class="week-row"><span class="month day empty">26</span><span class="month day empty">27</span><span class="month day empty">28</span><span class="month day empty">29</span><span class="month day empty">30</span><span class="month day empty">31</span><span class="day noday last">&nbsp;</span></div></div><div class="year 12 2010 last" rel="0"><div class="week-row"><span class="month day empty last">&nbsp;</span></div><div class="week-row"><span class="month day empty last">&nbsp;</span></div><div class="week-row"><span class="month day empty last">&nbsp;</span></div><div class="week-row"><span class="month day empty last">&nbsp;</span></div><div class="week-row"><span class="month day empty last">&nbsp;</span></div></div></div></div>
 					</div>
 
 					<script>
@@ -471,7 +392,7 @@ function archivesCalendar_options()
 			</div>
 		</div>
 		<div id="arcw-themer" class="tab metabox-holder columns-2" style="display: none;">
-			<?php include 'arw-editor.php'; ?>
+			<?php //include 'arw-editor.php'; ?>				
 		</div>
 	</div>
 <?php

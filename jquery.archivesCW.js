@@ -23,39 +23,36 @@
 		);
 	}
 
-
 	$archivesCW = function(elem, options)
 	{
-        var $nav = elem.find('.calandar-navigation');
-        var $menu= $nav.find('.menu');
-        var $wearein = parseInt($menu.find('a.current').attr('rel'));
-
-		var totalyears = $menu.find('li').length;
-		if(totalyears <= 1) $nav.find('.arrow-down').hide();
+		var $wearein = parseInt(elem.find('.current.year').attr('rel'));
+		var totalyears = elem.find('.year-select > a.year').length;
+		if(totalyears <= 1) elem.find('.arrow-down').hide();
 		aCalSetYearSelect();
 		aCalCheckArrows();
 
-		$nav.find('.prev-year').on('click', function(e)
+		elem.find('.prev-year').on('click', function(e)
 		{
 			e.preventDefault();
 			if( $(this).is('.disabled') ) return;
 			goToYear($wearein + 1, options);
 		});
 
-        $nav.find('.next-year').on('click', function(e)
+		elem.find('.next-year').on('click', function(e)
 		{
 			e.preventDefault();
 			if( $(this).is('.disabled') ) return;
 			goToYear($wearein - 1, options);
 		});
 
-        $nav.find('.arrow-down').on('click', function()
+		elem.find('.arrow-down').on('click', function()
 		{
 			if($.isFunction(options.showDropdown))
-				options.showDropdown($menu);
+				options.showDropdown($(this).parent().children('.year-select'));
 		});
 
-		$menu.mouseleave(function()
+		elem.find('.year-select')
+		.mouseleave(function()
 		{
 			var menu = $(this);
 			$(this).data('timer', setTimeout(
@@ -71,25 +68,25 @@
 				clearTimeout($(this).data('timer'));
 		});
 
-		$menu.find('a').on('click', function(e)
+		elem.find('.year-select a.year').on('click', function(e)
 		{
 			e.preventDefault();
 			if( $(this).is('.selected') ) return;
 
-			$(this).removeClass('selected');
+			$(this).find('.year-select a').removeClass('selected');
 
 			var rel = parseInt($(this).attr('rel'));
 			goToYear(rel, options);
 
 			if($.isFunction(options.hideDropdown))
-				options.hideDropdown($menu);
+				options.hideDropdown($(this).parent());
 		});
 
 		function aCalCheckArrows()
 		{
 			if($wearein == totalyears-1)
 				elem.find('.prev-year').addClass('disabled');
-			else
+			else 
 				elem.find('.prev-year').removeClass('disabled');
 			if($wearein == 0)
 				elem.find('.next-year').addClass('disabled');
@@ -127,16 +124,15 @@
 			}
 
 			$wearein = goTo;
-			var $year = elem.find('.menu a[rel='+$wearein+']');
-			elem.find('a.title').attr( 'href', $year.attr('href') ).html( $year.html() );
+			var $year = elem.find('.year-select a.year[rel='+$wearein+']');
+			elem.find('a.year-title').attr( 'href', $year.attr('href') ).html( $year.html() );
 			aCalCheckArrows();
 			aCalSetYearSelect();
 		};
 		function aCalSetYearSelect()
 		{
-			$menu.find('a.selected, a[rel='+$wearein+']').toggleClass('selected');
-            var $selected = $menu.find('a.selected').parent();
-			$menu.css('top', - $selected.index() * parseInt($nav.height()) );
+			elem.find('.year-select').find('a.selected, a[rel='+$wearein+']').toggleClass('selected');
+			elem.find('.year-select').css('top', - elem.find('.year-select').find('a.selected').index() * parseInt(elem.find('.year-nav').height()) );
 		}
 	};
 
@@ -144,12 +140,14 @@
 		goNext: function(cal, actual, goTo)
 		{
 			/// EDIT THIS CODE TO CHANGE ANIMATION
-			cal.find('.year').css({
+			cal.find('.archives-years .year')
+			.css({
 				'margin-left': '-100%',
 				'opacity': 1
 			});
 
-			cal.find('.year[rel='+actual+']').css({
+			cal.find('.archives-years .year[rel='+actual+']')
+			.css({
 				'margin-left': 0,
 				'z-index': 2
 			})
@@ -157,7 +155,8 @@
 				'opacity': .5
 			}, 300);
 
-			cal.find('.year[rel='+goTo+']').css({
+			cal.find('.archives-years .year[rel='+goTo+']')
+			.css({
 				'z-index': 3
 			})
 			.animate({
@@ -167,25 +166,26 @@
 		goPrev: function(cal, actual, goTo)
 		{
 			/// EDIT THIS CODE TO CHANGE ANIMATION
-			cal.find('.year:not(.last)').css({
+			cal.find('.archives-years .year:not(.last)')
+			.css({
 				'margin-left': '-100%',
 				'opacity': 1
 			});
 
-			cal.find('.year[rel='+goTo+']').css({
+			cal.find('.archives-years .year[rel='+goTo+']')
+			.css({
 				'margin-left': 0,
 				'opacity': .3,
 				'z-index': 2
-			})
-            .animate({
+			}).animate({
 				'opacity': 1
 			}, 300);
 
-			cal.find('.year[rel='+actual+']').css({
+			cal.find('.archives-years .year[rel='+actual+']')
+			.css({
 				'margin-left': 0,
 				'z-index': 3
-			})
-            .animate({
+			}).animate({
 				'margin-left': '-100%'
 			});
 		},

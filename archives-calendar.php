@@ -294,8 +294,26 @@ function archives_year_view($args)
 	else
 		$archiveYear = $yearNb[0]; // if no current year -> show the more recent
 
-    $cal.= get_calendar_header($view = 'years', $yearNb, $archiveMonth, $archiveYear, $args);
-    $cal.= '<div class="archives-years">';
+	$nextyear = ($totalyears > 1) ? '<a href="#" class="next-year"><span>'.$next_text.'</span></a>' : '';
+	$prevyear = ($totalyears > 1) ? '<a href="#" class="prev-year"><span>'.$prev_text.'</span></a>' : '';
+
+	$cal = "\n<!-- Archives Calendar Widget by Aleksei Polechin - alek´ - http://alek.be -->\n";
+	$cal.= '<div class="calendar-archives '.$theme.'" id="arc-'.$title.'-'.mt_rand(10,100).'">';
+	$cal.= '<div class="cal-nav">'.$prevyear.'<div class="year-nav">';
+		$cal .=  '<a href="'.get_year_link($archiveYear).'" class="year-title">'.$archiveYear.'</a>';
+		$cal .= '<div class="year-select">';
+		$i=0;
+		foreach( $yearNb as $year )
+		{
+			$current = ($archiveYear == $year) ? " current" : "";
+			$cal.= '<a href="'.get_year_link($year).'" class="year '.$year.$current.'" rel="'.$i.'" >'.$year.'</a>';
+			$i++;
+		}
+		$cal.= '</div>';
+		if ($totalyears > 1)
+			$cal.= '<div class="arrow-down" title="'.__("Select archives year", "arwloc").'"><span>&#x25bc;</span></div>';
+	$cal.= '</div>'.$nextyear.'</div>';
+	$cal.= '<div class="archives-years">';
 
 	$i=0;
 
@@ -319,9 +337,9 @@ function archives_year_view($args)
 			else
 				$postcount = "";
 			if(isset($months[$month]))
-				$cal .= '<div class="month'.$last.' has-posts"><a href="'.get_month_link($year, $month).'"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</a></div>';
+				$cal .= '<div class="month'.$last.'"><a href="'.get_month_link($year, $month).'"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</a></div>';
 			else
-				$cal .= '<div class="month'.$last.'"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</div>';
+				$cal .= '<div class="month'.$last.' empty"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</div>';
 		}
 		$cal .= "</div>\n";
 		$i++;
@@ -427,7 +445,26 @@ function archives_month_view($args)
 		$months[0]->month =  (is_archive()) ? $archiveMonth : date('m');
 	}
 
-    $cal.= get_calendar_header($view = 'months', $months, $archiveMonth, $archiveYear, $args);
+	$nextmonth = ($totalmonths > 1) ? '<a href="#" class="next-year"><span>'.$next_text.'</span></a>' : '';
+	$prevmonth = ($totalmonths > 1) ? '<a href="#" class="prev-year"><span>'.$prev_text.'</span></a>' : '';
+	
+	$cal = "\n<!-- Archives Calendar Widget by Aleksei Polechin - alek´ - http://alek.be -->\n";
+	$cal.= '<div class="calendar-archives '.$theme.'" id="arc-'.$title.'-'.mt_rand(10,100).'">';
+	$cal.= '<div class="cal-nav months">'.$prevmonth.'<div class="year-nav months">';
+		$cal .=  '<a href="'.get_month_link( intval($archiveYear), intval($archiveMonth) ).'" class="year-title">'.$wp_locale->get_month(intval($archiveMonth)).' '.$archiveYear.'</a>';
+		$cal .= '<div class="year-select">';
+		$i=0;
+		foreach( $months as $month )
+		{
+			$cal.= '<a href="'.get_month_link( intval($month->year), intval($month->month) ).'" class="year '.$month->year.' '.$month->month;
+			if($archiveYear == $month->year && $archiveMonth == $month->month)
+				$cat.=$current;
+			$cal .= '" rel="'.$i.'" >'.$wp_locale->get_month(intval($month->month)).' '.$month->year.'</a>';
+			$i++;
+		}
+		$cal.= '</div>';
+		if ($totalmonths > 1) $cal.= '<div class="arrow-down" title="'.__("Select archives year", "arwloc").'"><span>&#x25bc;</span></div>';
+	$cal.= '</div>'.$nextmonth.'</div>';
 
 	// Display week days names
 	$week_begins = intval(get_option('start_of_week'));
@@ -436,7 +473,7 @@ function archives_month_view($args)
 		$myweek[] = $wp_locale->get_weekday(($wdcount+$week_begins)%7);
 	}
 	$i=1;
-	$cal .= '<div class="week-row weekdays">';
+	$cal .= '<div class="week-row">';
 	foreach ( $myweek as $wd )
 	{
 		$day_name = (true == $initial) ? $wp_locale->get_weekday_initial($wd) : $wp_locale->get_weekday_abbrev($wd);
@@ -508,9 +545,9 @@ function archives_month_view($args)
 			$last = ($k%7 == 0) ? " last" : "";
 
 			if(in_array ( $j , $dayswithposts ) )
-				$cal .= '<span class="day'.$last.' has-posts"><a href="'.get_day_link( $months[$i]->year, $months[$i]->month, $j ).'">'.$j.'</a></span>';
+				$cal .= '<span class="month day'.$last.'"><a href="'.get_day_link( $months[$i]->year, $months[$i]->month, $j ).'">'.$j.'</a></span>';
 			else
-				$cal .= '<span class="day'.$last.'">'.$j.'</span>';
+				$cal .= '<span class="month day'.$last.' empty">'.$j.'</span>';
 
 			if($k%7 == 0)
 				$cal .= "</div>\n<div class=\"week-row\">\n";
@@ -531,54 +568,6 @@ function archives_month_view($args)
 	$cal .= "</div></div>";	
 
 	return $cal;
-}
-
-function get_calendar_header($view = 'months', $pages, $archiveMonth, $archiveYear, $args){
-    global $wp_locale;
-    extract($args);
-
-    $cal = "\n<!-- Archives Calendar Widget by Aleksei Polechin - alek´ - http://alek.be -->\n";
-    $cal.= '<div class="calendar-archives '.$theme.'" id="arc-'.$title.'-'.mt_rand(10,100).'">';
-    $cal.= '<div class="calandar-navigation">';
-
-    if(count($pages) > 1)
-        $cal .= '<a href="#" class="prev-year"><span>'.$prev_text.'</span></a>';
-
-    $cal .= '<div class="menu-container '.$view.'">';
-    $cal .= '<a href="'.get_month_link( intval($archiveYear), intval($archiveMonth) ).'" class="title">'.$wp_locale->get_month(intval($archiveMonth)).' '.$archiveYear.'</a>';
-    $cal .= '<ul class="menu">';
-
-    $i=0;
-    foreach( $pages as $page )
-    {
-        if($view == "months")
-        {
-            $archivelink = get_month_link( intval($page->year), intval($page->month) );
-            $linkclass = $page->year.' '.$page->month;
-            $linktext = $wp_locale->get_month(intval($page->month)).' '.$page->year;
-        }
-        else
-        {
-            $archivelink = get_year_link($page);
-            $linkclass = $page;
-            $linktext = $page;
-        }
-        $current = ( ($view == 'months' && $archiveYear == $page->year && $archiveMonth == $page->month) || ($view == "years" && $archiveYear == $page) ) ? ' current' : '';
-        $cal .= '<li><a href="'.$archivelink.'" class="'.$linkclass.$current.'" rel="'.$i.'" >'.$linktext.'</a></li>';
-        $i++;
-    }
-    $cal .= '</ul>';
-
-    if (count($pages) > 1)
-        $cal .= '<div class="arrow-down" title="'.__("Select archives year", "arwloc").'"><span>&#x25bc;</span></div>';
-
-    $cal .= '</div>';
-
-    if(count($pages) > 1)
-        $cal .= '<a href="#" class="next-year"><span>'.$next_text.'</span></a>';
-
-    $cal .= '</div>';
-    return $cal;
 }
 
 
