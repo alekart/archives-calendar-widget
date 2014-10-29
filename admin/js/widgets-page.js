@@ -66,7 +66,8 @@ jQuery(function($){
 
     function arw_theme(widget){
         var themes = widget.find("#arw-theme-list");
-        console.log(themes);
+        //console.log(themes);
+
         if( widget.find('#arw-theme-option').is(':checked'))
             $(themes).show();
         else

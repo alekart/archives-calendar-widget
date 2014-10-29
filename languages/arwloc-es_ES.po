@@ -1,103 +1,67 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Archives Calendar Widget\n"
-"POT-Creation-Date: 2014-05-15 09:58+0100\n"
-"PO-Revision-Date: 2014-05-15 09:58+0100\n"
-"Last-Translator: jelena kovacevic <jecajeca260@gmail.com>\n"
+"POT-Creation-Date: 2014-10-28 17:32+0100\n"
+"PO-Revision-Date: 2014-10-28 17:33+0100\n"
+"Last-Translator: \n"
 "Language-Team: author here\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-KeywordsList: _e;__\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../archives-calendar.php:126
+#: ../archives-calendar.php:67 ../arw-options.php:108
 msgid "Settings"
 msgstr "Ajustes"
 
-#: ../archives-calendar.php:178
-msgid "Show archives as calendar"
-msgstr "Mostrar archivos como calendario"
-
-#: ../archives-calendar.php:204
-msgid "Archives"
-msgstr "Archivos"
-
-#: ../archives-calendar.php:217
-msgid "Title:"
-msgstr "Título:"
-
-#: ../archives-calendar.php:221
-msgid "Previous button text:"
-msgstr "Texto del botón anterior:"
-
-#: ../archives-calendar.php:223
-msgid "Next button text:"
-msgstr "Texto del botón Siguiente:"
-
-#: ../archives-calendar.php:227
-msgid "Show number of posts:"
-msgstr "Mostrar número de posts:"
-
-#: ../archives-calendar.php:230
-msgid "Yes"
-msgstr "Si"
-
-#: ../archives-calendar.php:233
-msgid "No"
-msgstr "No"
-
-#: ../archives-calendar.php:238
-msgid "Show"
-msgstr ""
-
-#: ../archives-calendar.php:241
-msgid "Months"
-msgstr ""
-
-#: ../archives-calendar.php:244
-msgid "Years"
-msgstr ""
-
-#: ../archives-calendar.php:342 ../archives-calendar.php:418
-#: ../arw-options.php:137
-msgid "Select archives year"
-msgstr "Seleccionar año de los archivos"
-
-#: ../archives-calendar.php:361 ../arw-options.php:167
-msgid "Post"
-msgstr "Post"
-
-#: ../archives-calendar.php:361 ../arw-options.php:167
-msgid "Posts"
-msgstr "Posts"
-
-#: ../arw-options.php:59
-msgid "Archives Calendar Settings"
-msgstr "Ajustes de Archivos del Calendario"
-
-#: ../arw-options.php:88 ../arw-options.php:193
+#: ../arw-editor.php:12 ../arw-options.php:139 ../arw-options.php:306
 msgid "Theme"
 msgstr "Tema"
 
-#: ../arw-options.php:89 ../arw-options.php:194
-msgid "Default"
-msgstr "Por Defecto"
-
-#: ../arw-options.php:94 ../arw-options.php:199
+#: ../arw-editor.php:12
 msgid "Custom"
 msgstr "Personalizado"
 
-#: ../arw-options.php:95
+#: ../arw-editor.php:140 ../arw-widget.php:470
+msgid "Select archives year"
+msgstr "Seleccionar año de los archivos"
+
+#: ../arw-editor.php:170 ../arw-widget.php:233
+msgid "Post"
+msgstr "Post"
+
+#: ../arw-editor.php:170 ../arw-widget.php:233
+msgid "Posts"
+msgstr "Posts"
+
+#: ../arw-editor.php:193
+msgid "Save"
+msgstr ""
+
+#: ../arw-editor.php:194
+msgid "Reset"
+msgstr ""
+
+#: ../arw-options.php:109
+#, fuzzy
+msgid "Customize"
+msgstr "Personalizado"
+
+#: ../arw-options.php:143
+msgid "OK"
+msgstr ""
+
+#: ../arw-options.php:143
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../arw-options.php:188
+#: ../arw-options.php:300
 msgid ""
 "The theme's CSS file is not included in administration, this preview may be "
 "different from the website rendering."
@@ -105,11 +69,11 @@ msgstr ""
 "El archivo CSS del tema no está incluido en la administración, esta vista "
 "previa puede ser diferente del sitio web que está siendo renderizado."
 
-#: ../arw-options.php:191
+#: ../arw-options.php:304
 msgid "Include CSS file"
 msgstr "Archivo CSS incluido"
 
-#: ../arw-options.php:192
+#: ../arw-options.php:305
 msgid ""
 "Include CSS file from the plugin.<br /><strong>It's recommended to copy the "
 "CSS code to your theme´s <strong>style.css</strong> and uncheck this option."
@@ -118,11 +82,11 @@ msgstr ""
 "el código CSS de su tema para <strong>style.css</strong> y desactivar esta "
 "opción."
 
-#: ../arw-options.php:200
+#: ../arw-options.php:310
 msgid "Preview"
 msgstr "Vista Previa"
 
-#: ../arw-options.php:201
+#: ../arw-options.php:311
 msgid ""
 "<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be "
 "restored on next plugin update."
@@ -130,11 +94,11 @@ msgstr ""
 "<strong>NOTA : </strong> si ha modificado el archivo CSS de cualquier plugin "
 "se restaurará en la próxima actualización del plugin."
 
-#: ../arw-options.php:205
+#: ../arw-options.php:316
 msgid "Include jQuery library"
 msgstr "Incluir la librería jQuery"
 
-#: ../arw-options.php:206
+#: ../arw-options.php:317
 msgid ""
 "Include jQuery library into your theme. Uncheck if your theme already "
 "includes jQuery library.<br /><strong>jQuery library is required.</strong>"
@@ -142,11 +106,11 @@ msgstr ""
 "Incluir la librería jQuery en su tema. Desmarque si su tema incluye ya la "
 "librería jQuery.<br /><strong>librería jQuery requerida.</strong>"
 
-#: ../arw-options.php:209
+#: ../arw-options.php:320
 msgid "Insert JavaScript code into <head>"
 msgstr "Insertar código JavaScript en &lt;head&gt;"
 
-#: ../arw-options.php:210
+#: ../arw-options.php:321
 #, fuzzy
 msgid ""
 "Insert javascript code into your theme's <head>. Uncheck only if you copy "
@@ -155,34 +119,38 @@ msgstr ""
 "Insertar código javascript en sus temas &lt;head&gt; Desmarque sólo si copia "
 "este código en el archivo .js por defecto."
 
-#: ../arw-options.php:211
+#: ../arw-options.php:322
 msgid "This code is required."
 msgstr "Este código es requerido."
 
-#: ../arw-options.php:214
+#: ../arw-options.php:325
 msgid "You can set some parameters to change the animation of the calendar."
 msgstr ""
 
-#: ../arw-options.php:217
+#: ../arw-options.php:328
 #, fuzzy
 msgid "Show default parameters"
 msgstr "Mostrar script por defecto"
 
-#: ../arw-options.php:230
+#: ../arw-options.php:332
+msgid "Open"
+msgstr ""
+
+#: ../arw-options.php:341
 msgid "Enable Shortcode support in text widget"
 msgstr "Habilitar soporte de Código corto en el widget de texto"
 
-#: ../arw-options.php:231
+#: ../arw-options.php:342
 msgid "Use the shortcode in a text widget to display Archives Calendar."
 msgstr ""
 "Usar el código corto en el widget de texto para mostrar Archivos del "
 "Calendario."
 
-#: ../arw-options.php:237
+#: ../arw-options.php:348
 msgid "Show link to Settings in admin menu"
 msgstr "Mostrar enlace en Ajustes del menú de Administración"
 
-#: ../arw-options.php:238
+#: ../arw-options.php:349
 msgid ""
 "Show link \"Archives Calendar\" in admin \"Settings\" menu. If unchecked you "
 "can enter settings from \"Settings\" link in \"Plugins\" page."
@@ -191,35 +159,23 @@ msgstr ""
 "administración. Si lo desmarca usted puede entrar los ajustes del enlace de "
 "\"Ajustes\" en la página \"Plugins\"."
 
-#: ../arw-options.php:242
+#: ../arw-options.php:354
 msgid "Save Changes"
 msgstr "Salvar Cambios"
 
-#: ../arw-options.php:260
+#: ../arw-options.php:373
 msgid "News/Updates"
 msgstr "Noticias/Actualizaciones"
 
-#: ../arw-options.php:277
+#: ../arw-options.php:390 ../arw-options.php:399
 msgid "More"
 msgstr "Más"
 
-#: ../arw-options.php:280
+#: ../arw-options.php:393
 msgid "No posts"
 msgstr "No hay posts"
 
-#: ../arw-options.php:286
-msgid "Also"
-msgstr "También"
-
-#: ../arw-options.php:288
-msgid "My other projects on "
-msgstr "Mis otros proyectos en"
-
-#: ../arw-options.php:296
-msgid "My portfolio:"
-msgstr "Mi portafolio:"
-
-#: ../arw-options.php:303
+#: ../arw-options.php:409
 msgid ""
 "If you like this plugin please <strong>support my work</strong>, buy me "
 "<strong>a beer or a coffee</strong>. Click Donate and specify your amount."
@@ -228,9 +184,103 @@ msgstr ""
 "<strong>cómpreme una cerveza o un café </strong>. Haga clic en Donar y "
 "especifique su cantidad."
 
-#: ../arw-options.php:307
+#: ../arw-options.php:413
 msgid "In Belgium 1 coffee or 1 beer costs about 2€"
 msgstr "En Bélgica 1 café o 1 cerveza cuestan acerca de 2€"
+
+#: ../arw-options.php:441
+msgid "Default"
+msgstr "Por Defecto"
+
+#: ../arw-widget-settings.php:4
+msgid "Title:"
+msgstr "Título:"
+
+#: ../arw-widget-settings.php:9
+#, fuzzy
+msgid "Previous"
+msgstr "Vista Previa"
+
+#: ../arw-widget-settings.php:13
+msgid "Next"
+msgstr ""
+
+#: ../arw-widget-settings.php:21
+msgid "Show"
+msgstr ""
+
+#: ../arw-widget-settings.php:24
+msgid "Months"
+msgstr ""
+
+#: ../arw-widget-settings.php:27
+msgid "Years"
+msgstr ""
+
+#: ../arw-widget-settings.php:32
+msgid "Show first: "
+msgstr ""
+
+#: ../arw-widget-settings.php:36
+msgid "Latest month"
+msgstr ""
+
+#: ../arw-widget-settings.php:39
+msgid "Current month"
+msgstr ""
+
+#: ../arw-widget-settings.php:42
+msgid "Previous month"
+msgstr ""
+
+#: ../arw-widget-settings.php:45
+msgid "Next month"
+msgstr ""
+
+#: ../arw-widget-settings.php:52
+msgid "Show number of posts"
+msgstr "Mostrar número de posts"
+
+#: ../arw-widget-settings.php:62
+msgid "Use a different theme"
+msgstr ""
+
+#: ../arw-widget-settings.php:93
+msgid "Categories"
+msgstr ""
+
+#: ../arw-widget-settings.php:96
+msgid "All"
+msgstr ""
+
+#: ../arw-widget.php:16
+msgid "Show archives as calendar"
+msgstr "Mostrar archivos como calendario"
+
+#: ../arw-widget.php:51
+msgid "Archives"
+msgstr "Archivos"
+
+#~ msgid "Next button text:"
+#~ msgstr "Texto del botón Siguiente:"
+
+#~ msgid "Yes"
+#~ msgstr "Si"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid "Archives Calendar Settings"
+#~ msgstr "Ajustes de Archivos del Calendario"
+
+#~ msgid "Also"
+#~ msgstr "También"
+
+#~ msgid "My other projects on "
+#~ msgstr "Mis otros proyectos en"
+
+#~ msgid "My portfolio:"
+#~ msgstr "Mi portafolio:"
 
 #~ msgid "Jan"
 #~ msgstr "Ene"

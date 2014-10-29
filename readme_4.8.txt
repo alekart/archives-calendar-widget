@@ -73,20 +73,18 @@ Note that **if you modify the default CSS** file to skin the calendar, you will 
 
 == Screenshots ==
 
-1. Thenty Twelve theme preview in settings
+1. "Calendrier" theme preview in settings
 2. Widget settings
 3. Plugin settings
-4. Twenty Thirteen theme on a website
-5. Default theme on a website
+4. Widgets with different themes on the same page
 
 == Changelog ==
 
-= 1.0.0 =
-* [new] Options for month view. Show previous, actual or next month in first even if there is no posts, or the last month that has at least one post.
-* [new] [NOT YET] Set a different theme for each widget (for example if used in sidebar and footer)
-* [NEW] [NOT YET] Theme editor
+= 0.9.9 =
+* [ANNOUNCE] [NOT YET] Theme editor
+* [NEW] Set a different theme for each widget
+* [new] Options for month view. Show previous, current or next month in first even if there is no posts, or the last month with at least one post.
 * [new] Shortcode now supports post_type and categories parameters
-* [new] Russian localization
 
 = 0.4.7 =
 * [fix] post count fix for specified categories
@@ -135,6 +133,8 @@ Note that **if you modify the default CSS** file to skin the calendar, you will 
 * Fixed missing function that checks if MultiSite is activated.
 
 == Upgrade notice ==
+
+* **HTML STRUCTURE CHANGES**, your custom CSS **will not** be applied correctly
 
 * **NEW WIDGET SETTINGS! Check the widget settings in 'Appearence->Widgets' after the update**
 

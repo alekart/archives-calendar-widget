@@ -1,9 +1,4 @@
-<script type="text/javascript">
 
-</script>
-<?php
-
-?>
 <div class="archives-calendar <?php echo $this->id; ?>">
     <p>
         <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
@@ -11,12 +6,12 @@
     </p>
     <p>
         <div style="float: left; width: 49%">
-            <label for="<?php echo $this->get_field_id( 'prev_text' ); ?>"><?php _e( 'Previous' ); ?>:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id( 'prev_text' ); ?>" name="<?php echo $this->get_field_name( 'prev_text' ); ?>" type="text" value="<?php echo esc_attr( $prev ); ?>" />
+            <label for="<?php echo $this->get_field_id( 'prev_text' ); ?>"><?php _e( 'Previous', 'arwloc' ); ?>:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'prev_text' ); ?>" name="<?php echo $this->get_field_name( 'prev_text' ); ?>" type="text" value="<?php echo $prev; ?>" />
         </div>
         <div style="float: right; width: 49%">
-            <label for="<?php echo $this->get_field_id( 'next_text' ); ?>"><?php _e( 'Next' ); ?>:</label>
-            <input class="widefat" id="<?php echo $this->get_field_id( 'next_text' ); ?>" name="<?php echo $this->get_field_name( 'next_text' ); ?>" type="text" value="<?php echo esc_attr( $next ); ?>" />
+            <label for="<?php echo $this->get_field_id( 'next_text' ); ?>"><?php _e( 'Next', 'arwloc' ); ?>:</label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'next_text' ); ?>" name="<?php echo $this->get_field_name( 'next_text' ); ?>" type="text" value="<?php echo $next; ?>" />
         </div>
         <div class="clear"></div>
     </p>
@@ -26,28 +21,28 @@
         <label for="<?php echo $this->get_field_id( 'month_view' ); ?>"><?php _e( 'Show' ).': '; ?></label>
         <select id="arw-view" name="<?php echo $this->get_field_name( 'month_view' ); ?>" >
             <option <?php selected( 1, $month_view ); ?> value="1">
-                <?php _e( 'Months' ); ?>
+                <?php _e( 'Months', 'arwloc' ); ?>
             </option>
             <option <?php selected( 0, $month_view ); ?> value="0">
-                <?php _e( 'Years' ); ?>
+                <?php _e( 'Years', 'arwloc' ); ?>
             </option>
         </select>
         <span>&nbsp;</span>
         <span style="display: none">
-            <label for="<?php echo $this->get_field_id( 'month_select' ); ?>"><?php _e( 'Show first' ).': '; ?></label>
+            <label for="<?php echo $this->get_field_id( 'month_select' ); ?>"><?php _e( 'Show first: ', 'arwloc' ).': '; ?></label>
             </label>
             <select id="arw-month_view-option" name="<?php echo $this->get_field_name( 'month_select' ); ?>" >
                 <option <?php selected( 'default', $month_select ); ?> value="default">
-                    <?php _e( 'Latest month' ); ?>
+                    <?php _e( 'Latest month', 'arwloc' ); ?>
                 </option>
-                <option <?php selected( 'actual', $month_select ); ?> value="actual">
-                    <?php _e( 'Actual month' ); ?>
+                <option <?php selected( 'current', $month_select ); ?> value="current">
+                    <?php _e( 'Current month', 'arwloc' ); ?>
                 </option>
                 <option <?php selected( 'prev', $month_select ); ?> value="prev">
-                    <?php _e( 'Previous month' ); ?>
+                    <?php _e( 'Previous month', 'arwloc' ); ?>
                 </option>
                 <option <?php selected( 'next', $month_select ); ?> value="next">
-                    <?php _e( 'Next month' ); ?>
+                    <?php _e( 'Next month', 'arwloc' ); ?>
                 </option>
             </select>
         </span>
@@ -64,18 +59,18 @@
     <p>
         <label>
             <input id="arw-theme-option" class="selectit" <?php if($different_theme) echo "checked";?> id="<?php echo $this->get_field_id( 'different_theme' ); ?>" name="<?php echo $this->get_field_name( 'different_theme' ); ?>" type="checkbox" value="1" />
-            &nbsp;<?php _e( 'Set a different theme', 'arwloc' ); ?>
+            &nbsp;<?php _e( 'Use a different theme', 'arwloc' ); ?>
         </label>
     </p>
     <p id="arw-theme-list">
         <?php
-        themes_list($arw_theme, $this->get_field_name( 'theme' ), $this->get_field_id( 'theme' ));
+        themes_list($arw_theme, array( 'name' => $this->get_field_name( 'theme' ), 'id' => $this->get_field_id( 'theme' ) ) );
         ?>
     </p>
 
     <hr/>
 
-    <p>
+	<p></p>
         <div class="accordion-container" style="border: 1px solid #ddd; overflow: hidden" tabindex="-1">
             <?php
                 $elemid = $this->get_field_id( 'cats' );
@@ -138,13 +133,11 @@
                                 checked( in_array( $type, $post_type ) );
                                 echo ' >'.$type.'</label></li>';
                             }
-                            //echo $cp;
                             ?>
                         </ul>
                     <p>
                 </div>
             </div>
         </div>
-    </p>
-
+	<p></p>
 </div>

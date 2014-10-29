@@ -6,22 +6,24 @@ License: GPLv3
 */
 
 /***** SETTINGS ******/
+$archivesCalendar_options = get_option('archivesCalendar');
+
 function archivesCalendar_admin_init()
 {
-	register_setting( 'archivesCalendar_options', 'archivesCalendar', 'archivesCalendar_options_validate' );
-	add_settings_section('archivesCalendar_main', '', 'archivesCalendar_options', 'archivesCalendar_plugin');
+    register_setting( 'archivesCalendar_options', 'archivesCalendar', 'archivesCalendar_options_validate' );
+    add_settings_section('archivesCalendar_main', '', 'archivesCalendar_options', 'archivesCalendar_plugin');
 }
 add_action('admin_init', 'archivesCalendar_admin_init');
 
-function ArchivesCalandarSettingsMenu()
+function ArchivesCalendarSettingsMenu()
 {
-	global $archivesCalendar_options;
-	$arcw_page = add_options_page('Archives Calendar Settings', 'Archives Calendar', 'manage_options', 'archives_calendar', 'archives_calendar_settings');
-	
-	if($archivesCalendar_options['show_settings'] == 0)
-		remove_submenu_page( 'options-general.php', 'archives_calendar' );
-	//$arcw_page = add_submenu_page( 'options-general.php', 'Archives Calendar Settings', $menu_name, 'manage_options', 'archives_calendar', 'archives_calendar_settings' );
-	add_action('admin_print_scripts-'.$arcw_page, 'arcw_admin_scripts');
+    global $archivesCalendar_options;
+    $arcw_page = add_options_page('Archives Calendar Settings', 'Archives Calendar', 'manage_options', 'archives_calendar', 'archives_calendar_settings');
+
+    if($archivesCalendar_options['show_settings'] == 0)
+        remove_submenu_page( 'options-general.php', 'archives_calendar' );
+    //$arcw_page = add_submenu_page( 'options-general.php', 'Archives Calendar Settings', $menu_name, 'manage_options', 'archives_calendar', 'archives_calendar_settings' );
+    add_action('admin_print_scripts-'.$arcw_page, 'arcw_admin_scripts');
 }
 
 function arcw_admin_scripts() {
@@ -33,6 +35,11 @@ function arcw_admin_scripts() {
 	wp_enqueue_script( 
 		'arcw-themer',
 		plugins_url( '/admin/js/themer.js' , __FILE__ ),
+		array( 'jquery' )
+	);
+	wp_enqueue_script(
+		'arcw-admin',
+		plugins_url( '/admin/js/admin.js' , __FILE__ ),
 		array( 'jquery' )
 	);
 
@@ -78,19 +85,7 @@ function archivesCalendar_options_validate($args)
 function archives_calendar_settings()
 {?>
 	<script type="text/javascript">
-	jQuery(document).ready(function($){
-		$(".nav-tab-wrapper a.nav-tab").click(function(e){
-			e.preventDefault();
-			if($(this).is('.nav-tab-active, .notab'))
-				return;
-			$(".nav-tab-wrapper").find('a.nav-tab-active').toggleClass('nav-tab-active');
-			$(this).toggleClass('nav-tab-active');
-			$('#post-body-content').find('.active-tab').hide().removeClass('active-tab');
-			$($(this).attr('href')).show().addClass('active-tab');
-			$("#ac_preview_css").remove();
-			$("head").append('<link id="ac_preview_css" href="<?php echo plugins_url('', __FILE__); ?>/themes/custom.css" type="text/css" rel="stylesheet" />');
-		});
-	});
+		ARCWPATH = '<?php echo plugins_url('', __FILE__); ?>';
 	</script>
 	<style type="text/css">
 		pre{font-size:11px; padding:10px; border:#CCC 1px solid; background:#f1f1f1; overflow:auto;}
@@ -104,7 +99,7 @@ function archives_calendar_settings()
 	<h2>Archives Calendar Widget</h2>
 		<h2 class="nav-tab-wrapper">
 			<a href="#arcw-settings" class="nav-tab nav-tab-active"><?php _e("Settings");?></a>
-			<!--<a href="#arcw-themer" class="nav-tab notab"><?php _e('Customize');?><sup style="color:red">dev</sup></a>-->
+			<a href="#arcw-themer" class="nav-tab"><?php _e('Customize');?><sup style="color:red">dev</sup></a>
 		</h2>
 		<div id="poststuff">
 			<div id="post-body" class="metabox-holder columns-2">
@@ -112,33 +107,15 @@ function archives_calendar_settings()
 					<form method="post" action="options.php">
 						<?php
 						settings_fields('archivesCalendar_options');
-						do_settings_sections('archivesCalendar_plugin');	
+						do_settings_sections('archivesCalendar_plugin');
 						?>
 					</form>
 				</div>
 			</div>
 		</div>
-	<?php 
+	<?php
 }
-add_action('admin_menu', 'ArchivesCalandarSettingsMenu');
-
-function themes_list($selected = 0, $name='', $id="", $class=""){
-    $themes = array(
-        'default' => __('Default', 'arwloc'),
-        'classiclight' => 'Classic',
-        'twentytwelve' => 'Twenty Twelve',
-        'twentythirteen' => 'Twenty Thirteen',
-        'twentyfourteen' => 'Twenty Fourteen',
-        //'custom' => __('Custom', 'arwloc')
-    );
-
-    echo '<select name="'.$name.'" id="'.$id.'" class="'.$class.'">';
-    foreach($themes as $key=>$value)
-        {
-            echo '<option '.selected( $key, $selected ).' value="'.$key.'">'.$value.'</option>';
-        }
-    echo '</select>';
-}
+add_action('admin_menu', 'ArchivesCalendarSettingsMenu');
 
 function archivesCalendar_options()
 {
@@ -149,140 +126,15 @@ function archivesCalendar_options()
 ?>
 	<div class="tabs">
 		<div id="arcw-settings" class="tab active-tab metabox-holder columns-2">	
-			<div id="post-body-content">					
-				<div id="ac_preview" style="display:none;">
-					<p>
-						<strong><?php _e('Theme');?>:</strong>
-                        <?php
-                        themes_list($theme, "themepreview");
-                        ?>
-						<button class="button-primary ok_theme"><?php _e('OK');?></button> <button class="button cancel_theme"><?php _e('Cancel', 'arwloc');?></button>
-						<script type="application/javascript">
-							jQuery(document).ready(function($) {
-								$('.calendar-archives.preview a').on('click', function(e) {
-									e.preventDefault();
-								});
-								$('#themepreview').change(function(){
-									css = $(this).val() + '.css';
-									$("#ac_preview_css").remove();
-									$("head").append('<link id="ac_preview_css" href="<?php echo plugins_url('', __FILE__); ?>/themes/' + css + '" type="text/css" rel="stylesheet" />');
-								});
-
-								$('.button.preview_theme').on('click', function(){
-									$('#themepreview option[value='+$('select.theme_select').val()+']').attr('selected', true);
-									$("#ac_preview_css").remove();
-									$("head").append('<link id="ac_preview_css" href="<?php echo plugins_url('', __FILE__); ?>/themes/' + $('select.theme_select').val() + '.css" type="text/css" rel="stylesheet" />');
-								});
-								$('.ok_theme').on('click', function(){
-									tb_remove();
-									$('select.theme_select option[value='+$('#themepreview').val()+']').attr('selected', true);
-								});
-								$('.cancel_theme').on('click', function(){
-									tb_remove();
-								});
-							});
-						</script>
-					</p>
-					<br>
-					<div class="arcw preview zone" style="width:250px; float: left; margin-left:20px; padding-left:20px;">
-						<div class="calendar-archives preview">
-							<div class="cal-nav">
-								<a href="#" class="prev-year"><span>&lt;</span></a>
-								<div class="year-nav">
-									<a href="#" class="year-title">2013</a>
-									<div class="year-select" style="top: 0px;">
-										<a href="#" class="year 2013 current selected" rel="0">2013</a>
-										<a href="#" class="year 2012" rel="1">2012</a>
-									</div>
-									<div class="arrow-down" title="<?php _e( 'Select archives year', 'arwloc') ;?>">
-										<span>▼</span>
-									</div>
-								</div>
-								<a href="#" class="next-year disabled"><span>&gt;</span></a>
-							</div>
-							<?php 
-							$aloc = 'archives_calendar';
-							$mnames[0] = '';
-
-							for($i=1; $i<13; $i++)
-							{
-								$monthdate = '1970-'. sprintf('%02d', $i) .'-01';		
-								$mnames[$i] = $wp_locale->get_month_abbrev( $wp_locale->get_month(intval($i)) );
-							}
-								
-							$years = array(2013 => array( 3 => 4, 6 => 3, 1 => 2 ), 2012 => array( 2 => 4, 7 => 3, 8 => 2 ));
-
-							$cal= '<div class="archives-years">';
-							$i = 0;
-							
-							
-							foreach ($years as $year => $months){
-								$current = ($i == 0) ? " current" : "";
-								$lastyear = ($i == 1) ? " last" : "";
-								$cal .= '<div class="year '.$year.$current.$lastyear.'" rel="'.$i.'">';
-								for ( $month = 1; $month <= 12; $month++ ) {
-									$last = ( $month%4 == 0 ) ? ' last' : '';
-										if(isset($months[$month])) $count = $months[$month];
-										else $count = '0';
-										$posts_text = ($count == 1) ? __('Post', 'arwloc') : __('Posts', 'arwloc');
-
-										$postcount = '<span class="postcount"><span class="count-number">'.$count.'</span> <span class="count-text">'.$posts_text.'</span></span>';
-									
-									if(isset($months[$month]))
-										$cal .= '<div class="month'.$last.'"><a href="#"><span class="month-name">'.$mnames[$month].'</span>'.$postcount.'</a></div>';
-									else
-										$cal .= '<div class="month'.$last.' empty"><span class="month-name">'.$mnames[$month].'</span>'.$postcount.'</div>';
-								}
-								$cal .= "</div>\n";
-								$i++;
-							}
-
-							$cal .= "</div>";
-							echo $cal;
-							?>
-						</div>
-					</div>
-					<div class="arcw preview zone" style="width:250px; float: left; padding-left: 20px; padding-right: 20px ">
-						<div class="calendar-archives" id="arc-Archives-39"><div class="cal-nav months"><a href="#" class="prev-year"><span>&lt;</span></a><div class="year-nav months"><a href="#" class="year-title">december 2011</a><div class="year-select" style="top: 0px; display: none;"><a href="#" class="year 2011 12 current selected" rel="0">december 2011</a><a href="#" class="year 2011 12" rel="0">october 2011</a><a href="#" class="year 2011 12" rel="0">june 2011</a></div><div class="arrow-down" title="Select archives year"><span>▼</span></div></div><a href="#" class="next-year disabled"><span>&gt;</span></a></div><div class="week-row"><span class="day weekday">mon</span><span class="day weekday">thu</span><span class="day weekday">wen</span><span class="day weekday">tue</span><span class="day weekday">fri</span><span class="day weekday">sat</span><span class="day weekday last">sun</span></div><div class="archives-years"><div class="year 12 2011 current" rel="0"><div class="week-row"><span class="day noday">&nbsp;</span><span class="day noday">&nbsp;</span><span class="day noday">&nbsp;</span><span class="month day empty">1</span><span class="month day empty">2</span><span class="month day empty">3</span><span class="month day empty last">4</span></div><div class="week-row"><span class="month day empty">5</span><span class="month day empty">6</span><span class="month day"><a href="#">7</a></span><span class="month day empty">8</span><span class="month day empty">9</span><span class="month day empty">10</span><span class="month day last"><a href="#">11</a></span></div><div class="week-row"><span class="month day empty">12</span><span class="month day empty">13</span><span class="month day"><a href="#">14</a></span><span class="month day"><a href="#">15</a></span><span class="month day empty">16</span><span class="month day empty">17</span><span class="month day last"><a href="#">18</a></span></div><div class="week-row"><span class="month day"><a href="#">19</a></span><span class="month day"><a href="#">20</a></span><span class="month day"><a href="#">21</a></span><span class="month day"><a href="#">22</a></span><span class="month day empty">23</span><span class="month day empty">24</span><span class="month day empty last">25</span></div><div class="week-row"><span class="month day empty">26</span><span class="month day empty">27</span><span class="month day empty">28</span><span class="month day empty">29</span><span class="month day empty">30</span><span class="month day empty">31</span><span class="day noday last">&nbsp;</span></div></div><div class="year 12 2010 last" rel="0"><div class="week-row"><span class="month day empty last">&nbsp;</span></div><div class="week-row"><span class="month day empty last">&nbsp;</span></div><div class="week-row"><span class="month day empty last">&nbsp;</span></div><div class="week-row"><span class="month day empty last">&nbsp;</span></div><div class="week-row"><span class="month day empty last">&nbsp;</span></div></div></div></div>
-					</div>
-
-					<script>
-					jQuery(document).ready(function($){
-						$('.calendar-archives').find('.arrow-down').on('click', function()
-						{
-							$(this).parent().children('.year-select').show();
-						});
-
-						$('.calendar-archives').find('.year-select')
-						.mouseleave(function()
-						{
-							var menu = $(this);
-							$('html').data('arctimer', setTimeout(
-								function(){
-									menu.parent().children('.year-select').hide();
-								},
-								300
-							));
-						})
-						.mouseenter(function(){
-							if($('html').data('arctimer'))
-								clearTimeout($('html').data('timer'));
-						});
-					});
-					</script>
-					
-					<div style="position: absolute; bottom:10px; text-align:center;">
-						<span class="description"><?php _e("The theme's CSS file is not included in administration, this preview may be different from the website rendering.", 'arwloc'); ?></span>
-					</div>
-				</div>
+			<div id="post-body-content">
 				<p>
 					<input type="checkbox" id="css" name="archivesCalendar[css]" <?php ac_checked('css');?> /> <label for="css"><?php _e('Include CSS file', 'arwloc'); ?></label><br />
 					<span class="description"><?php _e( 'Include CSS file from the plugin.<br /><strong>It\'s recommended to copy the CSS code to your theme´s <strong>style.css</strong> and uncheck this option.', 'arwloc' ); ?></strong></span>
 					<p><strong><?php _e('Theme');?>: </strong>
                     <?php
-                        themes_list($theme, 'archivesCalendar[theme]', '', 'theme_select');
+                        themes_list($theme, array('name' => 'archivesCalendar[theme]', 'class' => 'theme_select', 'show_current' => true) );
                     ?>
-					 <a href="#TB_inline?width=350&height=400&inlineId=ac_preview" class="thickbox button preview_theme"><?php _e('Preview', 'arwloc');?></a><br />
+					 <a href="#TB_inline?height=420&amp;width=800&amp;inlineId=ac_preview" class="thickbox button preview_theme"><?php _e('Preview', 'arwloc');?></a><br />
 					<?php _e( "<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be restored on next plugin update.", 'arwloc' ); ?></span>
 					</p>
 				</p>
@@ -328,7 +180,9 @@ function archivesCalendar_options()
 				<p>
 					<input name="Submit" type="submit" style="margin:20px 0;" class="button-primary" value="<?php _e('Save Changes') ?>" />
 				</p>
-
+				<?php
+				require 'admin/preview.php';
+				?>
 			</div>
 
 			<div id="postbox-container-1" class="postbox-container">					
@@ -336,12 +190,15 @@ function archivesCalendar_options()
 						<div class="inside" style="padding:15px;">
 							<?php 
 							$feed_url = 'http://labs.alek.be/category/archives-calendar/feed/';
-							if (!$fp = curl_init($feed_url)){
+							echo 'plmop';
+							//if (!$fp = curl_init($feed_url)){
+
 								$feed = (array) simplexml_load_file($feed_url);
 								$items = $feed['channel']->item;
 								$count = count($items);
-							}
-							else $count = 0;
+								echo $count;
+							//}
+							//else $count = 0;
 							
 							if($count > 0):
 							?>
@@ -392,12 +249,40 @@ function archivesCalendar_options()
 			</div>
 		</div>
 		<div id="arcw-themer" class="tab metabox-holder columns-2" style="display: none;">
-			<?php //include 'arw-editor.php'; ?>				
+			<?php include 'arw-editor.php'; ?>
 		</div>
 	</div>
 <?php
 }
 
+/* theme list select */
+function themes_list($selected = 0, $args)
+{
+	global $themes, $archivesCalendar_options;
+
+	$defaults = array(
+		'name' => null,
+		'id' => null,
+		'class' => null,
+		'show_current' => false
+	);
+	$args = wp_parse_args( (array) $args, $defaults );
+	extract($args);
+	echo '<select';
+	if($name)
+		echo ' name="'.$name.'"';
+	if($id)
+		echo ' id="'.$id.'"';
+	if($class)
+		echo ' class="'.$class.'"';
+	echo '>';
+	foreach($themes as $key=>$value)
+	{
+		if($archivesCalendar_options['theme'] != $key || $show_current)
+			echo '<option '.selected( $key, $selected ).' value="'.$key.'">'.$value.'</option>';
+	}
+	echo '</select>';
+}
 
 /***** Walker for categories checkboxes *****/
 class acw_Walker_Category_Checklist extends Walker
@@ -449,4 +334,12 @@ class acw_Walker_Category_Checklist extends Walker
     {
         $output .= "</li>\n";
     }
+}
+
+/***** CHECKBOXES CHECK *****/
+function ac_checked($option, $value = 1)
+{
+	$options = get_option('archivesCalendar');
+	if($options[$option] == $value)
+		echo 'checked="checked"';
 }

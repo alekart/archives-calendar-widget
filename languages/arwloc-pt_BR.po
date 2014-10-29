@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Archives Calendar Widget v0.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-15 09:59+0100\n"
-"PO-Revision-Date: 2014-05-15 10:12+0100\n"
-"Last-Translator: admin <brmagrini@gmail.com>\n"
+"POT-Creation-Date: 2014-10-28 17:33+0100\n"
+"PO-Revision-Date: 2014-10-28 17:38+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
@@ -21,106 +21,61 @@ msgstr ""
 "X-Poedit-SearchPath-1: ..\n"
 
 # @ default
-#: ../archives-calendar.php:126
+#: ../archives-calendar.php:67 ../arw-options.php:108
 msgid "Settings"
 msgstr "Configurações"
 
-# @ arwloc
-#: ../archives-calendar.php:178
-msgid "Show archives as calendar"
-msgstr "Mostrar arquivos em formato de calendário"
-
 # @ default
-#: ../archives-calendar.php:204
-msgid "Archives"
-msgstr "Arquivos"
-
-# @ default
-#: ../archives-calendar.php:217
-msgid "Title:"
-msgstr "Título:"
+#: ../arw-editor.php:12 ../arw-options.php:139 ../arw-options.php:306
+msgid "Theme"
+msgstr "Tema"
 
 # @ arwloc
-#: ../archives-calendar.php:221
-msgid "Previous button text:"
-msgstr "Texto do botão \\\"anterior\\\""
+#: ../arw-editor.php:12
+msgid "Custom"
+msgstr "Customizado"
 
 # @ arwloc
-#: ../archives-calendar.php:223
-msgid "Next button text:"
-msgstr "Texto do botão \\\"Próximo\\\""
-
-# @ arwloc
-#: ../archives-calendar.php:227
-msgid "Show number of posts:"
-msgstr "Mostrar número de posts"
-
-# @ arwloc
-#: ../archives-calendar.php:230
-msgid "Yes"
-msgstr "Sim"
-
-# @ arwloc
-#: ../archives-calendar.php:233
-msgid "No"
-msgstr "Não"
-
-#: ../archives-calendar.php:238
-msgid "Show"
-msgstr ""
-
-#: ../archives-calendar.php:241
-msgid "Months"
-msgstr ""
-
-#: ../archives-calendar.php:244
-msgid "Years"
-msgstr ""
-
-# @ arwloc
-#: ../archives-calendar.php:342 ../archives-calendar.php:418
-#: ../arw-options.php:137
+#: ../arw-editor.php:140 ../arw-widget.php:470
 msgid "Select archives year"
 msgstr "Selecione o ano do post"
 
 # @ archives_calendar
 # @ arwloc
-#: ../archives-calendar.php:361 ../arw-options.php:167
+#: ../arw-editor.php:170 ../arw-widget.php:233
 msgid "Post"
 msgstr "Post"
 
 # @ arwloc
-#: ../archives-calendar.php:361 ../arw-options.php:167
+#: ../arw-editor.php:170 ../arw-widget.php:233
 msgid "Posts"
 msgstr "Posts"
 
-# @ arwloc
-#: ../arw-options.php:59
-msgid "Archives Calendar Settings"
-msgstr "Configurações do Archives Calendar"
+#: ../arw-editor.php:193
+msgid "Save"
+msgstr ""
 
-# @ default
-#: ../arw-options.php:88 ../arw-options.php:193
-msgid "Theme"
-msgstr "Tema"
+#: ../arw-editor.php:194
+msgid "Reset"
+msgstr ""
 
 # @ arwloc
-#: ../arw-options.php:89 ../arw-options.php:194
-msgid "Default"
-msgstr "Padrão"
-
-# @ arwloc
-#: ../arw-options.php:94 ../arw-options.php:199
-msgid "Custom"
+#: ../arw-options.php:109
+#, fuzzy
+msgid "Customize"
 msgstr "Customizado"
 
+#: ../arw-options.php:143
+msgid "OK"
+msgstr ""
+
 # @ arwloc
-#: ../arw-options.php:95
+#: ../arw-options.php:143
 msgid "Cancel"
 msgstr "Cancelar"
 
 # @ arwloc
-#: ../arw-options.php:188
+#: ../arw-options.php:300
 msgid ""
 "The theme's CSS file is not included in administration, this preview may be "
 "different from the website rendering."
@@ -129,12 +84,12 @@ msgstr ""
 "ser diferente do site renderizado."
 
 # @ arwloc
-#: ../arw-options.php:191
+#: ../arw-options.php:304
 msgid "Include CSS file"
 msgstr "Incluir arquivo CSS"
 
 # @ arwloc
-#: ../arw-options.php:192
+#: ../arw-options.php:305
 msgid ""
 "Include CSS file from the plugin.<br /><strong>It's recommended to copy the "
 "CSS code to your theme´s <strong>style.css</strong> and uncheck this option."
@@ -144,12 +99,12 @@ msgstr ""
 "desmarque essa opção."
 
 # @ arwloc
-#: ../arw-options.php:200
+#: ../arw-options.php:310
 msgid "Preview"
 msgstr "Pré-visualização"
 
 # @ arwloc
-#: ../arw-options.php:201
+#: ../arw-options.php:311
 msgid ""
 "<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be "
 "restored on next plugin update."
@@ -158,12 +113,12 @@ msgstr ""
 "será restaurado na próxima atualização."
 
 # @ arwloc
-#: ../arw-options.php:205
+#: ../arw-options.php:316
 msgid "Include jQuery library"
 msgstr "Incluir biblioteca jQuery"
 
 # @ arwloc
-#: ../arw-options.php:206
+#: ../arw-options.php:317
 msgid ""
 "Include jQuery library into your theme. Uncheck if your theme already "
 "includes jQuery library.<br /><strong>jQuery library is required.</strong>"
@@ -172,12 +127,12 @@ msgstr ""
 "biblioteca jQuery.<br /><strong>A Biblioteca jQuery é necessária</strong>"
 
 # @ arwloc
-#: ../arw-options.php:209
+#: ../arw-options.php:320
 msgid "Insert JavaScript code into <head>"
 msgstr "Inserir código javascript no <head>"
 
 # @ arwloc
-#: ../arw-options.php:210
+#: ../arw-options.php:321
 #, fuzzy
 msgid ""
 "Insert javascript code into your theme's <head>. Uncheck only if you copy "
@@ -187,37 +142,40 @@ msgstr ""
 "esse código no seu arquivo .js padrão."
 
 # @ arwloc
-#: ../arw-options.php:211
+#: ../arw-options.php:322
 msgid "This code is required."
 msgstr "Esse código é necessário."
 
-#: ../arw-options.php:214
+#: ../arw-options.php:325
 msgid "You can set some parameters to change the animation of the calendar."
 msgstr ""
 
 # @ arwloc
-#: ../arw-options.php:217
-#, fuzzy
+#: ../arw-options.php:328
 msgid "Show default parameters"
-msgstr "Mostrar script padrão."
+msgstr ""
+
+#: ../arw-options.php:332
+msgid "Open"
+msgstr ""
 
 # @ arwloc
-#: ../arw-options.php:230
+#: ../arw-options.php:341
 msgid "Enable Shortcode support in text widget"
 msgstr "Habilitar suporte a Shortcode no widget de texto "
 
 # @ arwloc
-#: ../arw-options.php:231
+#: ../arw-options.php:342
 msgid "Use the shortcode in a text widget to display Archives Calendar."
 msgstr "Use Shortcode no widget de texto para exibir o Archives Calendar."
 
 # @ arwloc
-#: ../arw-options.php:237
+#: ../arw-options.php:348
 msgid "Show link to Settings in admin menu"
 msgstr "Mostrar link para as configurações no menu administrativo."
 
 # @ arwloc
-#: ../arw-options.php:238
+#: ../arw-options.php:349
 msgid ""
 "Show link \"Archives Calendar\" in admin \"Settings\" menu. If unchecked you "
 "can enter settings from \"Settings\" link in \"Plugins\" page."
@@ -227,42 +185,27 @@ msgstr ""
 "\"Plugins\"."
 
 # @ arwloc
-#: ../arw-options.php:242
+#: ../arw-options.php:354
 msgid "Save Changes"
 msgstr "Salvar Alterações"
 
 # @ arwloc
-#: ../arw-options.php:260
+#: ../arw-options.php:373
 msgid "News/Updates"
 msgstr "Novidades/Updates"
 
 # @ default
-#: ../arw-options.php:277
+#: ../arw-options.php:390 ../arw-options.php:399
 msgid "More"
 msgstr "Mais"
 
 # @ arwloc
-#: ../arw-options.php:280
+#: ../arw-options.php:393
 msgid "No posts"
 msgstr "Sem Posts"
 
 # @ arwloc
-#: ../arw-options.php:286
-msgid "Also"
-msgstr "Também"
-
-# @ arwloc
-#: ../arw-options.php:288
-msgid "My other projects on "
-msgstr "Meus outros projetos em "
-
-# @ arwloc
-#: ../arw-options.php:296
-msgid "My portfolio:"
-msgstr "Meu portifólio:"
-
-# @ arwloc
-#: ../arw-options.php:303
+#: ../arw-options.php:409
 msgid ""
 "If you like this plugin please <strong>support my work</strong>, buy me "
 "<strong>a beer or a coffee</strong>. Click Donate and specify your amount."
@@ -272,6 +215,114 @@ msgstr ""
 "especifique uma quantia."
 
 # @ arwloc
-#: ../arw-options.php:307
+#: ../arw-options.php:413
 msgid "In Belgium 1 coffee or 1 beer costs about 2€"
 msgstr "Na Bélgica 1 café ou uma cerveja custam cerca de 2€"
+
+# @ arwloc
+#: ../arw-options.php:441
+msgid "Default"
+msgstr "Padrão"
+
+# @ default
+#: ../arw-widget-settings.php:4
+msgid "Title:"
+msgstr "Título:"
+
+# @ arwloc
+#: ../arw-widget-settings.php:9
+msgid "Previous"
+msgstr ""
+
+#: ../arw-widget-settings.php:13
+msgid "Next"
+msgstr ""
+
+#: ../arw-widget-settings.php:21
+msgid "Show"
+msgstr ""
+
+#: ../arw-widget-settings.php:24
+msgid "Months"
+msgstr ""
+
+#: ../arw-widget-settings.php:27
+msgid "Years"
+msgstr ""
+
+#: ../arw-widget-settings.php:32
+msgid "Show first: "
+msgstr ""
+
+#: ../arw-widget-settings.php:36
+msgid "Latest month"
+msgstr ""
+
+#: ../arw-widget-settings.php:39
+msgid "Current month"
+msgstr ""
+
+# @ arwloc
+#: ../arw-widget-settings.php:42
+msgid "Previous month"
+msgstr ""
+
+#: ../arw-widget-settings.php:45
+msgid "Next month"
+msgstr ""
+
+# @ arwloc
+#: ../arw-widget-settings.php:52
+#, fuzzy
+msgid "Show number of posts"
+msgstr "Mostrar número de posts"
+
+#: ../arw-widget-settings.php:62
+msgid "Use a different theme"
+msgstr ""
+
+#: ../arw-widget-settings.php:93
+msgid "Categories"
+msgstr ""
+
+#: ../arw-widget-settings.php:96
+msgid "All"
+msgstr ""
+
+# @ arwloc
+#: ../arw-widget.php:16
+msgid "Show archives as calendar"
+msgstr "Mostrar arquivos em formato de calendário"
+
+# @ default
+#: ../arw-widget.php:51
+msgid "Archives"
+msgstr "Arquivos"
+
+# @ arwloc
+#~ msgid "Next button text:"
+#~ msgstr "Texto do botão \\\"Próximo\\\""
+
+# @ arwloc
+#~ msgid "Yes"
+#~ msgstr "Sim"
+
+# @ arwloc
+#~ msgid "No"
+#~ msgstr "Não"
+
+# @ arwloc
+#~ msgid "Archives Calendar Settings"
+#~ msgstr "Configurações do Archives Calendar"
+
+# @ arwloc
+#~ msgid "Also"
+#~ msgstr "Também"
+
+# @ arwloc
+#~ msgid "My other projects on "
+#~ msgstr "Meus outros projetos em "
+
+# @ arwloc
+#~ msgid "My portfolio:"
+#~ msgstr "Meu portifólio:"

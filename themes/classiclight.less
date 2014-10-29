@@ -1,8 +1,4 @@
 .rounded(@val){
-	-webkit-border-radius: @val;
-	-moz-border-radius: @val;
-	-ms-border-radius: @val;
-	-o-border-radius: @val;
 	border-radius: @val;
 }
 .boxShadow(@x, @y, @dist, @color){
@@ -10,68 +6,77 @@
 	-webkit-box-shadow: @x @y @dist @color;
 	box-shadow: @x @y @dist @color;
 }
+
+/***** CALENDAR STYLE *****/
+
 .calendar-archives.classiclight{
-	position: relative;
-	width: 100%;
-	background: #fff;
+	position:relative; // DO NOT CHANGE
+	width:100%; // DO NOT CHANGE
+	background: #FFF;
 	*{
-		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-		-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-		box-sizing: border-box;
+		-webkit-box-sizing: border-box!important; /* Safari/Chrome, other WebKit */
+		-moz-box-sizing: border-box!important;    /* Firefox, other Gecko */
+		box-sizing: border-box!important;
+	}
+	ul{
+		margin: 0;
+		padding: 0;
 	}
 	a{
-		text-decoration: none;
+		text-decoration:none;
 	}
 	.archives-years{
-		position: relative;
-		overflow: hidden;
+		position:relative; // DO NOT CHANGE
+		overflow:hidden; // DO NOT CHANGE
 	}
-	.cal-nav{
-		background: #3B82F6;
-		position: relative;
-		width: 100%;
+
+	/**** NAVIGATION MENU / SELECT MENU *****/
+	.calendar-navigation{
+		position:relative;
+		width:100%;
 		height: 30px;
-		margin-bottom: 1px;
-		&.months{
-			margin-bottom: 0;
-		}
+		background: #3B82F6;
 		*{
 			line-height: 30px;
 		}
+
+		// PREV/NEXT BUTTONS
 		.prev-year, .next-year{
-			display: block;
-			position: absolute;
-			width: 30px;
-			font-size: 18px;
+			display:block;
+			position:absolute;
+			width:30px;
+			height: 30px;
+			font-size:18px;
 			text-align: center;
-			color: #fff;
+			color: #FFF;
 			&:hover{
 				background: #2757A1;
-				color: #fff;
 			}
 			&.disabled{
 				opacity: .4;
 				cursor: default;
 				&:hover{
 					background:none;
-					color: #fff;
 				}
 			}
 		}
 		.prev-year{
-			left: 0;
-			border-right: 1px #2757A1 solid;
+			left:0;
+			border-right:1px #2757A1 solid;
 		}
 		.next-year{
-			right: 0;
-			border-left: 1px #2757A1 solid;
+			right:0;
+			border-left:1px #2757A1 solid;
 		}
-		.year-nav{
+
+		// SELECT DROPDOWN MENU
+		.menu-container{
 			position: absolute;
 			width: 100px;
 			left: 50%;
 			margin-left: -50px;
 			text-align: center;
+			font-size: 13px;
 			&.months{
 				width: 160px;
 				margin-left: -80px;
@@ -80,21 +85,27 @@
 			&:hover{
 				background: #2757A1;
 				.arrow-down{
-					
+
 				}
 			}
-			a.year-title{
-				display: block;
-				width: 100%;
-				color: #fff;
-				font-weight: bold;
+			a.title{
+				display:block;
+				width:100%;
+				color: #FFF;
+				&:hover{
+
+				}
+				&:visited{
+
+				}
 			}
 			.arrow-down{
 				color: #fff;
 				position: absolute;
 				width: 20px;
+				height: 30px;
 				right: 0;
-				top: 0;
+				top:0;
 				cursor: pointer;
 				font-size: 10px;
 				font-family: Verdana, Arial, Helvetica, sans-serif ;
@@ -103,142 +114,151 @@
 					border-left: 1px solid #3B82F6;
 				}
 			}
-			.year-select{
-				position: absolute;
-				z-index: 99;
-				display: none;
-				width: 100%;
+			.menu{
+				position: absolute; // DO NOT CHANGE
+				overflow: hidden; // DO NOT CHANGE
+				display:none; // DO NOT CHANGE
+				z-index: 99; // DO NOT CHANGE
+				top:0; // DO NOT CHANGE
+				width:100%;
 				background: #3B82F6;
-				top: 0;
-				.year{
-					display: block;
-					color: #fff;
+				a{
+					display:block;
+					color: #FFF;
 					&:hover{
 						background: #2757A1;
 						cursor: pointer;
-						color: #fff;
 					}
 					&.selected{
 						color: #fff;
-						background: #2757A1;
-						font-weight: bold;
+						&:hover{
+							background: #3B82F6;
+							cursor: default;
+						}
 					}
 				}
-				
 			}
 		}
 	}
 
-	.archives-years{
+	// Month/year container. Calendar "pages".
+	// DO NOT CHANGE, only background-color can be changed
+	.year{
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin-left: -100%;
+		width: 100%;
+		z-index: 0;
+		background: #FFF;
+		.year-link{
+			display: none;
+		}
+		&.last{
+			position: relative;
+		}
+		&.current{
+			margin-left: 0;
+			z-index: 1;
+		}
+	}
+
+	// Month and Day, common styles
+	.month, .day{
+		float: left;
 		overflow: hidden;
-		.year{
-			position: absolute;
-			background-color: #fff;
-			top: 0;
-			left: 0;
-			margin-left: -100%;
-			width: 100%;
-			z-index: 0;
-			.year-link{
-				display: none;
-			}
-			&.last{
-				position: relative;
-			}
-			&.current{
-				margin-left: 0;
-				z-index: 1;
-			}
-			.month{
-				float: left;
-				width: 25%;
-				height: 50px;
-				border-right: 1px #FFFFFF solid;
-				border-bottom: 1px #FFFFFF solid;
-				overflow: hidden;
-				position: relative;
-				font-weight: bolder;
-				text-align: center;
-				a{
-					display: block;
-					margin: 0;
-					padding: 0;
-					width: 100%;
-					height: 100%;
-					color: #3B82F6!important;
-					&:hover{
-						background: #f0f0f0;
-					}
-				}
-				.month-name{
-					text-transform: capitalize;
-					font-size: 16px;
-					font-weight: 400;
-					display: block;
-					padding-top: 6px;
-				}
-				.postcount{
-					display: block;
-					.count-number{
+		display: block;
+		position: relative;
+		border-right: 1px #FFFFFF solid;
+		border-bottom: 1px #FFFFFF solid;
+		color: #ccc;
+		text-align: center;
 
-					}
-					.count-text{
-						font-size: 9px;
-					}
-				}
+		// Month/day with posts
+		&.has-posts{
+			//border-bottom: none;
+			a{
+				display: block;
+				width: 100%;
+				height: 100%;
+				color: #3B82F6;
 				&:hover{
-					
+					background: #f0f0f0;
 				}
-				&.empty{
-					color: #ccc;
-					font-weight: normal;
-				}
-				&.last{
-					border-right: none;
-				}
+			}
+		}
+		// last month/day of a single line
+		&.last{
+			margin-right: 0!important;
+		}
+	}
+
+	// MONTH only styles
+	.month{
+		width: 25%; // 100%(line width) - 3%(margin-right) * 3(last one is 0) / 4(months per line)
+		height: 50px;
+		// Month name inside a month square
+		.month-name{
+			text-transform: capitalize;
+			font-size: 16px;
+			font-weight: 400;
+			display: block;
+			padding: 6px 0 4px;
+		}
+		// Contains the "0 posts" text inside a month square
+		.postcount{
+			display: block;
+			// Number of posts style
+			.count-number{
+
+			}
+			// Text "posts" style
+			.count-text{
+				font-size: 9px;
 			}
 		}
 	}
 
-	>.week-row{
-		background-color: #E6E6E6;
-		border-bottom: 1px solid #fff;
+	// DAY only styles
+	.day{
+		text-align: center;
+		width: 14.285%!important;
+		line-height: 100%;
+		padding: 5px 0;
+		// Day with posts
+		&.has-posts{
+			padding: 0;
+			font-weight: 600;
+			a{
+				padding: 5px 0!important;
+				text-decoration: none;
+			}
+		}
+		// Day with no date , blank space
+		&.noday{
+			background: none!important;
+			box-shadow: none;
+			border: none;
+		}
+		// WEEKDAY style. Has common styles with DAY
+		&.weekday{
+			display: inline-block;
+			text-transform: uppercase;
+			color: #333;
+			font-size: 85%;
+			border: none;
+		}
 	}
+
+	// A single line of days
 	.week-row{
 		margin: 0;
 		padding: 0;
 		overflow: hidden;
-	}
-	.day{
-		display: block;
-		float: left;
-		text-align: center;
-		width: 14.286%!important;
-		height: auto!important;
-		line-height: 100%;
-		margin: 0;
-		&.empty, &.noday
-		{
-			padding: 5px 0;
-		}
-		a{
-			padding: 5px 0!important;
-		}
-		&.weekday{
-			text-transform: uppercase;
-			color: #333;
-			font-size: 85%;
-			padding: 5px 0;
-			&.last{
-				border-right: 0;
-			}
+		// line with weekday names
+		&.weekdays{
+			background-color: #E6E6E6;
 		}
 	}
-}
 
-/* FOR PREVIEW IN CONFIGURATION ONLY */
-.arcw.preview.zone{
-	background-color: #fff;
-	padding: 30px 0 0;
-	height: 230px;
 }

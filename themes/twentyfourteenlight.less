@@ -1,15 +1,6 @@
-.rounded(@val){
-	border-radius: @val;
-}
-.boxShadow(@x, @y, @dist, @color){
-	-moz-box-shadow: @x @y @dist @color;
-	-webkit-box-shadow: @x @y @dist @color;
-	box-shadow: @x @y @dist @color;
-}
-
 /***** CALENDAR STYLE *****/
 
-.calendar-archives.twentytwelve{
+.calendar-archives.twentyfourteenlight{
 	position:relative; // DO NOT CHANGE
 	width:100%; // DO NOT CHANGE
 	*{
@@ -22,7 +13,7 @@
 		padding: 0;
 	}
 	a{
-
+		text-decoration:none;
 	}
 	.archives-years{
 		position:relative; // DO NOT CHANGE
@@ -33,31 +24,32 @@
 	.calendar-navigation{
 		position:relative;
 		width:100%;
-		height: 26px;
-		margin-bottom: 5px;
+		height: 30px;
+		background: #000; /* Old browsers */
+		color: #fff;
+		margin-bottom: 1px;
 		*{
-			line-height: 26px;
-			text-decoration: none!important;
+			line-height: 30px;
 		}
 
 		// PREV/NEXT BUTTONS
 		.prev-year, .next-year{
 			display:block;
 			position:absolute;
-			width:26px;
-			font-size:18px;
+			width:30px;
+			height: 30px;
 			text-align: center;
-			color: #757575;
+			color: #FFF;
+			font-size: 20px;
+			line-height: 100%;
 			&:hover{
-				color: #21759b;
+				background: #24890d;
 			}
 			&.disabled{
 				opacity: .4;
 				cursor: default;
-				text-decoration: none;				
 				&:hover{
 					background:none;
-					color: #757575;
 				}
 			}
 		}
@@ -83,71 +75,55 @@
 			&:hover{
 
 				.arrow-down{
-					.rounded(3px);
-					box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-					background-color: #e6e6e6;
-					background-repeat: repeat-x;
-					background-image: -moz-linear-gradient(top, #f4f4f4, #e6e6e6);
-					background-image: -ms-linear-gradient(top, #f4f4f4, #e6e6e6);
-					background-image: -webkit-linear-gradient(top, #f4f4f4, #e6e6e6);
-					background-image: -o-linear-gradient(top, #f4f4f4, #e6e6e6);
-					background-image: linear-gradient(top, #f4f4f4, #e6e6e6);
-					border: 1px solid #d2d2d2;
+					background: #194a0d;
 				}
 			}
 			a.title{
 				display:block;
 				width:100%;
+				color: #FFF;
 				&:hover{
-					color:#21759b!important;
+
 				}
 				&:visited{
-					color:#757575;
+
 				}
 			}
 			.arrow-down{
-				color: #757575;
+				color: #fff;
 				position: absolute;
-				width: 20px;
+				width: 24px;
+				height: 30px;
 				right: 0;
 				top:0;
 				cursor: pointer;
-				font-size: 10px;
-				border: 1px solid #fff;
-				font-family: Verdana, Arial, Helvetica, sans-serif ;
-
+				font-size: 9px;
 				&:hover{
-					color: #5e5e5e;
-					background-color: #ebebeb;
-					background-repeat: repeat-x;
-					background-image: -moz-linear-gradient(top, #f9f9f9, #ebebeb);
-					background-image: -ms-linear-gradient(top, #f9f9f9, #ebebeb);
-					background-image: -webkit-linear-gradient(top, #f9f9f9, #ebebeb);
-					background-image: -o-linear-gradient(top, #f9f9f9, #ebebeb);
-					background-image: linear-gradient(top, #f9f9f9, #ebebeb);
+					background: #41a62a;
 				}
 			}
 			.menu{
-				position: absolute;
-				z-index: 99;
-				display:none;
-				width:100%;
-				background: #F0F0F0;
-				.rounded(3px);
-				box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-				overflow: hidden;
-				top:0;
+				position: absolute; // DO NOT CHANGE
+				overflow: hidden; // DO NOT CHANGE
+				display:none; // DO NOT CHANGE
+				z-index: 999; // DO NOT CHANGE
+				top:0; // DO NOT CHANGE
+				width: 100%;
+				background: #000;
 				a{
 					display:block;
-					color: #757575;
+					color: #FFF;
 					&:hover{
-						background: #21759b;
-						cursor: pointer;
-						color: #fff;
+						background: #24890d;
 					}
 					&.selected{
-						color: #757575;
-						background: #fff;
+						background: #000;
+						&:hover{
+							background: #000!important;
+							background: none;
+							text-decoration: none;
+							cursor: default;
+						}
 					}
 				}
 			}
@@ -158,12 +134,12 @@
 	// DO NOT CHANGE, only background-color can be changed
 	.year{
 		position: absolute;
-		background-color: #fff; // change this id needed
 		top: 0;
 		left: 0;
 		margin-left: -100%;
 		width: 100%;
 		z-index: 0;
+		background: #fff;
 		.year-link{
 			display: none;
 		}
@@ -182,36 +158,34 @@
 		overflow: hidden;
 		display: block;
 		position: relative;
-
-		background-color: #F0F0F0;
-		color: #CCC;
-		margin:0 3% 3% 0;
-		.rounded(3px);
-		.boxShadow(0, 1px, 4px, rgba(0, 0, 0, 0.2));
+		background: #f4f4f4;
+		border-bottom:1px #ffffff solid;
+		border-right:1px #ffffff solid;
+		color: #777;
 
 		// Month/day with posts
 		&.has-posts{
-			background-color: #757575;
+			//border-bottom: none;
 			a{
+				background: #000000;
 				color: #FFF;
 				display: block;
 				width: 100%;
 				height: 100%;
-
 				&:hover{
-					background-color: #21759b;
+					background: #24890d;
 				}
 			}
 		}
 		// last month/day of a single line
 		&.last{
-			margin-right: 0!important;
+			border-right: 0!important;
 		}
 	}
 
 	// MONTH only styles
 	.month{
-		width: 22.75%; // 100%(line width) - 3%(margin-right) * 3(last one is 0) / 4(months per line)
+		width: 25%; // 100%(line width) - 3%(margin-right) * 3(last one is 0) / 4(months per line)
 		height: 50px;
 		// Month name inside a month square
 		.month-name{
@@ -243,8 +217,7 @@
 	// DAY only styles
 	.day{
 		text-align: center;
-		width: 11.714%!important;
-		height: auto!important;
+		width: 14.285%!important;
 		line-height: 100%;
 		padding: 5px 0;
 		// Day with posts
@@ -258,6 +231,7 @@
 		&.noday{
 			background: none!important;
 			box-shadow: none;
+			border: none;
 		}
 		// WEEKDAY style. Has common styles with DAY
 		&.weekday{
@@ -265,10 +239,9 @@
 			text-transform: uppercase;
 			background: none!important;
 			box-shadow: none;
-			font-weight: bold!important;
-			color: #666;
 			font-size: 85%;
-			margin: 0 3% 5px 0;
+			border: none;
+			font-weight: bold;
 		}
 	}
 
@@ -279,7 +252,15 @@
 		overflow: hidden;
 		// line with weekday names
 		&.weekdays{
-
+			margin-bottom: 2px;
 		}
+	}
+
+}
+
+/* FOR PREVIEW IN CONFIGURATION ONLY */
+.settings_page_archives_calendar {
+	#TB_ajaxContent {
+		background-color: #fff;
 	}
 }
