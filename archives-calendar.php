@@ -3,7 +3,7 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: http://labs.alek.be/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 0.9.9b
+Version: 0.9.9
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3
@@ -42,7 +42,7 @@ $themes = array(
 
 // ACTIVATION
 require('arw-install.php');
-require('arw-options.php');
+require('arw-settings.php');
 require('arw-widget.php');
 register_activation_hook(__FILE__, 'archivesCalendar_activation');
 register_uninstall_hook(__FILE__, 'archivesCalendar_uninstall');
@@ -56,8 +56,6 @@ add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'arcw_plugin_act
 add_action( 'wp_enqueue_scripts', 'archivesCalendar_jquery_plugin' );
 // Scripts to be included on Widget configuration page
 add_action('admin_print_scripts-widgets.php', 'arcw_admin_widgets_scripts');
-
-
 
 if($archivesCalendar_options['css'] == 1)
 	// Archives Calendar Widget Themes CSS
@@ -76,7 +74,7 @@ function archivesCalendar_init()
 }
 
 function arcw_plugin_action_links( $links ) {
-	$links[] = '<a href="'. get_admin_url(null, 'options-general.php?page=archives_calendar') .'">'.__('Settings').'</a>';
+	$links[] = '<a href="'. get_admin_url(null, 'options-general.php?page=Arrchives_Calendar_Widget') .'">'.__('Settings').'</a>';
 	return $links;
 }
 
@@ -104,7 +102,7 @@ function archives_calendar_styles()
 function arcw_admin_widgets_scripts()
 {
 	wp_enqueue_script( 'accordion' );
-	wp_register_script( 'wpWidgetsPage', plugins_url('/admin/js/widgets-page.js', __FILE__) );
+	wp_register_script( 'wpWidgetsPage', plugins_url('/admin/js/widgets-page.min.js', __FILE__) );
 	wp_enqueue_script( 'wpWidgetsPage');
 	wp_enqueue_style( 'media-views' );
 }

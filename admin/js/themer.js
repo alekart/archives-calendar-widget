@@ -1,9 +1,3 @@
-/*
-Part of "Archives Calendar Widget" THEME EDITOR (WordPress Plugin)
-Author URI: http://alek.be
-License: GPLv3
-*/
-
 jQuery(document).ready(function($)
 {
 	$('.color-field').wpColorPicker({
@@ -16,7 +10,7 @@ jQuery(document).ready(function($)
 				$( '.themer .'+element ).css(param, $field.val() );
 			else 
 				$( '.'+element ).css(param, $field.val() );
-		},
+		}
 	}).keypress(function(e){
 		if (e.keyCode == 10 || e.keyCode == 13) 
 			e.preventDefault();

@@ -1,6 +1,3 @@
-/**
- * Created by alek on 29-10-14.
- */
 /* PREVIEW MODAL */
 jQuery(document).ready(function($) {
     $('.calendar-archives.preview a').on('click', function(e) {
@@ -60,22 +57,36 @@ jQuery(document).ready(function($) {
             if($('html').data('arctimer'))
                 clearTimeout($('html').data('timer'));
         });
-});
 
 
-/* THEMER */
-jQuery(document).ready(function($){
+    /* THEMER TABS **/
     /* TABS */
-    $(".nav-tab-wrapper a.nav-tab").click(function(e){
+    if(typeof themer_tab !== 'undefined')
+        checktabs(themer_tab);
+
+    $(".nav-tab-wrapper.custom a.nav-tab").click(function(e){
         e.preventDefault();
         if($(this).is('.nav-tab-active, .notab'))
             return;
-        $(".nav-tab-wrapper").find('a.nav-tab-active').toggleClass('nav-tab-active');
-        $(this).toggleClass('nav-tab-active');
-        $('#post-body-content').find('.active-tab').hide().removeClass('active-tab');
-        $($(this).attr('href')).show().addClass('active-tab');
-        $("#ac_preview_css").remove();
-        $("head").append('<link id="ac_preview_css" href="' + ARCWPATH + '/themes/custom.css" type="text/css" rel="stylesheet" />');
+        var index = $(this).index();
+        $('#current_tab').val(index);
+        $(".nav-tab-wrapper.custom a.nav-tab-active").toggleClass('nav-tab-active');
+        $(this).addClass('nav-tab-active');
+        var tab = $(".nav-tab-wrapper.custom a.nav-tab-active").attr('href');
+        openThemeTab(tab);
     });
+    function checktabs(){
+        $('#current_tab').val(themer_tab);
+        $(".nav-tab-wrapper.custom a.nav-tab-active").removeClass('nav-tab-active');
+        var tab = $(".nav-tab-wrapper.custom a.nav-tab:eq("+themer_tab+")").toggleClass('nav-tab-active').attr('href');
+        openThemeTab(tab);
+    }
+    function openThemeTab(tab){
+        console.log(tab);
+        $('.tabs .tab').removeClass('active-tab');
+        $('.tabs '+tab).addClass('active-tab');
+        $('#arwprev').html( $('#codesource' +  + ( parseInt($('#current_tab').val()) + 1 ) ).html() );
+        editor1.resize();
+        editor2.resize();
+    }
 });
-

@@ -45,18 +45,55 @@ function _archivesCalendar_activate()
 		"javascript" => "jQuery(document).ready(function($){\n\t$('.calendar-archives').archivesCW();\n});"
 	);
 
+	$default_custom_css = file_get_contents( plugins_url( '/admin/default_custom.css' , __FILE__ ) );
+	$default_themer_options = array(
+		"arw-theme1" => $default_custom_css,
+		"arw-theme2" => ''
+	);
+
 	if( !( $options = get_option( 'archivesCalendar' ) ) )
 		$options = $default_options;
+
+	if( !( $themer_options = get_option( 'archivesCalendarThemer' ) ) )
+		$themer_options = $default_themer_options;
+
+	foreach($themer_options as $ctheme => $css){
+		if($css) {
+			if ( isMU() )
+			{
+				$old_blog = $wpdb->blogid;
+				$blogids  = $wpdb->get_results( "SELECT blog_id FROM $wpdb->blogs" );
+				foreach ( $blogids as $blogid ) {
+					$blog_id = $blogid->blog_id;
+					switch_to_blog( $blog_id );
+					$filename = '../wp-content/plugins/' . dirname( plugin_basename( __FILE__ ) ) . '/themes/' . $ctheme . '-' . $wpdb->blogid . '.css';
+					$themefile = fopen( $filename, "w" ) or die( "Unable to open file!" );
+					fwrite( $themefile, $css );
+					fclose( $themefile );
+				}
+				switch_to_blog( $old_blog );
+			}
+			else
+			{
+				$filename = '../wp-content/plugins/' . dirname( plugin_basename( __FILE__ ) ) . '/themes/' . $ctheme . '.css';
+				$themefile = fopen( $filename, "w" ) or die( "Unable to open file!" );
+				fwrite( $themefile, $css );
+				fclose( $themefile );
+			}
+		}
+	}
 
 	if(isMU())
 	{
 		update_blog_option($wpdb -> blogid, 'archivesCalendar', $options);
 		add_blog_option($wpdb -> blogid, 'archivesCalendar', $options);
+		add_blog_option($wpdb -> blogid, 'archivesCalendarThemer', $themer_options);
 	}
 	else
 	{
 		update_option('archivesCalendar', $options);
 		add_option('archivesCalendar', $options);
+		add_option('archivesCalendarThemer', $themer_options);
 	}
 }
 
@@ -93,8 +130,14 @@ function archivesCalendar_uninstall()
 }
 function _archivesCalendar_uninstall()
 {
-	if (isMU())
+	if (isMU()){
 		delete_site_option('archivesCalendar');
-	else
-		delete_option('archivesCalendar');
+		delete_site_option('widget_archives_calendar');
+		delete_site_option('archiveCalandarThemer');
+	}
+	else {
+		delete_option( 'archivesCalendar' );
+		delete_option('widget_archives_calendar');
+		delete_option('archiveCalandarThemer');
+	}
 }

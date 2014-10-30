@@ -5,192 +5,178 @@ Author URI: http://alek.be
 License: GPLv3
 */
 
-?>
-<div class="wp-full-overlay-sidebar-content accordion-container postbox-container" id="postbox-container-1" style="border-right: 1px solid #ddd; border-left: 1px solid #ddd; float: left " tabindex="-1">
-	<div id="customize-info" class="accordion-section ">
-		<div class="accordion-section-title" aria-label="Options de personnalisation du thème" tabindex="0">
-			<span class="preview-notice"><strong class="theme-name"><?php _e('Theme');?>: <?php _e('Custom', 'arwloc');?></strong></span>
-		</div>
-		<div class="accordion-section-content">
-			<div class="theme-description">
-				Ce théme peut être personnalisé à votre guise et sera sauvegardé dans les réglages du plugin. Contrairement aux thémes inclus, ce théme ne sera pas effacé/restoré à la mise à jour.
-				Une fois configuré vous devez "Générer le théme" et l'appliquer dans les réglages du plugin en séléctionnant le théme "Custom".
-			</div>
-		</div>
-	</div>
+function archivesCalendar_themer() {
+	include 'admin/preview.php';
 
-	<div id="customize-theme-controls">
-		<ul>
-			<li id="accordion-section-colors" class="control-section accordion-section">
-				<h3 class="accordion-section-title" tabindex="0">Couleurs de la barre de navigation</h3>
-				<ul class="accordion-section-content">
-
-					<li id="customize-control-nav_bg" class="customize-control customize-control-color">
-						<label>
-							<span class="customize-control-title">Couleur de fond</span>
-							<div class="customize-control-content">
-								<input id="cal-nav__background" type='text' class='color-field cal'>
-							</div>
-						</label>
-					</li>
-
-					<li id="customize-control-nav_textcolor" class="customize-control customize-control-color">
-						<label>
-							<span class="customize-control-title">Couleur du texte</span>
-							<div class="customize-control-content">
-								<input id="cal-nav a__color" type='text' class='color-field cal'>
-							</div>
-						</label>
-					</li>
-				</ul>
-			</li>
-
-			<li id="accordion-section-colors" class="control-section accordion-section">
-				<h3 class="accordion-section-title" tabindex="0">Couleurs des fleches</h3>
-				<ul class="accordion-section-content">
-
-					<li id="customize-control-header_textcolor" class="customize-control customize-control-color">
-						<label>
-							<span class="customize-control-title">Active</span>
-							<div class="customize-control-content">
-								<input id="cal-nav a.prev-year__color" type='text' class='color-field cal'>
-							</div>
-						</label>
-					</li>
-
-					<li id="customize-control-header_textcolor" class="customize-control customize-control-color">
-						<label>
-							<span class="customize-control-title">Survolé</span>
-							<div class="customize-control-content">
-								<input type='text' class='color-field'>
-							</div>
-						</label>
-					</li>
-
-                	<li id="customize-control-background_color" class="customize-control customize-control-color">
-						<label>
-							<span class="customize-control-title">Désactivé</span>
-							<div class="customize-control-content">
-								<input type='text' class='color-field'>
-							</div>
-						</label>
-					</li>
-
-				</ul>
-			</li>
-
-			<li id="accordion-section-colors" class="control-section accordion-section">
-				<h3 class="accordion-section-title" tabindex="0">Couleurs</h3>
-				<ul class="accordion-section-content">
-
-					<li id="customize-control-header_textcolor" class="customize-control customize-control-color">
-						<label>
-							<span class="customize-control-title">Couleur de la navigation</span>
-							<div class="customize-control-content">
-								<input type='text' class='color-field'>
-							</div>
-						</label>
-					</li>
-
-					<li id="customize-control-header_textcolor" class="customize-control customize-control-color">
-						<label>
-							<span class="customize-control-title">Couleur du mois/jour</span>
-							<div class="customize-control-content">
-								<input type='text' class='color-field'>
-							</div>
-						</label>
-					</li>
-
-                	<li id="customize-control-background_color" class="customize-control customize-control-color">
-						<label>
-							<span class="customize-control-preview-bg">Couleur du mois/jour vide</span>
-							<div class="customize-control-content">
-								<input type='text' class='color-field'>
-							</div>
-						</label>
-					</li>
-
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
-
-<div id="post-body-content" class="prewiever">
-	<div class="themer-container">
-		<div class="themer-bg">
-			<label>
-				<span class="customize-control-preview-bg"></span>
-				<div class="customize-control-content">
-					<input id="themer-container__background" type='text' data-default-color="#ffffff" class='color-field'>
-				</div>
-			</label>
-		</div>
-		<div class="arcw themer zone" style="width:260px; margin:auto; padding:50px 0;">
-			
-			<div class="calendar-archives">
-				<div class="cal-nav">
-					<a href="#" class="prev-year"><span>&lt;</span></a>
-					<div class="year-nav">
-						<a href="#" class="year-title">2013</a>
-						<div class="year-select" style="top: 0px;">
-							<a href="#" class="year 2013 current selected" rel="0">2013</a>
-							<a href="#" class="year 2012" rel="1">2012</a>
-						</div>
-						<div class="arrow-down" title="<?php _e( 'Select archives year', 'arwloc') ;?>">
-							<span>▼</span>
-						</div>
-					</div>
-					<a href="#" class="next-year disabled"><span>&gt;</span></a>
-				</div>
-				<?php 
-				$aloc = 'archives_calendar';
-				$mnames[0] = '';
-
-				for($i=1; $i<13; $i++)
-				{
-					$monthdate = '1970-'. sprintf('%02d', $i) .'-01';		
-					$mnames[$i] = $wp_locale->get_month_abbrev( $wp_locale->get_month(intval($i)) );
-				}
-					
-				$years = array(2013 => array( 3 => 4, 6 => 3, 1 => 2 ), 2012 => array( 2 => 4, 7 => 3, 8 => 2 ));
-
-				$cal= '<div class="archives-years" style="position:relative">';
-				$i = 0;
-				
-				
-				foreach ($years as $year => $months){
-					$current = ($i == 0) ? " current" : "";
-					$lastyear = ($i == 1) ? " last" : "";
-					$cal .= '<div class="year '.$year.$current.$lastyear.'" rel="'.$i.'">';
-					for ( $month = 1; $month <= 12; $month++ ) {
-						$last = ( $month%4 == 0 ) ? ' last' : '';
-							if(isset($months[$month])) $count = $months[$month];
-							else $count = '0';
-							$posts_text = ($count == 1) ? __('Post', 'arwloc') : __('Posts', 'arwloc');
-
-							$postcount = '<span class="postcount"><span class="count-number">'.$count.'</span> <span class="count-text">'.$posts_text.'</span></span>';
-						
-						if(isset($months[$month]))
-							$cal .= '<div class="month'.$last.'"><a href="#"><span class="month-name">'.$mnames[$month].'</span>'.$postcount.'</a></div>';
-						else
-							$cal .= '<div class="month'.$last.' empty"><span class="month-name">'.$mnames[$month].'</span>'.$postcount.'</div>';
-					}
-					$cal .= "</div>\n";
-					$i++;
-				}
-
-				$cal .= "</div>";
-				echo $cal;
-				?>
-			</div>
-		</div>
-	</div>
+	$custom = get_option( 'archivesCalendarThemer' );
+	?>
+	<script src="<?php echo plugins_url('/admin/js/ace-edit/ace.js', __FILE__);?>" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css" media="screen">
+		#poststuff #post-body.columns-2{
+			margin-right: 500px;
+		}
+		#post-body.columns-2 #postbox-container-1 {
+			margin-right: -500px;
+			width: 400px;
+		}
+		#preview{
+			width: 250px;
+			margin: auto;
+			margin-bottom: 20px;
+		}
+		.calendar-archives{
+			margin-bottom: 20px;
+			margin-top: 20px;
+		}
+		#editor1, #editor2 {
+			width: 100%;
+			height: 600px;
+			margin: 0;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			border-top: none;
+		}
+		textarea.hidden{
+			display: none;
+		}
+		.tabs .tab{
+			display: none;
+		}
+		.tabs .tab.active-tab{
+			display: block;
+		}
+		h2.nav-tab-wrapper.custom{
+			padding: 0px!important;
+			margin-bottom: 0!important;
+			border-bottom: none;
+			/*text-align: right!important;;*/
+		}
+		h2.nav-tab-wrapper.custom .nav-tab-active{
+			background: #272822;
+			color: #FFF;
+			/*text-align: right!important;;*/
+		}
+		.updated.warning{
+			border-left: 4px solid #ffb019;
+			background-color: #FFFDDB;
+		}
+	</style>
+	<style id="arwprev">
+		<?php echo $custom['arw-theme1'];?>
+	</style>
 	<div>
-	generated css
-	<textarea rows="5" style="width:100%;"></textarea>
-	</div>
-	<input name="Submit" type="button" style="margin:20px 0;" class="button-primary" value="<?php _e('Save'); ?>" /> 
-	<input name="Submit" type="button" style="margin:20px 0;" class="button" value="<?php _e('Reset', 'arwloc'); ?>" />
-</div>
+		<textarea class="hidden" name="archivesCalendarThemer[arw-theme1]" id="codesource1"><?php echo $custom['arw-theme1'];?></textarea>
+		<textarea class="hidden" name="archivesCalendarThemer[arw-theme2]" id="codesource2"><?php echo $custom['arw-theme2'];?></textarea>
 
+		<div class="updated warning below-h2">
+			<p class=""description">
+			This is a beta/temporary version of Themer for the widget. It is fully functional but in future I'd like to make it (if I have enough time) more accessible for people who have difficulties with CSS.<br/>
+			This is a new feature and <strong>these custom themes will remain even after the plugin update.</strong><br/>
+			You can use the editor below or your favorite IDE (LESS is easier) and then copy/paste your CSS in the editor. (this editor do not convert LESS to CSS)
+			</p>
+		</div>
+		<input name="tab" id="current_tab" type="hidden" value="0">
+
+		<h2 class="nav-tab-wrapper custom">
+			<a href="#theme1" class="nav-tab nav-tab-active"><?php _e('Theme');?> 1</a>
+			<a href="#theme2" class="nav-tab"><?php _e('Theme');?> 2</a>
+		</h2>
+		<div class="tabs">
+			<div id="theme1" class="tab active-tab">
+<pre id="editor1">
+<?php echo $custom['arw-theme1'];?>
+</pre>
+			</div>
+			<div id="theme2" class="tab">
+<pre id="editor2">
+<?php echo $custom['arw-theme2'];?>
+</pre>
+			</div>
+		</div>
+
+		<script>
+			var editor1 = ace.edit("editor1");
+			editor1.setTheme("ace/theme/monokai");
+			editor1.getSession().setMode("ace/mode/css")
+
+			var editor2 = ace.edit("editor2");
+			editor2.setTheme("ace/theme/monokai");
+			editor2.getSession().setMode("ace/mode/css");
+
+			jQuery(function($){
+				editor1.on("change", function(e){
+					$('#codesource1').html(editor1.getValue());
+					$('#arwprev').html(editor1.getValue());
+				});
+				editor2.on("change", function(e){
+					$('#codesource2').html(editor2.getValue());
+					$('#arwprev').html(editor2.getValue());
+				});
+			});
+		</script>
+
+		<hr/>
+		<p>
+			<input name="Submit" type="submit" style="margin:20px 0;" class="button-primary" value="Save Changes">
+		</p>
+		<!--<input name="Submit" type="button" style="margin:20px 0;" class="button"
+		       value="<?php _e( 'Reset', 'arwloc' ); ?>"/>-->
+	</div>
+	</div> <!-- end of column one, opened in general settings file -->
+	<div id="postbox-container-1" class="postbox-container">
+		<div class="postbox">
+			<div class="inside" style="padding:15px;">
+				<h2 style="font-size:24px; margin:0;"><?php _e('Preview');?></h2>
+				<div id="preview">
+				<?php
+					year_preview_html();
+					month_preview_html();
+				?>
+				</div>
+				<div class="updated warning below-h2">
+					<p class=""description">
+					Please note that you have to add the calss "arw-theme1" to the .calendar-archives fro the Theme 1 ans "arw-theme2" for the Theme 2. Without it the theme will be applied to all widgets on the page.
+					(e.g.: .calendar-archives.arw-theme1{} )
+					</p>
+				</div>
+			</div>
+		</div>
+<?php
+}
+
+function archivesCalendar_themer_validate($args)
+{
+	foreach($args as $file => $css){
+		arw_write_css($file, $css);
+	}
+
+	$update_message = __('Themes updated.', 'arwloc').'<script>var themer_tab = '. $_POST["tab"] .';</script>';
+	add_settings_error( 'themer', 'ok', $update_message, 'updated' );
+	return $args;
+}
+
+function arw_write_css($file, $css) {
+	global $wpdb;
+	if ( $css ) {
+		if ( isMU() ) {
+			$old_blog = $wpdb->blogid;
+			$blogids  = $wpdb->get_results( "SELECT blog_id FROM $wpdb->blogs" );
+			foreach ( $blogids as $blogid ) {
+				$blog_id = $blogid->blog_id;
+				switch_to_blog( $blog_id );
+				$filename = '../wp-content/plugins/' . dirname( plugin_basename( __FILE__ ) ) . '/themes/' . $file . '-' . $wpdb->blogid . '.css';
+				$themefile = fopen( $filename, "w" ) or die( "Unable to open file!" );
+				fwrite( $themefile, $css );
+				fclose( $themefile );
+			}
+			switch_to_blog( $old_blog );
+		} else {
+			$filename = '../wp-content/plugins/' . dirname( plugin_basename( __FILE__ ) ) . '/themes/' . $file . '.css';
+			$themefile = fopen( $filename, "w" ) or die( "Unable to open file!" );
+			fwrite( $themefile, $css );
+			fclose( $themefile );
+		}
+	}
+}

@@ -275,7 +275,7 @@ function archives_month_view($args, $sql)
 				sortMonths($months,array("year","month"));
 			}
 			break;
-		case 'actual':
+		case 'current':
 			if(findMonth($archiveYear, $archiveMonth, $months) < 0)
 			{
 				$months[] = (object)array('year' => $archiveYear, 'month' => $archiveMonth);

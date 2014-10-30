@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 0.4.1
+Stable tag: 0.9.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,9 +19,14 @@ Archives widget that make your monthly/daily archives look like a calendar on th
 * Displays monthly archives as a compact year calendar
 * Displays daily archives as a compact month calendar
 * Show/hide monthly post count
+* 8 themes included (with .less files)
+* 2 Custom themes taht keep your CSS styles even after the plugin update
+* Choose a different theme for each widget
+* Show widget with previous/current/next or last available month
+* Category select. Show post only from selected categories
+* Custom post_type support
 * Entirely customizable with CSS
-* 5 themes included (with .less files)
-* .PO/.MO Localisation (Fançais, Deutsch, Español, Portugues, Simplified Chinese)
+* .PO/.MO Localisation (Fançais, Deutsch, Español, Portugues, Simplified Chinese, Serbo-Croatian)
 * Shortcode support
 * jQuery animated with possibility to use your own JS code.
 
@@ -30,11 +35,16 @@ Archives widget that make your monthly/daily archives look like a calendar on th
 `archive_calendar();`
 
 you can also configure it:
-`$args= array(
-	'next_text' => '>',
-	'prev_text' => '<',
-	'post_count' => true,
-	'month_view' => true
+$defaults = array(
+    'next_text' => '˃',
+    'prev_text' => '˂',
+    'post_count' => true,
+    'month_view' => true,
+    'month_select' => 'default',
+    'different_theme' => 0, // set 1 (true) if you want to set a different theme for this widget
+    'theme' => null, // theme 'name' if 'different_theme' == true
+    'categories' => null, // array() -> list of categories to show
+    'post_type' => null // array() -> list of post types to show
 );
 archive_calendar($args);`
 
@@ -46,8 +56,12 @@ archive_calendar($args);`
 
 **month_view:** `true` to show months instead of years archives, false by default.
 
-**Also a SHORTCODE**
-Use the shortcode to show Archives Calendar in the text widget: `[arcalendar next_text=">" prev_text="<" post_count="true"]`
+**month_select:** `default` shows the last month available with at least one post. Also `prev`, `next` or `current`.
+
+**SHORTCODE SUPPORT**
+Use the shortcode to show Archives Calendar in the text widget or in a page:
+`[arcalendar next_text=>'>' prev_text=>'<' post_count=>"true" month_view=>"true" "categories"=>"category1, category2", post_type=>"post, forum"]`
+
 *In some cases the support of shortcodes in the text widget has to be activated in the plugin settings*
 
 
@@ -71,13 +85,35 @@ Note that **if you modify the default CSS** file to skin the calendar, you will 
 
 == Screenshots ==
 
-1. Thenty Twelve theme preview in settings
+1. "Calendrier" theme preview in settings
 2. Widget settings
 3. Plugin settings
-4. Twenty Thirteen theme on a website
-5. Default theme on a website
+4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 0.9.9 =
+* [NEW] Multi-theme Support. Set a different theme for each widget
+* [NEW] Added two "Custom" themes. You can now modify the appearance without loosing your changes on every update.
+* [new] New options for month view. Show previous, current or next month in first even if there is no posts (or the last month with at least one post)
+* [new] Theme editor for custom themes. (for now only a code editor)
+* [new] Shortcode now supports post_type and categories parameters
+* [new] Serbo-Croatian language by Borisa Djuraskovic from WebHostingHub
+* [edit] **IMPORTANT**: **HTML and CSS structure changes** (again)
+* [fix] Fixed some bugs
+* [say] Happy Halloween!
+
+= 0.4.7 =
+* [fix] post count fix for specified categories
+
+= 0.4.6 =
+* [fix] post_type fix (it was considering only the first post_type that was defined)
+
+= 0.4.5 =
+* [new] Category select, show only selected categories' posts on the calendar
+* [new] Custom post_type support
+* [fix] Jquery is now included by dependencies ("not a function" error fix)
+* [fix] Jquery is included by default for new installations
 
 = 0.4.1 =
 * [edit] German translation update
@@ -113,24 +149,17 @@ Note that **if you modify the default CSS** file to skin the calendar, you will 
 = 0.2.3 =
 * Fixed missing function that checks if MultiSite is activated.
 
-= 0.2.2 =
-* Initial release
-
 == Upgrade notice ==
 
-* **After upgrading to 0.4.0 you have to go to the settings and and "Save Settings" once to update the database.**
+* **HTML STRUCTURE CHANGES**, your custom CSS **will not** be applied correctly
 
-* **All changes made ​​in any theme's (.css) file will be lost**. Make a backup before updating.
-------
-* **Tout les changements faits dans un fichier de theme (.css) seront perdus**. Faite une copie avant de mettre à jour.
+* **NEW WIDGET SETTINGS! Check the widget settings in 'Appearence->Widgets' after the update**
 
+* **BACKUP YOUR CSS CHANGES BEFORE UPDATING!** All changes made ​​in any css file of the plugin file will be lost.
 
 == Notes ==
 
 By default the plugin will include jQuery library and it's default css file into your theme. If your theme already uses jQuery please disable it the plugin's Settings.
-
 Note that if you modify the default CSS file to skin the calendar, you will lose all your changes on the next update, I recommend you to copy css style into you default CSS file.
 
 == Frequently asked questions ==
-
-
