@@ -37,6 +37,7 @@ class Archives_Calendar_Widget_Settings {
 	}
 
 	function add_admin_menus() {
+		global $archivesCalendar_options;
 		$arcw_page = add_options_page('Archives Calendar Settings', 'Archives Calendar', 'manage_options', $this->plugin_options_key, array( &$this, 'archives_calendar_options_page' ));
 		remove_submenu_page( 'options-general.php', 'archives_calendar_editor' );
 		if($archivesCalendar_options['show_settings'] == 0)
@@ -209,13 +210,13 @@ function archivesCalendar_options()
 						<div class="inside" style="padding:15px;">
 							<?php 
 							$feed_url = 'http://labs.alek.be/category/archives-calendar/feed/';
-							echo 'plmop';
+							//echo 'plmop';
 							//if (!$fp = curl_init($feed_url)){
 
 								$feed = (array) simplexml_load_file($feed_url);
 								$items = $feed['channel']->item;
 								$count = count($items);
-								echo $count;
+								//echo $count;
 							//}
 							//else $count = 0;
 							
@@ -354,8 +355,8 @@ class acw_Walker_Category_Checklist extends Walker
         /** This filter is documented in wp-includes/category-template.php */
         $output .= "\n<li id='{$taxonomy}-{$category->term_id}'$class>" . '<label class="selectit"><input value="' . $category->term_id . '"
 		type="checkbox"
-		id="'.$conf['field_id'].'-'.$cat->slug.'"
-		name="'.$conf['field_name'].'['.$cat->term_id.']"' . checked( in_array( $category->term_id, $selected_cats ), true, false ) . disabled( empty( $args['disabled'] ), false, false ) . ' /> ' . esc_html( apply_filters( 'the_category', $category->name ) ) . '</label>';
+		id="'.$conf['field_id'].'-'.$category->slug.'"
+		name="'.$conf['field_name'].'['.$category->term_id.']"' . checked( in_array( $category->term_id, $selected_cats ), true, false ) . disabled( empty( $args['disabled'] ), false, false ) . ' /> ' . esc_html( apply_filters( 'the_category', $category->name ) ) . '</label>';
     }
 
     function end_el( &$output, $category, $depth = 0, $args = array() )

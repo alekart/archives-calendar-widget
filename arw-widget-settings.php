@@ -28,25 +28,26 @@
             </option>
         </select>
         <span>&nbsp;</span>
-        <span style="display: none">
-            <label for="<?php echo $this->get_field_id( 'month_select' ); ?>"><?php _e( 'Show first: ', 'arwloc' ).': '; ?></label>
-            </label>
-            <select id="arw-month_view-option" name="<?php echo $this->get_field_name( 'month_select' ); ?>" >
-                <option <?php selected( 'default', $month_select ); ?> value="default">
-                    <?php _e( 'Latest month', 'arwloc' ); ?>
-                </option>
-                <option <?php selected( 'current', $month_select ); ?> value="current">
-                    <?php _e( 'Current month', 'arwloc' ); ?>
-                </option>
-                <option <?php selected( 'prev', $month_select ); ?> value="prev">
-                    <?php _e( 'Previous month', 'arwloc' ); ?>
-                </option>
-                <option <?php selected( 'next', $month_select ); ?> value="next">
-                    <?php _e( 'Next month', 'arwloc' ); ?>
-                </option>
-            </select>
+		<span class="monthOpt" style="display: <?php if($month_view) echo "inline-block"; else echo "none"; ?>">
+            <label
+	            for="<?php echo $this->get_field_id( 'month_select' ); ?>"><?php _e( 'Show first: ', 'arwloc' ) . ': '; ?></label>
+			    </label>
+			    <select id="arw-month_view-option" name="<?php echo $this->get_field_name( 'month_select' ); ?>">
+				    <option <?php selected( 'default', $month_select ); ?> value="default">
+					    <?php _e( 'Latest month', 'arwloc' ); ?>
+				    </option>
+				    <option <?php selected( 'current', $month_select ); ?> value="current">
+					    <?php _e( 'Current month', 'arwloc' ); ?>
+				    </option>
+				    <option <?php selected( 'prev', $month_select ); ?> value="prev">
+					    <?php _e( 'Previous month', 'arwloc' ); ?>
+				    </option>
+				    <option <?php selected( 'next', $month_select ); ?> value="next">
+					    <?php _e( 'Next month', 'arwloc' ); ?>
+				    </option>
+			    </select>
         </span>
-        <span style="display: inline-block;">
+        <span class="yearOpt" style="display: <?php if(!$month_view) echo "inline-block"; else echo "none"; ?>;">
             <label>
                 <input id="arw-year_view-option" class="selectit" <?php if($count) echo "checked";?> id="<?php echo $this->get_field_id( 'post_count' ); ?>" name="<?php echo $this->get_field_name( 'post_count' ); ?>" type="checkbox" value="1" />
                 &nbsp;<?php _e( 'Show number of posts', 'arwloc' ); ?>
@@ -62,7 +63,7 @@
             &nbsp;<?php _e( 'Use a different theme', 'arwloc' ); ?>
         </label>
     </p>
-    <p id="arw-theme-list">
+    <p class="arw-theme-list" style="<?php if(!$different_theme) echo "display: none";?>">
         <?php
         themes_list($arw_theme, array( 'name' => $this->get_field_name( 'theme' ), 'id' => $this->get_field_id( 'theme' ) ) );
         ?>
@@ -71,7 +72,7 @@
     <hr/>
 
 	<p></p>
-        <div class="accordion-container" style="border: 1px solid #ddd; overflow: hidden" tabindex="-1">
+        <div class="accordion-container arcw-accordion" style="border: 1px solid #ddd; overflow: hidden" tabindex="-1">
             <?php
                 $elemid = $this->get_field_id( 'cats' );
             ?>

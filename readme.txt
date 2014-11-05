@@ -2,9 +2,9 @@
 Contributors: alekart
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
-Requires at least: 3.3
+Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 0.9.9
+Stable tag: 0.9.91
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,6 +13,19 @@ Archives widget that makes your monthly/daily archives look like a calendar on t
 == Description ==
 
 Archives widget that make your monthly/daily archives look like a calendar on the sidebar. If you have a lot of archives that takes a lot of space on your sidebar this widget is for you. Display your archives as a compact calendar, entirely customizable with CSS.
+
+**Sorry for completely bugged "Halloween" release! It was pretty scary, right?**
+**This is**, I hope, **a fixed version of 0.9.9.**
+**PLEASE FEEDBACK**
+I'm alone to test this plugin before release and I can't test everything with particular configurations or on different versions of WordpPress, **your feedback is precious.**
+
+**BEFORE UPDATING FROM v.0.4.7**
+* **BACKUP YOUR CSS CHANGES BEFORE UPDATING!** All changes made ​​in any css file of the plugin file will be lost.
+* **HTML STRUCTURE CHANGES**, your custom CSS **will not** be applied correctly. I recommend you to install it on a test website to adapt your css to the new structure.
+
+**AFTER UPDATING FROM v0.4.7**
+* **NEW WIDGET SETTINGS!** Check the widget settings in 'Appearence->Widgets' after the update
+* Check the settings of the plugin to be sure everything is OK.
 
 = Features =
 
@@ -67,6 +80,8 @@ Use the shortcode to show Archives Calendar in the text widget or in a page:
 
 = Notes =
 
+The v0.9.9 has a lot of changes from v0.4.7 and have not been tested on older version of WordPress than 4.0. However it might work.
+
 By default, the plugin will include jQuery library and its default css file into your theme. **If your theme already uses jQuery, you should disable it the plugin's Settings.**
 
 Note that **if you modify the default CSS** file to skin the calendar, you will lose all your changes with the next update, I recommend you to copy css style into your theme's CSS file.
@@ -92,7 +107,7 @@ Note that **if you modify the default CSS** file to skin the calendar, you will 
 
 == Changelog ==
 
-= 0.9.9 =
+= 0.9.91 =
 * [NEW] Multi-theme Support. Set a different theme for each widget
 * [NEW] Added two "Custom" themes. You can now modify the appearance without loosing your changes on every update.
 * [new] New options for month view. Show previous, current or next month in first even if there is no posts (or the last month with at least one post)
@@ -100,7 +115,10 @@ Note that **if you modify the default CSS** file to skin the calendar, you will 
 * [new] Shortcode now supports post_type and categories parameters
 * [new] Serbo-Croatian language by Borisa Djuraskovic from WebHostingHub
 * [edit] **IMPORTANT**: **HTML and CSS structure changes** (again)
-* [fix] Fixed some bugs
+* [fix] Fixed lots of bugs
+
+= 0.9.9 =
+* [FAIL] GHOST RELEASE
 * [say] Happy Halloween!
 
 = 0.4.7 =

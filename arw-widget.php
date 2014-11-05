@@ -47,7 +47,7 @@ class Archives_Calendar extends WP_Widget
 	public function form( $instance )
 	{
 		$defaults = array(
-			'title' > __( 'Archives' ),
+			'title' => __('Archives'),
 			'next_text' => '˃',
 			'prev_text' => '˂',
 			'post_count' => 1,
@@ -56,8 +56,9 @@ class Archives_Calendar extends WP_Widget
 			'different_theme' => 0,
 			'theme' => null,
 			'post_type' => array(),
+			'categories' => null
 		);
-		$instance = wp_parse_args( (array) $instance, $defaults );
+		$instance = wp_parse_args( $instance, $defaults );
 		$title = $instance['title'];
 		$prev = $instance['prev_text'];
 		$next = $instance['next_text'];
@@ -99,7 +100,7 @@ function archive_calendar($args = array())
 		'categories' => null,
 		'post_type' => null
 	);
-	$args = wp_parse_args( (array) $args, $defaults );
+	$args = wp_parse_args( $args, $defaults );
 
 	if(!$args['different_theme'])
 		$args['theme'] = $archivesCalendar_options['theme'];
@@ -117,7 +118,7 @@ function archive_calendar($args = array())
 
 	$cal = archives_view($args);
 
-	if($function == "no")
+	if(isset($function) && $function == "no")
 		return $cal;
 	echo $cal;
 }
@@ -126,10 +127,10 @@ function archives_view($args){
 	global $wpdb;
 	extract($args);
 
-	$cats = "";
-	if($categories)
-		for($i=0; $i < count($categories); $i++)
-			$cats .= ($i < count($categories)-1) ? $categories[$i].', ' : $categories[$i];
+	if( !empty($categories) && is_array($categories) )
+		$cats = $cats = implode(', ', $categories);
+	else
+		$cats = "";
 
 	$sql = "SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
 		FROM $wpdb->posts wpposts ";
@@ -209,7 +210,7 @@ function archives_year_view($args, $sql)
 	else
 		$archiveYear = $yearNb[0]; // if no current year -> show the more recent
 
-	$cal.= get_calendar_header($view = 'years', $yearNb, $archiveMonth, $archiveYear, $args);
+	$cal = get_calendar_header($view = 'years', $yearNb, '', $archiveYear, $args);
 	$cal.= '<div class="archives-years">';
 
 	$i=0;
@@ -255,6 +256,8 @@ function archives_month_view($args, $sql)
 
 	// Select all months where are posts
 	$months = $wpdb->get_results($sql);
+	if(count($months) == 0)
+		$month_select = 'empty';
 
 	$archiveYear = (is_archive()) ? intval(date('Y', strtotime($post->post_date))) : intval(date('Y'));
 	$archiveMonth = (is_archive()) ? intval(date('m', strtotime($post->post_date))) : intval(date('m'));
@@ -296,10 +299,13 @@ function archives_month_view($args, $sql)
 				sortMonths($months,array("year","month"));
 			}
 			break;
+		case 'empty':
+
+			break;
 		default:
 			if(is_archive())
 			{
-				if(findMonth($refYear, $refMonth, $months) < 0)
+				if(findMonth($archiveYear, $archiveMonth, $months) < 0)
 				{
 					$archiveYear = $months[0]->year;
 					$archiveMonth = $months[0]->month;
@@ -321,7 +327,7 @@ function archives_month_view($args, $sql)
 		$months[0]->month =  (is_archive()) ? $archiveMonth : date('m');
 	}
 
-	$cal.= get_calendar_header($view = 'months', $months, $archiveMonth, $archiveYear, $args);
+	$cal = get_calendar_header($view = 'months', $months, $archiveMonth, $archiveYear, $args);
 
 	// Display week days names
 	$week_begins = intval(get_option('start_of_week'));
@@ -333,7 +339,7 @@ function archives_month_view($args, $sql)
 	$cal .= '<div class="week-row weekdays">';
 	foreach ( $myweek as $wd )
 	{
-		$day_name = (true == $initial) ? $wp_locale->get_weekday_initial($wd) : $wp_locale->get_weekday_abbrev($wd);
+		$day_name = $wp_locale->get_weekday_abbrev($wd);
 		//$wd = esc_attr($wd);
 		$last = ($i%7 == 0) ? " last" : "";
 		$cal .= '<span class="day weekday'.$last.'">'.$day_name.'</span>';
@@ -347,6 +353,11 @@ function archives_month_view($args, $sql)
 	{
 		$lastyear = ($i == $totalmonths-1 ) ? " last" : "";
 		$current = ($archiveYear == $months[$i]->year && $archiveMonth == $months[$i]->month) ? " current" : "";
+
+		if( !empty($categories) && is_array($categories) )
+			$cats = implode(', ', $categories);
+		else
+			$cats = "";
 
 		// select days with posts
 		$sql = "SELECT DAY(post_date) AS day
@@ -427,7 +438,7 @@ function archives_month_view($args, $sql)
 	return $cal;
 }
 
-function get_calendar_header($view = 'months', $pages, $archiveMonth, $archiveYear, $args){
+function get_calendar_header($view = 'months', $pages, $archiveMonth = null, $archiveYear, $args){
 	global $wp_locale;
 	extract($args);
 
@@ -439,7 +450,12 @@ function get_calendar_header($view = 'months', $pages, $archiveMonth, $archiveYe
 		$cal .= '<a href="#" class="prev-year"><span>'.html_entity_decode($prev_text).'</span></a>';
 
 	$cal .= '<div class="menu-container '.$view.'">';
-	$cal .= '<a href="'.get_month_link( intval($archiveYear), intval($archiveMonth) ).'" class="title">'.$wp_locale->get_month(intval($archiveMonth)).' '.$archiveYear.'</a>';
+
+	if($view == "months")
+		$cal .= '<a href="'.get_month_link( intval($archiveYear), intval($archiveMonth) ).'" class="title">'.$wp_locale->get_month(intval($archiveMonth)).' '.$archiveYear.'</a>';
+	else
+		$cal .= '<a href="'.get_year_link($archiveYear).'" class="title">'.$archiveYear.'</a>';
+
 	$cal .= '<ul class="menu">';
 
 	$i=0;
@@ -500,8 +516,14 @@ function archivesCalendar_shortcode( $atts )
 
 	if($categories !== null)
 	{
-		$categories = str_replace(' ', '', $categories);
-		$categories = explode(',', $categories);
+		$cats = str_replace(' ', '', $cats);
+		$cats = explode(',', $cats);
+		$categories = $cats;
+		foreach($categories as $cat)
+		{
+			$cat = get_category_by_slug($cat);
+			$cats[] = $cat->term_id;
+		}
 	}
 	if($post_type !== null)
 	{
