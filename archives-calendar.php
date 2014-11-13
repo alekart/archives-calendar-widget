@@ -28,6 +28,8 @@ License: GPLv3
 	
 ****/
 
+define ('ARCWV', '0.9.92'); // current version of the plugin
+
 $themes = array(
 	'calendrier' => 'Calendrier',
 	'pastel' => 'Pastel',
@@ -79,7 +81,7 @@ function arcw_plugin_action_links( $links ) {
 
 function archivesCalendar_jquery_plugin()
 {
-	wp_register_script( 'archivesCW', plugins_url('/jquery.archivesCW.min.js', __FILE__), array("jquery") );
+	wp_register_script( 'archivesCW', plugins_url('/jquery.archivesCW.min.js', __FILE__), array("jquery"), ARCWV );
 	wp_enqueue_script( 'archivesCW');
 }
 
@@ -92,8 +94,8 @@ function archivesCalendar_js()
 function archives_calendar_styles()
 {
 	$archivesCalendar_options = get_option('archivesCalendar');
-	wp_register_style( 'archives-cal-'.$archivesCalendar_options['theme'], plugins_url('themes/'.$archivesCalendar_options['theme'].'.css', __FILE__));
-	wp_enqueue_style('archives-cal-'.$archivesCalendar_options['theme']);
+	wp_register_style( 'archives-cal-'.$archivesCalendar_options['theme'], plugins_url('themes/'.$archivesCalendar_options['theme'].'.css', __FILE__), array(), ARCWV );
+	wp_enqueue_style('archives-cal-'.$archivesCalendar_options['theme'] );
 }
 
 function arcw_admin_widgets_scripts()
@@ -101,8 +103,8 @@ function arcw_admin_widgets_scripts()
 	//wp_enqueue_script( 'accordion' );
 	//wp_enqueue_style( 'customize-controls');
 	//wp_enqueue_style( 'media-views' );
-	wp_register_script( 'arcwpWidgetsPage', plugins_url('/admin/js/widgets-page.min.js', __FILE__) );
-	wp_enqueue_script( 'arcwpWidgetsPage');
+	wp_register_script( 'arcwpWidgetsPage', plugins_url('/admin/js/widgets-page.min.js', __FILE__), array(), ARCWV );
+	wp_enqueue_script( 'arcwpWidgetsPage' );
 }
 
 /***** CHECK MULTISITE NETWORK *****/

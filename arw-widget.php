@@ -107,7 +107,7 @@ function archive_calendar($args = array())
 
 	if($args['theme'] != $archivesCalendar_options['theme'])
 	{
-		wp_register_style( 'archives-cal-'.$args['theme'], plugins_url('themes/'.$args['theme'].'.css', __FILE__));
+		wp_register_style( 'archives-cal-'.$args['theme'], plugins_url('themes/'.$args['theme'].'.css', __FILE__), array(), ARCWV );
 		wp_enqueue_style('archives-cal-'.$args['theme']);
 	}
 
