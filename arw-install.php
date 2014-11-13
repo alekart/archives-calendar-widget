@@ -38,7 +38,6 @@ function _archivesCalendar_activate()
 	$default_options = array(
 		"css" => 1,
 		"theme" => "calendrier",
-		"jquery" => 1,
 		"js" => 1,
 		"show_settings" => 1,
 		"shortcode" => 0,

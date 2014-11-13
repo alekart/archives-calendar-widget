@@ -65,7 +65,7 @@
     </p>
     <p class="arw-theme-list" style="<?php if(!$different_theme) echo "display: none";?>">
         <?php
-        themes_list($arw_theme, array( 'name' => $this->get_field_name( 'theme' ), 'id' => $this->get_field_id( 'theme' ) ) );
+        arcw_themes_list($arw_theme, array( 'name' => $this->get_field_name( 'theme' ), 'id' => $this->get_field_id( 'theme' ) ) );
         ?>
     </p>
 

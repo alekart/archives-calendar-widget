@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 0.9.91
+Stable tag: 0.9.92
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,16 +14,14 @@ Archives widget that makes your monthly/daily archives look like a calendar on t
 
 Archives widget that make your monthly/daily archives look like a calendar on the sidebar. If you have a lot of archives that takes a lot of space on your sidebar this widget is for you. Display your archives as a compact calendar, entirely customizable with CSS.
 
-**Sorry for completely bugged "Halloween" release! It was pretty scary, right?**
-**This is**, I hope, **a fixed version of 0.9.9.**
-**PLEASE FEEDBACK**
+= **PLEASE FEEDBACK** =
 I'm alone to test this plugin before release and I can't test everything with particular configurations or on different versions of WordpPress, **your feedback is precious.**
 
-**BEFORE UPDATING FROM v.0.4.7**
+= **BEFORE UPDATING FROM v.0.4.7** =
 * **BACKUP YOUR CSS CHANGES BEFORE UPDATING!** All changes made ​​in any css file of the plugin file will be lost.
 * **HTML STRUCTURE CHANGES**, your custom CSS **will not** be applied correctly. I recommend you to install it on a test website to adapt your css to the new structure.
 
-**AFTER UPDATING FROM v0.4.7**
+= **AFTER UPDATING FROM v0.4.7** =
 * **NEW WIDGET SETTINGS!** Check the widget settings in 'Appearence->Widgets' after the update
 * Check the settings of the plugin to be sure everything is OK.
 
@@ -80,11 +78,7 @@ Use the shortcode to show Archives Calendar in the text widget or in a page:
 
 = Notes =
 
-The v0.9.9 has a lot of changes from v0.4.7 and have not been tested on older version of WordPress than 4.0. However it might work.
-
 By default, the plugin will include jQuery library and its default css file into your theme. **If your theme already uses jQuery, you should disable it the plugin's Settings.**
-
-Note that **if you modify the default CSS** file to skin the calendar, you will lose all your changes with the next update, I recommend you to copy css style into your theme's CSS file.
 
 = Links =
 [Project's page](http://labs.alek.be/projects/archives-calendar-widget/)
@@ -106,6 +100,10 @@ Note that **if you modify the default CSS** file to skin the calendar, you will 
 4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 0.9.92 =
+* [edit] PHP 5.4 is no more required
+* [fix] some compatibility issues
 
 = 0.9.91 =
 * [NEW] Multi-theme Support. Set a different theme for each widget
@@ -174,10 +172,5 @@ Note that **if you modify the default CSS** file to skin the calendar, you will 
 * **NEW WIDGET SETTINGS! Check the widget settings in 'Appearence->Widgets' after the update**
 
 * **BACKUP YOUR CSS CHANGES BEFORE UPDATING!** All changes made ​​in any css file of the plugin file will be lost.
-
-== Notes ==
-
-By default the plugin will include jQuery library and it's default css file into your theme. If your theme already uses jQuery please disable it the plugin's Settings.
-Note that if you modify the default CSS file to skin the calendar, you will lose all your changes on the next update, I recommend you to copy css style into you default CSS file.
 
 == Frequently asked questions ==

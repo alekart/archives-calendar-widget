@@ -30,7 +30,7 @@
 			<span class="description"><?php _e("The theme's CSS file is not included in administration, this preview may be different from the website rendering.", 'arwloc'); ?></span>
 		</p>
 		<div class="modal-buttons">
-			<button class="button-primary ok_theme"><?php _e('Select');?></button> <button class="button cancel_theme"><?php _e('Cancel', 'arwloc');?></button>
+			<button class="button-primary ok_theme"><?php _e('Select');?></button> <button class="button cancel_theme"><?php _e('Close');?></button>
 		</div>
 	</div>
 </div>

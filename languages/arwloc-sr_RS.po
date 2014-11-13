@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Archives Calendar Widget v0.9.9x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-12 14:42+0100\n"
+"POT-Creation-Date: 2014-11-12 14:54+0100\n"
 "PO-Revision-Date: 2014-11-12 15:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: de_DE\n"
+"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,8 +25,6 @@ msgstr ""
 msgid "Themes"
 msgstr ""
 
-# Do not translate.
-# WordPress defalut.
 #: admin/preview.php:15 arw-settings.php:303
 msgid "Custom"
 msgstr ""
@@ -36,8 +34,8 @@ msgid ""
 "The theme's CSS file is not included in administration, this preview may be "
 "different from the website rendering."
 msgstr ""
-"Die CSS-Theme Datei ist nicht in der Administration enthalten, die Vorschau "
-"kann vom Webseiten-Design abweichen."
+"CSS datoteka teme nije obuhvaćena u administraciji; ovaj pregled može se "
+"razlikovati od prikaza web site-a. "
 
 # Do not translate.
 # WordPress defalut.
@@ -57,18 +55,19 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-# @ default
+# Do not translate.
+# WordPress defalut.
 #: arw-editor.php:40 arw-editor.php:41 arw-settings.php:153
 msgid "Theme"
 msgstr ""
 
 #: arw-editor.php:82
 msgid "Reset"
-msgstr "Rücksetzen"
+msgstr ""
 
 #: arw-editor.php:88 arw-settings.php:157
 msgid "Preview"
-msgstr "Vorschau"
+msgstr "Pregled"
 
 # Do not translate.
 # WordPress defalut.
@@ -84,75 +83,75 @@ msgstr ""
 
 #: arw-settings.php:151
 msgid "Include CSS file"
-msgstr "CSS-Datei einbeziehen"
+msgstr "Uključi CSS datoteku"
 
 #: arw-settings.php:152
 msgid ""
 "Include CSS file from the plugin.<br /><strong>It's recommended to copy the "
 "CSS code to your theme´s <strong>style.css</strong> and uncheck this option."
 msgstr ""
-"Einbeziehen der CSS-Datei des Plugins. Es wird empfohlen den CSS-Code in die "
-"<strong>style.css</strong> des Themes zu kopieren und diese Option zu "
-"deaktivieren."
+"Uključi CSS datoteku iz plugin-a. <br /><strong>Preporučujemo vam da "
+"kopirate CSS kod u <strong>style.css</strong> svoje teme i da deaktivirate "
+"ovu opciju."
 
 #: arw-settings.php:158
 msgid ""
 "<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be "
 "restored on next plugin update."
 msgstr ""
-"<strong>HINWEIS:</strong> Wenn Sie CSS-Dateien des Plugins geändert haben, "
-"werden diese mit dem nächsten Plugin-Update wiederhergestellt."
+"<strong>NAPOMENA:</strong>ako ste modifikovali bilo koju CSS datoteku plugin-"
+"a, biće obnovljena pri sledećem ažuriranju plugin-a. "
 
 #: arw-settings.php:163
 msgid "Insert JavaScript code into &lt;head&gt;"
-msgstr "Einbinden des JavaScript Codes"
+msgstr "Unesi JavaScript kod u &lt;head&gt;"
 
 #: arw-settings.php:164
 msgid ""
 "Insert javascript code into your theme's &lt;head&gt;. Uncheck only if you "
 "copy this code into your default .js file."
 msgstr ""
-"Einbinden des JavaScript Codes in ihr Theme. Nur deaktivieren, wenn dieser "
-"Code in ihre Default .js-Datei kopiert wird."
+"Unesite javascript kod u &lt;head&gt; svoje teme. Deaktivirajte samo ako "
+"kopirate ovaj kod u svoju podrazumevanu .js datoteku."
 
 #: arw-settings.php:165
 msgid "This code is required."
-msgstr "Dieser Code wird benötigt."
+msgstr "Ovaj kod je obavezan."
 
 #: arw-settings.php:168
 msgid "You can set some parameters to change the animation of the calendar."
-msgstr "Sie können Parameter angeben, um die Kalenderanimation zu ändern."
+msgstr ""
+"Možete podesiti određene parametre da biste promenili animaciju kalendara."
 
 #: arw-settings.php:171
 msgid "Show default parameters"
-msgstr "Standardparameter anzeigen"
+msgstr "Prikaži podrazumevane parametre"
 
 #: arw-settings.php:175
 msgid "Open"
-msgstr "Geöffnet"
+msgstr "Otvori"
 
 #: arw-settings.php:184
 msgid "Enable Shortcode support in text widget"
-msgstr "Aktivieren der Shortcode-Unterstützung in Text-Widgets"
+msgstr "Aktiviraj shortcode podršku u tekstualnom widget-u"
 
 #: arw-settings.php:185
 msgid "Use the shortcode in a text widget to display Archives Calendar."
 msgstr ""
-"Verwenden des Shortcodes in einem Text-Widget, um Archives Calender "
-"anzuzeigen."
+"Upotrebi shortcode u tekstualnom widget-u za prikazivanje arhiva kalendara."
 
 #: arw-settings.php:191
 msgid "Show link to Settings in admin menu"
-msgstr "Link zu den Einstellungen im Admin-Menu anzeigen"
+msgstr "Prikaži link za podešavanja u meniju administratora"
 
 #: arw-settings.php:192
 msgid ""
 "Show link \"Archives Calendar\" in admin \"Settings\" menu. If unchecked you "
 "can enter settings from \"Settings\" link in \"Plugins\" page."
 msgstr ""
-"Anzeigen des Links \"Archives Calendar\" im \"Einstellungen\" Menu des "
-"Admins. Falls deaktiviert, können die Einstellungen über die Plugins-Seite "
-"erreicht werden."
+"Prikaži link \"Kalendar arhive\" u administratorskom meniju \"Podešavanja\". "
+"Ako je ova opcija deaktivirana, možete uneti podešavanja sa linka "
+"\"Podešavanja\" na stranicu \"Plugin-ovi\". "
 
 # Do not translate.
 # WordPress defalut.
@@ -162,7 +161,7 @@ msgstr ""
 
 #: arw-settings.php:221
 msgid "News/Updates"
-msgstr "Neuigkeiten/Aktualisierungen"
+msgstr "Novosti/Ažuriranja"
 
 # Do not translate.
 # WordPress defalut.
@@ -172,20 +171,20 @@ msgstr ""
 
 #: arw-settings.php:241
 msgid "No posts"
-msgstr "Keine Posts"
+msgstr "Nema postova"
 
 #: arw-settings.php:257
 msgid ""
 "If you like this plugin please <strong>support my work</strong>, buy me "
 "<strong>a beer or a coffee</strong>. Click Donate and specify your amount."
 msgstr ""
-"Wenn Sie dieses Plugin mögen, unterstützen Sie bitte meine Arbeit, indem Sie "
-"mir ein Bier oder einen Kaffee ausgeben. Klicken Sie auf <strong>Donate</"
-"strong>  und wählen Sie ihren Betrag."
+"Ako vam se sviđa ovaj plugin, molim vas da <strong>podržite moj rad</strong> "
+"i da me častite<strong>pivom ili kafom</strong>. Kliknite na ‘Doniraj’ i "
+"odredite iznos."
 
 #: arw-settings.php:261
 msgid "In Belgium 1 coffee or 1 beer costs about 2€"
-msgstr "In Belgien kostet ein Kaffee oder ein Bier etwa € 2,-"
+msgstr "U Belgiji kafa ili pivo koštaju oko 2€"
 
 # Do not translate.
 # WordPress defalut.
@@ -195,51 +194,53 @@ msgstr ""
 
 #: arw-widget-settings.php:9
 msgid "Previous"
-msgstr "Früher"
+msgstr "Prejšnja"
 
 #: arw-widget-settings.php:13
 msgid "Next"
-msgstr "Nächste"
+msgstr ""
 
+# Do not translate.
+# WordPress defalut.
 #: arw-widget-settings.php:21
 msgid "Show"
-msgstr "Brauch"
+msgstr ""
 
 #: arw-widget-settings.php:24
 msgid "Months"
-msgstr "Monate"
+msgstr "Meseci"
 
 #: arw-widget-settings.php:27
 msgid "Years"
-msgstr "Jahre"
+msgstr "Godine"
 
 #: arw-widget-settings.php:33
 msgid "Show first: "
-msgstr "Anzuzeigen ersten: "
+msgstr ""
 
 #: arw-widget-settings.php:37
 msgid "Latest month"
-msgstr "Der letzt Monate"
+msgstr ""
 
 #: arw-widget-settings.php:40
 msgid "Current month"
-msgstr "Aktueller Monat"
+msgstr ""
 
 #: arw-widget-settings.php:43
 msgid "Previous month"
-msgstr "Vorheriger Monat"
+msgstr ""
 
 #: arw-widget-settings.php:46
 msgid "Next month"
-msgstr "Nächsten Monat"
+msgstr ""
 
 #: arw-widget-settings.php:53
 msgid "Show number of posts"
-msgstr "Anzahl der Beiträge anzeigen"
+msgstr "Prikaži broj postova"
 
 #: arw-widget-settings.php:63
 msgid "Use a different theme"
-msgstr "Verwenden Sie eine andere Theme"
+msgstr ""
 
 # Do not translate.
 # WordPress defalut.
@@ -255,7 +256,7 @@ msgstr ""
 
 #: arw-widget.php:16
 msgid "Show archives as calendar"
-msgstr "Archive als Kalender anzeigen"
+msgstr "Prikaži arhive kao kalendar"
 
 # Do not translate.
 # WordPress defalut.
@@ -269,60 +270,48 @@ msgstr "Post"
 
 #: arw-widget.php:231
 msgid "Posts"
-msgstr "Posts"
+msgstr "Postovi"
 
-# @ arwloc
+#~ msgid "Next button text:"
+#~ msgstr "Tekst narednog tastera"
+
+#~ msgid "Yes"
+#~ msgstr "Da"
+
+#~ msgid "No"
+#~ msgstr "Ne"
+
 #~ msgid "Select archives year"
-#~ msgstr "Jahr auswählen"
+#~ msgstr "Odaberite godinu arhive"
 
-# @ default
+#~ msgid "Archives Calendar Settings"
+#~ msgstr "Podešavanja kalendara arhive"
+
+#~ msgid "Default"
+#~ msgstr "Podrazumevana"
+
 #~ msgid "OK"
-#~ msgstr "OK"
+#~ msgstr "U redu"
 
-# @ arwloc
 #~ msgid "Cancel"
-#~ msgstr "Abbrechen"
+#~ msgstr "Otkaži"
 
-# @ arwloc
 #~ msgid "Include jQuery library"
-#~ msgstr "Einbinden der jQuery-Bibliothek"
+#~ msgstr "Uključi jQuery biblioteku "
 
-# @ arwloc
 #~ msgid ""
 #~ "Include jQuery library into your theme. Uncheck if your theme already "
 #~ "includes jQuery library.<br /><strong>jQuery library is required.</strong>"
 #~ msgstr ""
-#~ "Einbinden von jQuery in ihr Theme. Deaktivieren, falls dies schon der "
-#~ "Fall ist.<br /><strong>jQuery wird benötigt.</strong>"
+#~ "Uključite jQuery biblioteku u svoju temu. Deaktivirajte ako vaša tema već "
+#~ "sadrži  jQuery biblioteku. <br /><strong>jQuery biblioteka je obavezna.</"
+#~ "strong>"
 
-# @ arwloc
-#~ msgid "Default"
-#~ msgstr "Standard"
-
-# @ arwloc
-#~ msgid "Next button text:"
-#~ msgstr "Text Vor-Button:"
-
-# @ arwloc
-#~ msgid "Yes"
-#~ msgstr "Ja"
-
-# @ arwloc
-#~ msgid "No"
-#~ msgstr "Nein"
-
-# @ arwloc
-#~ msgid "Archives Calendar Settings"
-#~ msgstr "Archives Calendar Einstellungen"
-
-# @ arwloc
 #~ msgid "Also"
-#~ msgstr "Weiterhin..."
+#~ msgstr "Takođe"
 
-# @ arwloc
 #~ msgid "My other projects on "
-#~ msgstr "Meine weiteren Projekte auf "
+#~ msgstr "Moji ostali projekti o"
 
-# @ arwloc
 #~ msgid "My portfolio:"
-#~ msgstr "Mein Portfolio:"
+#~ msgstr "Moj portfolio:"

@@ -148,24 +148,20 @@ function archivesCalendar_options()
 		<div id="arcw-settings" class="tab active-tab metabox-holder columns-2">
 			<div id="post-body-content">
 				<p>
-					<input type="checkbox" id="css" name="archivesCalendar[css]" <?php ac_checked('css');?> /> <label for="css"><?php _e('Include CSS file', 'arwloc'); ?></label><br />
+					<input type="checkbox" id="css" name="archivesCalendar[css]" <?php arcw_checked('css');?> /> <label for="css"><?php _e('Include CSS file', 'arwloc'); ?></label><br />
 					<span class="description"><?php _e( 'Include CSS file from the plugin.<br /><strong>It\'s recommended to copy the CSS code to your theme´s <strong>style.css</strong> and uncheck this option.', 'arwloc' ); ?></strong></span>
 					<p><strong><?php _e('Theme');?>: </strong>
                     <?php
-                        themes_list($theme, array('name' => 'archivesCalendar[theme]', 'class' => 'theme_select', 'show_current' => true) );
+                    arcw_themes_list($theme, array('name' => 'archivesCalendar[theme]', 'class' => 'theme_select', 'show_current' => true) );
                     ?>
-					 <a href="#TB_inline?height=420&amp;width=800&amp;inlineId=ac_preview" class="thickbox button preview_theme"><?php _e('Preview', 'arwloc');?></a><br />
+					 <a href="#TB_inline?height=420&amp;width=800&amp;inlineId=ac_preview" class="thickbox button preview_theme"><?php _e('Preview');?></a><br />
 					<?php _e( "<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be restored on next plugin update.", 'arwloc' ); ?></span>
 					</p>
 				</p>
 				<hr/>
 				<p>
-					<input type="checkbox" id="jquery" name="archivesCalendar[jquery]" <?php ac_checked('jquery');?> /> <label for="jquery"><?php _e('Include jQuery library', 'arwloc');?></label><br />
-					<span class="description"><?php _e('Include jQuery library into your theme. Uncheck if your theme already includes jQuery library.<br /><strong>jQuery library is required.</strong>', 'arwloc');?></span>
-				</p>
-				<p>
-					<input type="checkbox" id="js" name="archivesCalendar[js]" <?php ac_checked('js');?> /> <label for="js"><?php _e('Insert JavaScript code into <head>', 'arwloc');?></label><br />
-					<span class="description"><?php _e('Insert javascript code into your theme\'s <head>. Uncheck only if you copy this code into your default .js file.', 'arwloc'); ?><br />
+					<input type="checkbox" id="js" name="archivesCalendar[js]" <?php arcw_checked('js');?> /> <label for="js"><?php _e('Insert JavaScript code into &lt;head&gt;', 'arwloc');?></label><br />
+					<span class="description"><?php _e('Insert javascript code into your theme\'s &lt;head&gt;. Uncheck only if you copy this code into your default .js file.', 'arwloc'); ?><br />
 					<strong><?php _e('This code is required.', 'arwloc');?></strong></span>
 					<div><textarea name="archivesCalendar[javascript]" style="width:500px; height:100px; font-family:'Courier', 'New Courier'; font-size: 12px;"><?php echo $options['javascript']; ?></textarea>
 						<br>
@@ -176,7 +172,7 @@ function archivesCalendar_options()
 					</p>
 
 					<div id="ac_default_code" style="display:none;">
-						<h2 class="title">$.archivesCW default parameters: <a class="button-primary" style="height: 20px; line-height: 16px;" href="<?php echo plugins_url( 'archives-calendar-widget/admin/default.js.txt' , dirname(__FILE__) ); ?>" target="_blank"><?php _e('Open'); ?> .txt</a></h2>
+						<h2 class="title">$.archivesCW default parameters: <a class="button-primary" style="height: 20px; line-height: 16px;" href="<?php echo plugins_url( 'archives-calendar-widget/admin/default.js.txt' , dirname(__FILE__) ); ?>" target="_blank"><?php _e('Open', 'arwloc'); ?> .txt</a></h2>
 						<pre>
 	<?php include 'admin/default.js.txt'; ?>
 						</pre>
@@ -184,14 +180,14 @@ function archivesCalendar_options()
 				</p>
 				<hr />
 				<p>
-					<input type="checkbox" id="shortcode" name="archivesCalendar[shortcode]" <?php ac_checked('shortcode');?> /> <label for="shortcode">
+					<input type="checkbox" id="shortcode" name="archivesCalendar[shortcode]" <?php arcw_checked('shortcode');?> /> <label for="shortcode">
 						<?php _e('Enable Shortcode support in text widget', 'arwloc');?></label><br />
 					<span class="description"><?php _e('Use the shortcode in a text widget to display Archives Calendar.', 'arwloc');?></span>
 					<pre>[arcalendar next_text=">" prev_text="<" post_count="true" month_view="false"]</pre>
 				</p>
 				<hr />
 				<p>
-					<input type="checkbox" id="soptions" name="archivesCalendar[show_settings]" <?php ac_checked('show_settings');?> /> <label for="soptions">
+					<input type="checkbox" id="soptions" name="archivesCalendar[show_settings]" <?php arcw_checked('show_settings');?> /> <label for="soptions">
 						<?php _e('Show link to Settings in admin menu', 'arwloc');?></label><br />
 					<span class="description"><?php _e('Show link "Archives Calendar" in admin "Settings" menu. If unchecked you can enter settings from "Settings" link in "Plugins" page.', 'arwloc');?></span>
 				</p>
@@ -273,7 +269,7 @@ function archivesCalendar_options()
 }
 
 /* theme list select */
-function themes_list($selected = 0, $args)
+function arcw_themes_list($selected = 0, $args)
 {
 	global $wpdb, $themes, $archivesCalendar_options;
 
@@ -304,7 +300,7 @@ function themes_list($selected = 0, $args)
 		$i = 1;
 		foreach ( $custom as $filename => $css ) {
 			if ( $css ) {
-				echo '<option ' . selected( $filename, $selected ) . ' value="' . $filename . '">' . __( 'Custom' ) . ' ' . $i . '</option>';
+				echo '<option ' . selected( $filename, $selected ) . ' value="' . $filename . '">' . __( 'Custom', 'arwloc' ) . ' ' . $i . '</option>';
 				$i ++;
 			}
 		}
@@ -366,7 +362,7 @@ class acw_Walker_Category_Checklist extends Walker
 }
 
 /***** CHECKBOXES CHECK *****/
-function ac_checked($option, $value = 1)
+function arcw_checked($option, $value = 1)
 {
 	$options = get_option('archivesCalendar');
 	if($options[$option] == $value)

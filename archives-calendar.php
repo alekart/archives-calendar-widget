@@ -3,7 +3,7 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: http://labs.alek.be/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 0.9.91
+Version: 0.9.92
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3
@@ -37,7 +37,6 @@ $themes = array(
 	'twentythirteen' => 'Twenty Thirteen',
 	'twentyfourteen' => 'Twenty Fourteen',
 	'twentyfourteenlight' => 'Twenty Fourteen Light',
-	//'custom' => __('Custom', 'arwloc')
 );
 
 // ACTIVATION
@@ -80,9 +79,7 @@ function arcw_plugin_action_links( $links ) {
 
 function archivesCalendar_jquery_plugin()
 {
-	global $archivesCalendar_options;
-	$dependencies = ($archivesCalendar_options['jquery'] == 1) ? "jquery" : "";
-	wp_register_script( 'archivesCW', plugins_url('/jquery.archivesCW.min.js', __FILE__), array($dependencies) );
+	wp_register_script( 'archivesCW', plugins_url('/jquery.archivesCW.min.js', __FILE__), array("jquery") );
 	wp_enqueue_script( 'archivesCW');
 }
 

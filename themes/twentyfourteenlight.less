@@ -4,13 +4,13 @@
 	position:relative; // DO NOT CHANGE
 	width:100%; // DO NOT CHANGE
 	*{
-		-webkit-box-sizing: border-box!important; /* Safari/Chrome, other WebKit */
-		-moz-box-sizing: border-box!important;    /* Firefox, other Gecko */
-		box-sizing: border-box!important;
+		box-sizing: border-box!important; // DO NOT CHANGE
 	}
-	ul{
+	ul, li{
 		margin: 0;
 		padding: 0;
+		list-style: none;
+		display: list-item;
 	}
 	a{
 		text-decoration:none;
@@ -28,7 +28,7 @@
 		background: #000; /* Old browsers */
 		color: #fff;
 		margin-bottom: 1px;
-		*{
+		a, ul, div ,li{
 			line-height: 30px;
 		}
 

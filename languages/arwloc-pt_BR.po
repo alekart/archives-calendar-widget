@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Archives Calendar Widget v0.4.0\n"
+"Project-Id-Version: Archives Calendar Widget v0.9.9x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-28 17:33+0100\n"
-"PO-Revision-Date: 2014-10-28 17:38+0100\n"
+"POT-Creation-Date: 2014-11-12 14:53+0100\n"
+"PO-Revision-Date: 2014-11-12 15:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -20,62 +20,17 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-# @ default
-#: ../archives-calendar.php:67 ../arw-options.php:108
-msgid "Settings"
-msgstr "Configurações"
+# Do not translate.
+# WordPress defalut.
+#: ../admin/preview.php:5
+msgid "Themes"
+msgstr ""
 
-# @ default
-#: ../arw-editor.php:12 ../arw-options.php:139 ../arw-options.php:306
-msgid "Theme"
-msgstr "Tema"
-
-# @ arwloc
-#: ../arw-editor.php:12
+#: ../admin/preview.php:15 ../arw-settings.php:303
 msgid "Custom"
-msgstr "Customizado"
+msgstr "Personalizado"
 
-# @ arwloc
-#: ../arw-editor.php:140 ../arw-widget.php:470
-msgid "Select archives year"
-msgstr "Selecione o ano do post"
-
-# @ archives_calendar
-# @ arwloc
-#: ../arw-editor.php:170 ../arw-widget.php:233
-msgid "Post"
-msgstr "Post"
-
-# @ arwloc
-#: ../arw-editor.php:170 ../arw-widget.php:233
-msgid "Posts"
-msgstr "Posts"
-
-#: ../arw-editor.php:193
-msgid "Save"
-msgstr ""
-
-#: ../arw-editor.php:194
-msgid "Reset"
-msgstr ""
-
-# @ arwloc
-#: ../arw-options.php:109
-#, fuzzy
-msgid "Customize"
-msgstr "Customizado"
-
-#: ../arw-options.php:143
-msgid "OK"
-msgstr ""
-
-# @ arwloc
-#: ../arw-options.php:143
-msgid "Cancel"
-msgstr "Cancelar"
-
-# @ arwloc
-#: ../arw-options.php:300
+#: ../admin/preview.php:30
 msgid ""
 "The theme's CSS file is not included in administration, this preview may be "
 "different from the website rendering."
@@ -83,13 +38,55 @@ msgstr ""
 "O CSS do Tema não está incluso na administração, esse pré visualização pode "
 "ser diferente do site renderizado."
 
-# @ arwloc
-#: ../arw-options.php:304
+# Do not translate.
+# WordPress defalut.
+#: ../admin/preview.php:33
+msgid "Select"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../admin/preview.php:33
+msgid "Close"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../archives-calendar.php:76 ../arw-settings.php:26
+msgid "Settings"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-editor.php:40 ../arw-editor.php:41 ../arw-settings.php:153
+msgid "Theme"
+msgstr ""
+
+#: ../arw-editor.php:82
+msgid "Reset"
+msgstr "Reposição"
+
+#: ../arw-editor.php:88 ../arw-settings.php:157
+msgid "Preview"
+msgstr "Pré-visualização"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-editor.php:112
+msgid "Updated."
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-settings.php:33
+msgid "Customize"
+msgstr ""
+
+#: ../arw-settings.php:151
 msgid "Include CSS file"
 msgstr "Incluir arquivo CSS"
 
-# @ arwloc
-#: ../arw-options.php:305
+#: ../arw-settings.php:152
 msgid ""
 "Include CSS file from the plugin.<br /><strong>It's recommended to copy the "
 "CSS code to your theme´s <strong>style.css</strong> and uncheck this option."
@@ -98,13 +95,7 @@ msgstr ""
 "o código CSS  para o arquivo <strong>style.css</strong> do seu tema r "
 "desmarque essa opção."
 
-# @ arwloc
-#: ../arw-options.php:310
-msgid "Preview"
-msgstr "Pré-visualização"
-
-# @ arwloc
-#: ../arw-options.php:311
+#: ../arw-settings.php:158
 msgid ""
 "<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be "
 "restored on next plugin update."
@@ -112,70 +103,47 @@ msgstr ""
 "<strong>NOTA:</strong> se você modificou qualquer arquivo CSS do plugin ele "
 "será restaurado na próxima atualização."
 
-# @ arwloc
-#: ../arw-options.php:316
-msgid "Include jQuery library"
-msgstr "Incluir biblioteca jQuery"
+#: ../arw-settings.php:163
+msgid "Insert JavaScript code into &lt;head&gt;"
+msgstr "Inserir código javascript no &lt;head&gt;"
 
-# @ arwloc
-#: ../arw-options.php:317
+#: ../arw-settings.php:164
 msgid ""
-"Include jQuery library into your theme. Uncheck if your theme already "
-"includes jQuery library.<br /><strong>jQuery library is required.</strong>"
+"Insert javascript code into your theme's &lt;head&gt;. Uncheck only if you "
+"copy this code into your default .js file."
 msgstr ""
-"Incluir biblioteca jQuery ao seu tema. Desmarque se o tema ja inclui a "
-"biblioteca jQuery.<br /><strong>A Biblioteca jQuery é necessária</strong>"
+"Inserir código javascript no &lt;head&gt; do seu tema. Desmarque de você "
+"copiou esse código no seu arquivo .js padrão."
 
-# @ arwloc
-#: ../arw-options.php:320
-msgid "Insert JavaScript code into <head>"
-msgstr "Inserir código javascript no <head>"
-
-# @ arwloc
-#: ../arw-options.php:321
-#, fuzzy
-msgid ""
-"Insert javascript code into your theme's <head>. Uncheck only if you copy "
-"this code into your default .js file."
-msgstr ""
-"Inserir código javascript no <head> do seu tema. Desmarque de você copiou "
-"esse código no seu arquivo .js padrão."
-
-# @ arwloc
-#: ../arw-options.php:322
+#: ../arw-settings.php:165
 msgid "This code is required."
 msgstr "Esse código é necessário."
 
-#: ../arw-options.php:325
+#: ../arw-settings.php:168
 msgid "You can set some parameters to change the animation of the calendar."
 msgstr ""
 
-# @ arwloc
-#: ../arw-options.php:328
+#: ../arw-settings.php:171
 msgid "Show default parameters"
 msgstr ""
 
-#: ../arw-options.php:332
+#: ../arw-settings.php:175
 msgid "Open"
-msgstr ""
+msgstr "Abrir"
 
-# @ arwloc
-#: ../arw-options.php:341
+#: ../arw-settings.php:184
 msgid "Enable Shortcode support in text widget"
 msgstr "Habilitar suporte a Shortcode no widget de texto "
 
-# @ arwloc
-#: ../arw-options.php:342
+#: ../arw-settings.php:185
 msgid "Use the shortcode in a text widget to display Archives Calendar."
 msgstr "Use Shortcode no widget de texto para exibir o Archives Calendar."
 
-# @ arwloc
-#: ../arw-options.php:348
+#: ../arw-settings.php:191
 msgid "Show link to Settings in admin menu"
 msgstr "Mostrar link para as configurações no menu administrativo."
 
-# @ arwloc
-#: ../arw-options.php:349
+#: ../arw-settings.php:192
 msgid ""
 "Show link \"Archives Calendar\" in admin \"Settings\" menu. If unchecked you "
 "can enter settings from \"Settings\" link in \"Plugins\" page."
@@ -184,28 +152,25 @@ msgstr ""
 "desmarcado você pode configurar a partir do link \"Settings\" na página de "
 "\"Plugins\"."
 
-# @ arwloc
-#: ../arw-options.php:354
+#: ../arw-settings.php:197
 msgid "Save Changes"
 msgstr "Salvar Alterações"
 
-# @ arwloc
-#: ../arw-options.php:373
+#: ../arw-settings.php:221
 msgid "News/Updates"
 msgstr "Novidades/Updates"
 
-# @ default
-#: ../arw-options.php:390 ../arw-options.php:399
+# Do not translate.
+# WordPress defalut.
+#: ../arw-settings.php:238 ../arw-settings.php:247
 msgid "More"
-msgstr "Mais"
+msgstr ""
 
-# @ arwloc
-#: ../arw-options.php:393
+#: ../arw-settings.php:241
 msgid "No posts"
 msgstr "Sem Posts"
 
-# @ arwloc
-#: ../arw-options.php:409
+#: ../arw-settings.php:257
 msgid ""
 "If you like this plugin please <strong>support my work</strong>, buy me "
 "<strong>a beer or a coffee</strong>. Click Donate and specify your amount."
@@ -214,115 +179,132 @@ msgstr ""
 "compre uma <strong>cerveja ou um café</strong>. Clique em \\\"Donate\\\" e "
 "especifique uma quantia."
 
-# @ arwloc
-#: ../arw-options.php:413
+#: ../arw-settings.php:261
 msgid "In Belgium 1 coffee or 1 beer costs about 2€"
 msgstr "Na Bélgica 1 café ou uma cerveja custam cerca de 2€"
 
-# @ arwloc
-#: ../arw-options.php:441
-msgid "Default"
-msgstr "Padrão"
-
-# @ default
+# Do not translate.
+# WordPress defalut.
 #: ../arw-widget-settings.php:4
 msgid "Title:"
-msgstr "Título:"
+msgstr ""
 
-# @ arwloc
 #: ../arw-widget-settings.php:9
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: ../arw-widget-settings.php:13
 msgid "Next"
-msgstr ""
+msgstr "Próximo"
 
+# Do not translate.
+# WordPress defalut.
 #: ../arw-widget-settings.php:21
 msgid "Show"
 msgstr ""
 
 #: ../arw-widget-settings.php:24
 msgid "Months"
-msgstr ""
+msgstr "Meses"
 
 #: ../arw-widget-settings.php:27
 msgid "Years"
-msgstr ""
+msgstr "Anos"
 
-#: ../arw-widget-settings.php:32
+#: ../arw-widget-settings.php:33
 msgid "Show first: "
-msgstr ""
+msgstr "Mostrar primeiro:"
 
-#: ../arw-widget-settings.php:36
+#: ../arw-widget-settings.php:37
 msgid "Latest month"
 msgstr ""
 
-#: ../arw-widget-settings.php:39
+#: ../arw-widget-settings.php:40
 msgid "Current month"
-msgstr ""
+msgstr "Mês atual"
 
-# @ arwloc
-#: ../arw-widget-settings.php:42
+#: ../arw-widget-settings.php:43
 msgid "Previous month"
-msgstr ""
+msgstr "Mês anterior"
 
-#: ../arw-widget-settings.php:45
+#: ../arw-widget-settings.php:46
 msgid "Next month"
-msgstr ""
+msgstr "Próximo mês"
 
-# @ arwloc
-#: ../arw-widget-settings.php:52
-#, fuzzy
+#: ../arw-widget-settings.php:53
 msgid "Show number of posts"
 msgstr "Mostrar número de posts"
 
-#: ../arw-widget-settings.php:62
+#: ../arw-widget-settings.php:63
 msgid "Use a different theme"
-msgstr ""
+msgstr "Use um tema diferente"
 
-#: ../arw-widget-settings.php:93
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget-settings.php:94
 msgid "Categories"
 msgstr ""
 
-#: ../arw-widget-settings.php:96
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget-settings.php:97
 msgid "All"
 msgstr ""
 
-# @ arwloc
 #: ../arw-widget.php:16
 msgid "Show archives as calendar"
 msgstr "Mostrar arquivos em formato de calendário"
 
-# @ default
-#: ../arw-widget.php:51
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget.php:50
 msgid "Archives"
-msgstr "Arquivos"
+msgstr ""
 
-# @ arwloc
+#: ../arw-widget.php:231
+msgid "Post"
+msgstr "Post"
+
+#: ../arw-widget.php:231
+msgid "Posts"
+msgstr "Posts"
+
+#~ msgid "Select archives year"
+#~ msgstr "Selecione o ano do post"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgid "Include jQuery library"
+#~ msgstr "Incluir biblioteca jQuery"
+
+#~ msgid ""
+#~ "Include jQuery library into your theme. Uncheck if your theme already "
+#~ "includes jQuery library.<br /><strong>jQuery library is required.</strong>"
+#~ msgstr ""
+#~ "Incluir biblioteca jQuery ao seu tema. Desmarque se o tema ja inclui a "
+#~ "biblioteca jQuery.<br /><strong>A Biblioteca jQuery é necessária</strong>"
+
+#~ msgid "Default"
+#~ msgstr "Padrão"
+
 #~ msgid "Next button text:"
 #~ msgstr "Texto do botão \\\"Próximo\\\""
 
-# @ arwloc
 #~ msgid "Yes"
 #~ msgstr "Sim"
 
-# @ arwloc
 #~ msgid "No"
 #~ msgstr "Não"
 
-# @ arwloc
 #~ msgid "Archives Calendar Settings"
 #~ msgstr "Configurações do Archives Calendar"
 
-# @ arwloc
 #~ msgid "Also"
 #~ msgstr "Também"
 
-# @ arwloc
 #~ msgid "My other projects on "
 #~ msgstr "Meus outros projetos em "
 
-# @ arwloc
 #~ msgid "My portfolio:"
 #~ msgstr "Meu portifólio:"

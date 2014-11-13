@@ -19,49 +19,6 @@ function archivesCalendar_themer() {
 			margin-right: -500px;
 			width: 400px;
 		}
-		#preview{
-			width: 250px;
-			margin: auto;
-			margin-bottom: 20px;
-		}
-		.calendar-archives{
-			margin-bottom: 20px;
-			margin-top: 20px;
-		}
-		#editor1, #editor2 {
-			width: 100%;
-			height: 600px;
-			margin: 0;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			border-top: none;
-		}
-		textarea.hidden{
-			display: none;
-		}
-		.tabs .tab{
-			display: none;
-		}
-		.tabs .tab.active-tab{
-			display: block;
-		}
-		h2.nav-tab-wrapper.custom{
-			padding: 0px!important;
-			margin-bottom: 0!important;
-			border-bottom: none;
-			/*text-align: right!important;;*/
-		}
-		h2.nav-tab-wrapper.custom .nav-tab-active{
-			background: #272822;
-			color: #FFF;
-			/*text-align: right!important;;*/
-		}
-		.updated.warning{
-			border-left: 4px solid #ffb019;
-			background-color: #FFFDDB;
-		}
 	</style>
 	<style id="arwprev">
 		<?php echo $custom['arw-theme1'];?>
@@ -119,7 +76,7 @@ function archivesCalendar_themer() {
 
 		<hr/>
 		<p>
-			<input name="Submit" type="submit" style="margin:20px 0;" class="button-primary" value="Save Changes">
+			<input name="Submit" type="submit" style="margin:20px 0;" class="button-primary" value="<?php _e('Save Changes');?>">
 		</p>
 		<!--<input name="Submit" type="button" style="margin:20px 0;" class="button"
 		       value="<?php _e( 'Reset', 'arwloc' ); ?>"/>-->
@@ -137,7 +94,7 @@ function archivesCalendar_themer() {
 				</div>
 				<div class="updated warning below-h2">
 					<p class=""description">
-					Please note that you have to add the calss "arw-theme1" to the .calendar-archives fro the Theme 1 ans "arw-theme2" for the Theme 2. Without it the theme will be applied to all widgets on the page.
+					Please note that you have to add the calss "arw-theme1" to the .calendar-archives for the Theme 1 and "arw-theme2" for the Theme 2. Without it the theme will be applied to all widgets on the page.
 					(e.g.: .calendar-archives.arw-theme1{} )
 					</p>
 				</div>
@@ -149,15 +106,15 @@ function archivesCalendar_themer() {
 function archivesCalendar_themer_validate($args)
 {
 	foreach($args as $file => $css){
-		arw_write_css($file, $css);
+		arcw_write_css($file, $css);
 	}
 
-	$update_message = __('Themes updated.', 'arwloc').'<script>var themer_tab = '. $_POST["tab"] .';</script>';
+	$update_message = __('Updated.').'<script>var themer_tab = '. $_POST["tab"] .';</script>';
 	add_settings_error( 'themer', 'ok', $update_message, 'updated' );
 	return $args;
 }
 
-function arw_write_css($file, $css) {
+function arcw_write_css($file, $css) {
 	global $wpdb;
 	if ( $css ) {
 		if ( isMU() ) {

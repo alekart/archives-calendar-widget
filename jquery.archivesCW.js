@@ -59,7 +59,8 @@
 		{
 			var menu = $(this);
 			$(this).data('timer', setTimeout(
-				function(){
+				function()
+                {
 					if($.isFunction(options.hideDropdown))
 						options.hideDropdown(menu);
 				},
@@ -136,7 +137,7 @@
 		{
 			$menu.find('a.selected, a[rel='+$wearein+']').toggleClass('selected');
             var $selected = $menu.find('a.selected').parent();
-			$menu.css('top', - $selected.index() * parseInt($nav.height()) );
+			$menu.css('top', - $selected.index() * parseInt($selected.height()) );
 		}
 	};
 

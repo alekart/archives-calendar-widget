@@ -272,17 +272,17 @@ function archives_month_view($args, $sql)
 			}
 			else
 				$archiveMonth --;
-			if(findMonth($archiveYear, $archiveMonth, $months) < 0)
+			if(arcw_findMonth($archiveYear, $archiveMonth, $months) < 0)
 			{
 				$months[] = (object)array('year' => $archiveYear, 'month' => $archiveMonth);
-				sortMonths($months,array("year","month"));
+				arcw_sortMonths($months,array("year","month"));
 			}
 			break;
 		case 'current':
-			if(findMonth($archiveYear, $archiveMonth, $months) < 0)
+			if(arcw_findMonth($archiveYear, $archiveMonth, $months) < 0)
 			{
 				$months[] = (object)array('year' => $archiveYear, 'month' => $archiveMonth);
-				sortMonths($months,array("year","month"));
+				arcw_sortMonths($months,array("year","month"));
 			}
 			break;
 		case 'next':
@@ -293,10 +293,10 @@ function archives_month_view($args, $sql)
 			}
 			else
 				$archiveMonth ++;
-			if(findMonth($archiveYear, $archiveMonth, $months) < 0)
+			if(arcw_findMonth($archiveYear, $archiveMonth, $months) < 0)
 			{
 				$months[] = (object)array('year' => $archiveYear, 'month' => $archiveMonth);
-				sortMonths($months,array("year","month"));
+				arcw_sortMonths($months,array("year","month"));
 			}
 			break;
 		case 'empty':
@@ -305,7 +305,7 @@ function archives_month_view($args, $sql)
 		default:
 			if(is_archive())
 			{
-				if(findMonth($archiveYear, $archiveMonth, $months) < 0)
+				if(arcw_findMonth($archiveYear, $archiveMonth, $months) < 0)
 				{
 					$archiveYear = $months[0]->year;
 					$archiveMonth = $months[0]->month;
@@ -405,7 +405,7 @@ function archives_month_view($args, $sql)
 				$j = 0;
 		}
 
-		$monthdays = month_days($months[$i]->year, $months[$i]->month);
+		$monthdays = arcw_month_days($months[$i]->year, $months[$i]->month);
 
 		for($j = 1; $j <= $monthdays; $j++)
 		{
@@ -480,7 +480,7 @@ function get_calendar_header($view = 'months', $pages, $archiveMonth = null, $ar
 	$cal .= '</ul>';
 
 	if (count($pages) > 1)
-		$cal .= '<div class="arrow-down" title="'.__("Select archives year", "arwloc").'"><span>&#x25bc;</span></div>';
+		$cal .= '<div class="arrow-down"><span>&#x25bc;</span></div>';
 
 	$cal .= '</div>';
 
@@ -546,7 +546,7 @@ add_shortcode( 'arcalendar', 'archivesCalendar_shortcode' );
 
 
 /***** FIND NUMBER OF DAYS IN A MONTH *****/
-function month_days($year, $month)
+function arcw_month_days($year, $month)
 {
 	switch(intval($month))
 	{
@@ -563,7 +563,7 @@ function month_days($year, $month)
 
 
 /***** MONTH SORT / SEARCH *****/
-function findMonth($year, $month, $months)
+function arcw_findMonth($year, $month, $months)
 {
 	$i = 0;
 	while( $i < count($months) && intval($months[$i]->year) > $year )
@@ -580,11 +580,24 @@ function findMonth($year, $month, $months)
 		return -1; // not found
 }
 
-function sortMonths(&$data, $props) // sortMonths($months, array("year","month"));
+function arcw_sortMonths(&$data, $props = null)
 {
-	usort($data, function($a, $b) use ($props) {
+	// Only from PHP 5.4
+	// sortMonths($months, array("year","month"));
+	/*usort($data, function($a, $b) use ($props) {
 		if($a->$props[0] == $b->$props[0])
 			return $a->$props[1] < $b->$props[1] ? 1 : -1;
 		return $a->$props[0] < $b->$props[0] ? 1 : -1;
-	});
+	});*/
+
+	// PHP 4, PHP 5
+	// $props is not used here
+	// sortMonths($months);
+	usort($data, "arcw_compare_months");
+}
+
+function arcw_compare_months($a, $b){
+	if($a->year == $b->year)
+		return $a->month < $b->month ? 1 : -1;
+	return $a->year < $b->year ? 1 : -1;
 }
