@@ -136,7 +136,6 @@
 		function aCalSetYearSelect()
 		{
 			$menu.find('a.selected, a[rel='+$wearein+']').toggleClass('selected');
-            var $item = $menu.find('li');
             var $selected = $menu.find('a.selected').parent();
 			$menu.css('top', - $selected.index() * parseInt($nav.outerHeight()) );
 		}
