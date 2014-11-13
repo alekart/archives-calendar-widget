@@ -1,0 +1,267 @@
+/***** LESS MIXINS *****/
+.rounded(@val){
+	border-radius: @val;
+}
+
+.partrounded(@tl, @tr, @bl, @br) when (ispixel(@tl)){
+	border-top-left-radius: @tl;
+}
+.partrounded(@tl, @tr, @bl, @br) when (ispixel(@tr)){
+	border-top-right-radius: @tr;
+}
+.partrounded(@tl, @tr, @bl, @br) when (ispixel(@br)){
+	border-bottom-right-radius: @br;
+}
+.partrounded(@tl, @tr, @bl, @br) when (ispixel(@bl)){
+	border-bottom-left-radius: @bl;
+}
+.bg-gradient(){
+	background: #cd310d; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIxJSIgc3RvcC1jb2xvcj0iI2NkMzEwZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiMzJiMGMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #cd310d 1%, #b32b0c 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#cd310d), color-stop(100%,#b32b0c)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #cd310d 1%,#b32b0c 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #cd310d 1%,#b32b0c 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #cd310d 1%,#b32b0c 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #cd310d 1%,#b32b0c 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cd310d', endColorstr='#b32b0c',GradientType=0 ); /* IE6-8 */
+}
+
+/***** CALENDAR STYLE *****/
+
+.calendar-archives.calendrier{
+	box-shadow: 0px 3px 6px rgba(0,0,0,.3);
+	.partrounded(5px, 5px, 0, 0);
+	position: relative;
+	width: 100%;
+	*{
+		box-sizing: border-box!important; // DO NOT CHANGE
+	}
+	ul, li{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: list-item;
+	}
+	a{
+		text-decoration: none;
+	}
+
+	.archives-years{ // Contains the calendar "pages"
+		overflow: hidden;
+		position: relative;
+		border: 1px #e6e6e6 solid;
+		border-bottom: none;
+	}
+
+	.calendar-navigation{ // Calendar navigation
+		.bg-gradient();
+		text-shadow: -1px -1px 0px rgba(0,0,0,.4);
+		.partrounded(5px, 5px, 0, 0);
+
+		position: relative;
+        width: 100%;
+        height: 30px;
+		a, ul, div ,li{
+			line-height: 30px;
+		}
+
+        .prev-year, .next-year{
+            display: block;
+            position: absolute;
+            width: 30px;
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+            &:hover{
+                background-color: rgba(255,255,255,.1);
+                color: #fff;
+            }
+            &.disabled{
+                opacity: .4;
+                cursor: default;
+                &:hover{
+                    background-color:none;
+                }
+            }
+        }
+
+        .prev-year{
+			.partrounded(5px, 0, 0, 0);
+            left: 0;
+			box-shadow: -1px 0 0 rgba(0,0,0,.2) inset;
+            border-right: 1px rgba(255,255,255,.2) solid;
+        }
+        .next-year{
+            right: 0;
+			.partrounded(0, 5, 0, 0);
+			box-shadow: 1px 0 0 rgba(255,255,255,.2) inset;
+			border-left: 1px rgba(0,0,0,.2) solid;
+        }
+
+        .menu-container{
+            position: absolute;
+            width: 100px;
+            left: 50%;
+           	margin-left: -50px;
+            text-align: center;
+            &.months{
+                width: 160px;
+                margin-left: -80px;
+                text-transform: capitalize;
+            }
+            &:hover{
+                .arrow-down{
+					box-shadow: 1px 0 0 rgba(255,255,255,.2) inset;
+					border-left: 1px rgba(0,0,0,.2) solid;
+                }
+            }
+            a.title{
+                display: block;
+                width: 100%;
+                color: #fff;
+            }
+            .arrow-down{
+                color: #fff;
+                position: absolute;
+                width: 26px;
+                right: 0;
+                top: 0;
+                cursor: pointer;
+                font-size: 10px;
+                font-family: Verdana, Arial, Helvetica, sans-serif ;
+                &:hover{
+					background-color: rgba(255,255,255,.1);
+                }
+            }
+            .menu{
+				.rounded(5px);
+				overflow: hidden;
+                position: absolute;
+                z-index: 99;
+                display: none;
+                width: 100%;
+                background: #fff;
+                box-shadow: 0 0 10px rgba(0,0,0,.5);
+                top: 0;
+                a{
+					text-shadow: none;
+                    display: block;
+                    color: #555;
+                    &:hover{
+						.bg-gradient();
+                        cursor: pointer;
+                        color: #fff;
+                    }
+                    &.selected{
+                        color: #fff;
+						.bg-gradient();
+                    }
+                }
+            }
+        }
+	}
+
+	.year{ // Month/year container. Calendar "pages".
+		position: absolute;
+		background-color: #fff;
+		top: 0;
+		left: 0;
+		margin-left: -100%;
+		width: 100%;
+		z-index: 0;
+		.year-link{
+			display: none;
+		}
+		&.last{
+			position: relative;
+		}
+		&.current{
+			margin-left: 0;
+			z-index: 1;
+		}
+	}
+
+	.month, .day{ // Month and Day, common styles
+		float: left;
+		overflow: hidden;
+		display: block;
+		border-right: 1px #e6e6e6 solid;
+		border-bottom: 1px #e6e6e6 solid;
+		color: #999;
+		background-color: #fff;
+		position: relative;
+		&.has-posts{
+			background-color: #cd310d;
+			a{
+				display: block;
+				width: 100%;
+				height: 100%;
+				color: #FFF;
+				&:hover{
+					background-color: rgba(255,255,255,.2);
+				}
+			}
+		}
+		&.last{
+			border-right: none;
+		}
+	}
+
+	.month{ // MONTH only styles
+		width: 25%;
+		height: 50px;
+		.month-name{ // Month name inside a month square
+			text-transform: capitalize;
+			font-size: 16px;
+			font-weight: 400;
+			display: block;
+			position: absolute;
+			top: 6px;
+			left: 8px;
+		}
+		.postcount{ // Contains the "0 posts" text inside a month square
+			display: block;
+			position: absolute;
+			bottom: 6px;
+			right: 6px;
+			.count-number{ // Number of posts style
+
+			}
+			.count-text{ // Text "posts" style
+				font-size: 9px;
+			}
+		}
+	}
+
+	.day{ // DAY only styles
+		text-align: center;
+		width: 14.285%!important;
+		height: auto!important;
+		padding: 8px 0;
+		&.has-posts{
+			padding: 0;
+			a{
+				padding: 8px 0;
+			}
+		}
+		&.weekday{ // WEEKDAY style. Squares with weekday names. Has common styles with DAY
+			display: inline-block;
+			border: none;
+			text-transform: uppercase;
+			color: #666;
+			font-size: 76%;
+		}
+	}
+
+	.week-row{
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		&.weekdays{
+			border-right: 1px #e6e6e6 solid;
+			border-left: 1px #e6e6e6 solid;
+		}
+	}
+}

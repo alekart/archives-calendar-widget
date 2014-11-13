@@ -1,0 +1,264 @@
+.rounded(@val){
+	border-radius: @val;
+}
+.boxShadow(@x, @y, @dist, @color){
+	-moz-box-shadow: @x @y @dist @color;
+	-webkit-box-shadow: @x @y @dist @color;
+	box-shadow: @x @y @dist @color;
+}
+
+/***** CALENDAR STYLE *****/
+
+.calendar-archives.classiclight{
+	position:relative; // DO NOT CHANGE
+	width:100%; // DO NOT CHANGE
+	background: #FFF;
+	*{
+		box-sizing: border-box!important; // DO NOT CHANGE
+	}
+	ul{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: list-item;
+	}
+	a{
+		text-decoration:none;
+	}
+	.archives-years{
+		position:relative; // DO NOT CHANGE
+		overflow:hidden; // DO NOT CHANGE
+	}
+
+	/**** NAVIGATION MENU / SELECT MENU *****/
+	.calendar-navigation{
+		position:relative;
+		width:100%;
+		height: 30px;
+		background: #3B82F6;
+		a, ul, div ,li{
+			line-height: 30px;
+		}
+
+		// PREV/NEXT BUTTONS
+		.prev-year, .next-year{
+			display:block;
+			position:absolute;
+			width:30px;
+			height: 30px;
+			font-size:18px;
+			text-align: center;
+			color: #FFF;
+			&:hover{
+				background: #2757A1;
+			}
+			&.disabled{
+				opacity: .4;
+				cursor: default;
+				&:hover{
+					background:none;
+				}
+			}
+		}
+		.prev-year{
+			left:0;
+			border-right:1px #2757A1 solid;
+		}
+		.next-year{
+			right:0;
+			border-left:1px #2757A1 solid;
+		}
+
+		// SELECT DROPDOWN MENU
+		.menu-container{
+			position: absolute;
+			width: 100px;
+			left: 50%;
+			margin-left: -50px;
+			text-align: center;
+			font-size: 13px;
+			&.months{
+				width: 160px;
+				margin-left: -80px;
+				text-transform: capitalize;
+			}
+			&:hover{
+				background: #2757A1;
+				.arrow-down{
+
+				}
+			}
+			a.title{
+				display:block;
+				width:100%;
+				color: #FFF;
+				&:hover{
+
+				}
+				&:visited{
+
+				}
+			}
+			.arrow-down{
+				color: #fff;
+				position: absolute;
+				width: 20px;
+				height: 30px;
+				right: 0;
+				top:0;
+				cursor: pointer;
+				font-size: 10px;
+				font-family: Verdana, Arial, Helvetica, sans-serif ;
+				&:hover{
+					background: #86CAE9;
+					border-left: 1px solid #3B82F6;
+				}
+			}
+			.menu{
+				position: absolute; // DO NOT CHANGE
+				overflow: hidden; // DO NOT CHANGE
+				display:none; // DO NOT CHANGE
+				z-index: 99; // DO NOT CHANGE
+				top:0; // DO NOT CHANGE
+				width:100%;
+				background: #3B82F6;
+				a{
+					display:block;
+					color: #FFF;
+					&:hover{
+						background: #2757A1;
+						cursor: pointer;
+					}
+					&.selected{
+						color: #fff;
+						&:hover{
+							background: #3B82F6;
+							cursor: default;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Month/year container. Calendar "pages".
+	// DO NOT CHANGE, only background-color can be changed
+	.year{
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin-left: -100%;
+		width: 100%;
+		z-index: 0;
+		background: #FFF;
+		.year-link{
+			display: none;
+		}
+		&.last{
+			position: relative;
+		}
+		&.current{
+			margin-left: 0;
+			z-index: 1;
+		}
+	}
+
+	// Month and Day, common styles
+	.month, .day{
+		float: left;
+		overflow: hidden;
+		display: block;
+		position: relative;
+		border-right: 1px #FFFFFF solid;
+		border-bottom: 1px #FFFFFF solid;
+		color: #ccc;
+		text-align: center;
+
+		// Month/day with posts
+		&.has-posts{
+			//border-bottom: none;
+			a{
+				display: block;
+				width: 100%;
+				height: 100%;
+				color: #3B82F6;
+				&:hover{
+					background: #f0f0f0;
+				}
+			}
+		}
+		// last month/day of a single line
+		&.last{
+			margin-right: 0!important;
+		}
+	}
+
+	// MONTH only styles
+	.month{
+		width: 25%; // 100%(line width) - 3%(margin-right) * 3(last one is 0) / 4(months per line)
+		height: 50px;
+		// Month name inside a month square
+		.month-name{
+			text-transform: capitalize;
+			font-size: 16px;
+			font-weight: 400;
+			display: block;
+			padding: 6px 0 4px;
+		}
+		// Contains the "0 posts" text inside a month square
+		.postcount{
+			display: block;
+			// Number of posts style
+			.count-number{
+
+			}
+			// Text "posts" style
+			.count-text{
+				font-size: 9px;
+			}
+		}
+	}
+
+	// DAY only styles
+	.day{
+		text-align: center;
+		width: 14.285%!important;
+		line-height: 100%;
+		padding: 5px 0;
+		// Day with posts
+		&.has-posts{
+			padding: 0;
+			font-weight: 600;
+			a{
+				padding: 5px 0!important;
+				text-decoration: none;
+			}
+		}
+		// Day with no date , blank space
+		&.noday{
+			background: none!important;
+			box-shadow: none;
+			border: none;
+		}
+		// WEEKDAY style. Has common styles with DAY
+		&.weekday{
+			display: inline-block;
+			text-transform: uppercase;
+			color: #333;
+			font-size: 85%;
+			border: none;
+		}
+	}
+
+	// A single line of days
+	.week-row{
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		// line with weekday names
+		&.weekdays{
+			background-color: #E6E6E6;
+		}
+	}
+
+}

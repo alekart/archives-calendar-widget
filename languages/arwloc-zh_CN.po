@@ -1,0 +1,346 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Archives Calendar Widget v0.9.9x\n"
+"POT-Creation-Date: 2014-11-12 15:17+0100\n"
+"PO-Revision-Date: 2014-11-12 15:30+0100\n"
+"Last-Translator: \n"
+"Language-Team: Aleksei Polechin (alek´)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+# Do not translate.
+# WordPress defalut.
+#: ../admin/preview.php:5
+msgid "Themes"
+msgstr ""
+
+#: ../admin/preview.php:15 ../arw-settings.php:303
+msgid "Custom"
+msgstr ""
+
+#: ../admin/preview.php:30
+msgid ""
+"The theme's CSS file is not included in administration, this preview may be "
+"different from the website rendering."
+msgstr ""
+"主题的CSS文件没有包括在管理界面中，这个预览可能不同于网站的实际渲染效果。"
+
+# Do not translate.
+# WordPress defalut.
+#: ../admin/preview.php:33
+msgid "Select"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../admin/preview.php:33
+msgid "Close"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../archives-calendar.php:76 ../arw-settings.php:26
+msgid "Settings"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-editor.php:40 ../arw-editor.php:41 ../arw-settings.php:153
+msgid "Theme"
+msgstr ""
+
+#: ../arw-editor.php:82
+msgid "Reset"
+msgstr ""
+
+#: ../arw-editor.php:88 ../arw-settings.php:157
+msgid "Preview"
+msgstr "预览"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-editor.php:112
+msgid "Updated."
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-settings.php:33
+msgid "Customize"
+msgstr ""
+
+#: ../arw-settings.php:151
+msgid "Include CSS file"
+msgstr "添加CSS文件"
+
+#: ../arw-settings.php:152
+msgid ""
+"Include CSS file from the plugin.<br /><strong>It's recommended to copy the "
+"CSS code to your theme´s <strong>style.css</strong> and uncheck this option."
+msgstr ""
+"添加这个插件里的CSS文件。推荐不选这个选项，然后把CSS代码复制到你主题的style."
+"css文件中。"
+
+#: ../arw-settings.php:158
+msgid ""
+"<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be "
+"restored on next plugin update."
+msgstr ""
+"<strong>注意：</strong> 如果你更改插件内的CSS文件，更改会在下次更新插件时丢"
+"失。"
+
+#: ../arw-settings.php:163
+#, fuzzy
+msgid "Insert JavaScript code into &lt;head&gt;"
+msgstr "插入JavaScript代码"
+
+#: ../arw-settings.php:164
+msgid ""
+"Insert javascript code into your theme's &lt;head&gt;. Uncheck only if you "
+"copy this code into your default .js file."
+msgstr ""
+"在你的主题中插入JavaScript代码 &lt;head&gt; 仅当你把此代码复制入你默认的.js文"
+"件时才不选这个选项。"
+
+#: ../arw-settings.php:165
+msgid "This code is required."
+msgstr "这段代码是必需的。"
+
+#: ../arw-settings.php:168
+msgid "You can set some parameters to change the animation of the calendar."
+msgstr ""
+
+#: ../arw-settings.php:171
+#, fuzzy
+msgid "Show default parameters"
+msgstr "显示默认脚本"
+
+#: ../arw-settings.php:175
+msgid "Open"
+msgstr ""
+
+#: ../arw-settings.php:184
+msgid "Enable Shortcode support in text widget"
+msgstr "在文本小工具中启用短代码支持"
+
+#: ../arw-settings.php:185
+msgid "Use the shortcode in a text widget to display Archives Calendar."
+msgstr "在文本小工具里使用短代码来显示Archives Calendar。"
+
+#: ../arw-settings.php:191
+msgid "Show link to Settings in admin menu"
+msgstr "在管理菜单内显示设置链接"
+
+#: ../arw-settings.php:192
+msgid ""
+"Show link \"Archives Calendar\" in admin \"Settings\" menu. If unchecked you "
+"can enter settings from \"Settings\" link in \"Plugins\" page."
+msgstr ""
+"在管理员的“设置”菜单里显示“Archives Calendar”设置链接。如果去除这个选项，你可"
+"以从“插件”页面的“设置”链接来进入设置页面。"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-settings.php:197
+msgid "Save Changes"
+msgstr ""
+
+#: ../arw-settings.php:221
+msgid "News/Updates"
+msgstr "新闻/更新"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-settings.php:238 ../arw-settings.php:247
+msgid "More"
+msgstr ""
+
+#: ../arw-settings.php:241
+msgid "No posts"
+msgstr "没有文章"
+
+#: ../arw-settings.php:257
+msgid ""
+"If you like this plugin please <strong>support my work</strong>, buy me "
+"<strong>a beer or a coffee</strong>. Click Donate and specify your amount."
+msgstr ""
+"如果你喜欢这个插件，请<strong>支持我的作品</strong>，请我喝<strong>啤酒或咖啡"
+"</strong>。点击捐赠并提出你的数目。"
+
+#: ../arw-settings.php:261
+msgid "In Belgium 1 coffee or 1 beer costs about 2€"
+msgstr "在比利时，一杯咖啡或者一瓶啤酒的价格约为2€"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget-settings.php:4
+msgid "Title:"
+msgstr ""
+
+#: ../arw-widget-settings.php:9
+msgid "Previous"
+msgstr ""
+
+#: ../arw-widget-settings.php:13
+msgid "Next"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget-settings.php:21
+msgid "Show"
+msgstr ""
+
+#: ../arw-widget-settings.php:24
+msgid "Months"
+msgstr ""
+
+#: ../arw-widget-settings.php:27
+msgid "Years"
+msgstr ""
+
+#: ../arw-widget-settings.php:33
+msgid "Show first: "
+msgstr ""
+
+#: ../arw-widget-settings.php:37
+msgid "Latest month"
+msgstr ""
+
+#: ../arw-widget-settings.php:40
+msgid "Current month"
+msgstr ""
+
+#: ../arw-widget-settings.php:43
+msgid "Previous month"
+msgstr ""
+
+#: ../arw-widget-settings.php:46
+msgid "Next month"
+msgstr ""
+
+#: ../arw-widget-settings.php:53
+msgid "Show number of posts"
+msgstr "显示文章数"
+
+#: ../arw-widget-settings.php:63
+msgid "Use a different theme"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget-settings.php:94
+msgid "Categories"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget-settings.php:97
+msgid "All"
+msgstr ""
+
+#: ../arw-widget.php:16
+msgid "Show archives as calendar"
+msgstr "按日历方式显示存档"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget.php:50
+msgid "Archives"
+msgstr ""
+
+#: ../arw-widget.php:231
+msgid "Post"
+msgstr "篇文章"
+
+#: ../arw-widget.php:231
+msgid "Posts"
+msgstr "篇文章"
+
+#~ msgid "Next button text:"
+#~ msgstr "向后按钮字符："
+
+#~ msgid "Yes"
+#~ msgstr "是"
+
+#~ msgid "No"
+#~ msgstr "否"
+
+#~ msgid "Jan"
+#~ msgstr "一月\t"
+
+#~ msgid "Feb"
+#~ msgstr "二月"
+
+#~ msgid "Mar"
+#~ msgstr "三月"
+
+#~ msgid "Apr"
+#~ msgstr "四月"
+
+#~ msgid "May"
+#~ msgstr "五月"
+
+#~ msgid "Jun"
+#~ msgstr "六月"
+
+#~ msgid "Jul"
+#~ msgstr "七月"
+
+#~ msgid "Aug"
+#~ msgstr "八月"
+
+#~ msgid "Sep"
+#~ msgstr "九月"
+
+#~ msgid "Oct"
+#~ msgstr "十月"
+
+#~ msgid "Nov"
+#~ msgstr "十一月"
+
+#~ msgid "Dec"
+#~ msgstr "十二月"
+
+#~ msgid "Select archives year"
+#~ msgstr "选择年份"
+
+#~ msgid "Archives Calendar Settings"
+#~ msgstr "Archives Calendar设置"
+
+#~ msgid "Default"
+#~ msgstr "默认"
+
+#~ msgid "Cancel"
+#~ msgstr "取消"
+
+#~ msgid "Include jQuery library"
+#~ msgstr "添加jQuery库"
+
+#~ msgid ""
+#~ "Include jQuery library into your theme. Uncheck if your theme already "
+#~ "includes jQuery library.<br /><strong>jQuery library is required.</strong>"
+#~ msgstr ""
+#~ "在你的主题里加入jQuery库。如果你的主题已经包含jQuery库，那你可以不选这个选"
+#~ "项。<br /><strong>jQuery库是必需的。</strong>"
+
+#~ msgid "Also"
+#~ msgstr "另外"
+
+#~ msgid "My other projects on "
+#~ msgstr "我的其他项目 "
+
+#~ msgid "My portfolio:"
+#~ msgstr "我的页面："
+
+#~ msgid "Works only if \"Include default CSS file\" is enabled."
+#~ msgstr "Fonctionne uniquement"

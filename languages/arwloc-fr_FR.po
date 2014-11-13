@@ -1,0 +1,354 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Archives Calendar Widget v0.9.9x\n"
+"POT-Creation-Date: 2014-11-12 14:42+0100\n"
+"PO-Revision-Date: 2014-11-12 15:26+0100\n"
+"Last-Translator: \n"
+"Language-Team: Aleksei Polechin (alek´)\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: ./\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+# Do not translate.
+# WordPress defalut.
+#: ../admin/preview.php:5
+msgid "Themes"
+msgstr ""
+
+#: ../admin/preview.php:15 ../arw-settings.php:303
+msgid "Custom"
+msgstr "Personnalisé"
+
+#: ../admin/preview.php:30
+msgid ""
+"The theme's CSS file is not included in administration, this preview may be "
+"different from the website rendering."
+msgstr ""
+"Le fichier CSS du thème n'est pas inclus dans l'administration, cet aperçu "
+"peut être different du rendu sur le site."
+
+# Do not translate.
+# WordPress defalut.
+#: ../admin/preview.php:33
+msgid "Select"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../admin/preview.php:33
+msgid "Close"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../archives-calendar.php:76 ../arw-settings.php:26
+msgid "Settings"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-editor.php:40 ../arw-editor.php:41 ../arw-settings.php:153
+msgid "Theme"
+msgstr ""
+
+#: ../arw-editor.php:82
+msgid "Reset"
+msgstr "Reinitialiser"
+
+#: ../arw-editor.php:88 ../arw-settings.php:157
+msgid "Preview"
+msgstr "Prévisualisation"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-editor.php:112
+msgid "Updated."
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-settings.php:33
+msgid "Customize"
+msgstr ""
+
+#: ../arw-settings.php:151
+msgid "Include CSS file"
+msgstr "Inclure le fichier CSS"
+
+#: ../arw-settings.php:152
+msgid ""
+"Include CSS file from the plugin.<br /><strong>It's recommended to copy the "
+"CSS code to your theme´s <strong>style.css</strong> and uncheck this option."
+msgstr ""
+"Inclure le fichier CSS à partir du plugin.<br /><strong>Il est recommandé de "
+"copier le code CSS dans le fichier <strong>style.css</strong> de votre thème "
+"et de décocher cette option."
+
+#: ../arw-settings.php:158
+msgid ""
+"<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be "
+"restored on next plugin update."
+msgstr ""
+"NOTE: Si vous avez modifié un fichier CSS du plugin, celui-ci sera restauré "
+"à la prochaine mise à jour du plugin."
+
+#: ../arw-settings.php:163
+msgid "Insert JavaScript code into &lt;head&gt;"
+msgstr "Insérer le code JavaScript dans le &lt;head&gt; de votre thème"
+
+#: ../arw-settings.php:164
+msgid ""
+"Insert javascript code into your theme's &lt;head&gt;. Uncheck only if you "
+"copy this code into your default .js file."
+msgstr ""
+"Insérer le code javascript dans le &lt;head&gt; de votre thème. Décochez "
+"seulement si vous copiez ce code dans votre fichier .js par défaut."
+
+#: ../arw-settings.php:165
+msgid "This code is required."
+msgstr "Ce code est nécessaire."
+
+#: ../arw-settings.php:168
+msgid "You can set some parameters to change the animation of the calendar."
+msgstr ""
+"Vous pouvez définir certains paramètres pour modifier l'animation du "
+"calendrier."
+
+#: ../arw-settings.php:171
+msgid "Show default parameters"
+msgstr "Afficher les paramètres par défaut"
+
+#: ../arw-settings.php:175
+msgid "Open"
+msgstr "Ouvrir"
+
+#: ../arw-settings.php:184
+msgid "Enable Shortcode support in text widget"
+msgstr "Activer le support de Shortcode dans la widget Texte"
+
+#: ../arw-settings.php:185
+msgid "Use the shortcode in a text widget to display Archives Calendar."
+msgstr ""
+"Utiliser le Shortcode dans la widget Texte pour afficher l'Archives Calendar."
+
+#: ../arw-settings.php:191
+msgid "Show link to Settings in admin menu"
+msgstr "Afficher le lien vers les paramètres dans le menu d'administration"
+
+#: ../arw-settings.php:192
+msgid ""
+"Show link \"Archives Calendar\" in admin \"Settings\" menu. If unchecked you "
+"can enter settings from \"Settings\" link in \"Plugins\" page."
+msgstr ""
+"Afficher le lien \"Archives Calendar\" dans le menu \"Réglages\". Si "
+"décoché, vous pouvez accèder aux paramètres du plugin via le lien "
+"\"Paramètres\" sur la page \"Extensions\"."
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-settings.php:197
+msgid "Save Changes"
+msgstr ""
+
+#: ../arw-settings.php:221
+msgid "News/Updates"
+msgstr "Actualités/Mises à jour"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-settings.php:238 ../arw-settings.php:247
+msgid "More"
+msgstr ""
+
+#: ../arw-settings.php:241
+msgid "No posts"
+msgstr "Pas d'actualités"
+
+#: ../arw-settings.php:257
+msgid ""
+"If you like this plugin please <strong>support my work</strong>, buy me "
+"<strong>a beer or a coffee</strong>. Click Donate and specify your amount."
+msgstr ""
+"Si vous aimez ce plugin merci de <strong>soutenir mon travail</strong>, "
+"achetez-moi <strong>une bière ou un café</strong>. Cliquez \"Donate\" et "
+"précisez le montant."
+
+#: ../arw-settings.php:261
+msgid "In Belgium 1 coffee or 1 beer costs about 2€"
+msgstr "En Belgique 1 café ou 1 bière coute environ 2€"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget-settings.php:4
+msgid "Title:"
+msgstr ""
+
+#: ../arw-widget-settings.php:9
+msgid "Previous"
+msgstr "Précedent"
+
+#: ../arw-widget-settings.php:13
+msgid "Next"
+msgstr "Suivant"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget-settings.php:21
+msgid "Show"
+msgstr ""
+
+#: ../arw-widget-settings.php:24
+msgid "Months"
+msgstr "Mois"
+
+#: ../arw-widget-settings.php:27
+msgid "Years"
+msgstr "Années"
+
+#: ../arw-widget-settings.php:33
+msgid "Show first: "
+msgstr "Afficher en premier: "
+
+#: ../arw-widget-settings.php:37
+msgid "Latest month"
+msgstr "Le dernier mois"
+
+#: ../arw-widget-settings.php:40
+msgid "Current month"
+msgstr "Mois actuel"
+
+#: ../arw-widget-settings.php:43
+msgid "Previous month"
+msgstr "Mois précèdent"
+
+#: ../arw-widget-settings.php:46
+msgid "Next month"
+msgstr "Mois suivant"
+
+#: ../arw-widget-settings.php:53
+msgid "Show number of posts"
+msgstr "Afficher le nombre d'articles"
+
+#: ../arw-widget-settings.php:63
+msgid "Use a different theme"
+msgstr "Utiliser un thème diffèrent"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget-settings.php:94
+msgid "Categories"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget-settings.php:97
+msgid "All"
+msgstr ""
+
+#: ../arw-widget.php:16
+msgid "Show archives as calendar"
+msgstr "Afficher les archives en tant que calendrier"
+
+# Do not translate.
+# WordPress defalut.
+#: ../arw-widget.php:50
+msgid "Archives"
+msgstr ""
+
+#: ../arw-widget.php:231
+msgid "Post"
+msgstr "Article"
+
+#: ../arw-widget.php:231
+msgid "Posts"
+msgstr "Articles"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuler"
+
+#~ msgid "Select archives year"
+#~ msgstr "Selectioner une année"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "Include jQuery library"
+#~ msgstr "Inclure la bibliothèque jQuery"
+
+#~ msgid ""
+#~ "Include jQuery library into your theme. Uncheck if your theme already "
+#~ "includes jQuery library.<br /><strong>jQuery library is required.</strong>"
+#~ msgstr ""
+#~ "Inclure la bibliothèque jQuery dans votre thème. Décochez la case si "
+#~ "votre thème utilise déjà la bibliothèque jQuery. <br /><strong>jQuery est "
+#~ "nécessaire.</strong>"
+
+#~ msgid "Default"
+#~ msgstr "Par défaut"
+
+#~ msgid "Next button text:"
+#~ msgstr "Texte du bouton \"Suivant\":"
+
+#~ msgid "Yes"
+#~ msgstr "Oui"
+
+#~ msgid "No"
+#~ msgstr "Non"
+
+#~ msgid "Archives Calendar Settings"
+#~ msgstr "Archives Calendar - Paramètres"
+
+#~ msgid "Also"
+#~ msgstr "Aussi"
+
+#~ msgid "My other projects on "
+#~ msgstr "Mes autres projets sur"
+
+#~ msgid "My portfolio:"
+#~ msgstr "Mon portfolio:"
+
+#~ msgid "Jan"
+#~ msgstr "JAN"
+
+#~ msgid "Feb"
+#~ msgstr "FÉV"
+
+#~ msgid "Mar"
+#~ msgstr "MAR"
+
+#~ msgid "Apr"
+#~ msgstr "AVR"
+
+#~ msgid "May"
+#~ msgstr "MAI"
+
+#~ msgid "Jun"
+#~ msgstr "JUN"
+
+#~ msgid "Jul"
+#~ msgstr "JUL"
+
+#~ msgid "Aug"
+#~ msgstr "AOÛ"
+
+#~ msgid "Sep"
+#~ msgstr "SEP"
+
+#~ msgid "Oct"
+#~ msgstr "OCT"
+
+#~ msgid "Nov"
+#~ msgstr "NOV"
+
+#~ msgid "Dec"
+#~ msgstr "DÉC"
+
+#~ msgid "Works only if \"Include default CSS file\" is enabled."
+#~ msgstr "Fonctionne uniquement"
