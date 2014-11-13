@@ -208,15 +208,9 @@ function archivesCalendar_options()
 						<div class="inside" style="padding:15px;">
 							<?php 
 							$feed_url = 'http://labs.alek.be/category/archives-calendar/feed/';
-							//echo 'plmop';
-							//if (!$fp = curl_init($feed_url)){
-
-								$feed = (array) simplexml_load_file($feed_url);
-								$items = $feed['channel']->item;
-								$count = count($items);
-								//echo $count;
-							//}
-							//else $count = 0;
+							$feed = (array) simplexml_load_file($feed_url);
+							$items = $feed['channel']->item;
+							$count = count($items);
 							
 							if($count > 0):
 							?>
@@ -266,7 +260,6 @@ function archivesCalendar_options()
 					</div>
 			</div>
 		</div>
-
 <?php
 }
 

@@ -340,7 +340,6 @@ function archives_month_view($args, $sql)
 	foreach ( $myweek as $wd )
 	{
 		$day_name = $wp_locale->get_weekday_abbrev($wd);
-		//$wd = esc_attr($wd);
 		$last = ($i%7 == 0) ? " last" : "";
 		$cal .= '<span class="day weekday'.$last.'">'.$day_name.'</span>';
 		$i++;

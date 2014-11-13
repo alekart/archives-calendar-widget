@@ -100,9 +100,6 @@ function archives_calendar_styles()
 
 function arcw_admin_widgets_scripts()
 {
-	//wp_enqueue_script( 'accordion' );
-	//wp_enqueue_style( 'customize-controls');
-	//wp_enqueue_style( 'media-views' );
 	wp_register_script( 'arcwpWidgetsPage', plugins_url('/admin/js/widgets-page.min.js', __FILE__), array(), ARCWV );
 	wp_enqueue_script( 'arcwpWidgetsPage' );
 }
