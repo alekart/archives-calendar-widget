@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 0.9.92
+Stable tag: 0.9.93
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -100,6 +100,9 @@ By default, the plugin will include jQuery library and its default css file into
 4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 0.9.93 =
+* [fix] "categories" bug
 
 = 0.9.92 =
 * [edit] PHP 5.4 is no more required

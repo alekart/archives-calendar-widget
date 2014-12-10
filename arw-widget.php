@@ -128,9 +128,9 @@ function archives_view($args){
 	extract($args);
 
 	if( !empty($categories) && is_array($categories) )
-		$cats = $cats = implode(', ', $categories);
+		$args['cats'] = implode(', ', $categories);
 	else
-		$cats = "";
+		$args['cats'] = "";
 
 	$sql = "SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
 		FROM $wpdb->posts wpposts ";
@@ -139,7 +139,7 @@ function archives_view($args){
 	{
 		$sql .= "JOIN $wpdb->term_relationships tr ON wpposts.ID = tr.object_id
 				JOIN $wpdb->term_taxonomy tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id ";
-		$sql .= "AND tt.term_id IN(".$cats.") ";
+		$sql .= "AND tt.term_id IN(". $args['cats'] .") ";
 		$sql .= "AND tt.taxonomy = 'category') ";
 	}
 
@@ -172,7 +172,7 @@ function archives_year_view($args, $sql)
 			{
 				$sql .= "JOIN $wpdb->term_relationships tr ON ( wpposts.ID = tr.object_id )
 					JOIN $wpdb->term_taxonomy tt ON ( tr.term_taxonomy_id = tt.term_taxonomy_id
-					AND tt.term_taxonomy_id IN($cats) ) ";
+					AND tt.term_taxonomy_id IN(". $args['cats'] .") ) ";
 			}
 			$sql .= "WHERE post_type IN ($post_type)
 					AND post_status IN ('publish')
@@ -361,6 +361,9 @@ function archives_month_view($args, $sql)
 		// select days with posts
 		$sql = "SELECT DAY(post_date) AS day
 			FROM $wpdb->posts wpposts ";
+
+		print_r($cats);
+
 		if(count($categories))
 		{
 			$sql .= "JOIN $wpdb->term_relationships tr ON ( wpposts.ID = tr.object_id )
