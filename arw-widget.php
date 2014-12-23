@@ -28,37 +28,22 @@ class Archives_Calendar extends WP_Widget
 		echo $after_widget;
 	}
 
-	public function update( $new_instance, $old_instance )
-	{
-		$instance = $old_instance;
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['prev_text'] = htmlentities($new_instance['prev_text']);
-		$instance['next_text'] = htmlentities($new_instance['next_text']);
-		$instance['post_count'] = ($new_instance['post_count']) ? $new_instance['post_count'] : 0;
-		$instance['month_view'] = $new_instance['month_view'];
-		$instance['month_select'] = $new_instance['month_select'];
-		$instance['different_theme'] = ($new_instance['different_theme']) ? $new_instance['different_theme'] : 0;
-		$instance['theme'] = $new_instance['theme'];
-		$instance['categories'] = $new_instance['categories'];
-		$instance['post_type'] = $new_instance['post_type'];
-		return $instance;
-	}
-
 	public function form( $instance )
 	{
 		$defaults = array(
 			'title' => __('Archives'),
-			'next_text' => '˃',
-			'prev_text' => '˂',
+			'next_text' => '>',
+			'prev_text' => '<',
 			'post_count' => 1,
 			'month_view' => 0,
 			'month_select' => 'default',
 			'different_theme' => 0,
 			'theme' => null,
-			'post_type' => array(),
-			'categories' => null
+			'categories' => array(),
+			'post_type' => array()
 		);
 		$instance = wp_parse_args( $instance, $defaults );
+
 		$title = $instance['title'];
 		$prev = $instance['prev_text'];
 		$next = $instance['next_text'];
@@ -81,7 +66,32 @@ class Archives_Calendar extends WP_Widget
 		// Widget Settings form is in external file
 		include 'arw-widget-settings.php';
 	}
+
+	public function update( $new_instance, $old_instance )
+	{
+		$instance = $old_instance;
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['next_text'] = htmlspecialchars($new_instance['next_text']);
+		$instance['prev_text'] = htmlspecialchars($new_instance['prev_text']);
+		if($instance['next_text'] == htmlspecialchars('>'))
+			$instance['prev_text'] = htmlspecialchars('<');
+
+		$instance['post_count'] = ($new_instance['post_count']) ? $new_instance['post_count'] : 0;
+		$instance['month_view'] = $new_instance['month_view'];
+		$instance['month_select'] = $new_instance['month_select'];
+		$instance['different_theme'] = ($new_instance['different_theme']) ? $new_instance['different_theme'] : 0;
+		$instance['theme'] = $new_instance['theme'];
+		$instance['categories'] = $new_instance['categories'];
+		$instance['post_type'] = $new_instance['post_type'];
+		return $instance;
+	}
 }
+
+// Register and load the widget
+function archives_calendar_load_widget() {
+	register_widget( 'Archives_Calendar' );
+}
+add_action( 'widgets_init', 'archives_calendar_load_widget' );
 
 /***** WIDGET CONSTRUCTION FUNCTION *****/
 /* can be called directly archive_calendar($args) */
@@ -91,8 +101,8 @@ function archive_calendar($args = array())
 
 	$defaults = array(
 		'title' => '',
-		'next_text' => '˃',
-		'prev_text' => '˂',
+		'next_text' => '>',
+		'prev_text' => '<',
 		'post_count' => 1,
 		'month_view' => 0,
 		'month_select' => 'default',

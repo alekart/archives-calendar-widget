@@ -3,8 +3,8 @@ Contributors: alekart
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 3.6
-Tested up to: 4.0
-Stable tag: 0.9.93
+Tested up to: 4.1
+Stable tag: 0.9.94
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -100,6 +100,11 @@ By default, the plugin will include jQuery library and its default css file into
 4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 0.9.94 =
+* [new] added "today" class for the current day in month view (if present).
+* [fix] fixed a compatibility bug with "Jetpack by WordPress" plugin
+* [fix] fixed some other little bugs
 
 = 0.9.93 =
 * [fix] "categories" bug
