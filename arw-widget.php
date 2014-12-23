@@ -90,6 +90,7 @@ function archive_calendar($args = array())
 	global $archivesCalendar_options;
 
 	$defaults = array(
+		'title' => '',
 		'next_text' => '˃',
 		'prev_text' => '˂',
 		'post_count' => 1,
@@ -497,11 +498,11 @@ if($archivesCalendar_options['shortcode'])
 function archivesCalendar_shortcode( $atts )
 {
 	extract( shortcode_atts( array(
+		'title' => '',
 		'next_text' => '>',
 		'prev_text' => '<',
 		'post_count' => true,
 		'month_view' => false,
-
 		'categories' => null,
 		'post_type' => null
 	), $atts ) );
@@ -560,6 +561,15 @@ function arcw_month_days($year, $month)
 /***** MONTH SORT / SEARCH *****/
 function arcw_findMonth($year, $month, $months)
 {
+	if( count($months) == 0 )
+		return -1;
+
+	if( count($months) == 1 )
+		if( intval($months[0]->year) == $year && intval($months[0]->month) == $month )
+			return 0;
+		else
+			return -1;
+
 	$i = 0;
 	while( $i < count($months) && intval($months[$i]->year) > $year )
 		$i++;
