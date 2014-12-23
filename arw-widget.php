@@ -99,7 +99,8 @@ function archive_calendar($args = array())
 		'different_theme' => 0,
 		'theme' => null,
 		'categories' => null,
-		'post_type' => null
+		'post_type' => null,
+		'show_today' => 0
 	);
 	$args = wp_parse_args( $args, $defaults );
 
@@ -260,6 +261,10 @@ function archives_month_view($args, $sql)
 	if(count($months) == 0)
 		$month_select = 'empty';
 
+	$todayDay = intval(date('d'));
+	$todayMonth = intval(date('m'));
+	$todayYear = intval(date('Y'));
+
 	$archiveYear = (is_archive()) ? intval(date('Y', strtotime($post->post_date))) : intval(date('Y'));
 	$archiveMonth = (is_archive()) ? intval(date('m', strtotime($post->post_date))) : intval(date('m'));
 
@@ -300,9 +305,7 @@ function archives_month_view($args, $sql)
 				arcw_sortMonths($months);
 			}
 			break;
-		case 'empty':
 
-			break;
 		default:
 			if(is_archive())
 			{
@@ -317,6 +320,13 @@ function archives_month_view($args, $sql)
 				$archiveYear = $months[0]->year;
 				$archiveMonth = $months[0]->month;
 			}
+	}
+
+	// to show today's date, add the month if is not present in the calendar
+	if( $show_today && arcw_findMonth($todayYear, $todayMonth, $months) < 0 )
+	{
+		$months[] = (object)array('year' => $todayYear, 'month' => $todayMonth);
+		arcw_sortMonths($months);
 	}
 
 	$totalmonths = count($months);
@@ -408,10 +418,15 @@ function archives_month_view($args, $sql)
 			$k++;
 			$last = ($k%7 == 0) ? " last" : "";
 
-			if(in_array ( $j , $dayswithposts ) )
-				$cal .= '<span class="day'.$last.' has-posts"><a href="'.get_day_link( $months[$i]->year, $months[$i]->month, $j ).'">'.$j.'</a></span>';
+			if( $j == $todayDay && $months[$i]->year == $todayYear && $months[$i]->month == $todayMonth )
+				$todayClass = " today";
 			else
-				$cal .= '<span class="day'.$last.'">'.$j.'</span>';
+				$todayClass = "";
+
+			if(in_array ( $j , $dayswithposts ) )
+				$cal .= '<span class="day'.$last.$todayClass.' has-posts"><a href="'.get_day_link( $months[$i]->year, $months[$i]->month, $j ).'">'.$j.'</a></span>';
+			else
+				$cal .= '<span class="day'.$last.$todayClass.'">'.$j.'</span>';
 
 			if($k%7 == 0)
 				$cal .= "</div>\n<div class=\"week-row\">\n";
