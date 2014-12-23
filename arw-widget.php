@@ -276,14 +276,14 @@ function archives_month_view($args, $sql)
 			if(arcw_findMonth($archiveYear, $archiveMonth, $months) < 0)
 			{
 				$months[] = (object)array('year' => $archiveYear, 'month' => $archiveMonth);
-				arcw_sortMonths($months,array("year","month"));
+				arcw_sortMonths($months);
 			}
 			break;
 		case 'current':
 			if(arcw_findMonth($archiveYear, $archiveMonth, $months) < 0)
 			{
 				$months[] = (object)array('year' => $archiveYear, 'month' => $archiveMonth);
-				arcw_sortMonths($months,array("year","month"));
+				arcw_sortMonths($months);
 			}
 			break;
 		case 'next':
@@ -297,7 +297,7 @@ function archives_month_view($args, $sql)
 			if(arcw_findMonth($archiveYear, $archiveMonth, $months) < 0)
 			{
 				$months[] = (object)array('year' => $archiveYear, 'month' => $archiveMonth);
-				arcw_sortMonths($months,array("year","month"));
+				arcw_sortMonths($months);
 			}
 			break;
 		case 'empty':
@@ -564,19 +564,15 @@ function arcw_findMonth($year, $month, $months)
 	if( count($months) == 0 )
 		return -1;
 
-	if( count($months) == 1 )
-		if( intval($months[0]->year) == $year && intval($months[0]->month) == $month )
-			return 0;
-		else
-			return -1;
-
 	$i = 0;
-	while( $i < count($months) && intval($months[$i]->year) > $year )
+	while( $i < count($months)-1 && intval($months[$i]->year) > $year )
 		$i++;
+
 	if($months[$i]->year == $year)
 	{
-		while( $i < count($months) && intval($months[$i]->month) > $month )
+		while( $i < count($months)-1 && intval($months[$i]->month) > $month )
 			$i++;
+
 		if($months[$i]->month == $month)
 			return $i; // find on position $i
 		return -1; // not found
@@ -585,19 +581,8 @@ function arcw_findMonth($year, $month, $months)
 		return -1; // not found
 }
 
-function arcw_sortMonths(&$data, $props = null)
+function arcw_sortMonths(&$data)
 {
-	// Only from PHP 5.4
-	// sortMonths($months, array("year","month"));
-	/*usort($data, function($a, $b) use ($props) {
-		if($a->$props[0] == $b->$props[0])
-			return $a->$props[1] < $b->$props[1] ? 1 : -1;
-		return $a->$props[0] < $b->$props[0] ? 1 : -1;
-	});*/
-
-	// PHP 4, PHP 5
-	// $props is not used here
-	// sortMonths($months);
 	usort($data, "arcw_compare_months");
 }
 

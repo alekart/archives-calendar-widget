@@ -23,7 +23,6 @@
 		);
 	}
 
-
 	$archivesCW = function(elem, options)
 	{
         var $nav = elem.find('.calendar-navigation');
