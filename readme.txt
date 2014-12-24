@@ -17,14 +17,6 @@ Archives widget that make your monthly/daily archives look like a calendar on th
 = **PLEASE FEEDBACK** =
 I'm alone to test this plugin before release and I can't test everything with particular configurations or on different versions of WordpPress, **your feedback is precious.**
 
-= **BEFORE UPDATING FROM v.0.4.7** =
-* **BACKUP YOUR CSS CHANGES BEFORE UPDATING!** All changes made ​​in any css file of the plugin file will be lost.
-* **HTML STRUCTURE CHANGES**, your custom CSS **will not** be applied correctly. I recommend you to install it on a test website to adapt your css to the new structure.
-
-= **AFTER UPDATING FROM v0.4.7** =
-* **NEW WIDGET SETTINGS!** Check the widget settings in 'Appearence->Widgets' after the update
-* Check the settings of the plugin to be sure everything is OK.
-
 = Features =
 
 * Displays monthly archives as a compact year calendar
@@ -173,5 +165,8 @@ Please use the Support section to report issues.
 * Fixed missing function that checks if MultiSite is activated.
 
 == Upgrade notice ==
+
+= IF UPDATING FROM v.0.4.7 =
+Update to an older version: 0.9.91, 0.9.92 or 0.9.93.
 
 == Frequently asked questions ==

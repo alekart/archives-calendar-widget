@@ -55,11 +55,6 @@ class Archives_Calendar extends WP_Widget
 		$cats = $instance['categories'];
 		$post_type = $instance['post_type'];
 
-		/** Retrocompatibility with 0.4.7 settings **/
-		if(!is_array($post_type))
-			$post_type = explode(',', str_replace(' ', '', $post_type));
-		/**** to remove ****/
-
 		if(count($post_type)==1 && empty($post_type[0]))
 			$post_type = array('post');
 
@@ -258,7 +253,6 @@ function archives_year_view($args, $sql)
 
 	return $cal;
 }
-
 
 /***** MONTH DISPLAY MODE *****/
 function archives_month_view($args, $sql)
