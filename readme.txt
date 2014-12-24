@@ -92,6 +92,9 @@ Please use the Support section to report issues.
 
 == Changelog ==
 
+= 0.9.95 =
+* [new] Dutch translation. Thanks to Johan.
+
 = 0.9.94 =
 * [new] added "today" class for the current day in month view (if present).
 * [fix] fixed a compatibility bug with "Jetpack by WordPress" plugin
