@@ -46,7 +46,7 @@ I'm alone to test this plugin before release and I can't test everything with pa
 `archive_calendar();`
 
 you can also configure it:
-$defaults = array(
+`$defaults = array(
     'next_text' => '˃',
     'prev_text' => '˂',
     'post_count' => true,
@@ -77,8 +77,7 @@ Use the shortcode to show Archives Calendar in the text widget or in a page:
 
 
 = Notes =
-
-By default, the plugin will include jQuery library and its default css file into your theme. **If your theme already uses jQuery, you should disable it the plugin's Settings.**
+Please use the Support section to report issues.
 
 = Links =
 [Project's page](http://labs.alek.be/projects/archives-calendar-widget/)
@@ -90,7 +89,7 @@ By default, the plugin will include jQuery library and its default css file into
 1. Upload `archives-calendar-widget` folder in `/wp-content/plugins/` directory.
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Configure the plugin through "Settings > Archives Calendar" menu in WordPress.
-4. Activate the widget in "Appearance > Widgets" menu in WordPress
+4. Activate and configure the widget in "Appearance > Widgets" menu in WordPress
 
 == Screenshots ==
 
@@ -174,11 +173,5 @@ By default, the plugin will include jQuery library and its default css file into
 * Fixed missing function that checks if MultiSite is activated.
 
 == Upgrade notice ==
-
-* **HTML STRUCTURE CHANGES**, your custom CSS **will not** be applied correctly
-
-* **NEW WIDGET SETTINGS! Check the widget settings in 'Appearence->Widgets' after the update**
-
-* **BACKUP YOUR CSS CHANGES BEFORE UPDATING!** All changes made ​​in any css file of the plugin file will be lost.
 
 == Frequently asked questions ==

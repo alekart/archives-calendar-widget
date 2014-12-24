@@ -275,8 +275,22 @@ function archives_month_view($args, $sql)
 	$todayMonth = intval(date('m'));
 	$todayYear = intval(date('Y'));
 
-	$archiveYear = (is_archive()) ? intval(date('Y', strtotime($post->post_date))) : intval(date('Y'));
-	$archiveMonth = (is_archive()) ? intval(date('m', strtotime($post->post_date))) : intval(date('m'));
+	if( is_archive() )
+	{
+		$archiveYear = intval( date( 'Y', strtotime($post->post_date) ) );
+		$archiveMonth = intval( date( 'm', strtotime($post->post_date) ) );
+
+		if( is_category() )
+		{
+			$archiveYear = intval(date('Y'));
+			$archiveMonth = intval(date('m'));
+		}
+	}
+	else
+	{
+		$archiveYear = intval(date('Y'));
+		$archiveMonth = intval(date('m'));
+	}
 
 	switch($month_select)
 	{
