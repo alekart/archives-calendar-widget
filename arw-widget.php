@@ -39,8 +39,8 @@ class Archives_Calendar extends WP_Widget
 			'month_select' => 'default',
 			'different_theme' => 0,
 			'theme' => null,
-			'categories' => array(),
-			'post_type' => array()
+			'categories' => null,
+			'post_type' => null
 		);
 		$instance = wp_parse_args( $instance, $defaults );
 
@@ -55,7 +55,8 @@ class Archives_Calendar extends WP_Widget
 		$cats = $instance['categories'];
 		$post_type = $instance['post_type'];
 
-		if(count($post_type)==1 && empty($post_type[0]))
+
+		if(is_array($post_type) && empty($post_type) || ( !$post_type || $post_type=='' ))
 			$post_type = array('post');
 
 		// Widget Settings form is in external file
@@ -119,9 +120,7 @@ function archive_calendar($args = array())
 	}
 
 	if(is_array($args['post_type']) && count($args['post_type']) > 0 )
-		$args['post_type'] = "'".implode("','", $args['post_type'])."'";
-	else
-		$args['post_type'] = "'post'";
+		$args['post_type'] = implode(",", $args['post_type']);
 
 	$cal = archives_view($args);
 
@@ -150,7 +149,7 @@ function archives_view($args){
 		$sql .= "AND tt.taxonomy = 'category') ";
 	}
 
-	$sql .= "WHERE post_type IN ($post_type)
+	$sql .= "WHERE post_type IN ('".implode("','", explode(',', $post_type))."')
 			AND post_status IN ('publish')
 			AND post_password=''
 			ORDER BY year DESC, month DESC";
@@ -181,7 +180,7 @@ function archives_year_view($args, $sql)
 					JOIN $wpdb->term_taxonomy tt ON ( tr.term_taxonomy_id = tt.term_taxonomy_id
 					AND tt.term_taxonomy_id IN(". $cats .") ) ";
 			}
-			$sql .= "WHERE post_type IN ($post_type)
+			$sql .= "WHERE post_type IN ('".implode("','", explode(',', $post_type))."')
 					AND post_status IN ('publish')
 					AND post_password=''
 					AND YEAR(post_date) = $date->year
@@ -242,7 +241,9 @@ function archives_year_view($args, $sql)
 			else
 				$postcount = "";
 			if(isset($months[$month]))
-				$cal .= '<div class="month'.$last.' has-posts"><a href="'.get_month_link($year, $month).'"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</a></div>';
+				$cal .= '<div class="month'.$last.' has-posts"><a href="'.get_month_link($year, $month)
+                    .make_arcw_link($post_type, $cats).
+                    '"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</a></div>';
 			else
 				$cal .= '<div class="month'.$last.'"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</div>';
 		}
@@ -393,7 +394,7 @@ function archives_month_view($args, $sql)
 					AND tt.term_id IN(".$cats.")
 					AND tt.taxonomy = 'category') ";
 		}
-		$sql .= "WHERE post_type IN ($post_type)
+		$sql .= "WHERE post_type IN ('".implode("','", explode(',', $post_type))."')
 				AND post_status IN ('publish')
 				AND YEAR(post_date) = ".$months[$i]->year."
 				AND MONTH(post_date) = ".$months[$i]->month."
@@ -442,7 +443,8 @@ function archives_month_view($args, $sql)
 				$todayClass = "";
 
 			if(in_array ( $j , $dayswithposts ) )
-				$cal .= '<span class="day'.$last.$todayClass.' has-posts"><a href="'.get_day_link( $months[$i]->year, $months[$i]->month, $j ).'">'.$j.'</a></span>';
+				$cal .= '<span class="day'.$last.$todayClass.' has-posts"><a href="'.get_day_link( $months[$i]->year, $months[$i]->month, $j )
+                     .make_arcw_link($post_type, $cats).'">'.$j.'</a></span>';
 			else
 				$cal .= '<span class="day'.$last.$todayClass.'">'.$j.'</span>';
 
@@ -470,7 +472,6 @@ function archives_month_view($args, $sql)
 function get_calendar_header($view = 'months', $pages, $archiveMonth = null, $archiveYear, $args){
 	global $wp_locale;
 	extract($args);
-
 	$cal = "\n<!-- Archives Calendar Widget by Aleksei Polechin - alek´ - http://alek.be -->\n";
 	$cal.= '<div class="calendar-archives '.$theme.'" id="arc-'.$title.'-'.mt_rand(10,100).'">';
 	$cal.= '<div class="calendar-navigation">';
@@ -519,59 +520,6 @@ function get_calendar_header($view = 'months', $pages, $archiveMonth = null, $ar
 	$cal .= '</div>';
 	return $cal;
 }
-
-
-/***** SHORTCODE *****/
-if($archivesCalendar_options['shortcode'])
-{
-	add_filter( 'widget_text', 'shortcode_unautop');
-	add_filter('widget_text', 'do_shortcode');
-}
-
-function archivesCalendar_shortcode( $atts )
-{
-	extract( shortcode_atts( array(
-		'title' => '',
-		'next_text' => '>',
-		'prev_text' => '<',
-		'post_count' => true,
-		'month_view' => false,
-		'categories' => null,
-		'post_type' => null
-	), $atts ) );
-
-	$post_count = ($post_count == "true") ? true : false;
-	$month_view = ($month_view == "true") ? true : false;
-
-	if($categories !== null)
-	{
-		$cats = str_replace(' ', '', $cats);
-		$cats = explode(',', $cats);
-		$categories = $cats;
-		foreach($categories as $cat)
-		{
-			$cat = get_category_by_slug($cat);
-			$cats[] = $cat->term_id;
-		}
-	}
-	if($post_type !== null)
-	{
-		$post_type = str_replace(' ', '', $post_type);
-		$post_type = explode(',', $post_type);
-	}
-
-	$args = array(
-		'next_text' => $next_text,
-		'prev_text' => $prev_text,
-		'post_count' => $post_count,
-		'month_view' => $month_view,
-		'post_type' => $post_type,
-		'categories' => $categories,
-		'function' => 'no',
-	);
-	return archive_calendar($args);
-}
-add_shortcode( 'arcalendar', 'archivesCalendar_shortcode' );
 
 
 /***** FIND NUMBER OF DAYS IN A MONTH *****/

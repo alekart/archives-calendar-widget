@@ -1,7 +1,9 @@
 jQuery(function($){
 
-    $('#widgets-right').on('click', '.arcw-accordion .accordion-section:not(.open)', function(){
-        console.log('click');
+    var $widgetsRight = $('#widgets-right');
+
+    $widgetsRight.on('click', '.arcw-accordion .accordion-section:not(.open)', function(){
+        //console.log('click');
         if($(this).parent().find('.accordion-section.open').length)
             $(this).parent().find('.accordion-section.open .accordion-section-content').slideUp('fast', function(){$(this).parent().removeClass('open')});
         $(this).find('.accordion-section-content').slideDown('fast', function(){$(this).parent().addClass('open')});
@@ -10,10 +12,10 @@ jQuery(function($){
         $(this).parent().find('.accordion-section-content').slideUp('fast', function(){$(this).parent().removeClass('open')});
     });
 
-    $('#widgets-right').on('change', '#arw-view', function(){
+    $widgetsRight.on('change', '#arw-view', function(){
         var monthOpt = $(this).parents('.widget-content').find('.monthOpt');
         var yearOpt = $(this).parents('.widget-content').find('.yearOpt');
-        console.log($(this).val());
+        //console.log($(this).val());
         if($(this).val()==1)
         {
             monthOpt.css('display', 'inline-block');

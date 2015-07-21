@@ -52,17 +52,15 @@ class Archives_Calendar_Widget_Settings {
 		<div class="wrap">
 			<h2>Archives Calendar Widget</h2>
 			<?php $this->tabs(); ?>
-			<div id="poststuff">
-				<div id="post-body" class="metabox-holder columns-2">
-					<div id="post-body-content">
-						<form method="post" action="options.php">
-							<?php wp_nonce_field( 'update-options' ); ?>
-							<?php settings_fields( $tab ); ?>
-							<?php do_settings_sections( $tab ); ?>
-						</form>
-					</div>
-				</div>
-			</div>
+            <form method="post" action="options.php">
+                <div id="poststuff">
+                    <?php
+                        wp_nonce_field( 'update-options' );
+                        settings_fields( $tab );
+                        do_settings_sections( $tab );
+                    ?>
+                </div>
+            </form>
 		</div>
 	<?php
 	}
@@ -80,26 +78,67 @@ class Archives_Calendar_Widget_Settings {
 add_action( 'plugins_loaded', create_function( '', '$settings_api_tabs_demo_plugin = new Archives_Calendar_Widget_Settings;' ) );
 
 function arcw_admin_scripts() {
-	wp_enqueue_script( 'accordion' );
-	wp_enqueue_script( 'wp-color-picker' );
-	wp_enqueue_style( 'customize-controls');
-	wp_enqueue_style( 'customize-widgets' );
-	wp_enqueue_style( 'wp-color-picker' );
-	wp_enqueue_script( 
-		'arcw-themer',
-		plugins_url( '/admin/js/themer.min.js' , __FILE__ ),
-		array( 'jquery' ),
-		ARCWV
-	);
-	wp_enqueue_script(
-		'arcw-admin',
-		plugins_url( '/admin/js/admin.min.js' , __FILE__ ),
-		array( 'jquery' ),
-		ARCWV
-	);
 
-	wp_register_style( 'acwr-themer-style', plugins_url('/admin/css/style.css', __FILE__), array(), ARCWV );
-	wp_enqueue_style( 'acwr-themer-style' );
+    wp_enqueue_script(
+        'arcw-admin',
+        plugins_url( '/admin/js/admin.js' , __FILE__ ),
+        array( 'jquery' ),
+        ARCWV
+    );
+    wp_register_style( 'acwr-themer-style', plugins_url('/admin/css/style.css', __FILE__), array(), ARCWV );
+    wp_enqueue_style( 'acwr-themer-style' );
+
+	if(isset($_GET['tab']) && $_GET['tab'] == 'themer') {
+/* THOSE ARE FOR THE THEME EDITOR - TODO: activate this is the next version*/
+//        wp_enqueue_script( 'accordion' );
+//		wp_enqueue_script( 'wp-color-picker' );
+//		wp_enqueue_script( 'jquery-ui-core' );
+//		wp_enqueue_script( 'jquery-ui-slider' );
+//		wp_enqueue_style( 'jquery-ui' );
+//		wp_enqueue_style( 'customize-controls');
+//		wp_enqueue_style( 'customize-widgets' );
+//		wp_enqueue_style( 'wp-color-picker' );
+
+
+		wp_enqueue_script(
+            'arcw-aceedit',
+            plugins_url( '/admin/js/lib/ace-edit/ace.js' , __FILE__ ),
+            array( 'jquery' ),
+            ARCWV
+        );
+
+		wp_enqueue_script(
+			'arcw-themer',
+			plugins_url( '/admin/js/themer.js' , __FILE__ ),
+			array( 'jquery' ),
+			ARCWV
+		);
+
+
+		/* ANGULAR INCLUDES for next version */
+		// TODO: angular for the theme editor inside settings
+		/*wp_enqueue_script(
+            'arcw-angularjs',
+            plugins_url( '/admin/js/lib/angular.min.js' , __FILE__ ),
+            ARCWV
+        );
+
+        wp_enqueue_script(
+            'arcw-angularapp',
+            plugins_url( '/admin/js/editor/app.js' , __FILE__ ),
+            ARCWV
+        );
+
+		wp_enqueue_script(
+            'arcw-sislider',
+            plugins_url( '/admin/js/editor/directives/jquislider.js' , __FILE__ ),
+            ARCWV
+        );*/
+
+		/* jQuery UI CSS include - not available in WordPress by default */
+        wp_register_style( 'acwr-jquery-ui-css', plugins_url('/admin/css/jquery-ui.min.css', __FILE__), array(), ARCWV );
+        wp_enqueue_style( 'acwr-jquery-ui-css' );
+    }
 }
 
 function archivesCalendar_options_validate($args)
@@ -111,7 +150,7 @@ function archivesCalendar_options_validate($args)
 
 	if(!isset($args['css']))
 		$args['css'] = 0;
-	else 
+	else
 		$args['css'] = 1;
 
 	if(!isset($args['theme']))
@@ -126,10 +165,11 @@ function archivesCalendar_options_validate($args)
 	else
 		$args['js'] = 1;
 
-	if(!isset($args['shortcode']))
-		$args['shortcode'] = 0;
+	if(!isset($args['filter']))
+		$args['filter'] = 0;
 	else
-		$args['shortcode'] = 1;
+		$args['filter'] = 1;
+
 
 	if(!isset($args['javascript']) || $args['javascript'] == "" )
 		$args['javascript'] = "jQuery(document).ready(function($){\n\t$('.calendar-archives').archivesCW();\n});";
@@ -147,8 +187,17 @@ function archivesCalendar_options()
 	<script type="text/javascript">
 		ARCWPATH = '<?php echo plugins_url('', __FILE__); ?>';
 	</script>
-		<div id="arcw-settings" class="tab active-tab metabox-holder columns-2">
+    <div id="post-body" class="metabox-holder columns-2">
+		<div id="arcw-settings" class="tab active-tab">
 			<div id="post-body-content">
+				<p>
+					<input type="checkbox" id="filter" name="archivesCalendar[filter]" <?php arcw_checked('filter');?> /> <label for="filter">
+						<?php _e('Enable archives filter', 'arwloc');?></label><br />
+                    <span class="description">
+                        <?php _e('This will display only the categories you have selected in the widget on the Archives page.', 'arwloc');?>
+                    </span>
+				</p>
+				<hr />
 				<p>
 					<input type="checkbox" id="css" name="archivesCalendar[css]" <?php arcw_checked('css');?> /> <label for="css"><?php _e('Include CSS file', 'arwloc'); ?></label><br />
 					<span class="description"><?php _e( 'Include CSS file from the plugin.<br /><strong>It\'s recommended to copy the CSS code to your theme´s <strong>style.css</strong> and uncheck this option.', 'arwloc' ); ?></strong></span>
@@ -182,13 +231,6 @@ function archivesCalendar_options()
 				</p>
 				<hr />
 				<p>
-					<input type="checkbox" id="shortcode" name="archivesCalendar[shortcode]" <?php arcw_checked('shortcode');?> /> <label for="shortcode">
-						<?php _e('Enable Shortcode support in text widget', 'arwloc');?></label><br />
-					<span class="description"><?php _e('Use the shortcode in a text widget to display Archives Calendar.', 'arwloc');?></span>
-					<pre>[arcalendar next_text=">" prev_text="<" post_count="true" month_view="false"]</pre>
-				</p>
-				<hr />
-				<p>
 					<input type="checkbox" id="soptions" name="archivesCalendar[show_settings]" <?php arcw_checked('show_settings');?> /> <label for="soptions">
 						<?php _e('Show link to Settings in admin menu', 'arwloc');?></label><br />
 					<span class="description"><?php _e('Show link "Archives Calendar" in admin "Settings" menu. If unchecked you can enter settings from "Settings" link in "Plugins" page.', 'arwloc');?></span>
@@ -200,66 +242,72 @@ function archivesCalendar_options()
 				</p>
 				<?php
 				require 'admin/preview.php';
+                preview_block();
 				?>
 			</div>
 
-			<div id="postbox-container-1" class="postbox-container">					
-					<div class="postbox">
-						<div class="inside" style="padding:15px;">
-							<?php 
-							$feed_url = 'http://labs.alek.be/category/archives-calendar/feed/';
-							$feed = (array) simplexml_load_file($feed_url);
-							$items = $feed['channel']->item;
-							$count = count($items);
-							
-							if($count > 0):
-							?>
-							<h2 style="font-size:24px; margin:0;"><?php _e('News/Updates', 'arwloc');?> <span class="description">RSS feed</span></h2>
-							<p>
-							<?php
-								$i=0;									
-								foreach($items as $item){
-									if($i < 3){
-										$date = strtotime($item->pubDate);
-										echo '<p style="overflow:hidden; margin-bottom:0; margin-top:4px;">';
-										echo '<label class="date" style="display:block; width: 20%; float:left;"><strong>'.date('d/m', $date).'</strong></label>';
-										echo '<a style="display:block; width: 80%; float:right;" href="'.$item->guid.'" class="title" target="_blank">'.$item->title.'</a>';
-										echo '</p>';
-									}
-									$i++;
-								}	
-								if($count > 3){
-									$cat_url = 'http://labs.alek.be/category/archives-calendar/';
-									echo '<p style="margin-bottom:0; margin-top:6px;">';
-									echo '<strong><a href="'. $cat_url .'" class="title" target="_blank">'. __('More') .' ...</a></strong>';
-									echo '</p>';	
-								}
-								if($count <= 0) _e( 'No posts', 'arwloc' );
-							?>
-							</p>
-							<?php
-							endif;
-							?>
-							<h2 style="font-size:24px; margin:0;"><?php _e('More');?></h2>
-							<hr>
-							<p style="text-align: center">
-								<a href="https://github.com/alekart?tab=repositories" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/GitHub.png" alt="alek on GitHub" title="My projects on Github" /></a>
-								<a href="http://profiles.wordpress.org/alekart/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/wordpress.png" alt="alek´ on WordPress" title="My WordPress projects" /></a>
-								<a href="http://labs.alek.be/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/alabs.png" alt="My blog" /></a>
-								<a href="http://alek.be/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/alek.png" alt="alek´ portfolio" alt="My portfolio" /></a>
-							</p>
-							<hr>
-							<p>
-								<?php _e('If you like this plugin please <strong>support my work</strong>, buy me <strong>a beer or a coffee</strong>. Click Donate and specify your amount.', 'arwloc');?>
-							</p>
-							<p style="text-align:center">
-								<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU" target="_blank"><img src="https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif" alt="Donate" /></a><br>
-								<span class="description" style="font-size:10px;"><?php _e('In Belgium 1 coffee or 1 beer costs about 2€', 'arwloc');?></span>
-							</p>
-						</div>
-					</div>
+			<div id="postbox-container-1" class="postbox-container">
+                <div class="postbox">
+                    <div class="inside" style="padding:15px;">
+                            <?php sideBox(); ?>
+                    </div>
+                </div>
 			</div>
 		</div>
+    </div>
+<?php
+}
+
+function sideBox() {
+    $feed_url = 'http://labs.alek.be/category/archives-calendar/feed/';
+    $feed = (array)simplexml_load_file($feed_url) ? (array)simplexml_load_file($feed_url) : null;
+    $items = $feed ? $feed['channel']->item : array();
+    $count = count($items);
+
+    if($count > 0):
+        ?>
+        <h2 style="font-size:24px; margin:0;"><?php _e('News/Updates', 'arwloc');?> <span class="description">RSS feed</span></h2>
+        <p>
+            <?php
+            $i=0;
+            foreach($items as $item){
+                if($i < 3){
+                    $date = strtotime($item->pubDate);
+                    echo '<p style="overflow:hidden; margin-bottom:0; margin-top:4px;">';
+                    echo '<label class="date" style="display:block; width: 20%; float:left;"><strong>'.date('d/m', $date).'</strong></label>';
+                    echo '<a style="display:block; width: 80%; float:right;" href="'.$item->guid.'" class="title" target="_blank">'.$item->title.'</a>';
+                    echo '</p>';
+                }
+                $i++;
+            }
+            if($count > 3){
+                $cat_url = 'http://labs.alek.be/category/archives-calendar/';
+                echo '<p style="margin-bottom:0; margin-top:6px;">';
+                echo '<strong><a href="'. $cat_url .'" class="title" target="_blank">'. __('More') .' ...</a></strong>';
+                echo '</p>';
+            }
+            if($count <= 0) _e( 'No posts', 'arwloc' );
+            ?>
+        </p>
+        <?php
+    endif;
+    ?>
+    <h2 style="font-size:24px; margin:0;"><?php _e('More');?></h2>
+    <hr>
+    <p style="text-align: center">
+        <a href="https://github.com/alekart?tab=repositories" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/GitHub.png" alt="alek on GitHub" title="My projects on Github" /></a>
+        <a href="http://profiles.wordpress.org/alekart/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/wordpress.png" alt="alek´ on WordPress" title="My WordPress projects" /></a>
+        <a href="http://labs.alek.be/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/alabs.png" alt="My blog" /></a>
+        <a href="http://alek.be/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/alek.png" alt="alek´ portfolio" alt="My portfolio" /></a>
+    </p>
+    <hr>
+    <p>
+        <?php _e('If you like this plugin please <strong>support my work</strong>, buy me <strong>a beer or a coffee</strong>. Click Donate and specify your amount.', 'arwloc');?>
+    </p>
+    <p style="text-align:center">
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU" target="_blank"><img src="https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif" alt="Donate" /></a><br>
+        <span class="description" style="font-size:10px;"><?php _e('In Belgium 1 coffee or 1 beer costs about 2€', 'arwloc');?></span>
+    </p>
 <?php
 }
 

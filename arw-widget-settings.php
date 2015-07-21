@@ -118,7 +118,7 @@
                 </div>
                 <div class="accordion-section-content" id="<?php echo $this->get_field_id( 'post_type' ); ?>">
                     <p>
-                        <ul id="categorychecklist" class="categorychecklist form-no-clear">
+                        <ul id="ptypechecklist" class="categorychecklist form-no-clear">
                             <?php
                             $args = array(
                                 'public'   => true,
@@ -126,7 +126,10 @@
                             );
                             $post_types = get_post_types($args);
                             echo '<li class="popular-category"><label class="selectit"><input value="post" type="checkbox" id="'.$this->get_field_id( 'post_type' ).'" name="'.$this->get_field_name( 'post_type' ).'[]" ';
-                            checked( in_array( 'post', $post_type ) );
+                            if( $post_type && is_array($post_type) )
+                                checked( in_array( 'post', $post_type ) );
+                            else
+                                echo 'checked="checked"';
                             echo ' > post</label></li>';
                             foreach($post_types as $type)
                             {

@@ -3,7 +3,7 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: http://labs.alek.be/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 0.9.94
+Version: 0.9.96
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3
@@ -28,7 +28,7 @@ License: GPLv3
 	
 ****/
 
-define ('ARCWV', '0.9.94'); // current version of the plugin
+define ('ARCWV', '0.9.95'); // current version of the plugin
 
 $themes = array(
 	'calendrier' => 'Calendrier',
@@ -81,7 +81,7 @@ function arcw_plugin_action_links( $links ) {
 
 function archivesCalendar_jquery_plugin()
 {
-	wp_register_script( 'archivesCW', plugins_url('/jquery.archivesCW.min.js', __FILE__), array("jquery"), ARCWV );
+	wp_register_script( 'archivesCW', plugins_url('/admin/js/jquery.archivesCW.min.js', __FILE__), array("jquery"), ARCWV );
 	wp_enqueue_script( 'archivesCW');
 }
 
@@ -113,4 +113,57 @@ if (!function_exists('isMU'))
 			return true;
 		return false;
 	}
+}
+
+
+function make_arcw_link($type = null, $cats = null){
+    global $archivesCalendar_options;
+    if($archivesCalendar_options['filter'] == 0)
+        return '';
+    $attrs = '';
+    if(!empty($type) && count($type)){
+        echo $type;
+        if($type == 'post')
+            $attrs = '';
+        else
+            $attrs .= '?post_type='.$type;
+    }
+    if($cats && $cats != ''){
+        if($attrs == '')
+            $attrs .= '?category=';
+        else
+            $attrs .= '&category=';
+        $attrs = str_replace(' ', '', $cats);
+    }
+    return $attrs;
+}
+
+
+// Activate filter in archives page
+if($archivesCalendar_options['filter'] == 1)
+    add_action( 'pre_get_posts', 'arcw_filter' );
+
+function arcw_filter($query) {
+    if(!is_archive() || is_admin())
+        return;
+
+    if(isset($_GET)){
+        if(isset($_GET['category']) && $_GET['category'] != ''){
+            $cats = $_GET['category'];
+            $query->set( 'cat', $cats );
+        }
+        if(isset($_GET['post_type']) && $_GET['post_type'] != ''){
+            $post_types = explode(',', $_GET['post_type']);
+            $query->set( 'post_type', $post_types );
+
+            // TODO: for now the custom post disables cat filter
+            $query->set ('cat', null);
+        }
+    }
+}
+
+
+// TODO: remove this function before release
+function arwdebug($log) {
+    print_r($log);
 }

@@ -3,8 +3,8 @@ Contributors: alekart
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 3.6
-Tested up to: 4.1
-Stable tag: 0.9.94
+Tested up to: 4.2.2
+Stable tag: 0.9.95
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,14 +23,14 @@ I'm alone to test this plugin before release and I can't test everything with pa
 * Displays daily archives as a compact month calendar
 * Show/hide monthly post count
 * 8 themes included (with .less files)
-* 2 Custom themes taht keep your CSS styles even after the plugin update
-* Choose a different theme for each widget
+* 2 Custom themes that keep your CSS styles even after the plugin update
+* Different theme for each widget
 * Show widget with previous/current/next or last available month
 * Category select. Show post only from selected categories
-* Custom post_type support
+* Filter Archives page by categories you set in the widget
+* Custom post_type support (partial*)
 * Entirely customizable with CSS
 * .PO/.MO Localisation (Fançais, Deutsch, Español, Portugues, Simplified Chinese, Serbo-Croatian)
-* Shortcode support
 * jQuery animated with possibility to use your own JS code.
 
 **Not just a widget**, if your theme does not support widgets, you can use this calendar by calling its **function**:
@@ -61,11 +61,9 @@ archive_calendar($args);`
 
 **month_select:** `default` shows the last month available with at least one post. Also `prev`, `next` or `current`.
 
-**SHORTCODE SUPPORT**
-Use the shortcode to show Archives Calendar in the text widget or in a page:
-`[arcalendar next_text=>'>' prev_text=>'<' post_count=>"true" month_view=>"true" "categories"=>"category1, category2", post_type=>"post, forum"]`
-
-*In some cases the support of shortcodes in the text widget has to be activated in the plugin settings*
+`*  custom post_type will be included in the calendar (count too) and will be shown
+    on the archives page (via the calendar link) only if Filter is enabled in the plugin settings.
+    The categories filter will be disabled if custom post_type is set. Custom taxonomies are not supported.`
 
 
 = Notes =
@@ -93,7 +91,10 @@ Please use the Support section to report issues.
 == Changelog ==
 
 = 0.9.95 =
-* [new] Dutch translation. Thanks to Johan.
+* [new] added archives filter by category (have to be activated in options)
+* [add] added sass theme files (TODO)
+* [fix] fixed custom post_type errors that sometimes could occur (at least some bugs fixed)
+* [del] removed shortcode support (obsolete)
 
 = 0.9.94 =
 * [new] added "today" class for the current day in month view (if present).
@@ -157,7 +158,7 @@ Please use the Support section to report issues.
 * [new] 3 themes with .less files for easier customization
 * [new] shortcode [arcalendar]
 * [new] the current archives' year is shown in the widget instead of the actual year
-* [fix] if there's no posts in actual year, the widget does not disapear any more
+* [fix] if there's no posts in actual year, the widget does not disappear any more
 * [edit] **HTML and CSS structure changes** in year navigation
 * [edit] Total rewrite of year navigation jQuery script
 
@@ -169,7 +170,10 @@ Please use the Support section to report issues.
 
 == Upgrade notice ==
 
+= SHORTCODE SUPPORT IS REMOVED =
+I consider this feature as obsolete.
+
 = IF UPDATING FROM v.0.4.7 =
-Update to an older version: 0.9.91, 0.9.92 or 0.9.93.
+Update to an older version: 0.9.91, 0.9.92 or 0.9.93 before updating to the latest version
 
 == Frequently asked questions ==

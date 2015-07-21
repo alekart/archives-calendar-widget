@@ -1,0 +1,63 @@
+/***** CALENDAR STYLE *****/
+
+.calendar-archives {
+  position: relative; // DO NOT CHANGE
+  width: 100%; // DO NOT CHANGE
+  * {
+    box-sizing: border-box !important; // DO NOT CHANGE
+  }
+
+  a {
+    &:focus,
+    &:active {
+      outline: none !important;
+    }
+  }
+
+  > .calendar-navigation {
+    position: relative;
+    display: table;
+    width: 100%;
+    > .prev-year,
+    > .next-year,
+    > .menu-container {
+      display: table-cell; // DO NOT CHANGE
+      height: 100%; // DO NOT CHANGE
+      vertical-align: middle; // DO NOT CHANGE
+    }
+  }
+
+  > .archives-years {
+    position: relative; // DO NOT CHANGE
+    overflow: hidden; // DO NOT CHANGE
+
+    // Month/year container. Calendar "pages".
+    // DO NOT CHANGE
+    > .year {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-left: -100%;
+      width: 100%;
+      z-index: 0;
+      .year-link {
+        display: none;
+      }
+      &.last {
+        position: relative;
+      }
+      &.current {
+        margin-left: 0;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+/* FOR PREVIEW IN CONFIGURATION ONLY */
+.settings_page_Arrchives_Calendar_Widget {
+  #TB_ajaxContent {
+    background-color: $preview-background;
+  }
+}
+
