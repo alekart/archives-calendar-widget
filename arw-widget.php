@@ -28,6 +28,7 @@ class Archives_Calendar extends WP_Widget
 		echo $after_widget;
 	}
 
+
 	public function form( $instance )
 	{
 		$defaults = array(
