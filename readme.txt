@@ -92,9 +92,8 @@ Please use the Support section to report issues.
 
 = 0.9.95 =
 * [new] added archives filter by category (have to be activated in options)
-* [add] added SCSS theme files (TODO)
-* [del] deleted LESS files
-* [update] styling of the dropdown menu display
+* [add] some themes are now available in SCSS
+* [update] styling of the dropdown menu display in SCSS files
 * [fix] fixed custom post_type errors that sometimes could occur (at least some bugs fixed)
 * [del] shortcode feature *removed* (obsolete)
 
