@@ -1,19 +1,6 @@
 var editor1, editor2;
 
 jQuery(function ($) {
-
-    /*
-    TODO: theme editor
-    $('.color-field').wpColorPicker({
-        change: function (event, ui) {
-            $this = $(this);
-            setTimeout(function () {
-                    $this.trigger('input');
-                }, 0
-            );
-        }
-    });*/
-
     editor1 = ace.edit("editor1");
     editor1.setTheme("ace/theme/monokai");
     editor1.getSession().setMode("ace/mode/css");
@@ -68,5 +55,4 @@ jQuery(function ($) {
         editor1.resize();
         editor2.resize();
     }
-
 });

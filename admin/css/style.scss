@@ -221,17 +221,21 @@ h2.nav-tab-wrapper.custom .nav-tab-active {
 	background-color: #000;
 }*/
 
+$btn-green: #7ad03a;
+
 .button-big {
   font-size: 15px !important;
-  line-height: 40px !important;
+  line-height: 38px !important;
   height: 40px !important;
   padding: 0 20px !important;
-  background: #7ad03a !important;
-  border-color: darken(#7ad03a, 10%) !important;
+}
+
+.button-green {
+  background: $btn-green !important;
+  border-color: darken($btn-green, 10%) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), 0 1px 0 rgba(0, 0, 0, .15) !important;
   &:hover {
-
-    background: darken(#7ad03a, 5%) !important;
+    background: darken($btn-green, 5%) !important;
   }
 }
 
@@ -247,6 +251,12 @@ h2.nav-tab-wrapper.custom .nav-tab-active {
   float: right;
   margin-right: -310px;
   width: 300px;
+}
+
+#themer-logo {
+  display: block;
+  float: left;
+  height: 100px;
 }
 
 #poststuff .card > h2 {

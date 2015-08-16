@@ -89,17 +89,6 @@ function arcw_admin_scripts() {
     wp_enqueue_style( 'acwr-themer-style' );
 
 	if(isset($_GET['tab']) && $_GET['tab'] == 'themer') {
-/* THOSE ARE FOR THE THEME EDITOR - TODO: activate this is the next version*/
-//        wp_enqueue_script( 'accordion' );
-//		wp_enqueue_script( 'wp-color-picker' );
-//		wp_enqueue_script( 'jquery-ui-core' );
-//		wp_enqueue_script( 'jquery-ui-slider' );
-//		wp_enqueue_style( 'jquery-ui' );
-//		wp_enqueue_style( 'customize-controls');
-//		wp_enqueue_style( 'customize-widgets' );
-//		wp_enqueue_style( 'wp-color-picker' );
-
-
 		wp_enqueue_script(
             'arcw-aceedit',
             plugins_url( '/admin/js/lib/ace-edit/ace.js' , __FILE__ ),
@@ -113,31 +102,6 @@ function arcw_admin_scripts() {
 			array( 'jquery' ),
 			ARCWV
 		);
-
-
-		/* ANGULAR INCLUDES for next version */
-		// TODO: angular for the theme editor inside settings
-		/*wp_enqueue_script(
-            'arcw-angularjs',
-            plugins_url( '/admin/js/lib/angular.min.js' , __FILE__ ),
-            ARCWV
-        );
-
-        wp_enqueue_script(
-            'arcw-angularapp',
-            plugins_url( '/admin/js/editor/app.js' , __FILE__ ),
-            ARCWV
-        );
-
-		wp_enqueue_script(
-            'arcw-sislider',
-            plugins_url( '/admin/js/editor/directives/jquislider.js' , __FILE__ ),
-            ARCWV
-        );*/
-
-		/* jQuery UI CSS include - not available in WordPress by default */
-        wp_register_style( 'acwr-jquery-ui-css', plugins_url('/admin/css/jquery-ui.min.css', __FILE__), array(), ARCWV );
-        wp_enqueue_style( 'acwr-jquery-ui-css' );
     }
 }
 

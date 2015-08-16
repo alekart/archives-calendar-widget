@@ -22,7 +22,7 @@ I'm alone to test this plugin before release and I can't test everything with pa
 * Displays monthly archives as a compact year calendar
 * Displays daily archives as a compact month calendar
 * Show/hide monthly post count
-* 8 themes included (with .less files)
+* 8 themes included (with .scss files)
 * 2 Custom themes that keep your CSS styles even after the plugin update
 * Different theme for each widget
 * Show widget with previous/current/next or last available month
@@ -92,9 +92,11 @@ Please use the Support section to report issues.
 
 = 0.9.95 =
 * [new] added archives filter by category (have to be activated in options)
-* [add] added sass theme files (TODO)
+* [add] added SCSS theme files (TODO)
+* [del] deleted LESS files
+* [update] styling of the dropdown menu display
 * [fix] fixed custom post_type errors that sometimes could occur (at least some bugs fixed)
-* [del] removed shortcode support (obsolete)
+* [del] shortcode feature *removed* (obsolete)
 
 = 0.9.94 =
 * [new] added "today" class for the current day in month view (if present).
@@ -170,10 +172,23 @@ Please use the Support section to report issues.
 
 == Upgrade notice ==
 
-= SHORTCODE SUPPORT IS REMOVED =
+= SHORTCODE SUPPORT IS DROPPED =
 I consider this feature as obsolete.
-
+= ------ =
 = IF UPDATING FROM v.0.4.7 =
 Update to an older version: 0.9.91, 0.9.92 or 0.9.93 before updating to the latest version
 
 == Frequently asked questions ==
+
+= Custom post_type categories are not supported. =
+NO. Currently only default categories are supported.
+Custom post_type that do not have common categories with post will not be displayed in the calendar if categories filter is different of "ALL".
+If a custom post_type is selected the archives filter by category will be disabled.
+Don't ask me if it is possible, i'm thinking about it... this configuration is pretty complex in SQL request
+
+
+= Can I show a popover with list of posts? =
+
+Yes but it is not implemented in my plugin.
+You can do it with ajax request on day/month mouse over.
+I don't want to make my plugin do everything and that only 10% are used (like some softwares do).

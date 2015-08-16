@@ -184,13 +184,15 @@ h2.nav-tab-wrapper.custom .nav-tab-active {
 }*/
 .button-big {
   font-size: 15px !important;
-  line-height: 40px !important;
+  line-height: 38px !important;
   height: 40px !important;
-  padding: 0 20px !important;
+  padding: 0 20px !important; }
+
+.button-green {
   background: #7ad03a !important;
   border-color: #62ae29 !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 0 rgba(0, 0, 0, 0.15) !important; }
-  .button-big:hover {
+  .button-green:hover {
     background: #6dc22e !important; }
 
 .arcw.card {
@@ -203,6 +205,11 @@ h2.nav-tab-wrapper.custom .nav-tab-active {
   float: right;
   margin-right: -310px;
   width: 300px; }
+
+#themer-logo {
+  display: block;
+  float: left;
+  height: 100px; }
 
 #poststuff .card > h2 {
   margin-top: 10px; }

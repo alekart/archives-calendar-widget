@@ -162,8 +162,3 @@ function arcw_filter($query) {
     }
 }
 
-
-// TODO: remove this function before release
-function arwdebug($log) {
-    print_r($log);
-}

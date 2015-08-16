@@ -12,29 +12,32 @@ function archivesCalendar_themer()
 
 
     ?>
+    <!--    <style id="style"></style>-->
     <style id="arwprev">
         <?php echo $custom['arw-theme1'];?>
     </style>
-    <!--    <style id="style"></style>-->
 
     <div ng-app="calendarEditorApp" ng-controller="editorCtrl">
         <div id="post-body" class="metabox-holder columns-2">
             <div id="arcw-themer" class="tab active-tab">
 
-
                 <div id="post-body-content">
                     <div class="card new">
                         <h2>Theme Editor</h2>
-                        <img style="display: block; float: left; height: 100px;"
-                             src="<?php echo plugins_url('', __FILE__); ?>/admin/images/themer.png"
+                        <img id="themer-logo" src="<?php echo plugins_url('', __FILE__); ?>/admin/images/themer.png"
                              alt="ARCW Theme Editor"/>
                         Simple UI to create your own theme for Archives Calendar Widget.<br/>
                         <strong>No code knowledge needed.</strong>
 
                         <p>
-                            <a href="http://arcw.alek.be" target="_blank" class="button-primary button-big">
+                            <a href="http://arcw.alek.be" target="_blank" class="button-primary button-big button-green">
                                 Open theme editor
-                            </a><br/>
+                            </a>
+                            <span>&nbsp; &nbsp;</span>
+                            <a href="http://arcw.alek.be" target="_blank" class="button-primary">
+                                Import Theme
+                            </a>
+                            <br/>
                             <!--                    <span class="description">This is the new visual theme editor. It is not integrated into the plugin and will open in new tab/window.</span>-->
                         </p>
 
@@ -68,11 +71,9 @@ function archivesCalendar_themer()
 </pre>
 
                             </div>
-
                         </div>
                     </div>
                 </div>
-
 
                 <div id="postbox-container-1" class="postbox-container">
                     <div class="col-wrap">
@@ -94,11 +95,7 @@ function archivesCalendar_themer()
 
                     </div>
                 </div>
-
-
             </div>
-
-
         </div>
     </div>
 
