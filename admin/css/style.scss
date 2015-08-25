@@ -223,12 +223,18 @@ h2.nav-tab-wrapper.custom .nav-tab-active {
 
 $btn-green: #7ad03a;
 
-.button-big {
-  font-size: 15px !important;
-  line-height: 38px !important;
-  height: 40px !important;
-  padding: 0 20px !important;
-}
+//.button-primary {
+//  &:active {
+//    vertical-align: middle !important;
+//  }
+//}
+
+//.button-big {
+//  font-size: 15px !important;
+//  line-height: 38px !important;
+//  height: 40px !important;
+//  padding: 0 20px !important;
+//}
 
 .button-green {
   background: $btn-green !important;

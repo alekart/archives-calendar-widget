@@ -90,7 +90,8 @@ Please use the Support section to report issues.
 
 == Changelog ==
 
-= 0.9.95 =
+= 1.0.0 =
+* [new] Theme Editor (external)
 * [new] added archives filter by category (have to be activated in options)
 * [add] some themes are now available in SCSS
 * [update] styling of the dropdown menu display in SCSS files
