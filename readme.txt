@@ -3,8 +3,8 @@ Contributors: alekart
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 3.6
-Tested up to: 4.2.2
-Stable tag: 0.9.95
+Tested up to: 4.3
+Stable tag: 1.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,10 +19,11 @@ I'm alone to test this plugin before release and I can't test everything with pa
 
 = Features =
 
+* **New** Simple Theme Editor (external tool)
 * Displays monthly archives as a compact year calendar
 * Displays daily archives as a compact month calendar
 * Show/hide monthly post count
-* 8 themes included (with .scss files)
+* 8 themes included (with LESS files)
 * 2 Custom themes that keep your CSS styles even after the plugin update
 * Different theme for each widget
 * Show widget with previous/current/next or last available month
