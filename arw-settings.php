@@ -81,7 +81,7 @@ function arcw_admin_scripts() {
 
     wp_enqueue_script(
         'arcw-admin',
-        plugins_url( '/admin/js/admin.js' , __FILE__ ),
+        plugins_url( '/admin/js/admin.min.js' , __FILE__ ),
         array( 'jquery' ),
         ARCWV
     );
@@ -98,7 +98,7 @@ function arcw_admin_scripts() {
 
 		wp_enqueue_script(
 			'arcw-themer',
-			plugins_url( '/admin/js/themer.js' , __FILE__ ),
+			plugins_url( '/admin/js/themer.min.js' , __FILE__ ),
 			array( 'jquery' ),
 			ARCWV
 		);

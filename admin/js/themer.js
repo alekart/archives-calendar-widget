@@ -133,5 +133,3 @@ jQuery(function ($) {
 		$(this).val('');
 	});
 });
-
-
