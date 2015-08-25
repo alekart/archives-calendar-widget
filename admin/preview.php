@@ -1,45 +1,54 @@
+<?php
+function preview_block()
+{
+	?>
 
-<div id="ac_preview" style="display:none;">
+	<div id="ac_preview" style="display:none;">
 
-	<div class="preview_theme_select">
-		<li class="selector-title"><?php _e('Themes');?></li>
-		<?php
-		global $themes;
-		foreach($themes as $theme => $title){
-			echo '<li id="'.$theme.'" class="preview-theme">'.$title.'</li>';
-		}
-		if( $custom = get_option( 'archivesCalendarThemer' )) {
-			$i = 1;
-			foreach ( $custom as $filename => $css ) {
-				if ( $css ) {
-					echo '<li id="'.$filename.'" class="preview-theme">'.__( 'Custom' ) . ' ' . $i .'</li>';
-					$i ++;
+		<div class="preview_theme_select">
+			<li class="selector-title"><?php _e('Themes'); ?></li>
+			<?php
+			global $themes;
+			foreach ($themes as $theme => $title) {
+				echo '<li id="' . $theme . '" class="preview-theme">' . $title . '</li>';
+			}
+			if ($custom = get_option('archivesCalendarThemer')) {
+				$i = 1;
+				foreach ($custom as $filename => $css) {
+					if ($css) {
+						echo '<li id="' . $filename . '" class="preview-theme">' . __('Custom') . ' ' . $i . '</li>';
+						$i++;
+					}
 				}
 			}
-		}
-		?>
-	</div>
-	<div class="arcw-preview-container">
-		<div class="arcw preview-zone">
-			<?php
-			year_preview_html();
-			month_preview_html();
 			?>
 		</div>
-		<p class="preview-note">
-			<span class="description"><?php _e("The theme's CSS file is not included in administration, this preview may be different from the website rendering.", 'arwloc'); ?></span>
-		</p>
-		<div class="modal-buttons">
-			<button class="button-primary ok_theme"><?php _e('Select');?></button> <button class="button cancel_theme"><?php _e('Close');?></button>
+		<div class="arcw-preview-container">
+			<div class="arcw preview-zone">
+				<?php
+				year_preview_html();
+				month_preview_html();
+				?>
+			</div>
+			<p class="preview-note">
+				<span
+					class="description"><?php _e("The theme's CSS file is not included in administration, this preview may be different from the website rendering.", 'arwloc'); ?></span>
+			</p>
+
+			<div class="modal-buttons">
+				<button class="button-primary ok_theme"><?php _e('Select'); ?></button>
+				<button class="button cancel_theme"><?php _e('Close'); ?></button>
+			</div>
 		</div>
 	</div>
-</div>
 
-<?php
+	<?php
+}
+
 function year_preview_html()
 {
 	?>
-	<div class="calendar-archives arw-theme1 arw-theme2">
+	<div class="calendar-archives twentythirteen arw-theme1 arw-theme2">
 		<div class="calendar-navigation">
 			<a href="#" class="prev-year"><span>&lt;</span></a>
 			<div class="menu-container years">

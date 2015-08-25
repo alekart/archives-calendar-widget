@@ -3,8 +3,8 @@ Contributors: alekart
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 3.6
-Tested up to: 4.0
-Stable tag: 0.9.92
+Tested up to: 4.3
+Stable tag: 1.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,28 +17,21 @@ Archives widget that make your monthly/daily archives look like a calendar on th
 = **PLEASE FEEDBACK** =
 I'm alone to test this plugin before release and I can't test everything with particular configurations or on different versions of WordpPress, **your feedback is precious.**
 
-= **BEFORE UPDATING FROM v.0.4.7** =
-* **BACKUP YOUR CSS CHANGES BEFORE UPDATING!** All changes made ​​in any css file of the plugin file will be lost.
-* **HTML STRUCTURE CHANGES**, your custom CSS **will not** be applied correctly. I recommend you to install it on a test website to adapt your css to the new structure.
-
-= **AFTER UPDATING FROM v0.4.7** =
-* **NEW WIDGET SETTINGS!** Check the widget settings in 'Appearence->Widgets' after the update
-* Check the settings of the plugin to be sure everything is OK.
-
 = Features =
 
+* **New** Simple Theme Editor (external tool)
 * Displays monthly archives as a compact year calendar
 * Displays daily archives as a compact month calendar
 * Show/hide monthly post count
-* 8 themes included (with .less files)
-* 2 Custom themes taht keep your CSS styles even after the plugin update
-* Choose a different theme for each widget
+* 8 themes included (with LESS files)
+* 2 Custom themes that keep your CSS styles even after the plugin update
+* Different theme for each widget
 * Show widget with previous/current/next or last available month
 * Category select. Show post only from selected categories
-* Custom post_type support
+* Filter Archives page by categories you set in the widget
+* Custom post_type support (partial*)
 * Entirely customizable with CSS
 * .PO/.MO Localisation (Fançais, Deutsch, Español, Portugues, Simplified Chinese, Serbo-Croatian)
-* Shortcode support
 * jQuery animated with possibility to use your own JS code.
 
 **Not just a widget**, if your theme does not support widgets, you can use this calendar by calling its **function**:
@@ -46,7 +39,7 @@ I'm alone to test this plugin before release and I can't test everything with pa
 `archive_calendar();`
 
 you can also configure it:
-$defaults = array(
+`$defaults = array(
     'next_text' => '˃',
     'prev_text' => '˂',
     'post_count' => true,
@@ -69,16 +62,13 @@ archive_calendar($args);`
 
 **month_select:** `default` shows the last month available with at least one post. Also `prev`, `next` or `current`.
 
-**SHORTCODE SUPPORT**
-Use the shortcode to show Archives Calendar in the text widget or in a page:
-`[arcalendar next_text=>'>' prev_text=>'<' post_count=>"true" month_view=>"true" "categories"=>"category1, category2", post_type=>"post, forum"]`
-
-*In some cases the support of shortcodes in the text widget has to be activated in the plugin settings*
+`*  custom post_type will be included in the calendar (count too) and will be shown
+    on the archives page (via the calendar link) only if Filter is enabled in the plugin settings.
+    The categories filter will be disabled if custom post_type is set. Custom taxonomies are not supported.`
 
 
 = Notes =
-
-By default, the plugin will include jQuery library and its default css file into your theme. **If your theme already uses jQuery, you should disable it the plugin's Settings.**
+Please use the Support section to report issues.
 
 = Links =
 [Project's page](http://labs.alek.be/projects/archives-calendar-widget/)
@@ -90,7 +80,7 @@ By default, the plugin will include jQuery library and its default css file into
 1. Upload `archives-calendar-widget` folder in `/wp-content/plugins/` directory.
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Configure the plugin through "Settings > Archives Calendar" menu in WordPress.
-4. Activate the widget in "Appearance > Widgets" menu in WordPress
+4. Activate and configure the widget in "Appearance > Widgets" menu in WordPress
 
 == Screenshots ==
 
@@ -100,6 +90,22 @@ By default, the plugin will include jQuery library and its default css file into
 4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 1.0.0 =
+* [new] Theme Editor (external)
+* [new] added archives filter by category (have to be activated in options)
+* [add] some themes are now available in SCSS
+* [update] styling of the dropdown menu display in SCSS files
+* [fix] fixed custom post_type errors that sometimes could occur (at least some bugs fixed)
+* [del] shortcode feature *removed* (obsolete)
+
+= 0.9.94 =
+* [new] added "today" class for the current day in month view (if present).
+* [fix] fixed a compatibility bug with "Jetpack by WordPress" plugin
+* [fix] fixed some other little bugs
+
+= 0.9.93 =
+* [fix] "categories" bug
 
 = 0.9.92 =
 * [edit] PHP 5.4 is no more required
@@ -155,7 +161,7 @@ By default, the plugin will include jQuery library and its default css file into
 * [new] 3 themes with .less files for easier customization
 * [new] shortcode [arcalendar]
 * [new] the current archives' year is shown in the widget instead of the actual year
-* [fix] if there's no posts in actual year, the widget does not disapear any more
+* [fix] if there's no posts in actual year, the widget does not disappear any more
 * [edit] **HTML and CSS structure changes** in year navigation
 * [edit] Total rewrite of year navigation jQuery script
 
@@ -167,10 +173,23 @@ By default, the plugin will include jQuery library and its default css file into
 
 == Upgrade notice ==
 
-* **HTML STRUCTURE CHANGES**, your custom CSS **will not** be applied correctly
-
-* **NEW WIDGET SETTINGS! Check the widget settings in 'Appearence->Widgets' after the update**
-
-* **BACKUP YOUR CSS CHANGES BEFORE UPDATING!** All changes made ​​in any css file of the plugin file will be lost.
+= SHORTCODE SUPPORT IS DROPPED =
+I consider this feature as obsolete.
+= ------ =
+= IF UPDATING FROM v.0.4.7 =
+Update to an older version: 0.9.91, 0.9.92 or 0.9.93 before updating to the latest version
 
 == Frequently asked questions ==
+
+= Custom post_type categories are not supported. =
+NO. Currently only default categories are supported.
+Custom post_type that do not have common categories with post will not be displayed in the calendar if categories filter is different of "ALL".
+If a custom post_type is selected the archives filter by category will be disabled.
+Don't ask me if it is possible, i'm thinking about it... this configuration is pretty complex in SQL request
+
+
+= Can I show a popover with list of posts? =
+
+Yes but it is not implemented in my plugin.
+You can do it with ajax request on day/month mouse over.
+I don't want to make my plugin do everything and that only 10% are used (like some softwares do).

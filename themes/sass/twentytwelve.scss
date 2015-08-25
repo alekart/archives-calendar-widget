@@ -1,0 +1,276 @@
+@import "mixins";
+
+$preview-background: #FFFFFF;
+
+/* Base common CSS : DON'T CHANGE */
+@import "base";
+
+/** Variables **/
+/*=============*/
+
+$brand-primary: #21759b;
+
+$navigation-height: 26px;
+$border-radius: 3px;
+$border-radius-large: 3px;
+$text-color: #757575;
+
+.calendar-archives.twentythirteen {
+	a {
+		text-decoration: none;
+	}
+
+	/** CALENDAR NAVIGATION BLOCK (top) **/
+
+	.calendar-navigation {
+		height: $navigation-height !important;
+		color: $text-color;
+		margin-bottom: 5px;
+
+		> .prev-year,
+		> .next-year {
+			width: 26px;
+			font-size: 18px;
+			text-align: center;
+			color: $text-color;
+
+			&:hover {
+				color: $brand-primary;
+			}
+
+			&.disabled {
+				opacity: .4;
+				cursor: default;
+				text-decoration: none;
+				&:hover {
+					background: none;
+					color: $text-color;
+				}
+			}
+		}
+
+		> .prev-year {
+		}
+
+		> .next-year {
+		}
+
+		> .menu-container {
+			position: relative;
+			height: $navigation-height;
+			padding: 0;
+			text-align: center;
+			text-transform: capitalize;
+
+			&:hover {
+				background-color: rgba(#FFFFFF, .1);
+				> .arrow-down {
+					border-radius: 3px;
+					box-shadow: 0 1px 4px rgba(black, .2);
+					border: 1px solid #d2d2d2;
+					@include gradient-vertical(#f4f4f4, #e6e6e6);
+				}
+			}
+
+			> a.title {
+				display: block;
+				height: $navigation-height;
+				line-height: $navigation-height;
+				color: $text-color;
+				vertical-align: middle;
+
+				&:hover {
+					color: $brand-primary;
+				}
+				&:visited {
+					color: $text-color;
+				}
+			}
+
+			> ul, > ul > li {
+				margin: 0;
+				padding: 0;
+			}
+
+			> ul.menu {
+				position: absolute;
+				display: none;
+				width: 100%;
+				top: 0;
+				overflow: hidden;
+				background: #F0F0F0;
+				border-radius: $border-radius;
+				box-shadow: 0 1px 6px rgba(black, .4);
+				z-index: 99;
+			}
+
+			li {
+				display: block;
+				> a {
+					display: block;
+					height: $navigation-height;
+					line-height: $navigation-height;
+					color: $text-color;
+					&:hover {
+						background: $brand-primary;
+						cursor: pointer;
+						color: #FFFFFF;
+					}
+					&.selected {
+						color: $text-color;
+						&:hover {
+							text-decoration: none;
+							color: $text-color;
+							cursor: default;
+							background: none;
+						}
+					}
+					&.current {
+
+					}
+				}
+			}
+
+			> .arrow-down {
+				position: absolute;
+				width: 20px;
+				height: $navigation-height;
+				line-height: $navigation-height;
+				top: 0;
+				right: 0;
+				font-family: Verdana, Arial, Helvetica, sans-serif;
+				border: 1px solid #fff;
+				font-size: 10px;
+				color: $text-color;
+				cursor: pointer;
+				&:hover {
+					color: #5e5e5e;
+					@include gradient-vertical(#f9f9f9, #ebebeb);
+				}
+			}
+
+			&.years {
+
+			}
+
+			&.months {
+
+			}
+		}
+	}
+
+	/** CALENDAR GRID BLOCK **/
+	> .archives-years {
+		background-color: #FFFFFF;
+	}
+	// Month and Day, common styles
+	.month, .day {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		float: left;
+		color: #CCC;
+		margin: 0 3% 3% 0;
+		background-color: #F0F0F0;
+		box-shadow: 0 1px 4px rgba(black, .2);
+		border-radius: $border-radius;
+
+		// Month/day with posts
+		&.has-posts {
+			background-color: $text-color;
+			a {
+				display: block;
+				width: 100%;
+				height: 100%;
+				border-radius: $border-radius;
+				color: #FFFFFF;
+
+				&:hover {
+					background-color: $brand-primary;
+				}
+			}
+		}
+		// last month/day of a single line
+		&.last {
+			margin-right: 0 !important;
+		}
+	}
+
+	// MONTH only styles
+	.month {
+		width: 22.75%; // 100%(line width) - 3%(margin-right) * 3(last one is 0) / 4(months per line)
+		height: 50px;
+		// Month name inside a month square
+		.month-name {
+			text-transform: capitalize;
+			font-size: 16px;
+			font-weight: 400;
+			display: block;
+			position: absolute;
+			top: 6px;
+			left: 8px;
+		}
+		// Contains the "0 posts" text inside a month square
+		.postcount {
+			display: block;
+			position: absolute;
+			right: 6px;
+			bottom: 6px;
+			// Number of posts style
+			.count-number {
+
+			}
+			// Text "posts" style
+			.count-text {
+				font-size: 9px;
+			}
+		}
+	}
+
+	// DAY only styles
+	.day {
+		width: 11.714% !important;
+		height: 25px;
+		padding: 5px 0;
+		text-align: center;
+		line-height: 100%;
+		// Day with posts
+
+		&.has-posts {
+			padding: 0;
+			a {
+				padding: 5px 0 !important;
+				text-decoration: none;
+			}
+		}
+		&.noday {
+			border: none;
+			box-shadow: none;
+			background: none !important;
+		}
+		// WEEKDAY style. Has common styles with DAY
+		&.weekday {
+			display: inline-block;
+			margin: 0 3% 5px 0;
+			border: none;
+			color: #666666;
+			text-transform: uppercase;
+			font-size: 85%;
+			font-weight: bold;
+			box-shadow: none;
+			background: none !important;
+		}
+	}
+
+	// A single line of days
+	.week-row {
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		// line with weekday names
+		&.weekdays {
+
+		}
+	}
+}
+

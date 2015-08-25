@@ -40,6 +40,7 @@ function _archivesCalendar_activate()
 		"theme" => "calendrier",
 		"js" => 1,
 		"show_settings" => 1,
+        "filter" => 0,
 		"shortcode" => 0,
 		"javascript" => "jQuery(document).ready(function($){\n\t$('.calendar-archives').archivesCW();\n});"
 	);
@@ -50,35 +51,43 @@ function _archivesCalendar_activate()
 		"arw-theme2" => ''
 	);
 
-	if( !( $options = get_option( 'archivesCalendar' ) ) )
-		$options = $default_options;
+    if( !( $options = get_option( 'archivesCalendar' ) ) ){
+        // if new installation copy default options into the DB
+        $options = $default_options;
+    }
+    else {
+        // if reactivation or after update: merge existing settings with the defaults in case if new options were added in the update
+        array_merge($default_options, $options);
+    }
 
-	if( !( $themer_options = get_option( 'archivesCalendarThemer' ) ) )
+    if( !( $themer_options = get_option( 'archivesCalendarThemer' ) ) )
 		$themer_options = $default_themer_options;
 
 	foreach($themer_options as $ctheme => $css){
 		if($css) {
-			if ( isMU() )
-			{
-				$old_blog = $wpdb->blogid;
-				$blogids  = $wpdb->get_results( "SELECT blog_id FROM $wpdb->blogs" );
-				foreach ( $blogids as $blogid ) {
-					$blog_id = $blogid->blog_id;
-					switch_to_blog( $blog_id );
-					$filename = '../wp-content/plugins/' . dirname( plugin_basename( __FILE__ ) ) . '/themes/' . $ctheme . '-' . $wpdb->blogid . '.css';
-					$themefile = fopen( $filename, "w" ) or die( "Unable to open file!" );
-					fwrite( $themefile, $css );
-					fclose( $themefile );
-				}
-				switch_to_blog( $old_blog );
-			}
-			else
-			{
-				$filename = '../wp-content/plugins/' . dirname( plugin_basename( __FILE__ ) ) . '/themes/' . $ctheme . '.css';
-				$themefile = fopen( $filename, "w" ) or die( "Unable to open file!" );
-				fwrite( $themefile, $css );
-				fclose( $themefile );
-			}
+            if(is_writable( '../wp-content/plugins/' . dirname( plugin_basename( __FILE__ ) ) . '/themes/' )) {
+                if (isMU()) {
+                    $old_blog = $wpdb->blogid;
+                    $blogids = $wpdb->get_results("SELECT blog_id FROM $wpdb->blogs");
+                    foreach ($blogids as $blogid) {
+                        $blog_id = $blogid->blog_id;
+                        switch_to_blog($blog_id);
+                        $filename = '../wp-content/plugins/' . dirname(plugin_basename(__FILE__)) . '/themes/' . $ctheme . '-' . $wpdb->blogid . '.css';
+                        $themefile = fopen($filename, "w") or die("Unable to open file!");
+                        fwrite($themefile, $css);
+                        fclose($themefile);
+                    }
+                    switch_to_blog($old_blog);
+                } else {
+                    $filename = '../wp-content/plugins/' . dirname(plugin_basename(__FILE__)) . '/themes/' . $ctheme . '.css';
+                    $themefile = fopen($filename, "w") or die("Unable to open file!");
+                    fwrite($themefile, $css);
+                    fclose($themefile);
+                }
+            }
+            else{
+                echo "<p>Can't write in `/wp-content/plugins/" . dirname(plugin_basename(__FILE__)) . "/themes/" . " </p>";
+            }
 		}
 	}
 
