@@ -1,5 +1,8 @@
-This is the developement version of Archives Calendar Widget, plugin for WordPress.
+#Archives Calendar Widget
 
-**DON'T USE**, it can be broken, instable, buggy, in constant changing
+This is the __dev__ version of __Archives Calendar Widget__ plugin for WordPress and can be _unstable, broken or with debug messages_ activated
 
-Use the stable release from https://wordpress.org/plugins/archives-calendar-widget/
+##WordPress repository
+Use the stable release from the WordPress repository [https://wordpress.org/plugins/archives-calendar-widget/](https://wordpress.org/plugins/archives-calendar-widget/)    
+OR    
+Use [release tags](https://github.com/alekart/arcw/releases) that should be the same as on the WordPress repository

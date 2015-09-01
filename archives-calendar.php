@@ -3,43 +3,43 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: http://labs.alek.be/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 1.0.1
+Version: 1.0.2
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3
+*/
 
-/***** LICENSE *****
+/***** GPLv3 LICENSE *****
 
-	Archives Calendar Widget for Wordpress
-	Copyright (C) 2013 Aleksei Polechin (http://alek.be)
+Archives Calendar Widget for Wordpress
+Copyright (C) 2013 Aleksei Polechin (http://alek.be)
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-	
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	
-	You should have received a copy of the GNU General Public License
-	along with this program. If not, see <http://www.gnu.org/licenses/>.
-	
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+
 ****/
 
 define ('ARCWV', '1.0.2'); // current version of the plugin
-
 define ('ARCW_DEBUG', false); // enable or disable debug (for dev instead of echo or print_r use debug() function)
 
 $themes = array(
-	'calendrier' => 'Calendrier',
-	'pastel' => 'Pastel',
-	'classiclight' => 'Classic',
-	'classicdark' => 'Classic Dark',
-	'twentytwelve' => 'Twenty Twelve',
-	'twentythirteen' => 'Twenty Thirteen',
-	'twentyfourteen' => 'Twenty Fourteen',
+	'calendrier'          => 'Calendrier',
+	'pastel'              => 'Pastel',
+	'classiclight'        => 'Classic',
+	'classicdark'         => 'Classic Dark',
+	'twentytwelve'        => 'Twenty Twelve',
+	'twentythirteen'      => 'Twenty Thirteen',
+	'twentyfourteen'      => 'Twenty Fourteen',
 	'twentyfourteenlight' => 'Twenty Fourteen Light',
 );
 

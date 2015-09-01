@@ -36,15 +36,16 @@ function _archivesCalendar_activate()
 	global $wpdb;
 
 	$default_options = array(
-		"css" => 1,
-		"theme" => "calendrier",
-		"js" => 1,
+		"css"           => 1,
+		"theme"         => "calendrier",
+		"js"            => 1,
 		"show_settings" => 1,
-        "filter" => 0,
-		"javascript" => "jQuery(document).ready(function($){\n\t$('.calendar-archives').archivesCW();\n});"
+		"filter"        => 0,
+		"javascript"    => "jQuery(document).ready(function($){\n\t$('.calendar-archives').archivesCW();\n});"
 	);
 
 	$default_custom_css = file_get_contents( plugins_url( '/admin/default_custom.css' , __FILE__ ) );
+
 	$default_themer_options = array(
 		"arw-theme1" => $default_custom_css,
 		"arw-theme2" => ''
