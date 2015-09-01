@@ -41,7 +41,8 @@ class Archives_Calendar extends WP_Widget
 			'different_theme' => 0,
 			'theme' => null,
 			'categories' => null,
-			'post_type' => null
+			'post_type' => null,
+			'show_today' => 0
 		);
 		$instance = wp_parse_args( $instance, $defaults );
 

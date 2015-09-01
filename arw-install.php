@@ -41,7 +41,6 @@ function _archivesCalendar_activate()
 		"js" => 1,
 		"show_settings" => 1,
         "filter" => 0,
-		"shortcode" => 0,
 		"javascript" => "jQuery(document).ready(function($){\n\t$('.calendar-archives').archivesCW();\n});"
 	);
 

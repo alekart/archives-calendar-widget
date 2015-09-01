@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 3.6
 Tested up to: 4.3
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -91,6 +91,13 @@ Please use the Support section to report issues.
 
 == Changelog ==
 
+= 1.0.2 =
+* forgotten debug text removed
+
+= 1.0.1 =
+* Day one fix
+* [fix] update options after plugin update
+
 = 1.0.0 =
 * [new] Theme Editor (external)
 * [new] added archives filter by category (have to be activated in options)
@@ -173,6 +180,9 @@ Please use the Support section to report issues.
 
 == Upgrade notice ==
 
+= AFTER UPDATE TO THE 1.0.0 YOU MAY NEED TO UPDATE YOUR WIDGET SETTINGS:=
+Just open the settings of the widget, check if everything is ok and press "Save"
+= ------ =
 = SHORTCODE SUPPORT IS DROPPED =
 I consider this feature as obsolete.
 = ------ =
