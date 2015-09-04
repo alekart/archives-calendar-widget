@@ -4,7 +4,7 @@
         <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
         <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
     </p>
-    <p>
+    <div>
         <div style="float: left; width: 49%">
             <label for="<?php echo $this->get_field_id( 'prev_text' ); ?>"><?php _e( 'Previous', 'arwloc' ); ?>:</label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'prev_text' ); ?>" name="<?php echo $this->get_field_name( 'prev_text' ); ?>" type="text" value="<?php echo $prev; ?>" />
@@ -14,38 +14,40 @@
             <input class="widefat" id="<?php echo $this->get_field_id( 'next_text' ); ?>" name="<?php echo $this->get_field_name( 'next_text' ); ?>" type="text" value="<?php echo $next; ?>" />
         </div>
         <div class="clear"></div>
-    </p>
-
+    </div>
+    <br/>
     <hr/>
     <p>
-        <label for="<?php echo $this->get_field_id( 'month_view' ); ?>"><?php _e( 'Show' ).': '; ?></label>
-        <select id="arw-view" name="<?php echo $this->get_field_name( 'month_view' ); ?>" >
-            <option <?php selected( 1, $month_view ); ?> value="1">
-                <?php _e( 'Months', 'arwloc' ); ?>
-            </option>
-            <option <?php selected( 0, $month_view ); ?> value="0">
-                <?php _e( 'Years', 'arwloc' ); ?>
-            </option>
-        </select>
+        <label for="<?php echo $this->get_field_id( 'month_view' ); ?>">
+            <?php _e( 'Show' ); ?>:
+        </label>
+            <select id="arw-view" name="<?php echo $this->get_field_name( 'month_view' ); ?>" >
+                <option <?php selected( 1, $month_view ); ?> value="1">
+                    <?php _e( 'Months', 'arwloc' ); ?>
+                </option>
+                <option <?php selected( 0, $month_view ); ?> value="0">
+                    <?php _e( 'Years', 'arwloc' ); ?>
+                </option>
+            </select>
         <span>&nbsp;</span>
 		<span class="monthOpt" style="display: <?php if($month_view) echo "inline-block"; else echo "none"; ?>">
-            <label
-	            for="<?php echo $this->get_field_id( 'month_select' ); ?>"><?php _e( 'Show first: ', 'arwloc' ) . ': '; ?></label>
-			    </label>
-			    <select id="arw-month_view-option" name="<?php echo $this->get_field_name( 'month_select' ); ?>">
-				    <option <?php selected( 'default', $month_select ); ?> value="default">
-					    <?php _e( 'Latest month', 'arwloc' ); ?>
-				    </option>
-				    <option <?php selected( 'current', $month_select ); ?> value="current">
-					    <?php _e( 'Current month', 'arwloc' ); ?>
-				    </option>
-				    <option <?php selected( 'prev', $month_select ); ?> value="prev">
-					    <?php _e( 'Previous month', 'arwloc' ); ?>
-				    </option>
-				    <option <?php selected( 'next', $month_select ); ?> value="next">
-					    <?php _e( 'Next month', 'arwloc' ); ?>
-				    </option>
-			    </select>
+            <label for="<?php echo $this->get_field_id( 'month_select' ); ?>">
+                <?php _e( 'Show first: ', 'arwloc' ); ?>
+            </label>
+            <select id="arw-month_view-option" name="<?php echo $this->get_field_name( 'month_select' ); ?>">
+                <option <?php selected( 'default', $month_select ); ?> value="default">
+                    <?php _e( 'Latest month', 'arwloc' ); ?>
+                </option>
+                <option <?php selected( 'current', $month_select ); ?> value="current">
+                    <?php _e( 'Current month', 'arwloc' ); ?>
+                </option>
+                <option <?php selected( 'prev', $month_select ); ?> value="prev">
+                    <?php _e( 'Previous month', 'arwloc' ); ?>
+                </option>
+                <option <?php selected( 'next', $month_select ); ?> value="next">
+                    <?php _e( 'Next month', 'arwloc' ); ?>
+                </option>
+            </select>
         </span>
         <span class="yearOpt" style="display: <?php if(!$month_view) echo "inline-block"; else echo "none"; ?>;">
             <label>

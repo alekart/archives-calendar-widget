@@ -145,7 +145,7 @@ function archives_view($args){
 	else
 		$args['cats'] = "";
 
-	if($post_count)
+	if($post_count && $args['month_view'] == false)
 		$post_count = ", COUNT(ID) as count";
 	else
 		$post_count = "";

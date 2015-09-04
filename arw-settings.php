@@ -134,7 +134,6 @@ function archivesCalendar_options_validate($args)
 	else
 		$args['filter'] = 1;
 
-
 	if(!isset($args['javascript']) || $args['javascript'] == "" )
 		$args['javascript'] = "jQuery(document).ready(function($){\n\t$('.calendar-archives').archivesCW();\n});";
 
@@ -162,26 +161,27 @@ function archivesCalendar_options()
                     </span>
 				</p>
 				<hr />
-				<p>
+				<div>
 					<input type="checkbox" id="css" name="archivesCalendar[css]" <?php arcw_checked('css');?> /> <label for="css"><?php _e('Include CSS file', 'arwloc'); ?></label><br />
 					<span class="description"><?php _e( 'Include CSS file from the plugin.<br /><strong>It\'s recommended to copy the CSS code to your theme´s <strong>style.css</strong> and uncheck this option.', 'arwloc' ); ?></strong></span>
 					<p><strong><?php _e('Theme');?>: </strong>
-                    <?php
-                    arcw_themes_list($theme, array('name' => 'archivesCalendar[theme]', 'class' => 'theme_select', 'show_current' => true) );
-                    ?>
-					 <a href="#TB_inline?height=420&amp;width=800&amp;inlineId=ac_preview" class="thickbox button preview_theme"><?php _e('Preview');?></a><br />
-					<?php _e( "<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be restored on next plugin update.", 'arwloc' ); ?></span>
+	                    <?php
+	                    arcw_themes_list($theme, array('name' => 'archivesCalendar[theme]', 'class' => 'theme_select', 'show_current' => true) );
+	                    ?>
+						 <a href="#TB_inline?height=420&amp;width=800&amp;inlineId=ac_preview" class="thickbox button preview_theme"><?php _e('Preview');?></a><br />
+						<?php _e( "<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be restored on next plugin update.", 'arwloc' ); ?></span>
 					</p>
-				</p>
+				</div>
 				<hr/>
-				<p>
+				<div>
 					<input type="checkbox" id="js" name="archivesCalendar[js]" <?php arcw_checked('js');?> /> <label for="js"><?php _e('Insert JavaScript code into &lt;head&gt;', 'arwloc');?></label><br />
 					<span class="description"><?php _e('Insert javascript code into your theme\'s &lt;head&gt;. Uncheck only if you copy this code into your default .js file.', 'arwloc'); ?><br />
 					<strong><?php _e('This code is required.', 'arwloc');?></strong></span>
-					<div><textarea name="archivesCalendar[javascript]" style="width:500px; height:100px; font-family:'Courier', 'New Courier'; font-size: 12px;"><?php echo $options['javascript']; ?></textarea>
+					<p>
+						<textarea name="archivesCalendar[javascript]" style="width:500px; height:100px; font-family:'Courier', 'New Courier'; font-size: 12px;"><?php echo $options['javascript']; ?></textarea>
 						<br>
 						<?php _e('You can set some parameters to change the animation of the calendar.', 'arwloc'); ?>
-					</div>
+					</p>
 					<p>
 						<a href="#TB_inline?width=350&height=500&inlineId=ac_default_code" class="thickbox button preview_theme"><?php _e('Show default parameters', 'arwloc');?></a>
 					</p>
@@ -192,7 +192,7 @@ function archivesCalendar_options()
 	<?php include 'admin/default.js.txt'; ?>
 						</pre>
 					</div>
-				</p>
+				</div>
 				<hr />
 				<p>
 					<input type="checkbox" id="soptions" name="archivesCalendar[show_settings]" <?php arcw_checked('show_settings');?> /> <label for="soptions">
