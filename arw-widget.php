@@ -157,7 +157,7 @@ function archives_view($args){
 	if(count($categories))
 	{
 		$sql .= "JOIN $wpdb->term_relationships tr ON wpposts.ID = tr.object_id
-				JOIN $wpdb->term_taxonomy tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id ";
+				 JOIN $wpdb->term_taxonomy tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id ";
 		$sql .= "AND tt.term_id IN(". $args['cats'] .") ";
 		$sql .= "AND tt.taxonomy = 'category') ";
 	}
@@ -166,8 +166,6 @@ function archives_view($args){
 			AND post_status IN ('publish')
 			AND post_password=''
 			ORDER BY year DESC, month DESC";
-
-
 
 	$cal = ($args['month_view'] == false) ? archives_year_view($args, $sql) : archives_month_view($args, $sql);
 	$cal .= '<!-- END - Archives Calendar Widget by Aleksei Polechin - alek´ - http://alek.be -->';
@@ -181,7 +179,6 @@ function archives_year_view($args, $sql)
 	extract($args);
 
 	$results = $wpdb->get_results($sql);
-
 
 	$years = array();
 	foreach ($results as $date)
@@ -238,8 +235,8 @@ function archives_year_view($args, $sql)
 				$postcount = "";
 			if(isset($months[$month]))
 				$cal .= '<div class="month'.$last.' has-posts"><a href="'.get_month_link($year, $month)
-                    .make_arcw_link($post_type, $cats).
-                    '"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</a></div>';
+                    .make_arcw_link($post_type, $cats).'">
+                    <span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</a></div>';
 			else
 				$cal .= '<div class="month'.$last.'"><span class="month-name">'.$wp_locale->get_month_abbrev( $wp_locale->get_month($month) ).'</span>'.$postcount.'</div>';
 		}
