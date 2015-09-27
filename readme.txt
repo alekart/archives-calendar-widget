@@ -92,6 +92,7 @@ Please use the Support section to report issues.
 == Changelog ==
 
 = 1.0.3 =
+* [upd] Some query optimisations
 * [fix] post count request simplified
 * [fix] archives filter link
 
