@@ -247,6 +247,9 @@ $btn-green: #7ad03a;
 
 .arcw.card {
   min-width: 200px !important;
+  .calendar-archives {
+    width: 100%;
+  }
 }
 
 .ace_editor {

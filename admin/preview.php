@@ -48,7 +48,7 @@ function preview_block()
 function year_preview_html()
 {
 	?>
-	<div class="calendar-archives twentythirteen arw-theme1 arw-theme2">
+	<div class="calendar-archives arw-theme1 arw-theme2">
 		<div class="calendar-navigation">
 			<a href="#" class="prev-year"><span>&lt;</span></a>
 			<div class="menu-container years">

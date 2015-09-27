@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 3.6
 Tested up to: 4.3
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -91,8 +91,13 @@ Please use the Support section to report issues.
 
 == Changelog ==
 
+= 1.0.3 =
+* [upd] Some query optimisations
+* [fix] post count request simplified
+* [fix] archives filter link
+
 = 1.0.2 =
-* forgotten debug text removed
+* [fix] forgotten debug text removed
 
 = 1.0.1 =
 * Day one fix
@@ -200,6 +205,6 @@ Don't ask me if it is possible, i'm thinking about it... this configuration is p
 
 = Can I show a popover with list of posts? =
 
-Yes but it is not implemented in my plugin.
-You can do it with ajax request on day/month mouse over.
+Yes, with my Popover Addon.
+You can also do it with ajax request on day/month mouse over.
 I don't want to make my plugin do everything and that only 10% are used (like some softwares do).

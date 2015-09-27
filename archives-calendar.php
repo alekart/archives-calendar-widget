@@ -3,7 +3,7 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: http://labs.alek.be/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 1.0.2
+Version: 1.0.3
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3
@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ****/
 
-define ('ARCWV', '1.0.2'); // current version of the plugin
+define ('ARCWV', '1.0.3'); // current version of the plugin
 define ('ARCW_DEBUG', false); // enable or disable debug (for dev instead of echo or print_r use debug() function)
 
 $themes = array(
@@ -127,14 +127,14 @@ function make_arcw_link($type = null, $cats = null){
         if($type == 'post')
             $attrs = '';
         else
-            $attrs .= '?post_type='.$type;
+            $attrs .= '?p='.$type;
     }
-    if($cats && $cats != ''){
+    if(!empty($cats)){
         if($attrs == '')
-            $attrs .= '?category=';
+            $attrs .= '?c='.$cats;
         else
-            $attrs .= '&category=';
-        $attrs = str_replace(' ', '', $cats);
+            $attrs .= '&c='.$cats;
+	    $attrs = str_replace(' ', '', $attrs);
     }
     return $attrs;
 }
@@ -149,13 +149,13 @@ function arcw_filter($query) {
         return;
 
     if(isset($_GET)){
-        if(isset($_GET['category']) && $_GET['category'] != ''){
-            $cats = $_GET['category'];
-            $query->set( 'cat', $cats );
+        if(isset($_GET['c']) && $_GET['c'] != ''){
+            $cats = $_GET['c'];
+            $query->set( 'c', $cats );
         }
-        if(isset($_GET['post_type']) && $_GET['post_type'] != ''){
-            $post_types = explode(',', $_GET['post_type']);
-            $query->set( 'post_type', $post_types );
+        if(isset($_GET['p']) && $_GET['p'] != ''){
+            $post_types = explode(',', $_GET['p']);
+            $query->set( '', $post_types );
 
             // TODO: for now the custom post disables cat filter
             $query->set ('cat', null);
