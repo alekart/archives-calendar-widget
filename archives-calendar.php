@@ -3,7 +3,7 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: http://labs.alek.be/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 1.0.3
+Version: 1.0.4
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3
@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ****/
 
-define ('ARCWV', '1.0.3'); // current version of the plugin
+define ('ARCWV', '1.0.4'); // current version of the plugin
 define ('ARCW_DEBUG', false); // enable or disable debug (for dev instead of echo or print_r use debug() function)
 
 $themes = array(
@@ -141,7 +141,7 @@ function make_arcw_link($type = null, $cats = null){
 
 
 // Activate filter in archives page
-if($archivesCalendar_options['filter'] == 1)
+if(isset($archivesCalendar_options['filter']) && $archivesCalendar_options['filter'] == 1)
     add_action( 'pre_get_posts', 'arcw_filter' );
 
 function arcw_filter($query) {
