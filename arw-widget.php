@@ -138,20 +138,12 @@ function archives_view($args){
 	global $wpdb;
 	extract($args);
 
-	debug($post_type);
-
 	if( !empty($categories) && is_array($categories) )
 		$args['cats'] = implode(', ', $categories);
 	else
 		$args['cats'] = "";
 
-	if($post_count && $args['month_view'] == false)
-		$post_count = ", COUNT(ID) as count";
-	else
-		$post_count = "";
-
-
-	$sql = "SELECT DISTINCT YEAR(post_date) AS year $post_count, MONTH(post_date) AS month
+	$sql = "SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
 		FROM $wpdb->posts wpposts ";
 
 	if(count($categories))
@@ -183,9 +175,29 @@ function archives_year_view($args, $sql)
 	$years = array();
 	foreach ($results as $date)
 	{
-		$years[$date->year][$date->month] = $date->count;
+		if($post_count) // if set to show post count
+		{
+			$sql = "SELECT COUNT(ID) AS count FROM $wpdb->posts wpposts ";
+
+			if(count($categories))
+			{
+				$sql .= "JOIN $wpdb->term_relationships tr ON ( wpposts.ID = tr.object_id )
+					JOIN $wpdb->term_taxonomy tt ON ( tr.term_taxonomy_id = tt.term_taxonomy_id
+					AND tt.term_taxonomy_id IN(". $cats .") ) ";
+			}
+			$sql .= "WHERE post_type IN ('".implode("','", explode(',', $post_type))."')
+					AND post_status IN ('publish')
+					AND post_password=''
+					AND YEAR(post_date) = $date->year
+					AND MONTH(post_date) = $date->month";
+
+			$postcount = $wpdb->get_results($sql);
+			$count = $postcount[0]->count;
+		}
+		else
+			$count = 0;
+		$years[$date->year][$date->month] = $count;
 	}
-	debug($years);
 
 	$totalyears = count($years);
 

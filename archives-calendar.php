@@ -3,7 +3,7 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: http://labs.alek.be/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 1.0.3
+Version: 1.0.5
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3
@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ****/
 
-define ('ARCWV', '1.0.3'); // current version of the plugin
+define ('ARCWV', '1.0.5'); // current version of the plugin
 define ('ARCW_DEBUG', false); // enable or disable debug (for dev instead of echo or print_r use debug() function)
 
 $themes = array(
@@ -141,26 +141,37 @@ function make_arcw_link($type = null, $cats = null){
 
 
 // Activate filter in archives page
-if($archivesCalendar_options['filter'] == 1)
+if(isset($archivesCalendar_options['filter']) && $archivesCalendar_options['filter'] == 1)
     add_action( 'pre_get_posts', 'arcw_filter' );
 
-function arcw_filter($query) {
-    if(!is_archive() || is_admin())
-        return;
+function arcw_filter( $query ) {
+	if ( ! is_archive() || is_admin() ) {
+		return;
+	}
 
-    if(isset($_GET)){
-        if(isset($_GET['c']) && $_GET['c'] != ''){
-            $cats = $_GET['c'];
-            $query->set( 'c', $cats );
-        }
-        if(isset($_GET['p']) && $_GET['p'] != ''){
-            $post_types = explode(',', $_GET['p']);
-            $query->set( '', $post_types );
+	if ( isset( $_GET ) ) {
+		if ( isset( $_GET['c'] ) && $_GET['c'] != '' ) {
+			$cats = $_GET['c'];
+			$query->set( 'cat', $cats );
+		}
+		if ( isset( $_GET['p'] ) && $_GET['p'] != '' ) {
+			$post_types = explode( ',', $_GET['p'] );
+			$query->set( 'post_type', $post_types );
 
-            // TODO: for now the custom post disables cat filter
-            $query->set ('cat', null);
-        }
-    }
+			if(isset($cats)){
+				$query->set( 'tax_query', array(
+						'relation' => 'AND',
+						array(
+							'taxonomy' => 'category',
+							'field'    => 'term_id',
+							'terms'    => explode(',', $cats),
+							'operator' => 'IN',
+						),
+					)
+				);
+			}
+		}
+	}
 }
 
 /** DEBUG FUNCTION **/
