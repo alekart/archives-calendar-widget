@@ -151,14 +151,11 @@ function arcw_filter($query) {
     if(isset($_GET)){
         if(isset($_GET['c']) && $_GET['c'] != ''){
             $cats = $_GET['c'];
-            $query->set( 'c', $cats );
+            $query->set( 'cat', $cats );
         }
         if(isset($_GET['p']) && $_GET['p'] != ''){
             $post_types = explode(',', $_GET['p']);
-            $query->set( '', $post_types );
-
-            // TODO: for now the custom post disables cat filter
-            $query->set ('cat', null);
+            $query->set( 'post_type', $post_types );
         }
     }
 }
