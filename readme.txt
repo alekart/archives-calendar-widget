@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 3.6
 Tested up to: 4.3
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -40,11 +40,11 @@ I'm alone to test this plugin before release and I can't test everything with pa
 
 you can also configure it:
 `$defaults = array(
-    'next_text' => '˃',
-    'prev_text' => '˂',
-    'post_count' => true,
-    'month_view' => true,
-    'month_select' => 'default',
+    'next_text' => '˃', //text showing on the next year button, can be empty or HTML to use with Font Awesome for example.
+    'prev_text' => '˂', //just like next_text but for previous year button.
+    'post_count' => true, //show the number of posts for each month
+    'month_view' => true, //show months instead of years archives, false by default.
+    'month_select' => 'default', // shows the last month available with at least one post. Also `prev`, `next` or `current`.
     'different_theme' => 0, // set 1 (true) if you want to set a different theme for this widget
     'theme' => null, // theme 'name' if 'different_theme' == true
     'categories' => null, // array() -> list of categories to show
@@ -52,28 +52,18 @@ you can also configure it:
 );
 archive_calendar($args);`
 
-**next_text:** text showing on the next year button, can be empty or HTML to use with Font Awesome for example.
+`* Custom taxonomies are not supported. If your custom post_type post has no common category with post it will not be shown in the archives`
 
-**prev_text:** just like `next_text` but for previous year button.
+= ADDON =
+**Popover Addon for Archives Calendar Widget**
+[ARCW Popover Addon](https://wordpress.org/plugins/arcw-popover-addon/)
 
-**post_count:** `true` to show the number of posts for each month, `false` to hide it. If you hide post count with CSS, set to false to avoid counting posts uselessly.
-
-**month_view:** `true` to show months instead of years archives, false by default.
-
-**month_select:** `default` shows the last month available with at least one post. Also `prev`, `next` or `current`.
-
-`*  custom post_type will be included in the calendar (count too) and will be shown
-    on the archives page (via the calendar link) only if Filter is enabled in the plugin settings.
-    The categories filter will be disabled if custom post_type is set. Custom taxonomies are not supported.`
-
+= ARCW THEME EDITOR =
+[Create your own theme for the calendar](http://arcw.alek.be/)
 
 = Notes =
 Please use the Support section to report issues.
 
-= Links =
-[Project's page](http://labs.alek.be/projects/archives-calendar-widget/)
-[Other projects](http://labs.alek.be/projects/)
-[Portfolio](http://alek.be)
 
 == Installation ==
 
@@ -90,6 +80,9 @@ Please use the Support section to report issues.
 4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 1.0.5 =
+* [fix] archives filter improvement and fixes
 
 = 1.0.4 =
 * [fix] roled back sql query to 1.0.2
@@ -189,7 +182,7 @@ Please use the Support section to report issues.
 
 == Upgrade notice ==
 
-= AFTER UPDATE TO THE 1.0.0 YOU MAY NEED TO UPDATE YOUR WIDGET SETTINGS:=
+= AFTER UPDATE TO THE 1.0.X YOU MAY NEED TO UPDATE YOUR WIDGET SETTINGS:=
 Just open the settings of the widget, check if everything is ok and press "Save"
 = ------ =
 = SHORTCODE SUPPORT IS DROPPED =
@@ -200,15 +193,14 @@ Update to an older version: 0.9.91, 0.9.92 or 0.9.93 before updating to the late
 
 == Frequently asked questions ==
 
-= Custom post_type categories are not supported. =
+= Custom texonomies are not supported. =
 NO. Currently only default categories are supported.
 Custom post_type that do not have common categories with post will not be displayed in the calendar if categories filter is different of "ALL".
-If a custom post_type is selected the archives filter by category will be disabled.
-Don't ask me if it is possible, i'm thinking about it... this configuration is pretty complex in SQL request
+Don't ask me if it is possible, i'm thinking about it... need time...
 
 
 = Can I show a popover with list of posts? =
 
 Yes, with my Popover Addon.
 You can also do it with ajax request on day/month mouse over.
-I don't want to make my plugin do everything and that only 10% are used (like some softwares do).
+I don't want to make my plugin do everything like some softwares do (and that only 10% are used/usefull).

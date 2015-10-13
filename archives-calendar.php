@@ -144,20 +144,34 @@ function make_arcw_link($type = null, $cats = null){
 if(isset($archivesCalendar_options['filter']) && $archivesCalendar_options['filter'] == 1)
     add_action( 'pre_get_posts', 'arcw_filter' );
 
-function arcw_filter($query) {
-    if(!is_archive() || is_admin())
-        return;
+function arcw_filter( $query ) {
+	if ( ! is_archive() || is_admin() ) {
+		return;
+	}
 
-    if(isset($_GET)){
-        if(isset($_GET['c']) && $_GET['c'] != ''){
-            $cats = $_GET['c'];
-            $query->set( 'cat', $cats );
-        }
-        if(isset($_GET['p']) && $_GET['p'] != ''){
-            $post_types = explode(',', $_GET['p']);
-            $query->set( 'post_type', $post_types );
-        }
-    }
+	if ( isset( $_GET ) ) {
+		if ( isset( $_GET['c'] ) && $_GET['c'] != '' ) {
+			$cats = $_GET['c'];
+			$query->set( 'cat', $cats );
+		}
+		if ( isset( $_GET['p'] ) && $_GET['p'] != '' ) {
+			$post_types = explode( ',', $_GET['p'] );
+			$query->set( 'post_type', $post_types );
+
+			if(isset($cats)){
+				$query->set( 'tax_query', array(
+						'relation' => 'AND',
+						array(
+							'taxonomy' => 'category',
+							'field'    => 'term_id',
+							'terms'    => explode(',', $cats),
+							'operator' => 'IN',
+						),
+					)
+				);
+			}
+		}
+	}
 }
 
 /** DEBUG FUNCTION **/
