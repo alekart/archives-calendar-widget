@@ -38,10 +38,9 @@ function _archivesCalendar_activate()
 	$default_options = array(
 		"css"           => 1,
 		"theme"         => "calendrier",
-		"js"            => 1,
+		"plugin-init"   => 1,
 		"show_settings" => 1,
-		"filter"        => 0,
-		"javascript"    => "jQuery(document).ready(function($){\n\t$('.calendar-archives').archivesCW();\n});"
+		"filter"        => 0
 	);
 
 	$default_custom_css = file_get_contents( plugins_url( '/admin/default_custom.css' , __FILE__ ) );

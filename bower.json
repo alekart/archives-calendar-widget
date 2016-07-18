@@ -1,0 +1,18 @@
+{
+  "name": "arcw",
+  "version": "0.0.1",
+  "homepage": "none",
+  "authors": [
+    "alek"
+  ],
+  "description": "",
+  "keywords": [
+    "none"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap-sass": "^3.x.x"
+  },
+  "devDependencies": {
+  }
+}

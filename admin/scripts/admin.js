@@ -36,6 +36,16 @@ jQuery(document).ready(function ($) {
         $('.preview_theme_select li#' + theme).addClass('selected');
     }
 
+    // I'M A DEV
+    $('#imadev:checkbox').attr("checked", null);
+    $('#imadev:checkbox').change(function() {
+        if($(this).is(':checked')){
+            $('.imadev').addClass('visible');
+        }
+        else
+            $('.imadev').removeClass('visible');
+    });
+
     /* PREVIEW CALENDAR MENU */
     var $calendarArchives = $('.calendar-archives');
 

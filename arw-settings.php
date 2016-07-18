@@ -120,22 +120,15 @@ function archivesCalendar_options_validate($args)
 	if(!isset($args['theme']))
 		$args['theme'] = "default";
 
-	if(!isset($args['jquery']))
-		$args['jquery'] = 0;
-	else $args['jquery'] = 1;
-
-	if(!isset($args['js']))
-		$args['js'] = 0;
+	if(!isset($args['plugin-init']))
+		$args['plugin-init'] = 0;
 	else
-		$args['js'] = 1;
+		$args['plugin-init'] = 1;
 
 	if(!isset($args['filter']))
 		$args['filter'] = 0;
 	else
 		$args['filter'] = 1;
-
-	if(!isset($args['javascript']) || $args['javascript'] == "" )
-		$args['javascript'] = "jQuery(document).ready(function($){\n\t$('.calendar-archives').archivesCW();\n});";
 
 	return $args;
 }
@@ -150,75 +143,7 @@ function archivesCalendar_options()
 	<script type="text/javascript">
 		ARCWPATH = '<?php echo plugins_url('', __FILE__); ?>';
 	</script>
-    <div id="post-body" class="metabox-holder columns-2">
-		<div id="arcw-settings" class="tab active-tab">
-			<div id="post-body-content">
-				<p>
-					<input type="checkbox" id="filter" name="archivesCalendar[filter]" <?php arcw_checked('filter');?> /> <label for="filter">
-						<?php _e('Enable archives filter', 'arwloc');?></label><br />
-                    <span class="description">
-                        <?php _e('This will display only the categories you have selected in the widget on the Archives page.', 'arwloc');?>
-                    </span>
-				</p>
-				<hr />
-				<div>
-					<input type="checkbox" id="css" name="archivesCalendar[css]" <?php arcw_checked('css');?> /> <label for="css"><?php _e('Include CSS file', 'arwloc'); ?></label><br />
-					<span class="description"><?php _e( 'Include CSS file from the plugin.<br /><strong>It\'s recommended to copy the CSS code to your theme´s <strong>style.css</strong> and uncheck this option.', 'arwloc' ); ?></strong></span>
-					<p><strong><?php _e('Theme');?>: </strong>
-	                    <?php
-	                    arcw_themes_list($theme, array('name' => 'archivesCalendar[theme]', 'class' => 'theme_select', 'show_current' => true) );
-	                    ?>
-						 <a href="#TB_inline?height=420&amp;width=800&amp;inlineId=ac_preview" class="thickbox button preview_theme"><?php _e('Preview');?></a><br />
-						<?php _e( "<strong>NOTE:</strong> if you have modified any plugin's CSS file it will be restored on next plugin update.", 'arwloc' ); ?></span>
-					</p>
-				</div>
-				<hr/>
-				<div>
-					<input type="checkbox" id="js" name="archivesCalendar[js]" <?php arcw_checked('js');?> /> <label for="js"><?php _e('Insert JavaScript code into &lt;head&gt;', 'arwloc');?></label><br />
-					<span class="description"><?php _e('Insert javascript code into your theme\'s &lt;head&gt;. Uncheck only if you copy this code into your default .js file.', 'arwloc'); ?><br />
-					<strong><?php _e('This code is required.', 'arwloc');?></strong></span>
-					<p>
-						<textarea name="archivesCalendar[javascript]" style="width:500px; height:100px; font-family:'Courier', 'New Courier'; font-size: 12px;"><?php echo $options['javascript']; ?></textarea>
-						<br>
-						<?php _e('You can set some parameters to change the animation of the calendar.', 'arwloc'); ?>
-					</p>
-					<p>
-						<a href="#TB_inline?width=350&height=500&inlineId=ac_default_code" class="thickbox button preview_theme"><?php _e('Show default parameters', 'arwloc');?></a>
-					</p>
-
-					<div id="ac_default_code" style="display:none;">
-						<h2 class="title">$.archivesCW default parameters: <a class="button-primary" style="height: 20px; line-height: 16px;" href="<?php echo plugins_url( 'archives-calendar-widget/admin/default.js.txt' , dirname(__FILE__) ); ?>" target="_blank"><?php _e('Open', 'arwloc'); ?> .txt</a></h2>
-						<pre>
-	<?php include 'admin/default.js.txt'; ?>
-						</pre>
-					</div>
-				</div>
-				<hr />
-				<p>
-					<input type="checkbox" id="soptions" name="archivesCalendar[show_settings]" <?php arcw_checked('show_settings');?> /> <label for="soptions">
-						<?php _e('Show link to Settings in admin menu', 'arwloc');?></label><br />
-					<span class="description"><?php _e('Show link "Archives Calendar" in admin "Settings" menu. If unchecked you can enter settings from "Settings" link in "Plugins" page.', 'arwloc');?></span>
-				</p>
-
-				<hr />
-				<p>
-					<input name="Submit" type="submit" style="margin:20px 0;" class="button-primary" value="<?php _e('Save Changes') ?>" />
-				</p>
-				<?php
-				require 'admin/preview.php';
-                preview_block();
-				?>
-			</div>
-
-			<div id="postbox-container-1" class="postbox-container">
-                <div class="postbox">
-                    <div class="inside" style="padding:15px;">
-                            <?php sideBox(); ?>
-                    </div>
-                </div>
-			</div>
-		</div>
-    </div>
+    <?php include 'arw-settings-view.php'; ?>
 <?php
 }
 
