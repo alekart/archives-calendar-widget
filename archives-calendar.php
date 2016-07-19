@@ -73,7 +73,7 @@ function archivesCalendar_init() {
 }
 
 function arcw_plugin_action_links( $links ) {
-	$links[] = '<a href="' . get_admin_url( null, 'options-general.php?page=Arrchives_Calendar_Widget' ) . '">' . __( 'Settings' ) . '</a>';
+	$links[] = '<a href="' . get_admin_url( null, 'options-general.php?page=Archives_Calendar_Widget' ) . '">' . __( 'Settings' ) . '</a>';
 
 	return $links;
 }

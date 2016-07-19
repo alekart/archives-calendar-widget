@@ -11,7 +11,7 @@ require 'arw-editor.php';
 
 class Archives_Calendar_Widget_Settings {
 
-	private $plugin_options_key = 'Arrchives_Calendar_Widget';
+	private $plugin_options_key = 'Archives_Calendar_Widget';
 	private $general_settings_key = 'settings';
 	private $advanced_settings_key = 'themer';
 	private $tabs = array();
@@ -41,7 +41,7 @@ class Archives_Calendar_Widget_Settings {
 		$arcw_page = add_options_page('Archives Calendar Settings', 'Archives Calendar', 'manage_options', $this->plugin_options_key, array( &$this, 'archives_calendar_options_page' ));
 		remove_submenu_page( 'options-general.php', 'archives_calendar_editor' );
 		if($archivesCalendar_options['show_settings'] == 0)
-			remove_submenu_page( 'options-general.php', 'archives_calendar' );
+			remove_submenu_page( 'options-general.php', 'Archives_Calendar_Widget' );
 
 		add_action('admin_print_scripts-'.$arcw_page, 'arcw_admin_scripts');
 	}
@@ -183,11 +183,11 @@ function sideBox() {
     ?>
     <h2 style="font-size:24px; margin:0;"><?php _e('More');?></h2>
     <hr>
-    <p style="text-align: center">
-        <a href="https://github.com/alekart?tab=repositories" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/GitHub.png" alt="alek on GitHub" title="My projects on Github" /></a>
-        <a href="http://profiles.wordpress.org/alekart/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/wordpress.png" alt="alek´ on WordPress" title="My WordPress projects" /></a>
-        <a href="http://labs.alek.be/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/alabs.png" alt="My blog" /></a>
-        <a href="http://alek.be/" target="_blank" class="alek-links"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/alek.png" alt="alek´ portfolio" alt="My portfolio" /></a>
+    <p class="alek-links">
+        <a href="https://github.com/alekart?tab=repositories" target="_blank"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/logo-github.svg" alt="alek on GitHub" title="My projects on Github" /></a>
+        <a href="http://profiles.wordpress.org/alekart/" target="_blank"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/logo-wordpress.svg" alt="alek´ on WordPress" title="My WordPress projects" /></a>
+        <a href="http://labs.alek.be/" target="_blank"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/logo-alabs.svg" alt="My blog" /></a>
+        <a href="http://alek.be/" target="_blank"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/logo-alek.svg" alt="My portfolio" /></a>
     </p>
     <hr>
     <p>
