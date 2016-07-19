@@ -23,7 +23,7 @@ I'm alone to test this plugin before release and I can't test everything with pa
 * Displays monthly archives as a compact year calendar
 * Displays daily archives as a compact month calendar
 * Show/hide monthly post count
-* 8 themes included (with LESS files)
+* 8 themes included (with SCSS files)
 * 2 Custom themes that keep your CSS styles even after the plugin update
 * Different theme for each widget
 * Show widget with previous/current/next or last available month
@@ -62,7 +62,7 @@ archive_calendar($args);`
 [Create your own theme for the calendar](http://arcw.alek.be/)
 
 = Notes =
-Please use the Support section to report issues.
+Please use the Support section to report issues. No support will be provided via email.
 
 
 == Installation ==
