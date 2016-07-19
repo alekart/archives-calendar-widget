@@ -56,27 +56,26 @@ module.exports = function (grunt) {
 			options: {
 				separator: ';'
 			},
-			lib: {
-				src: ['./scripts/lib/{,**/}*.js'],
-				dest: './scripts/lib.js'
-			},
-			main: {
-				src: ['./scripts/lib.js', './scripts/main.js'],
-				dest: './js/main.js'
+			files: {
+				'admin/js/admin.js': ['admin/scripts/admin.js'],
+				'admin/js/themer.js': ['admin/scripts/themer.js'],
+				'admin/js/widgets-page.js': ['admin/scripts/widgets-page.js'],
+				'admin/js/jquery.arcw.js': ['admin/scripts/jquery.arcw.js'],
+				'admin/js/jquery.arcw-init.js': ['admin/scripts/jquery.arcw.js', 'admin/scripts/jquery.arcw-init.js']
 			}
 		},
 
 		uglify: {
 			options: {
-				mangle: false
+				mangle: true
 			},
 			scripts: {
 				files: {
-					'admin/js/admin.min.js': ['admin/scripts/admin.js'],
-					'admin/js/themer.min.js': ['admin/scripts/themer.js'],
-					'admin/js/widgets-page.min.js': ['admin/scripts/widgets-page.js'],
-					'admin/js/jquery.arcw.min.js': ['admin/scripts/jquery.arcw.js'],
-					'admin/js/jquery.arcw-init.min.js': ['admin/scripts/jquery.arcw.js', 'admin/scripts/jquery.arcw-init.js']
+					'admin/js/admin.js': ['admin/scripts/admin.js'],
+					'admin/js/themer.js': ['admin/scripts/themer.js'],
+					'admin/js/widgets-page.js': ['admin/scripts/widgets-page.js'],
+					'admin/js/jquery.arcw.js': ['admin/scripts/jquery.arcw.js'],
+					'admin/js/jquery.arcw-init.js': ['admin/scripts/jquery.arcw.js', 'admin/scripts/jquery.arcw-init.js']
 				}
 			}
 		},
@@ -119,14 +118,12 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('default', [
 		'compass:dev',
-		// 'concat',
-		'uglify',
+		'concat',
 		'watch'
 	]);
 	grunt.registerTask('build', [
 		'compass:dist',
 		'compass:themes',
-		// 'concat',
 		'uglify'
 	]);
 

@@ -80,7 +80,7 @@ function arcw_plugin_action_links( $links ) {
 
 function archivesCalendar_jquery_plugin() {
 	global $archivesCalendar_options;
-	$jQarcw = $archivesCalendar_options['plugin-init'] == 1 ? '/admin/js/jquery.arcw-init.min.js' : '/admin/js/jquery.arcw.min.js';
+	$jQarcw = $archivesCalendar_options['plugin-init'] == 1 ? '/admin/js/jquery.arcw-init.js' : '/admin/js/jquery.arcw.js';
 	wp_register_script( 'jquery-arcw', plugins_url( $jQarcw, __FILE__ ), array( "jquery" ), ARCWV );
 	wp_enqueue_script( 'jquery-arcw' );
 }
@@ -92,7 +92,7 @@ function archives_calendar_styles() {
 }
 
 function arcw_admin_widgets_scripts() {
-	wp_register_script( 'arcwpWidgetsPage', plugins_url( '/admin/js/widgets-page.min.js', __FILE__ ), array(), ARCWV );
+	wp_register_script( 'arcwpWidgetsPage', plugins_url( '/admin/js/widgets-page.js', __FILE__ ), array(), ARCWV );
 	wp_enqueue_script( 'arcwpWidgetsPage' );
 }
 
