@@ -30,24 +30,26 @@ module.exports = function (grunt) {
 			options: {
 				importPath: './bower_components'
 			},
-			dist: {
-				options: {
-					sassDir: 'admin/scss',
-					cssDir: 'admin/css/',
-					environment: 'production'
-				}
-			},
 			dev: {
 				options: {
 					sassDir: 'admin/scss',
 					cssDir: 'admin/css/'
 				}
 			},
+			dist: {
+				options: {
+					sassDir: 'admin/scss',
+					cssDir: 'admin/css/',
+					environment: 'production',
+					outputStyle: 'compressed'
+				}
+			},
 			themes: {
 				options: {
 					sassDir: 'themes/scss',
 					cssDir: 'themes/',
-					environment: 'production'
+					environment: 'production',
+					outputStyle: 'compressed'
 				}
 			}
 		},
