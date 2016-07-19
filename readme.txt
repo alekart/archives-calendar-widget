@@ -39,7 +39,9 @@ I'm alone to test this plugin before release and I can't test everything with pa
 `archive_calendar();`
 
 you can also configure it:
-`$defaults = array(
+
+`
+$defaults = array(
     'next_text' => '˃', //text showing on the next year button, can be empty or HTML to use with Font Awesome for example.
     'prev_text' => '˂', //just like next_text but for previous year button.
     'post_count' => true, //show the number of posts for each month
@@ -50,9 +52,10 @@ you can also configure it:
     'categories' => null, // array() -> list of categories to show
     'post_type' => null // array() -> list of post types to show
 );
-archive_calendar($args);`
+archive_calendar($args);
+`
 
-`* Custom taxonomies are not supported. If your custom post_type post has no common category with post it will not be shown in the archives`
+**Custom taxonomies are not supported. If your custom post_type post has no common category with post it will not be shown in the archives**
 
 = ADDON =
 **Popover Addon for Archives Calendar Widget**
@@ -80,6 +83,14 @@ Please use the Support section to report issues. No support will be provided via
 4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 1.0.6 =
+* [upd] refactor plugin settings
+* [upd] change jQuery plugin initialisation
+* [upd] change archives filter url
+* [upd] add title attribute on days/month with posts
+* [fix] today date based on timezone
+* [upd] themes converted to SCSS format
 
 = 1.0.5 =
 * [fix] archives filter improvement and fixes
