@@ -238,10 +238,15 @@ pre {
 }
 /* line 63, ../scss/style.scss */
 .settings_page_Arrchives_Calendar_Widget #TB_title .tb-close-icon {
-  padding: 10px;
+  padding: 0 10px 0;
+}
+/* line 67, ../scss/style.scss */
+.settings_page_Arrchives_Calendar_Widget #TB_closeWindowButton:focus {
+  outline: none;
+  box-shadow: none;
 }
 
-/* line 69, ../scss/style.scss */
+/* line 73, ../scss/style.scss */
 .preview_theme_select {
   width: 150px;
   height: 100%;
@@ -253,32 +258,32 @@ pre {
   border-right: 1px solid #CCCCCC;
   z-index: 10;
 }
-/* line 79, ../scss/style.scss */
+/* line 83, ../scss/style.scss */
 .preview_theme_select li {
   list-style: none;
   padding: 5px 15px;
   margin: 0;
 }
-/* line 83, ../scss/style.scss */
+/* line 87, ../scss/style.scss */
 .preview_theme_select li.selector-title {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
 }
-/* line 88, ../scss/style.scss */
+/* line 92, ../scss/style.scss */
 .preview_theme_select li.preview-theme {
   cursor: pointer;
 }
-/* line 90, ../scss/style.scss */
+/* line 94, ../scss/style.scss */
 .preview_theme_select li.preview-theme:hover {
   background: #E8E8E8;
 }
-/* line 93, ../scss/style.scss */
+/* line 97, ../scss/style.scss */
 .preview_theme_select li.preview-theme.selected {
   background: #298CBA;
 }
 
-/* line 100, ../scss/style.scss */
+/* line 104, ../scss/style.scss */
 .modal-buttons {
   position: absolute;
   bottom: 0;
@@ -290,25 +295,25 @@ pre {
   text-align: right;
 }
 
-/* line 112, ../scss/style.scss */
+/* line 116, ../scss/style.scss */
 .control-section-title .accordion-section-title:after {
   display: none !important;
 }
 
-/* line 117, ../scss/style.scss */
+/* line 121, ../scss/style.scss */
 #preview {
   width: 250px;
   margin: auto;
   margin-bottom: 20px;
 }
 
-/* line 123, ../scss/style.scss */
+/* line 127, ../scss/style.scss */
 .calendar-archives {
   margin-bottom: 20px;
   margin-top: 20px;
 }
 
-/* line 128, ../scss/style.scss */
+/* line 132, ../scss/style.scss */
 #editor1, #editor2 {
   width: 100%;
   height: 600px;
@@ -320,22 +325,22 @@ pre {
   border-top: none;
 }
 
-/* line 139, ../scss/style.scss */
+/* line 143, ../scss/style.scss */
 textarea.hidden {
   display: none;
 }
 
-/* line 143, ../scss/style.scss */
+/* line 147, ../scss/style.scss */
 .tabs .tab {
   display: none;
 }
 
-/* line 147, ../scss/style.scss */
+/* line 151, ../scss/style.scss */
 .tabs .tab.active-tab {
   display: block;
 }
 
-/* line 151, ../scss/style.scss */
+/* line 155, ../scss/style.scss */
 h2.nav-tab-wrapper.custom {
   padding: 0 !important;
   margin-bottom: 0 !important;
@@ -343,89 +348,70 @@ h2.nav-tab-wrapper.custom {
   /*text-align: right!important;;*/
 }
 
-/* line 158, ../scss/style.scss */
+/* line 162, ../scss/style.scss */
 h2.nav-tab-wrapper.custom .nav-tab-active {
   background: #272822;
   color: #FFF;
   /*text-align: right!important;;*/
 }
 
-/* line 164, ../scss/style.scss */
+/* line 168, ../scss/style.scss */
 .updated.warning {
   border-left: 4px solid #ffb019;
   background-color: #FFFDDB;
 }
 
-/* line 171, ../scss/style.scss */
+/* line 175, ../scss/style.scss */
 .button-green {
   background: #7ad03a !important;
   border-color: #62ae29 !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 0 rgba(0, 0, 0, 0.15) !important;
 }
-/* line 175, ../scss/style.scss */
+/* line 179, ../scss/style.scss */
 .button-green:hover {
   background: #6dc22e !important;
 }
 
-/* line 180, ../scss/style.scss */
+/* line 184, ../scss/style.scss */
 .arcw.card {
   min-width: 200px !important;
 }
-/* line 182, ../scss/style.scss */
+/* line 186, ../scss/style.scss */
 .arcw.card .calendar-archives {
   width: 100%;
 }
 
-/* line 187, ../scss/style.scss */
+/* line 191, ../scss/style.scss */
 .ace_editor {
   width: auto !important;
 }
 
-/* line 191, ../scss/style.scss */
+/* line 195, ../scss/style.scss */
 #post-body.columns-2 #postbox-container-1 {
   float: right;
   margin-right: -310px;
   width: 300px;
 }
 
-/* line 197, ../scss/style.scss */
+/* line 201, ../scss/style.scss */
 #themer-logo {
   display: block;
   float: left;
   height: 100px;
 }
 
-/* line 203, ../scss/style.scss */
+/* line 207, ../scss/style.scss */
 #poststuff .card > h2 {
   margin-top: 10px;
 }
 
-/* line 207, ../scss/style.scss */
+/* line 211, ../scss/style.scss */
 .new {
   border: 1px solid #7ad03a;
   border-left: 4px solid #7ad03a;
 }
 
-/* line 212, ../scss/style.scss */
-.imadev {
-  visibility: hidden;
-  height: 0px;
-  overflow: hidden;
-  max-width: 100%;
-}
-/* line 219, ../scss/style.scss */
-.imadev:not(.visible) {
-  margin: 0;
-  padding: 0;
-}
-/* line 223, ../scss/style.scss */
-.imadev.visible {
-  visibility: visible !important;
-  height: auto !important;
-  overflow: auto !important;
-}
-
-/* line 230, ../scss/style.scss */
+/* line 216, ../scss/style.scss */
 code {
   display: block;
 }

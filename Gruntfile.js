@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 
 		watch: {
 			compass: {
-				files: ['admin/scss/{,**/}*.scss', 'themes/scss/*.scss'],
+				files: ['admin/scss/{,**/}*.scss', 'themes/scss/{,**/}*.scss'],
 				tasks: ['compass:dev', 'compass:themes']
 			},
 			scripts: {
@@ -33,20 +33,20 @@ module.exports = function (grunt) {
 			dist: {
 				options: {
 					sassDir: 'admin/scss',
-					cssDir: 'admin/css',
+					cssDir: 'admin/css/',
 					environment: 'production'
 				}
 			},
 			dev: {
 				options: {
 					sassDir: 'admin/scss',
-					cssDir: 'admin/css'
+					cssDir: 'admin/css/'
 				}
 			},
 			themes: {
 				options: {
 					sassDir: 'themes/scss',
-					cssDir: 'themes',
+					cssDir: 'themes/',
 					environment: 'production'
 				}
 			}

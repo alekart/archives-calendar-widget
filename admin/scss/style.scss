@@ -61,8 +61,12 @@ pre {
 	#TB_title {
 		padding: 10px;
 		.tb-close-icon {
-			padding: 10px;
+			padding: 0 10px 0;
 		}
+	}
+	#TB_closeWindowButton:focus{
+		outline: none;
+		box-shadow: none;
 	}
 }
 
@@ -207,24 +211,6 @@ $btn-green: #7ad03a;
 .new {
 	border: 1px solid #7ad03a;
 	border-left: 4px solid #7ad03a;
-}
-
-.imadev {
-	visibility: hidden;
-	height: 0px;
-	overflow: hidden;
-	max-width: 100%;
-
-
-	&:not(.visible){
-		margin: 0;
-		padding: 0;
-	}
-	&.visible {
-		visibility: visible !important;
-		height: auto !important;
-		overflow: auto !important;
-	}
 }
 
 code {

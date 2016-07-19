@@ -1,3 +1,22 @@
+<style>
+	.imadev {
+		visibility: hidden;
+		height: 0px;
+		overflow: hidden;
+		max-width: 100%;
+	}
+
+	.imadev:not(.visible) {
+		margin: 0;
+		padding: 0;
+	}
+
+	.imadev.visible {
+		visibility: visible !important;
+		height: auto !important;
+		overflow: auto !important;
+	}
+</style>
 <div id="post-body" class="metabox-holder columns-2">
 	<div id="arcw-settings" class="tab active-tab">
 		<div id="post-body-content">
@@ -74,7 +93,7 @@
 						<tr>
 							<th scope="row">
 								<label for="css">
-									<?php _e( 'Enqueue theme style', 'arwloc' ); ?>
+									<?php _e( 'Enqueue ARCW theme CSS', 'arwloc' ); ?>
 								</label>
 							</th>
 							<td>
