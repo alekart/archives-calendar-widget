@@ -271,9 +271,9 @@ function archives_month_view($args, $sql)
 	if(count($months) == 0)
 		$month_select = 'empty';
 
-	$todayDay = intval(date('d'));
-	$todayMonth = intval(date('m'));
-	$todayYear = intval(date('Y'));
+	$todayDay = intval(current_time('d'));
+	$todayMonth = intval(current_time('m'));
+	$todayYear = intval(current_time('Y'));
 
 	if( is_archive() )
 	{
