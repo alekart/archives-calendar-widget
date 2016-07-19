@@ -1,9 +1,5 @@
-@import "mixins/gradients";
-@import "mixins/vendor-prefixes";
-
-@mixin rounded($val) {
-  border-radius: $val;
-}
+@import "gradients";
+@import "vendor-prefixes";
 
 @mixin boxShadow($x, $y, $dist, $color) {
   -moz-box-shadow: $x $y $dist $color;

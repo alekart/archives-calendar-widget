@@ -1,0 +1,141 @@
+// Nav buttons Next/Prev
+.calendar-archives.#{$theme-name} .calendar-navigation {
+	height: $navigation-height !important;
+	border-radius: 5px 5px 0 0;
+	border-bottom: 0;
+	color: $text-color;
+	text-shadow: -1px -1px 0px rgba(0,0,0,.4);
+	@include gradient-vertical(#cd310d, #b32b0c);
+
+	> .prev-year,
+	> .next-year {
+		width: 30px;
+		border-radius: $border-radius;
+		font-size: 18px;
+		text-align: center;
+		color: $text-color;
+
+		&:hover {
+			background-color: rgba(255,255,255,.1);
+		}
+
+		&.disabled {
+			opacity: .4;
+			cursor: default;
+			&:hover {
+				background-color: transparent;
+			}
+		}
+	}
+
+	> .prev-year {
+		border-right: 1px rgba(255,255,255,.2) solid;
+		border-radius: 5px 0 0 0;
+		box-shadow: -1px 0 0 rgba(0,0,0,.2) inset;
+	}
+
+	> .next-year {
+		border-left: 1px rgba(0,0,0,.2) solid;
+		border-radius: 0 5px 0 0;
+		box-shadow: 1px 0 0 rgba(255,255,255,.2) inset;
+	}
+
+}
+
+// Nav menu
+.calendar-archives.#{$theme-name} .calendar-navigation {
+	> .menu-container {
+		position: relative;
+		height: $navigation-height;
+		padding: 0;
+		text-align: center;
+		text-transform: capitalize;
+
+		&:hover {
+			//background-color: #EA8462;
+			> .arrow-down {
+				box-shadow: 1px 0 0 rgba(255,255,255,.2) inset;
+				border-left: 1px rgba(0,0,0,.2) solid;
+			}
+		}
+
+		> a.title {
+			display: block;
+			height: $navigation-height;
+			line-height: $navigation-height;
+			color: $text-color;
+			vertical-align: middle;
+
+			&:hover {
+
+			}
+			&:visited {
+
+			}
+		}
+
+		> ul, > ul > li {
+			margin: 0;
+			padding: 0;
+		}
+
+		> ul.menu {
+			position: absolute;
+			display: none;
+			width: 100%;
+			top: 0;
+			overflow: hidden;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0,0,0,.5);
+			background-color: #FFF;
+		}
+
+		li {
+			display: block;
+			> a {
+				display: block;
+				text-shadow: none;
+				color: #555;
+				&:hover {
+					cursor: pointer;
+					color: #FFF;
+					@include gradient-vertical(#cd310d, #b32b0c);
+				}
+				&.selected {
+					color: $text-color;
+					@include gradient-vertical(#cd310d, #b32b0c);
+					&:hover {
+						text-decoration: none;
+						cursor: default;
+					}
+				}
+				&.current {
+
+				}
+			}
+		}
+
+		> .arrow-down {
+			position: absolute;
+			width: 24px;
+			top: 0;
+			right: 0;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color: $text-color;
+			font-size: 10px;
+			cursor: pointer;
+			&:hover {
+				background-color: rgba(255,255,255,.1);
+			}
+		}
+
+		&.years {
+
+		}
+
+		&.months {
+
+		}
+	}
+}

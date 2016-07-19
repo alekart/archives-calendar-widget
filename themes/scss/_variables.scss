@@ -1,0 +1,23 @@
+/** Variables **/
+/*=============*/
+
+$preview-background: #FFFFFF;
+
+$brand-primary: #1b97e0;
+$text-color: #FFF;
+
+//=== Border radius values
+$border-radius: 0px;
+$border-radius-large: 3px;
+
+//=== Day/Month
+// day
+$day-width: 14.28571428571429%; // 100%(line width) - 3%(margin-right) * 3(last one is 0) / 4(months per line)
+$day-height: 20px;
+// months
+$month-width: 25%;
+$month-height: 50px;
+
+//=== Nav configuration
+$navigation-height: 30px;
+$menu-bg-color: #FFF;

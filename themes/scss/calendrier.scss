@@ -1,75 +1,76 @@
-$theme-name: 'twentythirteen';
+$theme-name: 'calendrier';
 
 @import "mixins/mixins";
 
 /* Base variables */
 @import "variables";
 /* Customize variables below */
-$preview-background: #220E10;
-$brand-primary: #e05d22;
-$border-radius: 2px;
+$preview-background: #FFFFFF;
+$brand-primary: #5ebce5;
+$border-radius: 0px;
 
 /* Base common CSS : DON'T CHANGE */
 @import "base";
 
 /** CALENDAR NAVIGATION BLOCK (top) **/
-@import "partials/twentythirteen_nav";
+@import "partials/calendrier_nav";
 
 .calendar-archives.#{$theme-name} {
+	box-shadow: 0px 3px 6px rgba(0,0,0,.3);
+	border-radius: 5px 5px 0 0;
+
 	a {
 		text-decoration: none;
 	}
 
 	/** CALENDAR GRID BLOCK **/
 	> .archives-years {
-		background-color: #220E10;
+		border: 1px #e6e6e6 solid;
+		border-bottom: none;
 	}
 	// Month and Day, common styles
 	.month, .day {
-		position: relative;
 		display: block;
-		overflow: hidden;
-		float: left;
-		color: #e6402a;
-		background: #3a1c1f;
-		border-bottom: 1px #220E10 solid;
-		border-right: 1px #220E10 solid;
-		border-radius: $border-radius-large;
+		color: #999;
+		border-bottom: 1px #e6e6e6 solid;
+		border-right: 1px #e6e6e6 solid;
+		border-radius: $border-radius;
+		background-color: #FFF;
 
 		// Month/day with posts
 		&.has-posts {
-
+			background-color: #cd310d;
 			a {
 				display: block;
 				width: 100%;
 				height: 100%;
-				border-bottom: 3px solid #b93207;
-				border-radius: $border-radius-large;
-				color: $text-color;
-				@include gradient-vertical(#e05d22, #d94412);
+				border-radius: $border-radius;
+				color: #FFFFFF;
+				background-color: #cd310d;
 
 				&:hover {
-					@include gradient-vertical(#ed6a31, #e55627);
+					background-color: rgba(255,255,255,.2);
 				}
 			}
 		}
 		// last month/day of a single line
 		&.last {
+			border-right: none;
 			margin-right: 0 !important;
 		}
 	}
 
 	// MONTH only styles
 	.month {
-		width: 25%; // 100%(line width) - 3%(margin-right) * 3(last one is 0) / 4(months per line)
-		height: 50px;
+		width: $month-width;
+		height: $month-height;
 		// Month name inside a month square
 		.month-name {
+			position: absolute;
+			display: block;
 			text-transform: capitalize;
 			font-size: 16px;
 			font-weight: 400;
-			display: block;
-			position: absolute;
 			top: 6px;
 			left: 8px;
 		}
@@ -92,22 +93,21 @@ $border-radius: 2px;
 
 	// DAY only styles
 	.day {
-		width: 14.285% !important;
-		height: 25px;
-		padding: 5px 0;
+		width: $day-width !important;
+		padding: 8px 0;
 		text-align: center;
-		line-height: 100%;
+		line-height: 1.4em;
 		// Day with posts
 
 		&.has-posts {
 			padding: 0;
 			a {
-				padding: 5px 0 !important;
+				padding: 8px 0 !important;
 				text-decoration: none;
 			}
 		}
 		&.noday {
-			border: none;
+			//border: none;
 			box-shadow: none;
 			background: none !important;
 		}
@@ -115,11 +115,12 @@ $border-radius: 2px;
 		&.weekday {
 			display: inline-block;
 			border: none;
-			font-size: 85%;
-			color: $text-color;
+			color: #666;
+			font-size: 76%;
 			text-transform: uppercase;
-			box-shadow: none;
-			background: none !important;
+			//font-weight: bold;
+			//box-shadow: none;
+			//background-color: #fca588;
 		}
 	}
 
@@ -128,11 +129,10 @@ $border-radius: 2px;
 		margin: 0;
 		padding: 0;
 		overflow: hidden;
-		background: #220E10;
 		// line with weekday names
 		&.weekdays {
-			margin-bottom: 3px;
+			border-right: 1px #e6e6e6 solid;
+			border-left: 1px #e6e6e6 solid;
 		}
 	}
 }
-
