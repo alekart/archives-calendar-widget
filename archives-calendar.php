@@ -118,14 +118,14 @@ function make_arcw_link( $type = null, $cats = null ) {
 		if ( $type == 'post' ) {
 			$attrs = '';
 		} else {
-			$attrs .= '?p=' . $type;
+			$attrs .= '?arcw/type/' . $type;
 		}
 	}
 	if ( ! empty( $cats ) ) {
 		if ( $attrs == '' ) {
-			$attrs .= '?c=' . $cats;
+			$attrs .= '?arcw/cat/' . $cats;
 		} else {
-			$attrs .= '&c=' . $cats;
+			$attrs .= '/cat/' . $cats;
 		}
 		$attrs = str_replace( ' ', '', $attrs );
 	}
@@ -144,13 +144,22 @@ function arcw_filter( $query ) {
 		return;
 	}
 
-	if ( isset( $_GET ) ) {
-		if ( isset( $_GET['c'] ) && $_GET['c'] != '' ) {
-			$cats = $_GET['c'];
+	$url    = $_SERVER['REQUEST_URI'];
+	$params = explode( '?arcw/', $url );
+	if ( isset( $params[1] ) ) {
+		$re = "/cat\\/([^\\/]+)/";
+		preg_match( $re, $params[1], $cats );
+		if ( $cats[1] ) {
+			$cats = $cats[1];
+			echo $cats;
 			$query->set( 'cat', $cats );
 		}
-		if ( isset( $_GET['p'] ) && $_GET['p'] != '' ) {
-			$post_types = explode( ',', $_GET['p'] );
+
+		$re = "/type\\/([^\\/]+)/";
+		preg_match( $re, $params[1], $types );
+		if ( $types[1] ) {
+			$post_types = explode( ',', $types[1] );
+			print_r( $post_types );
 			$query->set( 'post_type', $post_types );
 
 			if ( isset( $cats ) ) {
