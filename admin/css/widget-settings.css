@@ -1,14 +1,1 @@
-/* line 1, ../scss/widget-settings.scss */
-.arcw-accordion.accordion-container {
-  position: relative;
-}
-/* line 5, ../scss/widget-settings.scss */
-.arcw-accordion.accordion-container > .accordion-section > .accordion-section-content {
-  display: none;
-  position: relative !important;
-  left: 0px !important;
-}
-/* line 11, ../scss/widget-settings.scss */
-.arcw-accordion.accordion-container > .accordion-section.open > .accordion-section-content {
-  display: block !important;
-}
+.arcw-accordion.accordion-container{position:relative}.arcw-accordion.accordion-container>.accordion-section>.accordion-section-content{display:none;position:relative !important;left:0px !important}.arcw-accordion.accordion-container>.accordion-section.open>.accordion-section-content{display:block !important}
