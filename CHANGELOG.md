@@ -2,11 +2,13 @@
 
 ## 1.0.6
 * [upd] refactor plugin settings
-* [upd] change jQuery plugin initialisation 
-* [upd] change archives filter url
+* [upd] change default settings
+* [upd] change jQuery plugin initialisation method
+* [upd] change archives filter url to something more sexy
 * [upd] add title attribute on days/month with posts
-* [fix] today date based on timezone
-* [upd] themes converted to SCSS format
+* [fix] `today` date based on timezone
+* [upd] all themes converted to SCSS format (no more LESS)
+* [fix] plugin settings were not updated with the new ones on plugin activation after an update
 
 ## 1.0.5
 * [fix] archives filter improvement and fixes
