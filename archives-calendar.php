@@ -58,6 +58,7 @@ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'arcw_plugin_a
 add_action( 'wp_enqueue_scripts', 'archivesCalendar_jquery_plugin' );
 // Scripts to be included on Widget configuration page
 add_action( 'admin_print_scripts-widgets.php', 'arcw_admin_widgets_scripts' );
+add_action( 'admin_print_scripts-customize.php', 'arcw_admin_widgets_scripts' );
 
 if ( $archivesCalendar_options['css'] == 1 ) // Archives Calendar Widget Themes CSS
 {
@@ -92,8 +93,10 @@ function archives_calendar_styles() {
 }
 
 function arcw_admin_widgets_scripts() {
+	wp_register_style( 'arcw-widget-settings', plugins_url( '/admin/css/widget-settings.css', __FILE__ ), array(), ARCWV );
 	wp_register_script( 'arcwpWidgetsPage', plugins_url( '/admin/js/widgets-page.js', __FILE__ ), array(), ARCWV );
 	wp_enqueue_script( 'arcwpWidgetsPage' );
+	wp_enqueue_style( 'arcw-widget-settings' );
 }
 
 /***** CHECK MULTISITE NETWORK *****/

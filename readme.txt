@@ -24,14 +24,14 @@ I'm alone to test this plugin before release and I can't test everything with pa
 * Displays daily archives as a compact month calendar
 * Show/hide monthly post count
 * 8 themes included (with SCSS files)
-* 2 Custom themes that keep your CSS styles even after the plugin update
+* 2 Custom themes that keep your CSS style even after the plugin update
 * Different theme for each widget
 * Show widget with previous/current/next or last available month
 * Category select. Show post only from selected categories
 * Filter Archives page by categories you set in the widget
-* Custom post_type support (partial*)
+* Custom post_type partial* support
 * Entirely customizable with CSS
-* .PO/.MO Localisation (Fançais, Deutsch, Español, Portugues, Simplified Chinese, Serbo-Croatian)
+* .PO/.MO Localisation English/Fançais + OUTDATED: [Deutsch, Español, Portugues, Simplified Chinese, Serbo-Croatian]
 * jQuery animated with possibility to use your own JS code.
 
 **Not just a widget**, if your theme does not support widgets, you can use this calendar by calling its **function**:
@@ -46,11 +46,11 @@ $defaults = array(
     'prev_text' => '˂', //just like next_text but for previous year button.
     'post_count' => true, //show the number of posts for each month
     'month_view' => true, //show months instead of years archives, false by default.
-    'month_select' => 'default', // shows the last month available with at least one post. Also `prev`, `next` or `current`.
+    'month_select' => 'default', // shows the last month available with at least one post. ('prev', 'next', 'current').
     'different_theme' => 0, // set 1 (true) if you want to set a different theme for this widget
     'theme' => null, // theme 'name' if 'different_theme' == true
-    'categories' => null, // array() -> list of categories to show
-    'post_type' => null // array() -> list of post types to show
+    'categories' => null, // array() -> list of categories IDs to show. array(1,2,34)
+    'post_type' => null // array() -> list of post types to show. array('post', 'movies')
 );
 archive_calendar($args);
 `
@@ -88,11 +88,12 @@ Please use the Support section to report issues. **No support will be provided v
 * [upd] refactor plugin settings
 * [upd] change default settings
 * [upd] change jQuery plugin initialisation method
-* [upd] change archives filter url to something more sexy
+* [upd] change "archives filter" url to something more sexy. Hopefully fixes some conflicts with some $_GET params
 * [upd] add title attribute on days/month with posts
 * [fix] `today` date based on timezone
 * [upd] all themes converted to SCSS format (no more LESS)
 * [fix] plugin settings were not updated with the new ones on plugin activation after an update
+* [fix] issue with the widget settings in "Customizer", could not select any category.
 
 = 1.0.5 =
 * [fix] archives filter improvement and fixes

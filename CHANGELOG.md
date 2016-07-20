@@ -9,6 +9,7 @@
 * [fix] `today` date based on timezone
 * [upd] all themes converted to SCSS format (no more LESS)
 * [fix] plugin settings were not updated with the new ones on plugin activation after an update
+* [fix] issue with the widget settings in "Customizer", could not select any category.
 
 ## 1.0.5
 * [fix] archives filter improvement and fixes

@@ -107,7 +107,7 @@ module.exports = function (grunt) {
 					'!node_modules/**',
 					'!admin/scripts/**',
 					'!admin/scss/**',
-					'!*.{js,scss,json}'
+					'!*.{js,scss,json,md}'
 				],
 				dest: 'dist/'
 			}

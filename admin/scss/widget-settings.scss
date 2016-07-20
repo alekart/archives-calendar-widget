@@ -1,0 +1,16 @@
+.arcw-accordion.accordion-container {
+	position: relative;
+
+	> .accordion-section {
+		> .accordion-section-content {
+			display: none;
+			position: relative !important;
+			left: 0px !important;
+		}
+		&.open {
+			> .accordion-section-content {
+				display: block !important;
+			}
+		}
+	}
+}
