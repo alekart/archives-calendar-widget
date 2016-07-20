@@ -105,12 +105,16 @@ module.exports = function (grunt) {
 					'!.sass_cache/**',
 					'!bower_components/**',
 					'!node_modules/**',
-					'!scripts/**',
-					'!scss/**',
+					'!admin/scripts/**',
+					'!admin/scss/**',
 					'!*.{js,scss,json}'
 				],
 				dest: 'dist/'
 			}
+		},
+
+		clean: {
+			build: ['dist']
 		}
 
 	});
@@ -129,5 +133,5 @@ module.exports = function (grunt) {
 		'uglify'
 	]);
 
-	grunt.registerTask('release', ['build', 'newer:copy:release']);
+	grunt.registerTask('release', ['build', 'clean', 'newer:copy:release']);
 };
