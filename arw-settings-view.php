@@ -135,6 +135,14 @@
 								<p class="description" id="tagline-description">
 									<?php _e( "Do not forget to set 'jquery-arcw' as dependency to load the jquery plugin before initialisation code.", 'arwloc' ); ?>
 								</p>
+
+								<p>
+									<a class="button-primary"
+									   href="<?php echo plugins_url( 'archives-calendar-widget/admin/default.js.txt', dirname( __FILE__ ) ); ?>"
+									   target="_blank">
+										<?php _e( 'Display default JS', 'arwloc' ); ?>
+									</a>
+								</p>
 							</td>
 						</tr>
 						</tbody>
