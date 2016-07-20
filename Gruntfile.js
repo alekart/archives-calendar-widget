@@ -114,7 +114,7 @@ module.exports = function (grunt) {
 		},
 
 		clean: {
-			build: ['dist']
+			build: ['dist', 'admin/css']
 		}
 
 	});
@@ -128,10 +128,11 @@ module.exports = function (grunt) {
 		'watch'
 	]);
 	grunt.registerTask('build', [
+		'clean',
 		'compass:dist',
 		'compass:themes',
 		'uglify'
 	]);
 
-	grunt.registerTask('release', ['build', 'clean', 'newer:copy:release']);
+	grunt.registerTask('release', ['clean', 'build', 'copy:release']);
 };
