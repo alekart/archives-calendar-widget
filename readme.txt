@@ -77,9 +77,9 @@ Please use the Support section to report issues. **No support will be provided v
 
 == Screenshots ==
 
-1. "Calendrier" theme preview in settings
-2. Widget settings
-3. Plugin settings
+1. Plugin settings
+2. Calendar Theme selector with preview
+3. Widget settings
 4. Widgets with different themes on the same page
 
 == Changelog ==
