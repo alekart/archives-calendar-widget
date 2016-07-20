@@ -38,10 +38,9 @@ function _archivesCalendar_activate()
 	$default_options = array(
 		"css"           => 1,
 		"theme"         => "calendrier",
-		"js"            => 1,
+		"plugin-init"   => 1,
 		"show_settings" => 1,
-		"filter"        => 0,
-		"javascript"    => "jQuery(document).ready(function($){\n\t$('.calendar-archives').archivesCW();\n});"
+		"filter"        => 0
 	);
 
 	$default_custom_css = file_get_contents( plugins_url( '/admin/default_custom.css' , __FILE__ ) );
@@ -51,14 +50,7 @@ function _archivesCalendar_activate()
 		"arw-theme2" => ''
 	);
 
-    if( !( $options = get_option( 'archivesCalendar' ) ) ){
-        // if new installation copy default options into the DB
-        $options = $default_options;
-    }
-    else {
-        // if reactivation or after update: merge existing settings with the defaults in case if new options were added in the update
-        array_merge($default_options, $options);
-    }
+    $options = arcw_make_updated_options($default_options);
 
     if( !( $themer_options = get_option( 'archivesCalendarThemer' ) ) )
 		$themer_options = $default_themer_options;
@@ -102,6 +94,33 @@ function _archivesCalendar_activate()
 		update_option('archivesCalendar', $options);
 		add_option('archivesCalendar', $options);
 		add_option('archivesCalendarThemer', $themer_options);
+	}
+}
+
+/**
+ * Update plugin options from defaults
+ * keep only the settings that still exists in defaults
+ * unused ones should be deleted
+ * @param $default_options (array)
+ * @return array
+ */
+function arcw_make_updated_options($default_options) {
+	// if new installation: copy default options to the $options var that will be put into DB
+	// if reactivation (post update): merge existing settings with the defaults in case if new options were added in the update
+	if( !( $options = get_option( 'archivesCalendar' ) ) ){
+		return $default_options;
+	}
+	else {
+		// copy from $options only the key=>value that exists in the default settings
+		// to keep the users settings and remove all unused old settings
+		$updated = array();
+		foreach ($options as $key => $value) {
+			if(array_key_exists($key, $default_options)){
+				$updated[$key] = $value;
+			}
+		}
+		// merge current options with the default options to get the new settings with the default value
+		return array_merge($default_options, $updated);
 	}
 }
 

@@ -1,0 +1,36 @@
+@import "bootstrap/bootstrap";
+@import "theme_editor";
+@import "theme_preview";
+
+body {
+	overflow: auto !important;
+}
+
+code {
+	display: block;
+}
+
+// SIDEBAR
+
+//#post-body.columns-2 #postbox-container-1 {
+//	float: right;
+//	margin-right: -310px;
+//	width: 300px;
+//}
+
+.alek-links {
+	text-align: center;
+	a {
+		margin: 5px;
+		display: inline-block;
+		vertical-align: middle;
+
+		img {
+			opacity: .7;
+		}
+
+		&:hover img {
+			opacity: 1;
+		}
+	}
+}

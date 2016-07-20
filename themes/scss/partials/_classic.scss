@@ -1,0 +1,102 @@
+.calendar-archives.#{$theme-name} {
+	background-color: $cal-bg-color;
+
+	a {
+		text-decoration: none;
+	}
+
+	/** CALENDAR GRID BLOCK **/
+	> .archives-years {
+
+	}
+	// Month and Day, common styles
+	.month, .day {
+		display: block;
+		color: $grid-text-color;
+		text-align: center;
+
+		// Month/day with posts
+		&.has-posts {
+			a {
+				display: block;
+				width: 100%;
+				height: 100%;
+				color: $has-post-text-color;
+				&:hover {
+					background-color: $has-post-hover-bg;
+				}
+			}
+		}
+		// last month/day of a single line
+		&.last {
+			margin-right: 0 !important;
+		}
+	}
+
+	// MONTH only styles
+	.month {
+		width: 25%; // 100%(line width) - 3%(margin-right) * 3(last one is 0) / 4(months per line)
+		height: 50px;
+		// Month name inside a month square
+		.month-name {
+			display: block;
+			padding: 6px 0 4px;
+			text-transform: capitalize;
+			font-size: 16px;
+			font-weight: 400;
+		}
+		// Contains the "0 posts" text inside a month square
+		.postcount {
+			display: block;
+			// Number of posts style
+			.count-number {
+
+			}
+			// Text "posts" style
+			.count-text {
+				font-size: 9px;
+			}
+		}
+	}
+
+	// DAY only styles
+	.day {
+		width: $day-width !important;
+		padding: 5px 0;
+		text-align: center;
+		line-height: 100%;
+		// Day with posts
+
+		&.has-posts {
+			padding: 0;
+			a {
+				padding: 5px 0 !important;
+				text-decoration: none;
+				font-weight: bold;
+			}
+		}
+		&.noday {
+			border: none;
+			box-shadow: none;
+			background: none !important;
+		}
+		// WEEKDAY style. Has common styles with DAY
+		&.weekday {
+			display: inline-block;
+			color: $weekday-text-color;
+			font-size: 85%;
+			text-transform: uppercase;
+		}
+	}
+
+	// A single line of days
+	.week-row {
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		// line with weekday names
+		&.weekdays {
+			background-color: $weekdays-bg;
+		}
+	}
+}

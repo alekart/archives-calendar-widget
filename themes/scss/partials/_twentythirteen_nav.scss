@@ -1,0 +1,125 @@
+// Nav buttons Next/Prev
+.calendar-archives.#{$theme-name} .calendar-navigation {
+	margin-bottom: 3px;
+	border-bottom: 3px solid #b93207;
+	border-radius: $border-radius;
+	color: $text-color;
+	@include gradient-vertical(#e05d22, #d94412);
+
+	> .prev-year,
+	> .next-year {
+		width: 30px;
+		border-radius: $border-radius;
+		font-size: 18px;
+		text-align: center;
+		color: $text-color;
+
+		&:hover {
+			@include gradient-vertical(#ed6a31, #e55627);
+		}
+
+		&.disabled {
+			opacity: .4;
+			cursor: default;
+			&:hover {
+				background: none;
+			}
+		}
+	}
+
+	> .prev-year {
+		border-right: 1px #B93207 solid;
+	}
+
+	> .next-year {
+		border-left: 1px #B93207 solid;
+	}
+}
+
+// Nav menu
+.calendar-archives.#{$theme-name} .calendar-navigation {
+	> .menu-container {
+		padding: 0;
+		text-align: center;
+		text-transform: capitalize;
+
+		&:hover {
+			background-color: rgba(#FFFFFF, .1);
+			> .arrow-down {
+				border-left: 1px solid #B93207;
+			}
+		}
+
+		> a.title {
+			display: block;
+
+			color: $text-color;
+			vertical-align: middle;
+
+			&:hover {
+
+			}
+			&:visited {
+
+			}
+		}
+
+		> ul, > ul > li {
+			margin: 0;
+			padding: 0;
+		}
+
+		> ul.menu {
+			border-radius: $border-radius;
+			box-shadow: #000 0 0 10px;
+			@include gradient-vertical(#e05d22, #d94412);
+		}
+
+		li {
+			display: block;
+			> a {
+				display: block;
+				color: $text-color;
+				&:hover {
+					background: #220E10;
+					cursor: pointer;
+					color: #E62B15;
+				}
+				&.selected {
+					color: $text-color;
+					&:hover {
+						text-decoration: none;
+						color: $text-color;
+						cursor: default;
+						background: none;
+					}
+				}
+				&.current {
+
+				}
+			}
+		}
+
+		> .arrow-down {
+			position: absolute;
+			width: 24px;
+			top: 0;
+			right: 0;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 9px;
+			color: $text-color;
+			cursor: pointer;
+			&:hover {
+				@include gradient-vertical(#ed6a31, #e55627);
+			}
+		}
+
+		&.years {
+
+		}
+
+		&.months {
+
+		}
+	}
+}
