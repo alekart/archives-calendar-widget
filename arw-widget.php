@@ -244,7 +244,7 @@ function archives_year_view( $args, $sql ) {
 				$postcount = "";
 			}
 			if ( isset( $months[ $month ] ) ) {
-				$href  = get_month_link( $year, $month ) . make_arcw_link( $post_type, $cats );
+				$href  = make_arcw_link( get_month_link( $year, $month ), $post_type, $cats );
 				$title = $post_count
 					? sprintf( '%s - %s %s', date_i18n( 'F, Y', strtotime( $year . '-' . $month ) ), $count, $posts_text )
 					: date_i18n( 'F, Y', strtotime( $year . '-' . $month ) );
@@ -431,7 +431,7 @@ function archives_month_view( $args, $sql ) {
 			}
 
 			if ( in_array( $j, $dayswithposts ) ) {
-				$href  = get_day_link( $months[ $i ]->year, $months[ $i ]->month, $j ) . make_arcw_link( $post_type, $cats );
+				$href  = make_arcw_link( get_day_link( $months[ $i ]->year, $months[ $i ]->month, $j ), $post_type, $cats );
 				$title = date_i18n( get_option( 'date_format' ), strtotime( $months[ $i ]->year . '-' . $months[ $i ]->month . '-' . $j ) );
 				$cal .= '<span class="day' . $last . $todayClass . ' has-posts">'
 				        . '<a href="' . $href . '" title="' . $title . '">' . $j . '</a>'

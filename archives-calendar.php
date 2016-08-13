@@ -110,30 +110,39 @@ if ( ! function_exists( 'isMU' ) ) {
 	}
 }
 
+function update_url_params( $url, $addparams = array() ) {
+	$url_parts = parse_url( $url );
+	$params    = array();
 
-function make_arcw_link( $type = null, $cats = null ) {
+	if ( isset( $url_parts['query'] ) ) {
+		parse_str( $url_parts['query'], $params );
+	}
+
+	$params = array_merge( $params, $addparams );
+
+	$url_parts['query'] = http_build_query( $params );
+
+	return $url_parts['scheme'] . '://' . $url_parts['host'] . $url_parts['path'] . '?' . $url_parts['query'];
+}
+
+function make_arcw_link( $url, $type = null, $cats = null ) {
 	global $archivesCalendar_options;
+
 	if ( $archivesCalendar_options['filter'] == 0 ) {
 		return '';
 	}
-	$attrs = '';
-	if ( ! empty( $type ) && count( $type ) ) {
-		if ( $type == 'post' ) {
-			$attrs = '';
-		} else {
-			$attrs .= '?arcw/type/' . $type;
-		}
+	$params = array('arcwfilter' => '');
+	$attr   = &$params['arcwfilter'];
+
+	if ( ! empty( $type ) && count( $type ) && $type != 'post' ) {
+		$attr = 'post:' . str_replace( ',', '+', $type );
 	}
 	if ( ! empty( $cats ) ) {
-		if ( $attrs == '' ) {
-			$attrs .= '?arcw/cat/' . $cats;
-		} else {
-			$attrs .= '/cat/' . $cats;
-		}
-		$attrs = str_replace( ' ', '', $attrs );
+		$attr .= $attr != '' ? ':' : '';
+		$attr .= 'cat:' . str_replace( ', ', '+', $cats );
 	}
 
-	return $attrs;
+	return str_replace( '%3A', ':', str_replace( '%2B', '+', update_url_params( $url, $params ) ) );
 }
 
 
@@ -147,37 +156,35 @@ function arcw_filter( $query ) {
 		return;
 	}
 
-	$url    = $_SERVER['REQUEST_URI'];
-	$params = explode( '?arcw/', $url );
-	if ( isset( $params[1] ) ) {
-		$re = "/cat\\/([^\\/]+)/";
-		preg_match( $re, $params[1], $cats );
-		if ( $cats[1] ) {
-			$cats = $cats[1];
-			echo $cats;
-			$query->set( 'cat', $cats );
-		}
+	if ( ! isset( $_GET ) ) {
+		return;
+	}
 
-		$re = "/type\\/([^\\/]+)/";
-		preg_match( $re, $params[1], $types );
-		if ( $types[1] ) {
-			$post_types = explode( ',', $types[1] );
-			print_r( $post_types );
-			$query->set( 'post_type', $post_types );
+	$array  = explode( ':', $_GET['arcwfilter'] );
+	$pindex = array_search( "post", $array );
+	$cindex = array_search( "cat", $array );
 
-			if ( isset( $cats ) ) {
-				$query->set( 'tax_query', array(
-						'relation' => 'AND',
-						array(
-							'taxonomy' => 'category',
-							'field'    => 'term_id',
-							'terms'    => explode( ',', $cats ),
-							'operator' => 'IN',
-						),
-					)
-				);
-			}
+	$post_types = false !== $pindex ? explode( ' ', $array[ $pindex + 1 ] ) : null;
+	$cats  = false !== $cindex ? explode( ' ', $array[ $cindex + 1 ] ) : null;
+
+	if ( isset( $post_types ) ) {
+
+		$query->set( 'post_type', $post_types );
+
+		if ( isset( $cats ) ) {
+			$query->set( 'tax_query', array(
+					'relation' => 'AND',
+					array(
+						'taxonomy' => 'category',
+						'field'    => 'term_id',
+						'terms'    => $cats,
+						'operator' => 'IN',
+					),
+				)
+			);
 		}
+	} elseif ( isset ( $cats ) ) {
+		$query->set( 'cat', implode( ',', $cats ));
 	}
 }
 
