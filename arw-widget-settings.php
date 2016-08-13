@@ -131,22 +131,27 @@
                     <p>
                         <ul id="ptypechecklist" class="categorychecklist form-no-clear">
                             <?php
+
+                            $checkbox_tmpl = '<li class="popular-category">
+                                                <label class="selectit">
+                                                    <input value="%s" type="checkbox" id="%s" name="%s" %s> 
+                                                    %s
+                                                </label>
+                                            </li>';
+
                             $args = array(
                                 'public'   => true,
                                 '_builtin' => false
                             );
                             $post_types = get_post_types($args);
-                            echo '<li class="popular-category"><label class="selectit"><input value="post" type="checkbox" id="'.$this->get_field_id( 'post_type' ).'" name="'.$this->get_field_name( 'post_type' ).'[]" ';
-                            if( $post_type && is_array($post_type) )
-                                checked( in_array( 'post', $post_type ) );
-                            else
-                                echo 'checked="checked"';
-                            echo ' > post</label></li>';
+
+                            $post_checked = $post_type && is_array($post_type) ? checked( in_array( 'post', $post_type ), true, false ) : 'checked="checked"';
+
+                            echo sprintf($checkbox_tmpl, 'post', $this->get_field_id( 'post_type' ), $this->get_field_name( 'post_type' ).'[]', $post_checked, 'post');
+
                             foreach($post_types as $type)
                             {
-                                echo '<li class="popular-category"><label class="selectit"><input value="'.$type.'" type="checkbox" id="'.$this->get_field_id( 'post_type' ).'" name="'.$this->get_field_name( 'post_type' ).'[]" ';
-                                checked( in_array( $type, $post_type ) );
-                                echo ' >'.$type.'</label></li>';
+                                echo sprintf($checkbox_tmpl, $type, $this->get_field_id( 'post_type' ), $this->get_field_name( 'post_type' ).'[]', checked( in_array( $type, $post_type ), true, false ), $type);
                             }
                             ?>
                         </ul>

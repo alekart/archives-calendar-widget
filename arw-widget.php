@@ -40,7 +40,7 @@ class Archives_Calendar extends WP_Widget {
 			'different_theme'    => 0,
 			'theme'              => null,
 			'categories'         => null,
-			'post_type'          => 'post',
+			'post_type'          => array('post'),
 			'show_today'         => 0
 		);
 		$instance = wp_parse_args( $instance, $defaults );
@@ -83,7 +83,7 @@ class Archives_Calendar extends WP_Widget {
 		$instance['different_theme']    = ( $new_instance['different_theme'] ) ? $new_instance['different_theme'] : 0;
 		$instance['theme']              = $new_instance['theme'];
 		$instance['categories']         = $new_instance['categories'];
-		$instance['post_type']          = ( $new_instance['post_type'] ) ? $new_instance['post_type'] : 'post';
+		$instance['post_type']          = ( $new_instance['post_type'] ) ? $new_instance['post_type'] : array('post');
 
 		return $instance;
 	}
@@ -112,7 +112,7 @@ function archive_calendar( $args = array() ) {
 		'different_theme'    => 0,
 		'theme'              => null,
 		'categories'         => null,
-		'post_type'          => 'post',
+		'post_type'          => array('post'),
 		'show_today'         => 0
 	);
 	$args     = wp_parse_args( $args, $defaults );
