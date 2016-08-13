@@ -29,7 +29,7 @@ License: GPLv3
  ****/
 
 define( 'ARCWV', '1.0.7' ); // current version of the plugin
-define( 'ARCW_DEBUG', true ); // enable or disable debug (for dev instead of echo or print_r use debug() function)
+define( 'ARCW_DEBUG', false ); // enable or disable debug (for dev instead of echo or print_r use debug() function)
 
 $themes = array(
 	'calendrier'          => 'Calendrier',
