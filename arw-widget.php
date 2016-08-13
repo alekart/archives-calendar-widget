@@ -487,7 +487,7 @@ function get_calendar_header( $view = 'months', $pages, $archiveMonth = null, $a
 		$title_url  = get_year_link( $archiveYear );
 	}
 
-	$title_url = $disable_title_link ? '#' : make_arcw_link($title_url, $post_type, $cats );
+	$title_url = $disable_title_link ? '#' : make_arcw_link( $title_url, $post_type, $cats );
 	$cal .= '<a href="' . $title_url . '" class="title">' . $title_text . '</a>';
 
 	$cal .= '<ul class="menu">';
@@ -495,11 +495,11 @@ function get_calendar_header( $view = 'months', $pages, $archiveMonth = null, $a
 	$i = 0;
 	foreach ( $pages as $page ) {
 		if ( $view == "months" ) {
-			$archivelink = get_month_link( intval( $page->year ), intval( $page->month ) );
+			$archivelink = make_arcw_link( get_month_link( intval( $page->year ), intval( $page->month ) ), $post_type, $cats );
 			$linkclass   = $page->year . ' ' . $page->month;
 			$linktext    = $wp_locale->get_month( intval( $page->month ) ) . ' ' . $page->year;
 		} else {
-			$archivelink = get_year_link( $page );
+			$archivelink = make_arcw_link( get_year_link( $page ), $post_type, $cats );
 			$linkclass   = $page;
 			$linktext    = $page;
 		}
