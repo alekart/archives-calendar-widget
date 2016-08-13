@@ -134,5 +134,5 @@ module.exports = function (grunt) {
 		'uglify'
 	]);
 
-	grunt.registerTask('release', ['clean', 'build', 'copy:release']);
+	grunt.registerTask('release', ['build', 'copy:release']);
 };
