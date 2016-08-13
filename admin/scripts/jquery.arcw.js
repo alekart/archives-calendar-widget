@@ -1,6 +1,6 @@
 /*
- *  archivesCW v1.0 - jQuery plugin as a part of the WordPress plugin "Archives Calendar Widget"
- *  Copyright (C) 2013  Aleksei Polechin (http://alek.be)
+ *  archivesCW v1.0.1 - jQuery plugin as a part of the WordPress plugin "Archives Calendar Widget"
+ *  Copyright (C) 2013-2016  Aleksei Polechin (http://alek.be)
  *  
  *  This plugin is a part of a WordPress plugin and will not do anything if used without the "Archives Calendar Widget" (WordPress plugin)
  *  It is used for easier customisation and for multiple widgets support.
@@ -42,6 +42,12 @@
         });
 
         $nav.find('.arrow-down').on('click', function () {
+            if ($.isFunction(options.showDropdown))
+                options.showDropdown($menu);
+        });
+
+        $nav.find('a.title[href="#"]').on('click', function (e) {
+            e.preventDefault();
             if ($.isFunction(options.showDropdown))
                 options.showDropdown($menu);
         });
@@ -109,7 +115,7 @@
 
             $wearein = goTo;
             var $year = elem.find('.menu a[rel=' + $wearein + ']');
-            elem.find('a.title').attr('href', $year.attr('href')).html($year.html());
+            elem.find('a.title:not([href="#"])').attr('href', $year.attr('href')).html($year.html());
             aCalCheckArrows();
             aCalSetYearSelect();
         }

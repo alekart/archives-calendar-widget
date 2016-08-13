@@ -30,30 +30,32 @@ class Archives_Calendar extends WP_Widget {
 
 	public function form( $instance ) {
 		$defaults = array(
-			'title'           => __( 'Archives' ),
-			'next_text'       => '>',
-			'prev_text'       => '<',
-			'post_count'      => 1,
-			'month_view'      => 0,
-			'month_select'    => 'default',
-			'different_theme' => 0,
-			'theme'           => null,
-			'categories'      => null,
-			'post_type'       => null,
-			'show_today'      => 0
+			'title'              => __( 'Archives' ),
+			'next_text'          => '>',
+			'prev_text'          => '<',
+			'post_count'         => 1,
+			'month_view'         => 0,
+			'month_select'       => 'default',
+			'disable_title_link' => 0,
+			'different_theme'    => 0,
+			'theme'              => null,
+			'categories'         => null,
+			'post_type'          => array('post'),
+			'show_today'         => 0
 		);
 		$instance = wp_parse_args( $instance, $defaults );
 
-		$title           = $instance['title'];
-		$prev            = $instance['prev_text'];
-		$next            = $instance['next_text'];
-		$count           = $instance['post_count'];
-		$month_view      = $instance['month_view'];
-		$month_select    = $instance['month_select'];
-		$different_theme = $instance['different_theme'];
-		$arw_theme       = $instance['theme'];
-		$cats            = $instance['categories'];
-		$post_type       = $instance['post_type'];
+		$title              = $instance['title'];
+		$prev               = $instance['prev_text'];
+		$next               = $instance['next_text'];
+		$count              = $instance['post_count'];
+		$month_view         = $instance['month_view'];
+		$month_select       = $instance['month_select'];
+		$disable_title_link = $instance['disable_title_link'];
+		$different_theme    = $instance['different_theme'];
+		$arw_theme          = $instance['theme'];
+		$cats               = $instance['categories'];
+		$post_type          = $instance['post_type'];
 
 
 		if ( is_array( $post_type ) && empty( $post_type ) || ( ! $post_type || $post_type == '' ) ) {
@@ -74,13 +76,14 @@ class Archives_Calendar extends WP_Widget {
 			$instance['prev_text'] = htmlspecialchars( '<' );
 		}
 
-		$instance['post_count']      = ( $new_instance['post_count'] ) ? $new_instance['post_count'] : 0;
-		$instance['month_view']      = $new_instance['month_view'];
-		$instance['month_select']    = $new_instance['month_select'];
-		$instance['different_theme'] = ( $new_instance['different_theme'] ) ? $new_instance['different_theme'] : 0;
-		$instance['theme']           = $new_instance['theme'];
-		$instance['categories']      = $new_instance['categories'];
-		$instance['post_type']       = $new_instance['post_type'];
+		$instance['post_count']         = ( $new_instance['post_count'] ) ? $new_instance['post_count'] : 0;
+		$instance['month_view']         = $new_instance['month_view'];
+		$instance['month_select']       = $new_instance['month_select'];
+		$instance['disable_title_link'] = ( $new_instance['disable_title_link'] ) ? $new_instance['disable_title_link'] : 0;
+		$instance['different_theme']    = ( $new_instance['different_theme'] ) ? $new_instance['different_theme'] : 0;
+		$instance['theme']              = $new_instance['theme'];
+		$instance['categories']         = $new_instance['categories'];
+		$instance['post_type']          = ( $new_instance['post_type'] ) ? $new_instance['post_type'] : array('post');
 
 		return $instance;
 	}
@@ -99,17 +102,18 @@ function archive_calendar( $args = array() ) {
 	global $archivesCalendar_options;
 
 	$defaults = array(
-		'title'           => '',
-		'next_text'       => '>',
-		'prev_text'       => '<',
-		'post_count'      => 1,
-		'month_view'      => 0,
-		'month_select'    => 'default',
-		'different_theme' => 0,
-		'theme'           => null,
-		'categories'      => null,
-		'post_type'       => null,
-		'show_today'      => 0
+		'title'              => '',
+		'next_text'          => '>',
+		'prev_text'          => '<',
+		'post_count'         => 1,
+		'month_view'         => 0,
+		'month_select'       => 'default',
+		'disable_title_link' => 0,
+		'different_theme'    => 0,
+		'theme'              => null,
+		'categories'         => null,
+		'post_type'          => array('post'),
+		'show_today'         => 0
 	);
 	$args     = wp_parse_args( $args, $defaults );
 
@@ -271,6 +275,7 @@ function archives_month_view( $args, $sql ) {
 
 	// Select all months where are posts
 	$months = $wpdb->get_results( $sql );
+
 	if ( count( $months ) == 0 ) {
 		$month_select = 'empty';
 	}
@@ -470,27 +475,32 @@ function get_calendar_header( $view = 'months', $pages, $archiveMonth = null, $a
 	$cal .= '<div class="calendar-navigation">';
 
 	if ( count( $pages ) > 1 ) {
-		$cal .= '<a href="#" class="prev-year"><span>' . html_entity_decode( $prev_text ) . '</span></a>';
+		$cal .= '<a href="" class="prev-year"><span>' . html_entity_decode( $prev_text ) . '</span></a>';
 	}
 
 	$cal .= '<div class="menu-container ' . $view . '">';
 
 	if ( $view == "months" ) {
-		$cal .= '<a href="' . get_month_link( intval( $archiveYear ), intval( $archiveMonth ) ) . '" class="title">' . $wp_locale->get_month( intval( $archiveMonth ) ) . ' ' . $archiveYear . '</a>';
+		$title_text = $wp_locale->get_month( intval( $archiveMonth ) ) . " " . $archiveYear;
+		$title_url  = get_month_link( intval( $archiveYear ), intval( $archiveMonth ) );
 	} else {
-		$cal .= '<a href="' . get_year_link( $archiveYear ) . '" class="title">' . $archiveYear . '</a>';
+		$title_text = $archiveYear;
+		$title_url  = get_year_link( $archiveYear );
 	}
+
+	$title_url = $disable_title_link ? '#' : make_arcw_link( $title_url, $post_type, $cats );
+	$cal .= '<a href="' . $title_url . '" class="title">' . $title_text . '</a>';
 
 	$cal .= '<ul class="menu">';
 
 	$i = 0;
 	foreach ( $pages as $page ) {
 		if ( $view == "months" ) {
-			$archivelink = get_month_link( intval( $page->year ), intval( $page->month ) );
+			$archivelink = make_arcw_link( get_month_link( intval( $page->year ), intval( $page->month ) ), $post_type, $cats );
 			$linkclass   = $page->year . ' ' . $page->month;
 			$linktext    = $wp_locale->get_month( intval( $page->month ) ) . ' ' . $page->year;
 		} else {
-			$archivelink = get_year_link( $page );
+			$archivelink = make_arcw_link( get_year_link( $page ), $post_type, $cats );
 			$linkclass   = $page;
 			$linktext    = $page;
 		}
@@ -507,7 +517,7 @@ function get_calendar_header( $view = 'months', $pages, $archiveMonth = null, $a
 	$cal .= '</div>';
 
 	if ( count( $pages ) > 1 ) {
-		$cal .= '<a href="#" class="next-year"><span>' . html_entity_decode( $next_text ) . '</span></a>';
+		$cal .= '<a href="" class="next-year"><span>' . html_entity_decode( $next_text ) . '</span></a>';
 	}
 
 	$cal .= '</div>';

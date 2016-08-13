@@ -2,9 +2,9 @@
 Contributors: alekart
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
-Requires at least: 3.6
+Requires at least: 4.0
 Tested up to: 4.5.3
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,7 +19,7 @@ I'm alone to test this plugin before release and I can't test everything with pa
 
 = Features =
 
-* **New** Simple Theme Editor (external tool)
+* Simple Theme Editor (external tool)
 * Displays monthly archives as a compact year calendar
 * Displays daily archives as a compact month calendar
 * Show/hide monthly post count
@@ -31,7 +31,7 @@ I'm alone to test this plugin before release and I can't test everything with pa
 * Filter Archives page by categories you set in the widget
 * Custom post_type partial* support
 * Entirely customizable with CSS
-* .PO/.MO Localisation English/Fançais + OUTDATED: [Deutsch, Español, Portugues, Simplified Chinese, Serbo-Croatian]
+* .PO/.MO Localisation English/Français + OUTDATED: [Deutsch, Español, Portugues, Simplified Chinese, Serbo-Croatian]
 * jQuery animated with possibility to use your own JS code.
 
 **Not just a widget**, if your theme does not support widgets, you can use this calendar by calling its **function**:
@@ -83,6 +83,14 @@ Please use the Support section to report issues. **No support will be provided v
 4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 1.0.7 =
+* [fix] one more fix for archives filter url
+* [fix] removed forgotten debug outputs
+* [upd] set minimum required version of WordPress to 4.0
+* [add] widget option to disable the header/title link. Clicking on the calendar title will open the month/year menu
+* [fix] the header/title link filter if archives filter is enabled
+* [fix] widget was broken if no post_type where selected in the widget options (needs "save" action in the widget settings)
 
 = 1.0.6 =
 * [upd] refactor plugin settings

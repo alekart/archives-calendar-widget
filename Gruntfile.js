@@ -113,6 +113,36 @@ module.exports = function (grunt) {
 			}
 		},
 
+		replace: {
+			debugDisable: {
+				options: {
+					patterns: [
+						{
+							match: /define\( 'ARCW_DEBUG', true \);/g,
+							replacement: "define( 'ARCW_DEBUG', false );"
+						}
+					]
+				},
+				files: [
+					{expand: true, flatten: true, src: ['dist/archives-calendar.php'], dest: 'dist/'}
+				]
+			},
+			debugRemove: {
+				options: {
+					patterns: [
+						{
+							match: /debug[ ]?\(.+\);/g,
+							replacement: ""
+						}
+					]
+				},
+				files: [
+					{expand: true, flatten: true, src: ['dist/**/*.php'], dest: 'dist/'}
+				]
+			}
+		},
+
+
 		clean: {
 			build: ['dist', 'admin/css']
 		}
@@ -134,5 +164,5 @@ module.exports = function (grunt) {
 		'uglify'
 	]);
 
-	grunt.registerTask('release', ['clean', 'build', 'copy:release']);
+	grunt.registerTask('release', ['build', 'copy:release', 'replace']);
 };

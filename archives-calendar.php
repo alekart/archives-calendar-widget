@@ -3,7 +3,7 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: http://labs.alek.be/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 1.0.6
+Version: 1.0.7
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3
@@ -28,7 +28,7 @@ License: GPLv3
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  ****/
 
-define( 'ARCWV', '1.0.6' ); // current version of the plugin
+define( 'ARCWV', '1.0.7' ); // current version of the plugin
 define( 'ARCW_DEBUG', false ); // enable or disable debug (for dev instead of echo or print_r use debug() function)
 
 $themes = array(
@@ -99,17 +99,6 @@ function arcw_admin_widgets_scripts() {
 	wp_enqueue_style( 'arcw-widget-settings' );
 }
 
-/***** CHECK MULTISITE NETWORK *****/
-if ( ! function_exists( 'isMU' ) ) {
-	function isMU() {
-		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-			return true;
-		}
-
-		return false;
-	}
-}
-
 function update_url_params( $url, $addparams = array() ) {
 	$url_parts = parse_url( $url );
 	$params    = array();
@@ -130,7 +119,7 @@ function make_arcw_link( $url, $type = null, $cats = null ) {
 
 	$enabled = $archivesCalendar_options['filter'];
 
-	if ( ! $enabled || ( $enabled && ! $type && ! $cats ) ) {
+	if ( ! $enabled || ( $enabled && ( ! $type || $type == "post" ) && ! $cats ) ) {
 		return $url;
 	}
 
@@ -192,6 +181,17 @@ function arcw_filter( $query ) {
 		}
 	} elseif ( isset ( $cats ) ) {
 		$query->set( 'cat', implode( ',', $cats ) );
+	}
+}
+
+/***** CHECK MULTISITE NETWORK *****/
+if ( ! function_exists( 'isMU' ) ) {
+	function isMU() {
+		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
+			return true;
+		}
+
+		return false;
 	}
 }
 

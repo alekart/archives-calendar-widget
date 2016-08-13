@@ -1,5 +1,12 @@
 # Changelog
-
+## 1.0.7
+* [fix] one more fix for archives filter url
+* [fix] removed forgotten debug outputs
+* [upd] set minimum required version of WordPress to 4.0
+* [add] widget option to disable the header/title link. Clicking on the calendar title will open the month/year menu
+* [fix] the header/title link filter if archives filter is enabled
+* [fix] widget was broken if no post_type where selected in the widget options
+ 
 ## 1.0.6
 * [upd] refactor plugin settings
 * [upd] change default settings
