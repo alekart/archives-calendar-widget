@@ -130,11 +130,11 @@ function make_arcw_link( $url, $type = null, $cats = null ) {
 
 	$enabled = $archivesCalendar_options['filter'];
 
-	if ( !$enabled || ( $enabled && !$type && !$cats )) {
+	if ( ! $enabled || ( $enabled && ! $type && ! $cats ) ) {
 		return $url;
 	}
 
-	$params = array('arcwfilter' => '');
+	$params = array( 'arcwfilter' => '' );
 	$attr   = &$params['arcwfilter'];
 
 	if ( ! empty( $type ) && count( $type ) && $type != 'post' ) {
@@ -155,11 +155,11 @@ if ( isset( $archivesCalendar_options['filter'] ) && $archivesCalendar_options['
 }
 
 function arcw_filter( $query ) {
-	if ( ! is_archive() || is_admin() ) {
-		return;
-	}
 
-	if ( ! isset( $_GET ) ) {
+	if (
+		( ! is_archive() || is_admin() )
+		|| ( ! isset( $_GET ) || ! isset( $_GET['arcwfilter'] ) )
+	) {
 		return;
 	}
 
@@ -167,8 +167,12 @@ function arcw_filter( $query ) {
 	$pindex = array_search( "post", $array );
 	$cindex = array_search( "cat", $array );
 
-	$post_types = false !== $pindex ? explode( ' ', $array[ $pindex + 1 ] ) : null;
-	$cats  = false !== $cindex ? explode( ' ', $array[ $cindex + 1 ] ) : null;
+	if ( false !== $pindex && isset( $array[ $pindex + 1 ] ) && $array[ $pindex + 1 ] !== "cat" ) {
+		$post_types = explode( ' ', $array[ $pindex + 1 ] );
+	}
+	if ( false !== $cindex && isset( $array[ $cindex + 1 ] ) && $array[ $cindex + 1 ] !== "post" ) {
+		$cats = explode( ' ', $array[ $cindex + 1 ] );
+	}
 
 	if ( isset( $post_types ) ) {
 
@@ -187,7 +191,7 @@ function arcw_filter( $query ) {
 			);
 		}
 	} elseif ( isset ( $cats ) ) {
-		$query->set( 'cat', implode( ',', $cats ));
+		$query->set( 'cat', implode( ',', $cats ) );
 	}
 }
 
