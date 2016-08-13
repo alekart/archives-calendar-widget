@@ -128,9 +128,12 @@ function update_url_params( $url, $addparams = array() ) {
 function make_arcw_link( $url, $type = null, $cats = null ) {
 	global $archivesCalendar_options;
 
-	if ( $archivesCalendar_options['filter'] == 0 ) {
-		return '';
+	$enabled = $archivesCalendar_options['filter'];
+
+	if ( !$enabled || ( $enabled && !$type && !$cats )) {
+		return $url;
 	}
+
 	$params = array('arcwfilter' => '');
 	$attr   = &$params['arcwfilter'];
 
