@@ -46,7 +46,8 @@
                 options.showDropdown($menu);
         });
 
-        $nav.find('a.title[href="#"]').on('click', function () {
+        $nav.find('a.title[href="#"]').on('click', function (e) {
+            e.preventDefault();
             if ($.isFunction(options.showDropdown))
                 options.showDropdown($menu);
         });
