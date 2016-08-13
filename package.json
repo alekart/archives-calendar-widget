@@ -22,6 +22,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-modernizr": "^1.0.2",
     "grunt-newer": "^1.2.0",
+    "grunt-replace": "^1.0.1",
     "jit-grunt": "^0.9.1"
   },
   "dependencies": {

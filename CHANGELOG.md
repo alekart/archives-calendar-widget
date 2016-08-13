@@ -1,4 +1,8 @@
 # Changelog
+## 1.0.7
+[fix] one more fix for archives filter url
+[fix] removed forgotten debug outputs
+[upd] set minimum required version of WordPress to 4.0
 
 ## 1.0.6
 * [upd] refactor plugin settings
