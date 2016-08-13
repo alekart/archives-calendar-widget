@@ -3,7 +3,8 @@
 [fix] one more fix for archives filter url
 [fix] removed forgotten debug outputs
 [upd] set minimum required version of WordPress to 4.0
-
+[add] widget option to disable the title link. Clicking on the calendar title will open the month/year menu
+ 
 ## 1.0.6
 * [upd] refactor plugin settings
 * [upd] change default settings

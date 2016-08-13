@@ -61,6 +61,15 @@
 
     <p>
         <label>
+            <input id="arw-disable_title_link-option" class="selectit" <?php if($disable_title_link) echo "checked";?> id="<?php echo $this->get_field_id( 'disable_title_link' ); ?>" name="<?php echo $this->get_field_name( 'disable_title_link' ); ?>" type="checkbox" value="1" />
+            &nbsp;<?php _e( 'Disable title link', 'arwloc' ); ?>
+        </label>
+    </p>
+
+    <hr/>
+
+    <p>
+        <label>
             <input id="arw-theme-option" class="selectit" <?php if($different_theme) echo "checked";?> id="<?php echo $this->get_field_id( 'different_theme' ); ?>" name="<?php echo $this->get_field_name( 'different_theme' ); ?>" type="checkbox" value="1" />
             &nbsp;<?php _e( 'Use a different theme', 'arwloc' ); ?>
         </label>

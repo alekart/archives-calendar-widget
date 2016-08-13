@@ -130,7 +130,7 @@
 								<code>
 									wp_register_script( 'arcw-init', plugins_url( _YOUR_JS_FILE_PATH_ , __FILE__ ),
 									array( "jquery-arcw" ));<br>
-									wp_enqueue_script( 'jquery-arcw' );
+									wp_enqueue_script( 'arcw-init' );
 								</code>
 								<p class="description" id="tagline-description">
 									<?php _e( "Do not forget to set 'jquery-arcw' as dependency to load the jquery plugin before initialisation code.", 'arwloc' ); ?>
