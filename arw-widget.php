@@ -474,7 +474,7 @@ function get_calendar_header( $view = 'months', $pages, $archiveMonth = null, $a
 	$cal .= '<div class="calendar-navigation">';
 
 	if ( count( $pages ) > 1 ) {
-		$cal .= '<a href="#" class="prev-year"><span>' . html_entity_decode( $prev_text ) . '</span></a>';
+		$cal .= '<a href="" class="prev-year"><span>' . html_entity_decode( $prev_text ) . '</span></a>';
 	}
 
 	$cal .= '<div class="menu-container ' . $view . '">';
@@ -487,7 +487,7 @@ function get_calendar_header( $view = 'months', $pages, $archiveMonth = null, $a
 		$title_url  = get_year_link( $archiveYear );
 	}
 
-	$title_url = $disable_title_link ? '#' : $title_url;
+	$title_url = $disable_title_link ? '#' : make_arcw_link($title_url, $post_type, $cats );
 	$cal .= '<a href="' . $title_url . '" class="title">' . $title_text . '</a>';
 
 	$cal .= '<ul class="menu">';
@@ -516,7 +516,7 @@ function get_calendar_header( $view = 'months', $pages, $archiveMonth = null, $a
 	$cal .= '</div>';
 
 	if ( count( $pages ) > 1 ) {
-		$cal .= '<a href="#" class="next-year"><span>' . html_entity_decode( $next_text ) . '</span></a>';
+		$cal .= '<a href="" class="next-year"><span>' . html_entity_decode( $next_text ) . '</span></a>';
 	}
 
 	$cal .= '</div>';

@@ -3,7 +3,8 @@
 [fix] one more fix for archives filter url
 [fix] removed forgotten debug outputs
 [upd] set minimum required version of WordPress to 4.0
-[add] widget option to disable the title link. Clicking on the calendar title will open the month/year menu
+[add] widget option to disable the header/title link. Clicking on the calendar title will open the month/year menu
+[fix] the header/title link filter if archives filter is enabled
  
 ## 1.0.6
 * [upd] refactor plugin settings

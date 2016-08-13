@@ -119,7 +119,7 @@ function make_arcw_link( $url, $type = null, $cats = null ) {
 
 	$enabled = $archivesCalendar_options['filter'];
 
-	if ( ! $enabled || ( $enabled && ! $type && ! $cats ) ) {
+	if ( ! $enabled || ( $enabled && ( ! $type || $type == "post" ) && ! $cats ) ) {
 		return $url;
 	}
 
@@ -190,6 +190,7 @@ if ( ! function_exists( 'isMU' ) ) {
 		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 			return true;
 		}
+
 		return false;
 	}
 }
