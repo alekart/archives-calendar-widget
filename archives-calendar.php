@@ -3,7 +3,7 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: http://labs.alek.be/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 1.0.7
+Version: 1.0.8
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3
@@ -28,8 +28,8 @@ License: GPLv3
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  ****/
 
-define( 'ARCWV', '1.0.7' ); // current version of the plugin
-define( 'ARCW_DEBUG', false ); // enable or disable debug (for dev instead of echo or print_r use debug() function)
+define( 'ARCWV', '1.0.8' ); // current version of the plugin
+define( 'ARCW_DEBUG', true ); // enable or disable debug (for dev instead of echo or print_r use debug() function)
 
 $themes = array(
 	'calendrier'          => 'Calendrier',
@@ -109,7 +109,7 @@ function update_url_params( $url, $addparams = array() ) {
 
 	$params = array_merge( $params, $addparams );
 
-	$url_parts['query'] = http_build_query( $params );
+	$url_parts['query'] = urldecode(http_build_query( $params ));
 
 	return $url_parts['scheme'] . '://' . $url_parts['host'] . $url_parts['path'] . '?' . $url_parts['query'];
 }
@@ -127,14 +127,14 @@ function make_arcw_link( $url, $type = null, $cats = null ) {
 	$attr   = &$params['arcwfilter'];
 
 	if ( ! empty( $type ) && count( $type ) && $type != 'post' ) {
-		$attr = 'post:' . str_replace( ',', '+', $type );
+		$attr = 'post(' . $type . ')';
 	}
 	if ( ! empty( $cats ) ) {
-		$attr .= $attr != '' ? ':' : '';
-		$attr .= 'cat:' . str_replace( ', ', '+', $cats );
+		$attr .= $attr != '' ? '' : '';
+		$attr .= 'cat(' . str_replace( ' ', '', $cats ) . ')';
 	}
 
-	return str_replace( '%3A', ':', str_replace( '%2B', '+', update_url_params( $url, $params ) ) );
+	return update_url_params( $url, $params );
 }
 
 
@@ -152,15 +152,17 @@ function arcw_filter( $query ) {
 		return;
 	}
 
-	$array  = explode( ':', $_GET['arcwfilter'] );
-	$pindex = array_search( "post", $array );
-	$cindex = array_search( "cat", $array );
+	$re  = "/(\\w+)\\(([^)]+)\\)/";
+	$str = $_GET['arcwfilter'];
+	preg_match_all( $re, $str, $matches );
 
-	if ( false !== $pindex && isset( $array[ $pindex + 1 ] ) && $array[ $pindex + 1 ] !== "cat" ) {
-		$post_types = explode( ' ', $array[ $pindex + 1 ] );
-	}
-	if ( false !== $cindex && isset( $array[ $cindex + 1 ] ) && $array[ $cindex + 1 ] !== "post" ) {
-		$cats = explode( ' ', $array[ $cindex + 1 ] );
+	foreach ( $matches[1] as $key => $value ) {
+		if ( $value == 'post' ) {
+			$post_types = explode( ',', $matches[2][ $key ] );
+		}
+		if ( $value == 'cat' ) {
+			$cats = explode( ',', $matches[2][ $key ] );
+		}
 	}
 
 	if ( isset( $post_types ) ) {
