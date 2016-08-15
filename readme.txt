@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 4.0
 Tested up to: 4.5.3
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,7 +19,7 @@ I'm alone to test this plugin before release and I can't test everything with pa
 
 = Features =
 
-* Simple Theme Editor (external tool)
+* Theme Editor GUI (external tool)
 * Displays monthly archives as a compact year calendar
 * Displays daily archives as a compact month calendar
 * Show/hide monthly post count
@@ -83,6 +83,9 @@ Please use the Support section to report issues. **No support will be provided v
 4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 1.0.8 =
+* [fix] yet one fix for archives filter url, seems that the GoodLayers themes has some issues with get parameters
 
 = 1.0.7 =
 * [fix] one more fix for archives filter url
