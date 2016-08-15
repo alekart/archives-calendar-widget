@@ -1,4 +1,7 @@
 # Changelog
+## 1.0.8
+* [fix] yet one fix for archives filter url, seems that the GoodLayers themes has some issues with get parameters
+
 ## 1.0.7
 * [fix] one more fix for archives filter url
 * [fix] removed forgotten debug outputs

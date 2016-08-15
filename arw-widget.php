@@ -253,7 +253,7 @@ function archives_year_view( $args, $sql ) {
 					? sprintf( '%s - %s %s', date_i18n( 'F, Y', strtotime( $year . '-' . $month ) ), $count, $posts_text )
 					: date_i18n( 'F, Y', strtotime( $year . '-' . $month ) );
 				$cal .= '<div class="month' . $last . ' has-posts">'
-				        . '<a href="' . $href . '" title="' . $title . '">'
+				        . '<a href="' . $href . '" title="' . $title . '" data-date="' . $year . '-' . $month . '">'
 				        . '<span class="month-name">' . $wp_locale->get_month_abbrev( $wp_locale->get_month( $month ) ) . '</span>' . $postcount
 				        . '</a></div>';
 			} else {
@@ -436,10 +436,11 @@ function archives_month_view( $args, $sql ) {
 			}
 
 			if ( in_array( $j, $dayswithposts ) ) {
+				$date_str = $months[ $i ]->year . '-' . $months[ $i ]->month . '-' . $j;
 				$href  = make_arcw_link( get_day_link( $months[ $i ]->year, $months[ $i ]->month, $j ), $post_type, $cats );
-				$title = date_i18n( get_option( 'date_format' ), strtotime( $months[ $i ]->year . '-' . $months[ $i ]->month . '-' . $j ) );
+				$title = date_i18n( get_option( 'date_format' ), strtotime( $date_str ) );
 				$cal .= '<span class="day' . $last . $todayClass . ' has-posts">'
-				        . '<a href="' . $href . '" title="' . $title . '">' . $j . '</a>'
+				        . '<a href="' . $href . '" title="' . $title . '" data-date="'. $date_str .'">' . $j . '</a>'
 				        . '</span>';
 			} else {
 				$cal .= '<span class="day' . $last . $todayClass . '">' . $j . '</span>';
