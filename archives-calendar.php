@@ -3,7 +3,7 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: http://labs.alek.be/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 1.0.8
+Version: 1.0.9
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3
@@ -28,7 +28,7 @@ License: GPLv3
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  ****/
 
-define( 'ARCWV', '1.0.8' ); // current version of the plugin
+define( 'ARCWV', '1.0.9' ); // current version of the plugin
 define( 'ARCW_DEBUG', true ); // enable or disable debug (for dev instead of echo or print_r use debug() function)
 
 $themes = array(
@@ -109,7 +109,7 @@ function update_url_params( $url, $addparams = array() ) {
 
 	$params = array_merge( $params, $addparams );
 
-	$url_parts['query'] = urldecode(http_build_query( $params ));
+	$url_parts['query'] = urldecode( http_build_query( $params ) );
 
 	return $url_parts['scheme'] . '://' . $url_parts['host'] . $url_parts['path'] . '?' . $url_parts['query'];
 }
@@ -123,15 +123,14 @@ function make_arcw_link( $url, $type = null, $cats = null ) {
 		return $url;
 	}
 
-	$params = array( 'arcwfilter' => '' );
-	$attr   = &$params['arcwfilter'];
-
+	$params = array( 'arcf' => '' );
+	$attr   = &$params['arcf'];
 	if ( ! empty( $type ) && count( $type ) && $type != 'post' ) {
-		$attr = 'post(' . $type . ')';
+		$attr = 'post:' . str_replace( ',', '+', $type );
 	}
 	if ( ! empty( $cats ) ) {
-		$attr .= $attr != '' ? '' : '';
-		$attr .= 'cat(' . str_replace( ' ', '', $cats ) . ')';
+		$attr .= $attr != '' ? ':' : '';
+		$attr .= 'cat:' . str_replace( ', ', '+', $cats );
 	}
 
 	return update_url_params( $url, $params );
@@ -144,29 +143,41 @@ if ( isset( $archivesCalendar_options['filter'] ) && $archivesCalendar_options['
 }
 
 function arcw_filter( $query ) {
-
-	if (
-		( ! is_archive() || is_admin() )
-		|| ( ! isset( $_GET ) || ! isset( $_GET['arcwfilter'] ) )
-	) {
-		return;
+	if ( $query->is_main_query() && $query->is_archive() && ! is_admin() ) {
+		if ( isset( $_GET ) && isset( $_GET['arcf'] ) ) {
+			_arcw_add_filter_query( $query );
+		}
 	}
 
-	$re  = "/(\\w+)\\(([^)]+)\\)/";
-	$str = $_GET['arcwfilter'];
+	return $query;
+}
+
+function _arcw_get_filter_params( $str = '' ) {
+	$re = "/(\\w+):([^:]+)/";
 	preg_match_all( $re, $str, $matches );
+
+	$post_types = null;
+	$cats       = null;
 
 	foreach ( $matches[1] as $key => $value ) {
 		if ( $value == 'post' ) {
-			$post_types = explode( ',', $matches[2][ $key ] );
+			$post_types = explode( ' ', $matches[2][ $key ] );
 		}
 		if ( $value == 'cat' ) {
-			$cats = explode( ',', $matches[2][ $key ] );
+			$cats = explode( ' ', $matches[2][ $key ] );
 		}
 	}
 
-	if ( isset( $post_types ) ) {
+	return array( "posts" => $post_types, "cats" => $cats );
+}
 
+function _arcw_add_filter_query( $query ) {
+	$str        = ( $_GET['arcf'] );
+	$params     = _arcw_get_filter_params( $str );
+	$post_types = $params['posts'];
+	$cats       = $params['cats'];
+
+	if ( isset( $post_types ) ) {
 		$query->set( 'post_type', $post_types );
 
 		if ( isset( $cats ) ) {
@@ -184,6 +195,8 @@ function arcw_filter( $query ) {
 	} elseif ( isset ( $cats ) ) {
 		$query->set( 'cat', implode( ',', $cats ) );
 	}
+
+	return $query;
 }
 
 /***** CHECK MULTISITE NETWORK *****/

@@ -3,8 +3,8 @@ Contributors: alekart
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 4.0
-Tested up to: 4.5.3
-Stable tag: 1.0.8
+Tested up to: 4.6
+Stable tag: 1.0.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -83,6 +83,10 @@ Please use the Support section to report issues. **No support will be provided v
 4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 1.0.9 =
+* [fix] BIG BUG due to bad usage of the `pre_get_posts` query alteration, it was altering all the queries causing unwanted behavior
+* [revert] back to previous filter link format (was a little bit prettier)
 
 = 1.0.8 =
 * [fix] yet one fix for archives filter url, seems that the GoodLayers themes has some issues with get parameters
