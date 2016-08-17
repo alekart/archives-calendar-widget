@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 			},
 			scripts: {
 				files: ['admin/scripts/{,**/}*.js'],
-				tasks: ['uglify']
+				tasks: ['concat']
 			},
 			livereload: {
 				options: {livereload: false},
@@ -55,15 +55,14 @@ module.exports = function (grunt) {
 		},
 
 		concat: {
-			options: {
-				separator: ';'
-			},
-			files: {
-				'admin/js/admin.js': ['admin/scripts/admin.js'],
-				'admin/js/themer.js': ['admin/scripts/themer.js'],
-				'admin/js/widgets-page.js': ['admin/scripts/widgets-page.js'],
-				'admin/js/jquery.arcw.js': ['admin/scripts/jquery.arcw.js'],
-				'admin/js/jquery.arcw-init.js': ['admin/scripts/jquery.arcw.js', 'admin/scripts/jquery.arcw-init.js']
+			js: {
+				files: {
+					'./admin/js/admin.js': ['./admin/scripts/admin.js'],
+					'./admin/js/themer.js': ['./admin/scripts/themer.js'],
+					'./admin/js/widgets-page.js': ['./admin/scripts/widgets-page.js'],
+					'./admin/js/jquery.arcw.js': ['./admin/scripts/jquery.arcw.js'],
+					'./admin/js/jquery.arcw-init.js': ['./admin/scripts/jquery.arcw.js', './admin/scripts/jquery.arcw-init.js']
+				}
 			}
 		},
 
@@ -144,7 +143,8 @@ module.exports = function (grunt) {
 
 
 		clean: {
-			build: ['dist', 'admin/css']
+			dist: ['dist', 'admin/css'],
+			js: ['admin/js/jquery.arcw*.js']
 		}
 
 	});
@@ -154,11 +154,12 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('default', [
 		'compass:dev',
+		'clean:js',
 		'concat',
 		'watch'
 	]);
 	grunt.registerTask('build', [
-		'clean',
+		'clean:dist',
 		'compass:dist',
 		'compass:themes',
 		'uglify'
