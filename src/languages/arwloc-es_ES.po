@@ -1,0 +1,288 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Archives Calendar Widget v1.0.x\n"
+"POT-Creation-Date: 2016-08-15 12:26+0200\n"
+"PO-Revision-Date: 2016-08-15 12:27+0200\n"
+"Last-Translator: \n"
+"Language-Team: author here\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: languages\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: bower_components\n"
+"X-Poedit-SearchPathExcluded-2: admin/scripts\n"
+"X-Poedit-SearchPathExcluded-3: admin/js\n"
+
+# Do not translate.
+# WordPress defalut.
+#: admin/preview.php:9 dist/admin/preview.php:9 dist/preview.php:9
+msgid "Themes"
+msgstr ""
+
+#: admin/preview.php:19 arw-settings.php:235 dist/admin/preview.php:19
+#: dist/arw-settings.php:235 dist/preview.php:19
+msgid "Custom"
+msgstr "Costumbre"
+
+#: admin/preview.php:35 dist/admin/preview.php:35 dist/preview.php:35
+msgid ""
+"The theme's CSS file is not included in administration, this preview may be "
+"different from the website rendering."
+msgstr ""
+"El archivo CSS del tema no está incluido en la administración, esta vista "
+"previa puede ser diferente del sitio web que está siendo renderizado."
+
+# Do not translate.
+# WordPress defalut.
+#: admin/preview.php:39 dist/admin/preview.php:39 dist/preview.php:39
+msgid "Select"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: admin/preview.php:40 dist/admin/preview.php:40 dist/preview.php:40
+msgid "Close"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: archives-calendar.php:77 arw-settings.php:26 dist/archives-calendar.php:77
+#: dist/arw-settings.php:26
+msgid "Settings"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: arw-editor.php:52 arw-editor.php:53 dist/arw-editor.php:52
+#: dist/arw-editor.php:53
+msgid "Theme"
+msgstr ""
+
+#: arw-editor.php:79 arw-settings-view.php:58 dist/arw-editor.php:79
+#: dist/arw-settings-view.php:58
+msgid "Preview"
+msgstr "Vista Previa"
+
+# Do not translate.
+# WordPress defalut.
+#: arw-editor.php:88 arw-settings-view.php:157 dist/arw-editor.php:88
+#: dist/arw-settings-view.php:157
+msgid "Save Changes"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: arw-editor.php:106 dist/arw-editor.php:106
+msgid "Updated."
+msgstr ""
+
+#: arw-settings-view.php:29 dist/arw-settings-view.php:29
+msgid "Archives filter"
+msgstr ""
+
+#: arw-settings-view.php:35 arw-settings-view.php:71 arw-settings-view.php:103
+#: arw-settings-view.php:121 dist/arw-settings-view.php:35
+#: dist/arw-settings-view.php:71 dist/arw-settings-view.php:103
+#: dist/arw-settings-view.php:121
+msgid "Enable"
+msgstr ""
+
+#: arw-settings-view.php:38 dist/arw-settings-view.php:38
+msgid ""
+"This will display only the categories you have selected in the widget on the "
+"Archives page."
+msgstr ""
+
+#: arw-settings-view.php:45 dist/arw-settings-view.php:45
+msgid "Default theme"
+msgstr ""
+
+#: arw-settings-view.php:65 dist/arw-settings-view.php:65
+msgid "Settings link in admin menu"
+msgstr ""
+
+#: arw-settings-view.php:74 dist/arw-settings-view.php:74
+msgid ""
+"Show link \"Archives Calendar\" in admin \"Settings\" menu. If unchecked you "
+"can enter settings from \"Settings\" link in \"Plugins\" page."
+msgstr ""
+"Mostrar enlace \"Archivos del Calendario\" en \"Ajustes\" del menú de "
+"administración. Si lo desmarca usted puede entrar los ajustes del enlace de "
+"\"Ajustes\" en la página \"Plugins\"."
+
+#: arw-settings-view.php:85 dist/arw-settings-view.php:85
+msgid ""
+"I'm a developer. I know how to edit a WordPress theme and how to add css/js "
+"file or code to a theme properly."
+msgstr ""
+
+#: arw-settings-view.php:89 dist/arw-settings-view.php:89
+msgid ""
+"Do not disable the following settings until you have included it manually "
+"into your WP theme."
+msgstr ""
+
+#: arw-settings-view.php:96 dist/arw-settings-view.php:96
+msgid "Enqueue ARCW theme CSS"
+msgstr ""
+
+#: arw-settings-view.php:106 dist/arw-settings-view.php:106
+msgid "Calendar theme css file will be included automatically in wp_head()"
+msgstr ""
+
+#: arw-settings-view.php:114 dist/arw-settings-view.php:114
+msgid "Init jQuery ARCW plugin"
+msgstr ""
+
+#: arw-settings-view.php:124 dist/arw-settings-view.php:124
+msgid ""
+"jQuery ARCW plugin will be initialized automatically with default settings"
+msgstr ""
+
+#: arw-settings-view.php:128 dist/arw-settings-view.php:128
+msgid ""
+"If you want to customize the jQuery plugin you have to create your own "
+"JavasScript and include it into your theme."
+msgstr ""
+
+#: arw-settings-view.php:136 dist/arw-settings-view.php:136
+msgid ""
+"Do not forget to set 'jquery-arcw' as dependency to load the jquery plugin "
+"before initialisation code."
+msgstr ""
+
+#: arw-settings-view.php:143 dist/arw-settings-view.php:143
+msgid "Display default JS"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: arw-settings.php:33 dist/arw-settings.php:33
+msgid "Customize"
+msgstr ""
+
+#: arw-settings.php:158 dist/arw-settings.php:158
+msgid "News/Updates"
+msgstr "Noticias/Actualizaciones"
+
+# Do not translate.
+# WordPress defalut.
+#: arw-settings.php:175 arw-settings.php:184 dist/arw-settings.php:175
+#: dist/arw-settings.php:184
+msgid "More"
+msgstr ""
+
+#: arw-settings.php:178 dist/arw-settings.php:178
+msgid "No posts"
+msgstr "No hay posts"
+
+#: arw-settings.php:194 dist/arw-settings.php:194
+msgid ""
+"If you like this plugin please <strong>support my work</strong>, buy me "
+"<strong>a beer or a coffee</strong>. Click Donate and specify your amount."
+msgstr ""
+"Si le gusta este plugin por favor <strong> apoye mi trabajo </strong>, "
+"<strong>cómpreme una cerveza o un café </strong>. Haga clic en Donar y "
+"especifique su cantidad."
+
+#: arw-settings.php:198 dist/arw-settings.php:198
+msgid "In Belgium 1 coffee or 1 beer costs about 2€"
+msgstr "En Bélgica 1 café o 1 cerveza cuestan acerca de 2€"
+
+# Do not translate.
+# WordPress defalut.
+#: arw-widget-settings.php:4 dist/arw-widget-settings.php:4
+msgid "Title:"
+msgstr ""
+
+#: arw-widget-settings.php:9 dist/arw-widget-settings.php:9
+msgid "Previous"
+msgstr "Previo"
+
+#: arw-widget-settings.php:13 dist/arw-widget-settings.php:13
+msgid "Next"
+msgstr "Siguiente"
+
+# Do not translate.
+# WordPress defalut.
+#: arw-widget-settings.php:22 dist/arw-widget-settings.php:22
+msgid "Show"
+msgstr ""
+
+#: arw-widget-settings.php:26 dist/arw-widget-settings.php:26
+msgid "Months"
+msgstr "Meses"
+
+#: arw-widget-settings.php:29 dist/arw-widget-settings.php:29
+msgid "Years"
+msgstr "Años"
+
+#: arw-widget-settings.php:35 dist/arw-widget-settings.php:35
+msgid "Show first: "
+msgstr "Mostrar en primera: "
+
+#: arw-widget-settings.php:39 dist/arw-widget-settings.php:39
+msgid "Latest month"
+msgstr ""
+
+#: arw-widget-settings.php:42 dist/arw-widget-settings.php:42
+msgid "Current month"
+msgstr "Mes actual"
+
+#: arw-widget-settings.php:45 dist/arw-widget-settings.php:45
+msgid "Previous month"
+msgstr "El mes anterior"
+
+#: arw-widget-settings.php:48 dist/arw-widget-settings.php:48
+msgid "Next month"
+msgstr "El próximo mes"
+
+#: arw-widget-settings.php:55 dist/arw-widget-settings.php:55
+msgid "Show number of posts"
+msgstr "Mostrar número de posts"
+
+#: arw-widget-settings.php:65 dist/arw-widget-settings.php:65
+msgid "Disable title link"
+msgstr ""
+
+#: arw-widget-settings.php:74 dist/arw-widget-settings.php:74
+msgid "Use a different theme"
+msgstr "Utilice un tema diferente"
+
+# Do not translate.
+# WordPress defalut.
+#: arw-widget-settings.php:105 dist/arw-widget-settings.php:105
+msgid "Categories"
+msgstr ""
+
+# Do not translate.
+# WordPress defalut.
+#: arw-widget-settings.php:108 dist/arw-widget-settings.php:108
+msgid "All"
+msgstr ""
+
+#: arw-widget.php:14 dist/arw-widget.php:14
+msgid "Show archives as calendar"
+msgstr "Mostrar archivos como calendario"
+
+# Do not translate.
+# WordPress defalut.
+#: arw-widget.php:33 dist/arw-widget.php:33
+msgid "Archives"
+msgstr ""
+
+#: arw-widget.php:244 dist/arw-widget.php:244
+msgid "Post"
+msgstr "Post"
+
+#: arw-widget.php:244 dist/arw-widget.php:244
+msgid "Posts"
+msgstr "Posts"

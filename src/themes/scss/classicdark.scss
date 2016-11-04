@@ -1,0 +1,34 @@
+$theme-name: 'classicdark';
+
+@import "mixins/mixins";
+
+/* Base variables */
+@import "variables";
+/* Customize variables below */
+$preview-background: #111;
+$border-radius: 0px;
+
+$highlight: #3B82F6;
+$primary: #4171bf;
+$secondary: #2757A1;
+
+$text-color: #FFF;
+$cal-bg-color: #333;
+
+$grid-text-color: #777;
+$has-post-text-color: #CFCFCF;
+$has-post-hover-bg: #444;
+
+$weekday-text-color: $has-post-text-color;
+$weekdays-bg: #555;
+
+/* Base common CSS : DON'T CHANGE */
+@import "base";
+
+/** CALENDAR NAVIGATION BLOCK (top) **/
+@import "partials/classic_nav";
+
+@import "partials/classic";
+
+
+

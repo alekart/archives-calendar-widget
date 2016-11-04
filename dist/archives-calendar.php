@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Archives Calendar Widget
-Plugin URI: http://labs.alek.be/
+Plugin URI: https://wordpress.org/plugins/archives-calendar-widget/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
-Version: 1.0.10
+Version: 1.0.11
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
 License: GPLv3

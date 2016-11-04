@@ -8,20 +8,54 @@ module.exports = function (grunt) {
 	// Automatically load required Grunt tasks
 	require('jit-grunt')(grunt);
 
+	var packages = grunt.file.readJSON('package.json'),
+		changelog = grunt.file.read('CHANGELOG.md');
+
+	var jsFiles = {
+		'<%= paths.dist %>/admin/js/admin.js': ['<%= paths.src %>/admin/scripts/admin.js'],
+			'<%= paths.dist %>/admin/js/themer.js': ['<%= paths.src %>/admin/scripts/themer.js'],
+			'<%= paths.dist %>/admin/js/widgets-page.js': ['<%= paths.src %>/admin/scripts/widgets-page.js'],
+			'<%= paths.dist %>/admin/js/jquery.arcw.js': ['<%= paths.src %>/admin/scripts/jquery.arcw.js'],
+			'<%= paths.dist %>/admin/js/jquery.arcw-init.js': [
+			'<%= paths.src %>/admin/scripts/jquery.arcw.js',
+			'<%= paths.src %>/admin/scripts/jquery.arcw-init.js'
+		]
+	};
+
 	grunt.initConfig({
 
+		packages: packages,
+		changelog: changelog,
+
+		paths: {
+			src: "src",
+			dist: "dist",
+			sass: "src/admin/scss",
+			themes: "src/themes/scss"
+		},
+
 		watch: {
-			compass: {
-				files: ['admin/scss/{,**/}*.scss', 'themes/scss/{,**/}*.scss'],
-				tasks: ['compass:dev', 'compass:themes']
+			sass: {
+				files: ['<%= paths.sass %>/{,**/}*.scss'],
+				tasks: ['compass:dev']
+			},
+
+			themes: {
+				files: ['<%= paths.themes %>/{,**/}*.scss'],
+				tasks: ['compass:themes']
+			},
+
+			files: {
+				files: ['<%= paths.src %>/**/*.{png,svg,jpg,php,txt,css,mo}'],
+				tasks: ['newer:copy:release']
 			},
 			scripts: {
-				files: ['admin/scripts/{,**/}*.js'],
+				files: ['<%= paths.src %>/admin/scripts/{,**/}*.js'],
 				tasks: ['concat']
 			},
 			livereload: {
 				options: {livereload: false},
-				files: ['{,**/}*.css', 'scripts/*.js']
+				files: ['<%= paths.dist %>/**/*.css', '<%= paths.dist %>/**/*.js']
 			}
 		},
 
@@ -32,22 +66,22 @@ module.exports = function (grunt) {
 			},
 			dev: {
 				options: {
-					sassDir: 'admin/scss',
-					cssDir: 'admin/css/'
+					sassDir: '<%= paths.sass %>',
+					cssDir: '<%= paths.dist %>/admin/css/'
 				}
 			},
 			dist: {
 				options: {
-					sassDir: 'admin/scss',
-					cssDir: 'admin/css/',
+					sassDir: '<%= paths.sass %>',
+					cssDir: '<%= paths.dist %>/admin/css/',
 					environment: 'production',
 					outputStyle: 'compressed'
 				}
 			},
 			themes: {
 				options: {
-					sassDir: 'themes/scss',
-					cssDir: 'themes/',
+					sassDir: '<%= paths.themes %>',
+					cssDir: '<%= paths.dist %>/themes/',
 					environment: 'production',
 					outputStyle: 'compressed'
 				}
@@ -56,13 +90,7 @@ module.exports = function (grunt) {
 
 		concat: {
 			js: {
-				files: {
-					'./admin/js/admin.js': ['./admin/scripts/admin.js'],
-					'./admin/js/themer.js': ['./admin/scripts/themer.js'],
-					'./admin/js/widgets-page.js': ['./admin/scripts/widgets-page.js'],
-					'./admin/js/jquery.arcw.js': ['./admin/scripts/jquery.arcw.js'],
-					'./admin/js/jquery.arcw-init.js': ['./admin/scripts/jquery.arcw.js', './admin/scripts/jquery.arcw-init.js']
-				}
+				files: jsFiles
 			}
 		},
 
@@ -71,44 +99,20 @@ module.exports = function (grunt) {
 				mangle: true
 			},
 			scripts: {
-				files: {
-					'admin/js/admin.js': ['admin/scripts/admin.js'],
-					'admin/js/themer.js': ['admin/scripts/themer.js'],
-					'admin/js/widgets-page.js': ['admin/scripts/widgets-page.js'],
-					'admin/js/jquery.arcw.js': ['admin/scripts/jquery.arcw.js'],
-					'admin/js/jquery.arcw-init.js': ['admin/scripts/jquery.arcw.js', 'admin/scripts/jquery.arcw-init.js']
-				}
-			}
-		},
-
-		modernizr: {
-			dist: {
-				options: [
-					"setClasses"
-				],
-				tests: [
-					"placeholder",
-					"appearance"
-				],
-				crawl: false,
-				dest: "scripts/vendor/modernizr.js"
+				files: jsFiles
 			}
 		},
 
 		copy: {
 			release: {
 				expand: true,
-				cwd: '.',
+				cwd: '<%= paths.src %>/',
 				src: [
-					'**',
-					'!.sass_cache/**',
-					'!bower_components/**',
-					'!node_modules/**',
+					'**/*.*',
 					'!admin/scripts/**',
-					'!admin/scss/**',
-					'!*.{js,scss,json,md}'
+					'!admin/scss/**'
 				],
-				dest: 'dist/'
+				dest: '<%= paths.dist %>/'
 			}
 		},
 
@@ -123,7 +127,7 @@ module.exports = function (grunt) {
 					]
 				},
 				files: [
-					{expand: true, flatten: true, src: ['dist/archives-calendar.php'], dest: 'dist/'}
+					{expand: true, flatten: true, src: ['<%= paths.dist %>/archives-calendar.php'], dest: 'dist/'}
 				]
 			},
 			debugRemove: {
@@ -136,34 +140,101 @@ module.exports = function (grunt) {
 					]
 				},
 				files: [
-					{expand: true, flatten: true, src: ['dist/**/*.php'], dest: 'dist/'}
+					{
+						expand: true,
+						flatten: true,
+						cwd: '<%= paths.dist %>/',
+						src: ['*.php'],
+						dest: '<%= paths.dist %>'
+					}
+				]
+			},
+			version: {
+				options: {
+					patterns: [
+						{
+							match: "version",
+							replacement: "<%= packages.version %>"
+						}
+					]
+				},
+				files: [
+					{
+						expand: true,
+						flatten: true,
+						cwd: '<%= paths.dist %>/',
+						src: ['*.{php,txt}'],
+						dest: '<%= paths.dist %>'
+					}
+				]
+			},
+			changelog: {
+				options: {
+					patterns: [{
+						match: "changelog",
+						replacement: "<%= changelog %>"
+					}]
+				},
+				files: [
+					{
+						expand: true,
+						flatten: true,
+						src: ['<%= paths.dist %>/readme.txt'],
+						dest: '<%= paths.dist %>/'
+					}
+				]
+			},
+			changelogTitles: {
+				options: {
+					patterns: [{
+						match: /[#][ ]?(Changelog)/g,
+						replacement: "== $1 =="
+					},{
+						match: /[#]{2}[ ]?(.+)/g,
+						replacement: "= $1 ="
+					}]
+				},
+				files: [
+					{
+						expand: true,
+						flatten: true,
+						src: ['<%= paths.dist %>/readme.txt'],
+						dest: '<%= paths.dist %>/'
+					}
 				]
 			}
 		},
 
 
 		clean: {
-			dist: ['dist', 'admin/css'],
-			js: ['admin/js/jquery.arcw*.js']
+			dist: ['<%= paths.dist %>'],
+			js: ['<%= paths.dist %>/admin/js/*.js']
 		}
 
 	});
 
-	grunt.loadNpmTasks("grunt-modernizr");
-	// grunt.loadNpmTasks("grunt-contrib-copy");
+	grunt.registerTask('default', '', function(){
+		grunt.fatal('Use "serve", "build" or "release" tasks');
+	});
 
-	grunt.registerTask('default', [
+	grunt.registerTask('serve', [
 		'compass:dev',
 		'clean:js',
 		'concat',
+		'newer:copy:release',
+		'replace:version',
 		'watch'
 	]);
+
+
 	grunt.registerTask('build', [
 		'clean:dist',
 		'compass:dist',
 		'compass:themes',
-		'uglify'
+		'uglify',
+		'copy:release',
+		'replace'
 	]);
 
-	grunt.registerTask('release', ['build', 'copy:release', 'replace']);
+	grunt.registerTask('release', ['build']);
 };

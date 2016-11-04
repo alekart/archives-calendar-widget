@@ -1,0 +1,130 @@
+// Nav buttons Next/Prev
+.calendar-archives.#{$theme-name} .calendar-navigation {
+	height: $navigation-height !important;
+	border-radius: $border-radius;
+	color: $text-color;
+	background-color: #000;
+
+	> .prev-year,
+	> .next-year {
+		width: 30px;
+		border-radius: $border-radius;
+		font-size: 18px;
+		text-align: center;
+		color: $text-color;
+
+		&:hover {
+			background-color: #24890d;
+		}
+
+		&.disabled {
+			opacity: .4;
+			cursor: default;
+			&:hover {
+				background-color: transparent;
+			}
+		}
+	}
+
+	> .prev-year {
+	}
+
+	> .next-year {
+	}
+
+}
+
+// Nav menu
+.calendar-archives.#{$theme-name} .calendar-navigation {
+	> .menu-container {
+		position: relative;
+		height: $navigation-height;
+		padding: 0;
+		text-align: center;
+		text-transform: capitalize;
+
+		&:hover {
+			> .arrow-down {
+				background-color: #194a0d;
+			}
+		}
+
+		> a.title {
+			display: block;
+			height: $navigation-height;
+			line-height: $navigation-height;
+			color: $text-color;
+			vertical-align: middle;
+
+			&:hover {
+
+			}
+			&:visited {
+
+			}
+		}
+
+		> ul, > ul > li {
+			margin: 0;
+			padding: 0;
+		}
+
+		> ul.menu {
+			width: 100%;
+			border: none;
+			box-shadow: 5px 5px 0 rgba(#000, .4);
+			background-color: #24890d;
+		}
+
+		li {
+			display: block;
+			> a {
+				display: block;
+				height: $navigation-height;
+				line-height: $navigation-height;
+				color: #FFF;
+				&:hover {
+					background-color: $brand-primary;
+					cursor: pointer;
+					color: #FFF;
+				}
+				&.selected {
+					color: $text-color;
+					background-color: #000;
+					&:hover {
+						text-decoration: none;
+						cursor: default;
+						background-color: #000;
+					}
+				}
+				&.current {
+
+				}
+			}
+		}
+
+		> .arrow-down {
+			position: absolute;
+			width: 24px;
+			height: $navigation-height;
+			top: 0;
+			right: 0;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color: $text-color;
+			font-size: 9px;
+			line-height: $navigation-height;
+			cursor: pointer;
+			&:hover {
+				background-color: $brand-primary;
+			}
+		}
+
+		&.years {
+
+		}
+
+		&.months {
+
+		}
+	}
+}

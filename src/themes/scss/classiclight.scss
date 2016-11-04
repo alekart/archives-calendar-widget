@@ -1,0 +1,31 @@
+$theme-name: 'classiclight';
+
+@import "mixins/mixins";
+
+/* Base variables */
+@import "variables";
+/* Customize variables below */
+$preview-background: #CFCFCF;
+$border-radius: 0px;
+
+$highlight: #86CAE9;
+$primary: #3B82F6;
+$secondary: #2757A1;
+
+$text-color: #FFF;
+$cal-bg-color: #FFF;
+
+$grid-text-color: #CCC;
+$has-post-text-color: $primary;
+$has-post-hover-bg: #f0f0f0;
+
+$weekday-text-color: #333;
+$weekdays-bg: #E6E6E6;
+
+/* Base common CSS : DON'T CHANGE */
+@import "base";
+
+/** CALENDAR NAVIGATION BLOCK (top) **/
+@import "partials/classic_nav";
+
+@import "partials/classic";
