@@ -1,4 +1,15 @@
 # Changelog
+
+## 1.0.11
+* [fix] fix the post count SQL request
+
+## 1.0.10
+* [fix] title of the calendar (year/month) not changing when navigating if the "Disable title link" option is enabled
+
+## 1.0.9
+* [fix] BIG BUG due to bad usage of the `pre_get_posts` query alteration, it was altering all the queries causing unwanted behavior
+* [revert] back to previous filter link format (was a little bit prettier)
+
 ## 1.0.8
 * [fix] yet one fix for archives filter url, seems that the GoodLayers themes has some issues with get parameters
 

@@ -180,7 +180,7 @@ function archives_year_view( $args, $sql ) {
 	foreach ( $results as $date ) {
 		if ( $post_count ) // if set to show post count
 		{
-			$sql = "SELECT COUNT(ID) AS count FROM $wpdb->posts wpposts ";
+			$sql = "SELECT COUNT(DISTINCT(ID)) AS count FROM $wpdb->posts wpposts ";
 
 			if ( count( $categories ) ) {
 				$sql .= "JOIN $wpdb->term_relationships tr ON ( wpposts.ID = tr.object_id )

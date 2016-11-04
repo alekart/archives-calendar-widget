@@ -3,8 +3,8 @@ Contributors: alekart
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 4.0
-Tested up to: 4.6
-Stable tag: 1.0.10
+Tested up to: 4.6.1
+Stable tag: 1.0.11
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -83,6 +83,9 @@ Please use the Support section to report issues. **No support will be provided v
 4. Widgets with different themes on the same page
 
 == Changelog ==
+
+= 1.0.11 =
+* [fix] fix the post count SQL request
 
 = 1.0.10 =
 * [fix] title of the calendar (year/month) not changing when navigating if the "Disable title link" option is enabled
