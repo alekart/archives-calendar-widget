@@ -6,8 +6,10 @@ _unstable, broken or with debug messages_ activated
 ## WordPress repository
 Use the stable release from the WordPress repository 
 [https://wordpress.org/plugins/archives-calendar-widget/](https://wordpress.org/plugins/archives-calendar-widget/)    
-OR    
+OR 
 Use [release tags](https://github.com/alekart/arcw/releases) that should be the same as on the WordPress repository
+
+The working version of the plugin is in the `dist` folder
 
 ## Addons
 - __[Popover](https://github.com/alekart/arcwp/)__ 

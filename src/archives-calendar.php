@@ -28,7 +28,7 @@ License: GPLv3
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  ****/
 
-define( 'ARCWV', '1.0.11' ); // current version of the plugin
+define( 'ARCWV', '@@version' ); // current version of the plugin
 define( 'ARCW_DEBUG', false ); // enable or disable debug (for dev instead of echo or print_r use debug() function)
 
 $themes = array(
