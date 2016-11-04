@@ -1,0 +1,140 @@
+$theme-name: 'twentytwelve';
+
+@import "mixins/mixins";
+
+/* Base variables */
+@import "variables";
+
+/* Customize variables below */
+$preview-background: #FFFFFF;
+$brand-primary: #21759b;
+$navigation-height: 26px;
+$border-radius: 3px;
+$text-color: #757575;
+
+/* Base common CSS : DON'T CHANGE */
+@import "base";
+
+/** CALENDAR NAVIGATION BLOCK (top) **/
+@import "partials/twentytwelve_nav";
+
+.calendar-archives.#{$theme-name} {
+	a {
+		text-decoration: none;
+	}
+
+	/** CALENDAR GRID BLOCK **/
+	> .archives-years {
+		background-color: #FFFFFF;
+	}
+	// Month and Day, common styles
+	.month, .day {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		float: left;
+		color: #CCC;
+		margin: 0 3% 3% 0;
+		background-color: #F0F0F0;
+		box-shadow: 0 1px 4px rgba(black, .2);
+		border-radius: $border-radius;
+
+		// Month/day with posts
+		&.has-posts {
+			background-color: $text-color;
+			a {
+				display: block;
+				width: 100%;
+				height: 100%;
+				border-radius: $border-radius;
+				color: #FFFFFF;
+
+				&:hover {
+					background-color: $brand-primary;
+				}
+			}
+		}
+		// last month/day of a single line
+		&.last {
+			margin-right: 0 !important;
+		}
+	}
+
+	// MONTH only styles
+	.month {
+		width: 22.75%; // 100%(line width) - 3%(margin-right) * 3(last one is 0) / 4(months per line)
+		height: 50px;
+		// Month name inside a month square
+		.month-name {
+			text-transform: capitalize;
+			font-size: 16px;
+			font-weight: 400;
+			display: block;
+			position: absolute;
+			top: 6px;
+			left: 8px;
+		}
+		// Contains the "0 posts" text inside a month square
+		.postcount {
+			display: block;
+			position: absolute;
+			right: 6px;
+			bottom: 6px;
+			// Number of posts style
+			.count-number {
+
+			}
+			// Text "posts" style
+			.count-text {
+				font-size: 9px;
+			}
+		}
+	}
+
+	// DAY only styles
+	.day {
+		width: 11.714% !important;
+		height: 25px;
+		padding: 5px 0;
+		text-align: center;
+		line-height: 100%;
+		// Day with posts
+
+		&.has-posts {
+			padding: 0;
+			a {
+				padding: 5px 0 !important;
+				text-decoration: none;
+			}
+		}
+		&.noday {
+			border: none;
+			box-shadow: none;
+			background: none !important;
+		}
+		// WEEKDAY style. Has common styles with DAY
+		&.weekday {
+			display: inline-block;
+			margin: 0 3% 5px 0;
+			border: none;
+			color: #666666;
+			text-transform: uppercase;
+			font-size: 85%;
+			font-weight: bold;
+			box-shadow: none;
+			background: none !important;
+		}
+	}
+
+	// A single line of days
+	.week-row {
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		// line with weekday names
+		&.weekdays {
+
+		}
+	}
+}
+
