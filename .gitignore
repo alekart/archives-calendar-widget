@@ -1,6 +1,4 @@
 .idea
 .sass-cache
-dist
 bower_components
 node_modules
-arw-theme*.css
