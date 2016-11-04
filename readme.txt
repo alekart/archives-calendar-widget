@@ -84,6 +84,9 @@ Please use the Support section to report issues. **No support will be provided v
 
 == Changelog ==
 
+= 1.0.11 =
+* [fix] fix the post count SQL request
+
 = 1.0.10 =
 * [fix] title of the calendar (year/month) not changing when navigating if the "Disable title link" option is enabled
 
