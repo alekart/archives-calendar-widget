@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.12
+* [fix] fix the today date timezone: use `current_time` wp method
+
 ## 1.0.11
 * [fix] fix the post count SQL request
 
