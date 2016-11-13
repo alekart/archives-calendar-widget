@@ -280,9 +280,12 @@ function archives_month_view( $args, $sql ) {
 		$month_select = 'empty';
 	}
 
-	$todayDay   = intval( date( 'd' ) );
-	$todayMonth = intval( date( 'm' ) );
-	$todayYear  = intval( date( 'Y' ) );
+	// Get current time of the website (timezone)
+	$today = current_time( 'timestamp' );
+
+	$todayDay   = intval( date( 'd', $today ) );
+	$todayMonth = intval( date( 'm', $today ) );
+	$todayYear  = intval( date( 'Y', $today ) );
 
 	if ( is_archive() ) {
 		$archiveYear  = intval( date( 'Y', strtotime( $post->post_date ) ) );

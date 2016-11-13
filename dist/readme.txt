@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 4.0
 Tested up to: 4.6.1
-Stable tag: 1.0.11
+Stable tag: 1.0.12
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -84,6 +84,9 @@ Please use the Support section to report issues. **No support will be provided v
 
 == Changelog ==
 
+= 1.0.12 =
+* [fix] fix the today date timezone: use `current_time` wp method
+
 = 1.0.11 =
 * [fix] fix the post count SQL request
 
@@ -103,13 +106,13 @@ Please use the Support section to report issues. **No support will be provided v
 * [upd] set minimum required version of WordPress to 4.0
 * [add] widget option to disable the header/title link. Clicking on the calendar title will open the month/year menu
 * [fix] the header/title link filter if archives filter is enabled
-* [fix] widget was broken if no post_type where selected in the widget options (needs "save" action in the widget settings)
-
+* [fix] widget was broken if no post_type where selected in the widget options
+ 
 = 1.0.6 =
 * [upd] refactor plugin settings
 * [upd] change default settings
 * [upd] change jQuery plugin initialisation method
-* [upd] change "archives filter" url to something more sexy. Hopefully fixes some conflicts with some $_GET params
+* [upd] change archives filter url to something more sexy
 * [upd] add title attribute on days/month with posts
 * [fix] `today` date based on timezone
 * [upd] all themes converted to SCSS format (no more LESS)
@@ -217,14 +220,8 @@ Please use the Support section to report issues. **No support will be provided v
 
 == Upgrade notice ==
 
-= AFTER UPDATE TO THE 1.0.X YOU MAY NEED TO UPDATE YOUR WIDGET SETTINGS:=
+= AFTER UPDATE FROM 0.9.XX TO THE 1.0.X YOU MAY NEED TO UPDATE YOUR WIDGET SETTINGS:=
 Just open the settings of the widget, check if everything is ok and press "Save"
-= ------ =
-= SHORTCODE SUPPORT IS DROPPED =
-I consider this feature as obsolete.
-= ------ =
-= IF UPDATING FROM v.0.4.7 =
-Update to an older version: 0.9.91, 0.9.92 or 0.9.93 before updating to the latest version
 
 == Frequently asked questions ==
 

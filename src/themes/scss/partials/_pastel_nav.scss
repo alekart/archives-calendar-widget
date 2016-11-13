@@ -1,0 +1,140 @@
+// Nav buttons Next/Prev
+.calendar-archives.#{$theme-name} .calendar-navigation {
+	height: $navigation-height !important;
+	margin-bottom: 1px;
+	border-radius: $border-radius;
+	color: $text-color;
+	background-color: #EF9677;
+
+	> .prev-year,
+	> .next-year {
+		width: 30px;
+		border-radius: $border-radius;
+		font-size: 18px;
+		text-align: center;
+		color: $text-color;
+
+		&:hover {
+			background-color: #86CAE9;
+		}
+
+		&.disabled {
+			opacity: .4;
+			cursor: default;
+			&:hover {
+				background: none;
+			}
+		}
+	}
+
+	> .prev-year {
+		border-right: 1px #FFF solid;
+	}
+
+	> .next-year {
+		border-left: 1px #FFF solid;
+	}
+
+}
+
+// Nav menu
+.calendar-archives.#{$theme-name} .calendar-navigation {
+	> .menu-container {
+		position: relative;
+		height: $navigation-height;
+		padding: 0;
+		text-align: center;
+		text-transform: capitalize;
+
+		&:hover {
+			background-color: #EA8462;
+			> .arrow-down {
+
+			}
+		}
+
+		> a.title {
+			display: block;
+			height: $navigation-height;
+			line-height: $navigation-height;
+			color: $text-color;
+			vertical-align: middle;
+
+			&:hover {
+
+			}
+			&:visited {
+
+			}
+		}
+
+		> ul, > ul > li {
+			margin: 0;
+			padding: 0;
+		}
+
+		> ul.menu {
+			position: absolute;
+			display: none;
+			width: 100%;
+			top: 0;
+			overflow: hidden;
+			border: none;
+			box-shadow: 0 0 10px #000;
+			background-color: #FFF;
+			z-index: 99;
+		}
+
+		li {
+			display: block;
+			> a {
+				display: block;
+				height: $navigation-height;
+				line-height: $navigation-height;
+				color: #86CAE9;
+				&:hover {
+					background-color: #86CAE9;
+					cursor: pointer;
+					color: #FFF;
+				}
+				&.selected {
+					color: $text-color;
+					background-color: #F2C8BA;
+					&:hover {
+						text-decoration: none;
+						cursor: default;
+						background-color: #F2C8BA;
+					}
+				}
+				&.current {
+
+				}
+			}
+		}
+
+		> .arrow-down {
+			position: absolute;
+			width: 24px;
+			height: $navigation-height;
+			top: 0;
+			right: 0;
+			border-left: 1px solid #EF9677;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color: $text-color;
+			font-size: 9px;
+			line-height: $navigation-height;
+			cursor: pointer;
+			&:hover {
+				background-color: #86CAE9;
+			}
+		}
+
+		&.years {
+
+		}
+
+		&.months {
+
+		}
+	}
+}

@@ -9,7 +9,7 @@ jQuery(document).ready(function ($) {
         $(".arcw.preview-zone .calendar-archives ").addClass(theme);
         select_preview(theme);
         $("#ac_preview_css").remove();
-        $("head").append('<link id="ac_preview_css" href="' + ARCWPATH + '/themes/' + theme + '.css?v=' + d + '" type="text/css" rel="stylesheet" />');
+        $("head").append('' + ARCWPATH + '' + theme + '<link id="ac_preview_css" href="/src/themes/.css?v=" type="text/css" rel="stylesheet" />' + d + '');
     });
 
     $('.button.preview_theme').on('click', function () {
@@ -20,7 +20,7 @@ jQuery(document).ready(function ($) {
         //$('#themepreview option[value='+css+']').attr('selected', true);
         select_preview(theme);
         $("#ac_preview_css").remove();
-        $("head").append('<link id="ac_preview_css" href="' + ARCWPATH + '/themes/' + theme + '.css?v=' + d + '" type="text/css" rel="stylesheet" />');
+        $("head").append('' + ARCWPATH + '' + theme + '<link id="ac_preview_css" href="/src/themes/.css?v=" type="text/css" rel="stylesheet" />' + d + '');
     });
 
     $('.ok_theme').on('click', function () {

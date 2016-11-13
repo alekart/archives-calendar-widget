@@ -1,0 +1,113 @@
+/***** CALENDAR BASE STRUCTURE
+	with this file an some variables the calendar will be not very sexy
+	but should be functional
+**/
+
+.calendar-archives {
+	position: relative; // DO NOT CHANGE
+	width: 100%; // DO NOT CHANGE
+	* {
+		box-sizing: border-box !important; // DO NOT CHANGE
+	}
+
+	a {
+		&:focus,
+		&:active {
+			outline: none !important;
+		}
+	}
+
+	> .calendar-navigation {
+		position: relative;
+		display: table;
+		width: 100%;
+		height: $navigation-height;
+		> .prev-year,
+		> .next-year,
+		> .menu-container {
+			position: relative;
+			display: table-cell; // DO NOT CHANGE
+			//height: 100%; // DO NOT CHANGE
+			height: $navigation-height;
+			vertical-align: middle; // DO NOT CHANGE
+
+			> a.title {
+				display: block;
+				height: $navigation-height;
+				line-height: $navigation-height;
+			}
+			> ul.menu {
+				position: absolute;
+				display: none;
+				width: 100%;
+				top: 0;
+				overflow: hidden;
+				background-color: $menu-bg-color;
+				z-index: 99;
+			}
+			li {
+				display: block;
+				> a {
+					display: block;
+					height: $navigation-height;
+					line-height: $navigation-height;
+				}
+			}
+			> .arrow-down {
+				position: absolute;
+				top: 0;
+				right: 0;
+				height: $navigation-height;
+				line-height: $navigation-height;
+				font-family: Verdana, Arial, Helvetica, sans-serif;
+			}
+		}
+	}
+
+	> .archives-years {
+		position: relative; // DO NOT CHANGE
+		overflow: hidden; // DO NOT CHANGE
+
+		// Month/year container. Calendar "pages".
+		// DO NOT CHANGE
+		> .year {
+			position: absolute;
+			top: 0;
+			left: 0;
+			margin-left: -100%;
+			width: 100%;
+			z-index: 0;
+			.year-link {
+				display: none;
+			}
+			&.last {
+				position: relative;
+			}
+			&.current {
+				margin-left: 0;
+				z-index: 1;
+			}
+		}
+	}
+
+	.month, .day {
+		position: relative;
+		overflow: hidden;
+		float: left;
+	}
+
+	.month {
+		width: $month-width;
+		height: $month-height;
+	}
+	.day {
+		width: $day-width !important;
+	}
+}
+
+/* FOR PREVIEW IN CONFIGURATION ONLY */
+.settings_page_Archives_Calendar_Widget {
+	#TB_ajaxContent {
+		background-color: $preview-background;
+	}
+}
