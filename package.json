@@ -2,8 +2,6 @@
   "name": "archives-calendar-widget",
   "version": "2.0.0-snapshot",
   "description": "A wordpress plugin that displays archives in a calendar",
-  "scripts": {
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alekart/archives-calendar-widget.git"
@@ -19,5 +17,17 @@
   "bugs": {
     "url": "https://github.com/alekart/archives-calendar-widget/issues"
   },
-  "homepage": "https://github.com/alekart/archives-calendar-widget#readme"
+  "homepage": "https://github.com/alekart/archives-calendar-widget#readme",
+  "scripts": {
+    "wp-update": "curl -O https://wordpress.org/latest.tar.gz && tar -xvf latest.tar.gz && rm latest.tar.gz",
+    "bump-version": "node ./scripts/bump-version.js",
+    "bump-next": "npm run bump-version next",
+    "bump-release": "npm run bump-version release --relase"
+  },
+  "devDependencies": {
+    "@types/node": "^14.18.3",
+    "@types/yargs": "^17.0.8",
+    "semver": "^7.3.5",
+    "yargs": "^17.3.1"
+  }
 }
