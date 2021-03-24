@@ -6,7 +6,7 @@
 
 // Core variables and mixins
 @import "variables";
-@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "mixins";
 
 // Reset and dependencies
 //@import "bootstrap/normalize";
@@ -16,7 +16,7 @@
 // Core CSS
 //@import "bootstrap/scaffolding";
 //@import "bootstrap/type";
-@import "bootstrap-sass/assets/stylesheets/bootstrap/code";
+@import "code";
 //@import "bootstrap/grid";
 //@import "bootstrap/tables";
 //@import "bootstrap/forms";
@@ -36,7 +36,7 @@
 //@import "bootstrap/badges";
 //@import "bootstrap/jumbotron";
 //@import "bootstrap/thumbnails";
-@import "bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+@import "alerts";
 //@import "bootstrap/progress-bars";
 //@import "bootstrap/media";
 //@import "bootstrap/list-group";

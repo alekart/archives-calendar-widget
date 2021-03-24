@@ -5,7 +5,7 @@
 
 module.exports = function (grunt) {
 
-	// Automatically load required Grunt tasks
+  // Automatically load required Grunt tasks
 	require('jit-grunt')(grunt);
 
 	var packages = grunt.file.readJSON('package.json'),
@@ -37,12 +37,12 @@ module.exports = function (grunt) {
 		watch: {
 			sass: {
 				files: ['<%= paths.sass %>/{,**/}*.scss'],
-				tasks: ['compass:dev']
+				tasks: ['sass:dev']
 			},
 
 			themes: {
 				files: ['<%= paths.themes %>/{,**/}*.scss'],
-				tasks: ['compass:themes']
+				tasks: ['sass:themes']
 			},
 
 			files: {
@@ -60,31 +60,48 @@ module.exports = function (grunt) {
 		},
 
 		// Compiles Sass to CSS and generates necessary files if requested
-		compass: {
+		sass: {
 			options: {
-				importPath: './bower_components'
+        loadPath: ['./node_modules/'],
 			},
 			dev: {
-				options: {
-					sassDir: '<%= paths.sass %>',
-					cssDir: '<%= paths.dist %>/admin/css/'
-				}
-			},
+        files: [{
+          expand: true,
+          cwd: '<%= paths.sass %>',
+          src: ['*.scss'],
+          dest: '<%= paths.dist %>/admin/css/',
+          ext: '.css',
+        }, {
+          expand: true,
+          cwd: '<%= paths.themes %>',
+          src: ['*.scss'],
+          dest: '<%= paths.dist %>/themes/',
+          ext: '.css',
+        }],
+      },
 			dist: {
 				options: {
-					sassDir: '<%= paths.sass %>',
-					cssDir: '<%= paths.dist %>/admin/css/',
-					environment: 'production',
-					outputStyle: 'compressed'
-				}
-			},
+					style: 'compressed'
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= paths.sass %>',
+          src: ['*.scss'],
+          dest: '<%= paths.dist %>/admin/css/',
+          ext: '.css',
+        }],
+      },
 			themes: {
 				options: {
-					sassDir: '<%= paths.themes %>',
-					cssDir: '<%= paths.dist %>/themes/',
-					environment: 'production',
-					outputStyle: 'compressed'
-				}
+					style: 'compressed'
+				},
+        files: [{
+          expand: true,
+          cwd: '<%= paths.themes %>',
+          src: ['*.scss'],
+          dest: '<%= paths.dist %>/themes/',
+          ext: '.css',
+        }],
 			}
 		},
 
@@ -218,7 +235,7 @@ module.exports = function (grunt) {
 	});
 
 	grunt.registerTask('serve', [
-		'compass:dev',
+		'sass:dev',
 		'clean:js',
 		'concat',
 		'newer:copy:release',
@@ -229,8 +246,8 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('build', [
 		'clean:dist',
-		'compass:dist',
-		'compass:themes',
+		'sass:dist',
+		'sass:themes',
 		'uglify',
 		'copy:release',
 		'replace'
