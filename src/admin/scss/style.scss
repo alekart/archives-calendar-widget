@@ -10,27 +10,27 @@ code {
 	display: block;
 }
 
-// SIDEBAR
-
-//#post-body.columns-2 #postbox-container-1 {
-//	float: right;
-//	margin-right: -310px;
-//	width: 300px;
-//}
-
 .alek-links {
 	text-align: center;
+
 	a {
 		margin: 5px;
 		display: inline-block;
 		vertical-align: middle;
+    color: rgba(black, .9);
 
-		img {
-			opacity: .7;
-		}
-
-		&:hover img {
-			opacity: 1;
+		&:hover {
+      color: black;
 		}
 	}
+
+  &__github-logo {
+    height: 50px;
+  }
+  &__wordpress-logo {
+    height: 52px;
+  }
+  &__alek-logo {
+    height: 50px;
+  }
 }
