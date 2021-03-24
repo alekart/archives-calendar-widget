@@ -280,8 +280,13 @@ function archives_month_view( $args, $sql ) {
 		$month_select = 'empty';
 	}
 
-	// Get current time of the website (timezone)
-	$today = current_time( 'timestamp' );
+	// Get current time with WP timezone
+	$local_time  = current_datetime();
+	// TODO: should it be base on blog time or on visitor's time?
+	//  maybe we should make this check on the front-end side to ensure that
+	//  the viewer sees consistent date in the calendar or we should display
+	//  the local time of the WP
+	$today = $local_time->getTimestamp() + $local_time->getOffset();
 
 	$todayDay   = intval( date( 'd', $today ) );
 	$todayMonth = intval( date( 'm', $today ) );
