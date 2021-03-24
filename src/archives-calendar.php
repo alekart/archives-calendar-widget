@@ -127,7 +127,7 @@ function make_arcw_link( $url, $type = null, $cats = null ) {
 
 	$params = array( 'arcf' => '' );
 	$attr   = &$params['arcf'];
-	if ( ! empty( $type ) && count( $type ) && $type != 'post' ) {
+	if ( ! empty( $type ) && $type != 'post' ) {
 		$attr = 'post:' . str_replace( ',', '+', $type );
 	}
 	if ( ! empty( $cats ) ) {
