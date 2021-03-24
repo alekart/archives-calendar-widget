@@ -66,7 +66,9 @@ if ( $archivesCalendar_options['css'] == 1 ) // Archives Calendar Widget Themes 
 }
 
 // WIDGET INITIALISATION
-add_action( 'widgets_init', create_function( '', 'register_widget( "Archives_Calendar" );' ) );
+add_action( 'widgets_init', function() {
+	register_widget( "Archives_Calendar" );
+});
 
 /**** INIT/ENQUEUE FUNCTIONS ****/
 function archivesCalendar_init() {
