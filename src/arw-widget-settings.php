@@ -105,7 +105,7 @@
                     <strong><?php _e('Categories');?></strong>
                 </div>
                 <div class="accordion-section-content" id="<?php echo $elemid; ?>" style="background-color: #FDFDFD">
-                    <label class="selectit"><input class="all" type="checkbox" id="acw_all_cats" <?php if(!count($cats)) echo 'checked';?> > <?php _e('All'); ?></label>
+                    <label class="selectit"><input class="all" type="checkbox" id="acw_all_cats" <?php if(empty($cats)) echo 'checked';?> > <?php _e('All'); ?></label>
                     <hr>
                     <ul id="categorychecklist" class="categorychecklist form-no-clear">
                     <?php
@@ -134,7 +134,7 @@
 
                             $checkbox_tmpl = '<li class="popular-category">
                                                 <label class="selectit">
-                                                    <input value="%s" type="checkbox" id="%s" name="%s" %s> 
+                                                    <input value="%s" type="checkbox" id="%s" name="%s" %s>
                                                     %s
                                                 </label>
                                             </li>';
