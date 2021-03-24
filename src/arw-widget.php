@@ -151,7 +151,7 @@ function archives_view( $args ) {
 	$sql = "SELECT DISTINCT YEAR(post_date) AS year, MONTH(post_date) AS month
 		FROM $wpdb->posts wpposts ";
 
-	if ( count( $categories ) ) {
+	if ( count( (array)$categories ) ) {
 		$sql .= "JOIN $wpdb->term_relationships tr ON wpposts.ID = tr.object_id
 				 JOIN $wpdb->term_taxonomy tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id ";
 		$sql .= "AND tt.term_id IN(" . $args['cats'] . ") ";
@@ -182,7 +182,7 @@ function archives_year_view( $args, $sql ) {
 		{
 			$sql = "SELECT COUNT(DISTINCT(ID)) AS count FROM $wpdb->posts wpposts ";
 
-			if ( count( $categories ) ) {
+			if ( count( (array)$categories ) ) {
 				$sql .= "JOIN $wpdb->term_relationships tr ON ( wpposts.ID = tr.object_id )
 					JOIN $wpdb->term_taxonomy tt ON ( tr.term_taxonomy_id = tt.term_taxonomy_id
 					AND tt.term_taxonomy_id IN(" . $cats . ") ) ";
@@ -390,7 +390,7 @@ function archives_month_view( $args, $sql ) {
 		$sql = "SELECT DAY(post_date) AS day
 			FROM $wpdb->posts wpposts ";
 
-		if ( count( $categories ) ) {
+		if ( count( (array)$categories ) ) {
 			$sql .= "JOIN $wpdb->term_relationships tr ON ( wpposts.ID = tr.object_id )
 					JOIN $wpdb->term_taxonomy tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id
 					AND tt.term_id IN(" . $cats . ")
