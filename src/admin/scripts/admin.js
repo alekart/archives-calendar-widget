@@ -1,26 +1,24 @@
 /* PREVIEW MODAL */
 jQuery(document).ready(function ($) {
+    function loadThemePreview(theme) {
+      var d = (new Date()).getTime();
+      $(".arcw.preview-zone .calendar-archives ").addClass(theme);
+      select_preview(theme);
+      $("#ac_preview_css").remove();
+      $("head").append('<link id="ac_preview_css" href="' + ARCWPATH + '/themes/' + theme + '.css?v=' + d + '" type="text/css" rel="stylesheet" />');
+    }
+
     $('.calendar-archives.preview a').on('click', function (e) {
         e.preventDefault();
     });
     $('.preview_theme_select li.preview-theme').on('click', function () {
-        var d = (new Date()).getTime();
         var theme = $(this).attr('id');
-        $(".arcw.preview-zone .calendar-archives ").addClass(theme);
-        select_preview(theme);
-        $("#ac_preview_css").remove();
-        $("head").append('' + ARCWPATH + '' + theme + '<link id="ac_preview_css" href="/src/themes/.css?v=" type="text/css" rel="stylesheet" />' + d + '');
+        loadThemePreview(theme);
     });
 
     $('.button.preview_theme').on('click', function () {
-        //console.log('click preview')
-        var d = (new Date()).getTime();
         var theme = $('select.theme_select').val();
-        $(".arcw.preview-zone .calendar-archives ").addClass(theme);
-        //$('#themepreview option[value='+css+']').attr('selected', true);
-        select_preview(theme);
-        $("#ac_preview_css").remove();
-        $("head").append('' + ARCWPATH + '' + theme + '<link id="ac_preview_css" href="/src/themes/.css?v=" type="text/css" rel="stylesheet" />' + d + '');
+        loadThemePreview(theme);
     });
 
     $('.ok_theme').on('click', function () {
@@ -37,8 +35,9 @@ jQuery(document).ready(function ($) {
     }
 
     // I'M A DEV
-    $('#imadev:checkbox').attr("checked", null);
-    $('#imadev:checkbox').change(function() {
+    var imADevCheckbox = $('#imadev:checkbox');
+    imADevCheckbox.attr("checked", null);
+    imADevCheckbox.change(function() {
         if($(this).is(':checked')){
             $('.imadev').addClass('visible');
         }
