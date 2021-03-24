@@ -151,50 +151,21 @@ function archivesCalendar_options()
 }
 
 function sideBox() {
-    $feed_url = 'http://labs.alek.be/category/archives-calendar/feed/';
-    $feed = (array)simplexml_load_file($feed_url) ? (array)simplexml_load_file($feed_url) : null;
-    $items = $feed ? $feed['channel']->item : array();
-    $count = count($items);
-
-    if($count > 0):
-        ?>
-        <h2 style="font-size:24px; margin:0;"><?php _e('News/Updates', 'arwloc');?> <span class="description">RSS feed</span></h2>
-        <p>
-            <?php
-            $i=0;
-            foreach($items as $item){
-                if($i < 3){
-                    $date = strtotime($item->pubDate);
-                    echo '<p style="overflow:hidden; margin-bottom:0; margin-top:4px;">';
-                    echo '<label class="date" style="display:block; width: 20%; float:left;"><strong>'.date('d/m', $date).'</strong></label>';
-                    echo '<a style="display:block; width: 80%; float:right;" href="'.$item->guid.'" class="title" target="_blank">'.$item->title.'</a>';
-                    echo '</p>';
-                }
-                $i++;
-            }
-            if($count > 3){
-                $cat_url = 'http://labs.alek.be/category/archives-calendar/';
-                echo '<p style="margin-bottom:0; margin-top:6px;">';
-                echo '<strong><a href="'. $cat_url .'" class="title" target="_blank">'. __('More') .' ...</a></strong>';
-                echo '</p>';
-            }
-            if($count <= 0) _e( 'No posts', 'arwloc' );
-            ?>
-        </p>
-        <?php
-    endif;
     ?>
-    <h2 style="font-size:24px; margin:0;"><?php _e('More');?></h2>
-    <hr>
     <p class="alek-links">
-        <a href="https://github.com/alekart?tab=repositories" target="_blank"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/logo-github.svg" alt="alek on GitHub" title="My projects on Github" /></a>
-        <a href="http://profiles.wordpress.org/alekart/" target="_blank"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/logo-wordpress.svg" alt="alek´ on WordPress" title="My WordPress projects" /></a>
-        <a href="http://labs.alek.be/" target="_blank"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/logo-alabs.svg" alt="My blog" /></a>
-        <a href="http://alek.be/" target="_blank"><img src="<?php echo plugins_url('', __FILE__); ?>/admin/images/logo-alek.svg" alt="My portfolio" /></a>
+        <a href="https://github.com/alekart?tab=repositories" target="_blank" title="alek on GitHub">
+					<svg class="alek-links__github-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.14 32.5"><path fill="currentColor" d="M16.85 0a16.29 16.29 0 00-5.14 31.75c.81.15 1.11-.36 1.11-.79v-2.77C8.26 29.18 7.31 26 7.31 26a4.36 4.36 0 00-1.81-2.38c-1.48-1 .11-1 .11-1a3.44 3.44 0 012.5 1.68 3.48 3.48 0 004.74 1.36 3.51 3.51 0 011-2.18c-3.62-.41-7.42-1.81-7.42-8a6.3 6.3 0 011.68-4.37 5.83 5.83 0 01.19-4.35s1.37-.44 4.48 1.67a15.37 15.37 0 018.15 0c3.07-2.11 4.48-1.67 4.48-1.67a5.83 5.83 0 01.16 4.31 6.26 6.26 0 011.68 4.37c0 6.26-3.81 7.63-7.44 8a3.88 3.88 0 011.1 3v4.47c0 .53.3.94 1.12.78A16.29 16.29 0 0016.85 0z" fill-rule="evenodd"/></svg>
+				</a>
+        <a href="http://profiles.wordpress.org/alekart/" target="_blank" title="alek on WordPress">
+					<svg class="alek-links__wordpress-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 49.3 49.3"><path fill="currentColor" d="M3.5 24.6c0 8.4 4.9 15.6 11.9 19L5.3 16c-1.1 2.7-1.8 5.6-1.8 8.6zm35.4-1c0-2.6-.9-4.4-1.7-5.8-1.1-1.7-2.1-3.2-2.1-5 0-1.9 1.5-3.8 3.5-3.8h.3c-3.8-3.4-8.8-5.5-14.3-5.5C17.3 3.5 10.8 7.3 7 13h1.4c2.2 0 5.6-.3 5.6-.3 1.1-.1 1.3 1.6.1 1.7 0 0-1.1.1-2.4.2l7.7 22.9L24 23.8l-3.3-9-2.2-.2c-1.1-.1-1-1.8.1-1.7 0 0 3.5.3 5.6.3 2.2 0 5.6-.3 5.6-.3 1.1-.1 1.3 1.6.1 1.7 0 0-1.1.1-2.4.2l7.6 22.7 2.1-7c1-3 1.7-5.1 1.7-6.9z"/><path fill="currentColor" d="M25 26.5l-6.3 18.4c1.9.6 3.9.9 6 .9 2.5 0 4.8-.4 7-1.2-.1-.1-.1-.2-.2-.3L25 26.5zm18.2-12c.1.7.1 1.4.1 2.2 0 2.1-.4 4.6-1.6 7.6L35.2 43c6.3-3.7 10.5-10.5 10.5-18.3.1-3.7-.9-7.2-2.5-10.2z"/><path d="M24.6 0C11.1 0 0 11.1 0 24.6c0 13.6 11.1 24.6 24.6 24.6 13.6 0 24.6-11.1 24.6-24.6C49.3 11.1 38.2 0 24.6 0zm0 48.2c-13 0-23.5-10.5-23.5-23.5S11.6 1.2 24.6 1.2s23.5 10.5 23.5 23.5c.1 12.9-10.5 23.5-23.5 23.5z"/></svg>
+				</a>
+        <a href="http://alek.be/" target="_blank" title="alek's website">
+					<svg class="alek-links__alek-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50.98 51.02"><path fill="currentColor" d="M34.36 42.3zM26.26 0C9-.48-4.5 16.12 1.41 34.11A24.09 24.09 0 0016.3 49.4a26 26 0 0020.41-1 .25.25 0 00.13-.32 17.47 17.47 0 01-2.44-5.74c-.13-.55-.49-2.19-.49-2.19a2.54 2.54 0 00-3-1.92 2.4 2.4 0 00-.38.12 14.19 14.19 0 01-10.26-.06 12.64 12.64 0 01-7.33-7.09 13.8 13.8 0 1126.38-5.35v12.42A12.63 12.63 0 0050.67 51a.29.29 0 00.31-.27V26.05C51 12.18 40.13.41 26.26 0z"/></svg>
+				</a>
     </p>
     <hr>
     <p>
-        <?php _e('If you like this plugin please <strong>support my work</strong>, buy me <strong>a beer or a coffee</strong>. Click Donate and specify your amount.', 'arwloc');?>
+        <?php _e('If you like this plugin please <strong>support my work</strong>, pay me <strong>a beer or a coffee</strong>.<br> Click Donate and specify your amount.', 'arwloc');?>
     </p>
     <p style="text-align:center">
         <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU" target="_blank"><img src="https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif" alt="Donate" /></a><br>
