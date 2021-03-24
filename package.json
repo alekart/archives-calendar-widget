@@ -1,7 +1,7 @@
 {
   "name": "archives-calendar-widget",
-  "version": "1.0.12",
-  "description": "Grunt for building the Archives-Calendar-Widget plogin",
+  "version": "1.0.13-snapshot",
+  "description": "Grunt for building the Archives-Calendar-Widget plugin",
   "main": " ",
   "scripts": {
     "test": " "
