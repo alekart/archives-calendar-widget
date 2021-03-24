@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.13
+### Compatibility patch
+* Deprecations and bugfixes
+  - Thanks to [@tazotodua](https://wordpress.org/support/users/tazotodua/)
+- Replace deprecated `create_functon()` usage
+- Replace deprecated `current_time()` usage
+- Fix wrong `count()` usage
+- With love from Belgium
+
 ## 1.0.12
 * [fix] fix the today date timezone: use `current_time` wp method
 
