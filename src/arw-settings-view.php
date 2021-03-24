@@ -138,7 +138,7 @@
 
 								<p>
 									<a class="button-primary"
-									   href="<?php echo plugins_url( 'archives-calendar-widget/admin/default.js.txt', dirname( __FILE__ ) ); ?>"
+									   href="<?php echo plugins_url( '/admin/default.js.txt', __FILE__); ?>"
 									   target="_blank">
 										<?php _e( 'Display default JS', 'arwloc' ); ?>
 									</a>
