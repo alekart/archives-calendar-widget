@@ -3,6 +3,7 @@
 Plugin Name: Archives Calendar Widget
 Plugin URI: https://wordpress.org/plugins/archives-calendar-widget/
 Description: Archives widget that makes your monthly/daily archives look like a calendar.
+Text Domain: archives-calendar-widget
 Version: @@version
 Author: Aleksei Polechin (alek´)
 Author URI: http://alek.be
@@ -72,11 +73,11 @@ add_action( 'widgets_init', function() {
 
 /**** INIT/ENQUEUE FUNCTIONS ****/
 function archivesCalendar_init() {
-	load_plugin_textdomain( 'arwloc', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	load_plugin_textdomain( 'archives-calendar-widget', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
 function arcw_plugin_action_links( $links ) {
-	$links[] = '<a href="' . get_admin_url( null, 'options-general.php?page=Archives_Calendar_Widget' ) . '">' . __( 'Settings' ) . '</a>';
+	$links[] = '<a href="' . get_admin_url( null, 'options-general.php?page=Archives_Calendar_Widget' ) . '">' . __( 'Settings', 'archives-calendar-widget' ) . '</a>';
 
 	return $links;
 }

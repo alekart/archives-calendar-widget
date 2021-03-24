@@ -11,7 +11,7 @@ class Archives_Calendar extends WP_Widget {
 		parent::__construct(
 			'archives_calendar',
 			'Archives Calendar',
-			array( 'description' => __( 'Show archives as calendar', 'arwloc' ), )
+			array( 'description' => __( 'Show archives as calendar', 'archives-calendar-widget' ), )
 		);
 	}
 
@@ -30,7 +30,7 @@ class Archives_Calendar extends WP_Widget {
 
 	public function form( $instance ) {
 		$defaults = array(
-			'title'              => __( 'Archives' ),
+			'title'              => __( 'Archives', 'archives-calendar-widget' ),
 			'next_text'          => '>',
 			'prev_text'          => '<',
 			'post_count'         => 1,
@@ -241,7 +241,7 @@ function archives_year_view( $args, $sql ) {
 				} else {
 					$count = 0;
 				}
-				$posts_text = ( $count == 1 ) ? __( 'Post', 'arwloc' ) : __( 'Posts', 'arwloc' );
+				$posts_text = ( $count == 1 ) ? __( 'Post', 'archives-calendar-widget' ) : __( 'Posts', 'archives-calendar-widget' );
 
 				$postcount = '<span class="postcount"><span class="count-number">' . $count . '</span> <span class="count-text">' . $posts_text . '</span></span>';
 			} else {

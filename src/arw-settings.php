@@ -23,14 +23,14 @@ class Archives_Calendar_Widget_Settings {
 	}
 
 	function register_general_settings() {
-		$this->tabs[$this->general_settings_key] = __('Settings');
+		$this->tabs[$this->general_settings_key] = __('Settings', 'archives-calendar-widget');
 
 		register_setting( $this->general_settings_key, 'archivesCalendar', 'archivesCalendar_options_validate' );
 		add_settings_section( 'section_general', '', 'archivesCalendar_options', $this->general_settings_key );
 	}
 
 	function register_advanced_settings() {
-		$this->tabs[$this->advanced_settings_key] = __('Customize');
+		$this->tabs[$this->advanced_settings_key] = __('Customize', 'archives-calendar-widget');
 
 		register_setting( $this->advanced_settings_key, 'archivesCalendarThemer', 'archivesCalendar_themer_validate' );
 		add_settings_section( 'section_themer', '', 'archivesCalendar_themer', $this->advanced_settings_key );
@@ -165,11 +165,11 @@ function sideBox() {
     </p>
     <hr>
     <p>
-        <?php _e('If you like this plugin please <strong>support my work</strong>, pay me <strong>a beer or a coffee</strong>.<br> Click Donate and specify your amount.', 'arwloc');?>
+        <?php _e('If you like this plugin please <strong>support my work</strong>, pay me <strong>a beer or a coffee</strong>.<br> Click Donate and specify your amount.', 'archives-calendar-widget');?>
     </p>
     <p style="text-align:center">
         <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU" target="_blank"><img src="https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif" alt="Donate" /></a><br>
-        <span class="description" style="font-size:10px;"><?php _e('In Belgium 1 coffee or 1 beer costs about 2€', 'arwloc');?></span>
+        <span class="description" style="font-size:10px;"><?php _e('In Belgium 1 coffee or 1 beer costs about 2€', 'archives-calendar-widget');?></span>
     </p>
 <?php
 }
@@ -206,7 +206,7 @@ function arcw_themes_list($selected = 0, $args)
 		$i = 1;
 		foreach ( $custom as $filename => $css ) {
 			if ( $css ) {
-				echo '<option ' . selected( $filename, $selected ) . ' value="' . $filename . '">' . __( 'Custom', 'arwloc' ) . ' ' . $i . '</option>';
+				echo '<option ' . selected( $filename, $selected ) . ' value="' . $filename . '">' . __( 'Custom', 'archives-calendar-widget' ) . ' ' . $i . '</option>';
 				$i ++;
 			}
 		}

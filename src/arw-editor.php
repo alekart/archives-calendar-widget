@@ -49,8 +49,8 @@ function archivesCalendar_themer()
 								  id="codesource2"><?php echo $custom['arw-theme2']; ?></textarea>
 
 						<h2 class="nav-tab-wrapper custom">
-							<a href="#theme1" class="nav-tab nav-tab-active"><?php _e('Theme'); ?> 1</a>
-							<a href="#theme2" class="nav-tab"><?php _e('Theme'); ?> 2</a>
+							<a href="#theme1" class="nav-tab nav-tab-active"><?php _e('Theme', 'archives-calendar-widget'); ?> 1</a>
+							<a href="#theme2" class="nav-tab"><?php _e('Theme', 'archives-calendar-widget'); ?> 2</a>
 						</h2>
 
 						<div class="tabs">
@@ -76,7 +76,7 @@ function archivesCalendar_themer()
 					<div class="col-wrap">
 
 						<div class="arcw card">
-							<h2><?php _e('Preview', 'arwloc'); ?></h2>
+							<h2><?php _e('Preview', 'archives-calendar-widget'); ?></h2>
 							<?php
 							year_preview_html();
 							month_preview_html();
@@ -85,7 +85,7 @@ function archivesCalendar_themer()
 
 						<p>
 							<input name="Submit" type="submit" class="button-primary"
-								   value="<?php _e('Save Changes'); ?>">
+								   value="<?php _e('Save Changes', 'archives-calendar-widget'); ?>">
 						</p>
 
 					</div>
@@ -103,7 +103,7 @@ function archivesCalendar_themer_validate($args)
 		arcw_write_css($file, $css);
 	}
 
-	$update_message = __('Updated.') . $_POST["editor-tab"] .  '<script>var editor_tab = ' . $_POST["editor-tab"] . ';</script>';
+	$update_message = __('Updated.', 'archives-calendar-widget') . $_POST["editor-tab"] .  '<script>var editor_tab = ' . $_POST["editor-tab"] . ';</script>';
 	add_settings_error('themer', 'ok', $update_message, 'updated');
 	return $args;
 }

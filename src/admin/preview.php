@@ -6,7 +6,7 @@ function preview_block()
 	<div id="ac_preview" style="display:none;">
 
 		<div class="preview_theme_select">
-			<li class="selector-title"><?php _e('Themes'); ?></li>
+			<li class="selector-title"><?php _e('Themes', 'archives-calendar-widget'); ?></li>
 			<?php
 			global $themes;
 			foreach ($themes as $theme => $title) {
@@ -16,7 +16,7 @@ function preview_block()
 				$i = 1;
 				foreach ($custom as $filename => $css) {
 					if ($css) {
-						echo '<li id="' . $filename . '" class="preview-theme">' . __('Custom') . ' ' . $i . '</li>';
+						echo '<li id="' . $filename . '" class="preview-theme">' . __('Custom', 'archives-calendar-widget') . ' ' . $i . '</li>';
 						$i++;
 					}
 				}
@@ -32,12 +32,12 @@ function preview_block()
 			</div>
 			<p class="preview-note">
 				<span
-					class="description"><?php _e("The theme's CSS file is not included in administration, this preview may be different from the website rendering.", 'arwloc'); ?></span>
+					class="description"><?php _e("The theme's CSS file is not included in administration, this preview may be different from the website rendering.", 'archives-calendar-widget'); ?></span>
 			</p>
 
 			<div class="modal-buttons">
-				<button class="button-primary ok_theme"><?php _e('Select'); ?></button>
-				<button class="button cancel_theme"><?php _e('Close'); ?></button>
+				<button class="button-primary ok_theme"><?php _e('Select', 'archives-calendar-widget'); ?></button>
+				<button class="button cancel_theme"><?php _e('Close', 'archives-calendar-widget'); ?></button>
 			</div>
 		</div>
 	</div>
