@@ -4,7 +4,8 @@
   "description": "Grunt for building the Archives-Calendar-Widget plugin",
   "main": " ",
   "scripts": {
-    "test": " "
+    "serve": "grunt serve",
+    "build": "grunt build"
   },
   "repository": {
     "type": "git",
@@ -16,14 +17,15 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-compass": "^1.1.1",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-sass": "^2.0.0",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-newer": "^1.2.0",
     "grunt-replace": "^1.0.1",
-    "jit-grunt": "^0.10.0"
+    "jit-grunt": "^0.10.0",
+    "sass": "^1.32.8"
   },
   "dependencies": {}
 }
