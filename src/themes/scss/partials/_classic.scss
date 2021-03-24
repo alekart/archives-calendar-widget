@@ -65,8 +65,12 @@
 		padding: 5px 0;
 		text-align: center;
 		line-height: 100%;
-		// Day with posts
 
+    &.today {
+      background-color: $day-today-background;
+    }
+
+		// Day with posts
 		&.has-posts {
 			padding: 0;
 			a {
