@@ -318,6 +318,7 @@ function archives_month_view( $args, $sql ) {
 				arcw_sortMonths( $months );
 			}
 			break;
+		case 'empty':
 		case 'current':
 			if ( arcw_findMonth( $archiveYear, $archiveMonth, $months ) < 0 ) {
 				$months[] = (object) array( 'year' => $archiveYear, 'month' => $archiveMonth );
