@@ -39,14 +39,14 @@ $border-radius: 0px;
 
 		// Month/day with posts
 		&.has-posts {
-			background-color: #cd310d;
+			background-color: $day-has-posts-background;
 			a {
 				display: block;
 				width: 100%;
 				height: 100%;
 				border-radius: $border-radius;
-				color: #FFFFFF;
-				background-color: #cd310d;
+				color: $has-post-text-color;
+				background-color: $day-has-posts-background;
 
 				&:hover {
 					background-color: rgba(255,255,255,.2);
@@ -98,6 +98,12 @@ $border-radius: 0px;
 		text-align: center;
 		line-height: 1.4em;
 		// Day with posts
+
+    &.today {
+      .has-posts & {
+
+      }
+    }
 
 		&.has-posts {
 			padding: 0;

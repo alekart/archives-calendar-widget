@@ -8,6 +8,7 @@ $theme-name: 'pastel';
 $preview-background: #FFFFFF;
 $brand-primary: #5ebce5;
 $border-radius: 0px;
+$day-today-color: $brand-primary;
 
 /* Base common CSS : DON'T CHANGE */
 @import "base";
@@ -91,8 +92,12 @@ $border-radius: 0px;
 		padding: 5px 0;
 		text-align: center;
 		line-height: 100%;
-		// Day with posts
 
+    &.today {
+      color: $day-today-color;
+    }
+
+		// Day with posts
 		&.has-posts {
 			padding: 0;
 			a {

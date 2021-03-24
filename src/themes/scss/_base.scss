@@ -103,6 +103,12 @@
 	.day {
 		width: $day-width !important;
 	}
+
+  .today {
+    font-weight: $day-today-font-width;
+    color: $day-today-color;
+    background-color: $day-today-background;
+  }
 }
 
 /* FOR PREVIEW IN CONFIGURATION ONLY */
