@@ -10,7 +10,10 @@
       <option name="ALIGN_KEY_VALUE_PAIRS" value="true" />
       <option name="COMMA_AFTER_LAST_ARRAY_ELEMENT" value="true" />
       <option name="ELSE_IF_STYLE" value="COMBINE" />
+      <option name="FIELDS_DEFAULT_VISIBILITY" value="public" />
       <option name="GETTERS_SETTERS_NAMING_STYLE" value="SNAKE_CASE" />
+      <option name="VARIABLE_NAMING_STYLE" value="SNAKE_CASE" />
+      <option name="KEEP_RPAREN_AND_LBRACE_ON_ONE_LINE" value="true" />
       <option name="SPACES_AROUND_VAR_WITHIN_BRACKETS" value="true" />
       <option name="SPACE_AFTER_UNARY_NOT" value="true" />
     </PHPCodeStyleSettings>
@@ -21,6 +24,9 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="PHP">
+      <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
+      <option name="CLASS_BRACE_STYLE" value="1" />
+      <option name="METHOD_BRACE_STYLE" value="1" />
       <option name="SPACE_WITHIN_METHOD_CALL_PARENTHESES" value="true" />
       <option name="SPACE_WITHIN_METHOD_PARENTHESES" value="true" />
       <option name="SPACE_WITHIN_IF_PARENTHESES" value="true" />
@@ -30,9 +36,14 @@
       <option name="SPACE_WITHIN_SWITCH_PARENTHESES" value="true" />
       <option name="SPACE_WITHIN_ARRAY_INITIALIZER_BRACES" value="true" />
       <option name="SPACE_AFTER_TYPE_CAST" value="true" />
+      <option name="METHOD_PARAMETERS_WRAP" value="5" />
+      <option name="METHOD_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
+      <option name="METHOD_PARAMETERS_RPAREN_ON_NEXT_LINE" value="true" />
+      <option name="KEEP_SIMPLE_CLASSES_IN_ONE_LINE" value="true" />
       <option name="ARRAY_INITIALIZER_LBRACE_ON_NEXT_LINE" value="true" />
       <option name="ARRAY_INITIALIZER_RBRACE_ON_NEXT_LINE" value="true" />
       <option name="IF_BRACE_FORCE" value="3" />
+      <option name="SOFT_MARGINS" value="120" />
       <indentOptions>
         <option name="INDENT_SIZE" value="2" />
         <option name="TAB_SIZE" value="2" />
