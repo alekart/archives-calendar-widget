@@ -255,3 +255,6 @@ fabric.properties
 
 # tests
 tests/lib
+
+# PHP Mess Detector
+bin/phpmd.phar

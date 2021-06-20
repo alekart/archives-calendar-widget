@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/alekart/archives-calendar-widget#readme",
   "scripts": {
-    "postinstall": "npm run setup-tests",
+    "postinstall": "npm run install-phpmd && npm run setup-tests",
     "setup-tests": "./bin/install-wp-tests.sh wordpress-unit-test root root 127.0.0.1",
-    "wp-update": "curl -O https://wordpress.org/latest.tar.gz && tar -xvf latest.tar.gz --directory tests && rm latest.tar.gz",
+    "install-phpmd": "wget -c https://phpmd.org/static/latest/phpmd.phar -P bin/ && chmod +x bin/phpmd.phar",
     "test": "./bin/phpunit.phar --bootstrap tests/bootstrap.php --configuration phpunit.xml",
     "bump-version": "node ./scripts/bump-version.js",
     "bump-next": "npm run bump-version next",
