@@ -2,8 +2,13 @@
 <project version="4">
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="$PROJECT_DIR$/wordpress" />
+      <path value="$PROJECT_DIR$/tests/wordpress" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings load_method="PHPUNIT_PHAR" bootstrap_file_path="$PROJECT_DIR$/vendor/autoload.php" configuration_file_path="$PROJECT_DIR$/tests/phpunit.xml" custom_loader_path="" phpunit_phar_path="$PROJECT_DIR$/bin/phpunit.phar" />
+    </phpunit_settings>
+  </component>
 </project>

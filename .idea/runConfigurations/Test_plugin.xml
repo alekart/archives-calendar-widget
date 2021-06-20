@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Test plugin" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+    <TestRunner bootstrap_file="$PROJECT_DIR$/tests/bootstrap.php" class="testARCW" configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests" file="$PROJECT_DIR$/tests/ARCWTest.php" use_alternative_bootstrap_file="true" use_alternative_configuration_file="true" />
+    <method v="2" />
+  </configuration>
+</component>

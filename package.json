@@ -10,7 +10,8 @@
     "wordpress",
     "plugin",
     "archives",
-    "calendar"
+    "calendar",
+    "widget"
   ],
   "author": "alek <alekart@users.noreply.github.com>",
   "license": "MIT",
@@ -19,10 +20,13 @@
   },
   "homepage": "https://github.com/alekart/archives-calendar-widget#readme",
   "scripts": {
-    "wp-update": "curl -O https://wordpress.org/latest.tar.gz && tar -xvf latest.tar.gz && rm latest.tar.gz",
+    "postinstall": "npm run setup-tests",
+    "setup-tests": "./bin/install-wp-tests.sh wordpress-unit-test root root 127.0.0.1",
+    "wp-update": "curl -O https://wordpress.org/latest.tar.gz && tar -xvf latest.tar.gz --directory tests && rm latest.tar.gz",
+    "test": "./bin/phpunit.phar --bootstrap tests/bootstrap.php --configuration phpunit.xml",
     "bump-version": "node ./scripts/bump-version.js",
     "bump-next": "npm run bump-version next",
-    "bump-release": "npm run bump-version release --relase"
+    "bump-release": "npm run bump-version release --relasey"
   },
   "devDependencies": {
     "@types/node": "^14.18.3",

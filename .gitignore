@@ -250,14 +250,8 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/osx,sass,phpstorm,node
 
-## Custom
-dev
-wordpress
-TODO.md
-tests/data
-tests/includes
-tests/wordpress
-tests/wp-tests-config.php.bak
-
 ### PHPUnit Generated files
 .phpunit.result.cache
+
+# tests
+tests/lib
