@@ -7,8 +7,8 @@ class ArcwWidget extends WP_Widget {
 
 	public function __construct() {
 		parent::__construct(
-			'archives_calendar',
-			'Archives Calendar',
+			'archives_calendar_2',
+			'Archives Calendar 2',
 			array( 'description' => __( 'Show archives as calendar', 'archives-calendar-widget' ), )
 		);
 
@@ -140,7 +140,7 @@ class ArcwWidget extends WP_Widget {
 
 		// if the theme uses a different theme we need to enqueue the theme's stylesheet
 		if ( $theme !== $this->pluginOptions['theme'] ) {
-			wp_register_style( 'arcw-theme-' . $theme, plugins_url( 'themes/' . $theme . '.css', __FILE__ ), array(), ARCWVersion );
+			wp_register_style( 'arcw-theme-' . $theme, plugins_url( 'themes/' . $theme . '.css', __FILE__ ), array(), ArcwVersion );
 			wp_enqueue_style( 'arcw-theme-' . $theme );
 		}
 

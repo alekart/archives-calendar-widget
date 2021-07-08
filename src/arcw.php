@@ -29,7 +29,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  ****/
 
-define( 'ARCWVersion', '@@version' ); // current version of the plugin
+define( 'ARCWVersion', '2-dev-' . time() ); // current version of the plugin
 
 require_once(dirname( __FILE__ ) . '/class/class-ARCW.php');
 require_once(dirname( __FILE__ ) . '/class/class-ArcwWidget.php');
@@ -51,7 +51,7 @@ function archivesCalendarLoadWidget() {
 
 function arcwAssets() {
 	// Load JS
-	wp_enqueue_script( 'arcw', plugins_url( 'scripts/dist/arcw.js', __FILE__ ), [], ARCWVersion, true );
+	wp_enqueue_script( 'arcw', plugins_url( 'arcw.js', __FILE__ ), [], ARCWVersion, true );
 	wp_localize_script( 'arcw', 'ajaxurl', [ admin_url( 'admin-ajax.php' ) ] );
 }
 
