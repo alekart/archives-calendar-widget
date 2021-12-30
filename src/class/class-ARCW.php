@@ -100,6 +100,7 @@ class ARCW {
 	static function getPosts( string $sql ): array {
 		global $wpdb;
 
+		$dateFormat = get_option( 'date_format' );
 		$options = ARCW::getOptions();
 		$results = $wpdb->get_results( $sql );
 		$posts = [];
@@ -111,15 +112,21 @@ class ARCW {
 				try {
 					$date = new DateTime( $row->date );
 					$timestamp = $date->getTimestamp();
-					$wpDate = wp_date( 'Y-m-d H:i', $timestamp );
+					$wpDate = wp_date( 'Y-m-d', $timestamp );
 				} catch ( Exception $ex ) {
 					$wpDate = $row->date;
 				}
+				$year = intval(substr($wpDate, 0, 4));
+				$month = intval(substr($wpDate, 5, 2));
+				$day = intval(substr($wpDate, 8, 2));
 				$posts[] = [
 					'id'    => $row->id,
 					'date'  => $wpDate,
 					'title' => $row->title,
 					'link'  => get_permalink( $row->id ),
+					'dayLink' => get_day_link($year, $month, $day),
+					'monthLink' => get_month_link($year, $month),
+					'yearLink' => get_year_link($year),
 				];
 			}
 		}

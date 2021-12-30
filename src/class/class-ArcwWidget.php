@@ -17,22 +17,24 @@ class ArcwWidget extends WP_Widget {
 	}
 
 	static array $defaultOptions = [
-		'title'              => '',
-		'next_text'          => '>',
-		'prev_text'          => '<',
-		'post_count'         => true,
-		'month_view'         => false,
-		'month_select'       => 'default',
+		'title'              => '', // widget title
+		'next_text'          => '>', // widget next text
+		'prev_text'          => '<', // widget prev text
+		'post_count'         => true, // display the number of posts for the month/day
+		'month_view'         => false, // switch between month and year view
+		'month_select'       => 'default', // in year view display selected month by default
 		'disable_title_link' => false,
 		// TODO: unify different_theme and theme into 'theme'
 		//  it should display different theme if theme is defined
 		'different_theme'    => false,
-		'theme'              => null,
-		'categories'         => null,
+		'theme'              => null, // calendar theme, if defined will use different theme from global setting
+		'categories'         => null, // which categories should be displayed
 		// TODO: v1 configuration contains a string and needs to be converted into an array
-		'post_type'          => [ 'post' ],
+		'post_type'          => [ 'post' ], // post types to display
 		// TODO: rename into 'highlight-today'
-		'show_today'         => false,
+		'show_today'         => false, // highlight current day
+		// TODO: new feature, display password protected posts
+		'display_protected'  => false,
 	];
 
 	public function widget( $args, $instance ) {
@@ -54,7 +56,10 @@ class ArcwWidget extends WP_Widget {
 			'month_view'         => false,
 			'month_select'       => 'default',
 			'disable_title_link' => false,
-			// deprecated use theme value as use different
+			/**
+			 * deprecated use theme value as use different
+			 * @deprecated
+			 */
 			'different_theme'    => false,
 			'theme'              => null,
 			'categories'         => null,
@@ -78,9 +83,11 @@ class ArcwWidget extends WP_Widget {
 		if ( is_array( $post_type ) && empty( $post_type ) || (! $post_type || $post_type == '') ) {
 			$post_type = array( 'post' );
 		}
+
+		include "../includes/form.php";
 	}
 
-	public function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ): array {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['next_text'] = htmlspecialchars( $new_instance['next_text'] );
@@ -102,7 +109,7 @@ class ArcwWidget extends WP_Widget {
 		return $instance;
 	}
 
-	private function getWeekDaysTamplate(): string {
+	private function getWeekDaysTemplate(): string {
 		global $wp_locale;
 		/**
 		 * WP configured start of week day
@@ -118,6 +125,18 @@ class ArcwWidget extends WP_Widget {
 		return $daysTemplate;
 	}
 
+	private function getWeekDays(): array {
+		global $wp_locale;
+		for ( $index = 0; $index <= 6; $index++ ) {
+			$day = $wp_locale->get_weekday( $index );
+			$days[] = [
+				'full'  => $day,
+				'short' => $wp_locale->get_weekday_abbrev( $day ),
+			];
+		}
+		return $days;
+	}
+
 	private function getMonth(): array {
 		global $wp_locale;
 		for ( $index = 1; $index <= 12; $index++ ) {
@@ -130,12 +149,13 @@ class ArcwWidget extends WP_Widget {
 		return $months;
 	}
 
-	public function archivesCalendar( array $instance ) {
+	public function archivesCalendar( array $instance ): string {
 		global $wp_locale;
 		var_dump( $instance );
 
 		$options = wp_parse_args( $instance, ArcwWidget::$defaultOptions );
-		$mode = $options['month_view'] ? 'month' : 'year';
+		//		$mode = $options['month_view'] ? 'month' : 'year';
+		$mode = 'month';
 		$theme = $instance['theme'] ?: $this->pluginOptions['theme'];
 
 		// if the theme uses a different theme we need to enqueue the theme's stylesheet
@@ -152,21 +172,23 @@ class ArcwWidget extends WP_Widget {
 			'monthSelect' => $options['month_select'],
 			'postCount'   => $options['post_count'],
 			'months'      => $this->getMonth(),
+			'days'        => $this->getWeekDays(),
 			'weekStarts'  => $this->weekStartDay,
 		];
 
-		$template = "<div class='archives-calendar arcw-theme-$theme' data-configuration='" . json_encode( $configJson ) . "'>
+		$errorMessage = __( 'Calendar could not be initialized.', 'archives-calendar-widget' );
+
+		$template = "<div class='archives-calendar arcw arcw-theme-$theme' data-configuration='" . json_encode( $configJson ) . "'>
 			   		<div class='arcw-menu'>
 			   			<div class='arcw-menu__nav arcw-menu__nav--prev'></div>
 			   			<div class='arcw-menu__list'></div>
 			   			<div class='arcw-menu__nav arcw-menu__nav--next'></div>
 						</div>
-						<div class='arcw-view arcw-view--$mode'>";
-		if ( $mode === 'month' ) {
-			$template .= "<div class='arcw-view__weekdays'>" . $this->getWeekDaysTamplate() . "</div>";
-		}
-		$template .= "<div class='arcw-view__grid arcw-view__grid--$mode'></div>
+						<div class='arcw-weekdays'></div>
+						<div class='arcw-view arcw-view--$mode'>
+							<div class='arcw-view__grid arcw-view__grid--$mode'></div>
 						</div>
+						<div class='arcw-error'>$errorMessage</div>
 					</div>";
 		return $template;
 	}
