@@ -20,10 +20,13 @@
   },
   "homepage": "https://github.com/alekart/archives-calendar-widget#readme",
   "scripts": {
-    "postinstall": "npm run install-phpmd && npm run setup-tests",
+    "setup-php": "npm run install-phpmd && npm run setup-tests",
     "setup-tests": "./bin/install-wp-tests.sh wordpress-unit-test root root 127.0.0.1",
     "install-phpmd": "wget -c https://phpmd.org/static/latest/phpmd.phar -P bin/ && chmod +x bin/phpmd.phar",
-    "test": "./bin/phpunit.phar --bootstrap tests/bootstrap.php --configuration phpunit.xml",
+    "start": "webpack",
+    "build": "webpack --config webpack-build.config.js",
+    "test": "karma start karama.conf.js ",
+    "test-php": "./bin/phpunit.phar --bootstrap tests/bootstrap.php --configuration phpunit.xml",
     "bump-version": "node ./scripts/bump-version.js",
     "bump-next": "npm run bump-version next",
     "bump-release": "npm run bump-version release --relasey"
