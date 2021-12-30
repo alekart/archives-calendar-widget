@@ -4,6 +4,14 @@ import { ArcwConfiguration, DayName, Post } from './interfaces';
 import ArcwHelpers from './templates';
 import { MonthPosts, PostCollection, YearPosts } from './interfaces/post-collection.interface';
 
+function randomString(): string {
+  return Math.random().toString(36).slice(2);
+}
+
+const fakePosts: Post[] = [
+  // {id: randomString(), '2020-12-'},
+];
+
 export default class ArcwCalendar {
   /**
    * Raw fetched posts
@@ -167,6 +175,9 @@ export default class ArcwCalendar {
    * Request archive posts with specific calendar configuration
    */
   private getPosts(): Promise<PostCollection> {
+    // TODO: temp data mock loader
+
+    //
     const reqParams = {
       action: 'arcwGetPosts',
       'post-type': this.configuration['post-type'],
@@ -175,6 +186,7 @@ export default class ArcwCalendar {
     return ArcwCalendar.request(this.ajaxUrl, reqParams)
       .then((posts: Post[]) => {
         this.rawPosts = posts;
+        console.log(this.rawPosts);
         return ArcwCalendar.groupPosts(posts);
       });
   }
