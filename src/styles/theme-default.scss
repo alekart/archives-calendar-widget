@@ -1,0 +1,61 @@
+@use 'sass:math';
+
+$day-box-width: math.div(100, 7) * 1%;
+$day-box-height: 30px;
+$weekday-height: 25px;
+
+.arcw {
+  &--has-error {
+    > .arcw-error {
+      display: block;
+    }
+  }
+}
+
+.arcw-error {
+  display: none;
+}
+
+.arcw-weekdays {
+  display: flex;
+}
+
+.arcw-weekday {
+  width: $day-box-width;
+  height: $weekday-height;
+}
+
+.arcw-view__grid {
+  &--month {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &--year {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.arcw-month {
+  width: 25%;
+  height: 30px;
+}
+
+.arcw-day {
+  box-sizing: border-box;
+  width: $day-box-width;
+  height: $day-box-height;
+
+  border: 1px solid gray;
+  border-top: none;
+  border-right: none;
+
+  &:nth-child(7n) {
+    border-right: 1px solid gray;
+  }
+
+  &--has-posts {
+    font-weight: bold;
+  }
+}
