@@ -256,5 +256,8 @@ fabric.properties
 # tests
 tests/lib
 
+# Karma spec builds
+spec
+
 # PHP Mess Detector
 bin/phpmd.phar
