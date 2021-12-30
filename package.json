@@ -32,11 +32,16 @@
     "bump-release": "npm run bump-version release --relasey"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.5",
     "@types/jasmine": "^3.10.2",
     "@types/node": "^14.18.3",
+    "@types/sass": "^1.43.1",
     "@types/yargs": "^17.0.8",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-lodash": "^3.3.4",
+    "css-loader": "^6.5.1",
     "eslint": "^8.5.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-plugin-import": "^2.25.3",
@@ -49,10 +54,15 @@
     "karma-jasmine-html-reporter": "^1.7.0",
     "karma-spec-reporter": "^0.0.32",
     "karma-webpack": "^5.0.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "sass": "^1.45.1",
+    "sass-loader": "^12.4.0",
     "semver": "^7.3.5",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.4",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.65.0",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
     "yargs": "^17.3.1"
   }
