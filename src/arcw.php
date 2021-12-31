@@ -51,10 +51,10 @@ function archivesCalendarLoadWidget() {
 
 function arcwAssets() {
 	// Load JS
-	wp_enqueue_script( 'arcw', plugins_url( 'arcw.js', __FILE__ ), [], ARCWVersion, true );
+	wp_enqueue_script( 'arcw', plugins_url( 'scripts/dist/arcw.js', __FILE__ ), [], ARCWVersion, true );
 	wp_localize_script( 'arcw', 'ajaxurl', [ admin_url( 'admin-ajax.php' ) ] );
 
-	wp_register_style( 'arcw-theme', plugins_url( 'scripts/dist/theme-default.css', __FILE__ ), array(), ArcwVersion );
+	wp_register_style( 'arcw-theme', plugins_url( 'scripts/dist/theme-default.css', __FILE__ ), array(), ARCWVersion );
 	wp_enqueue_style( 'arcw-theme' );
 }
 
