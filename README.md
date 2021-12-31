@@ -46,6 +46,8 @@ to your actual absolute path to WordPress folder:
 ```php
 define( 'ABSPATH', '/Users/{USER_NAME}/arcw/tests/lib/wordpress/' );
 ```
+
+Read more: https://make.wordpress.org/core/handbook/testing/automated-testing/phpunit/
  
 ## Addons
 - __[Popover](https://github.com/alekart/arcwp/)__ 
