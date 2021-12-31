@@ -18,7 +18,6 @@
       <option name="SPACE_AFTER_UNARY_NOT" value="true" />
     </PHPCodeStyleSettings>
     <TypeScriptCodeStyleSettings version="0">
-      <option name="SPACE_WITHIN_ARRAY_INITIALIZER_BRACKETS" value="true" />
       <option name="USE_DOUBLE_QUOTES" value="false" />
       <option name="FORCE_QUOTE_STYlE" value="true" />
       <option name="ENFORCE_TRAILING_COMMA" value="WhenMultiline" />
