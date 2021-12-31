@@ -160,7 +160,7 @@ class ArcwWidget extends WP_Widget {
 
 		// if the theme uses a different theme we need to enqueue the theme's stylesheet
 		if ( $theme !== $this->pluginOptions['theme'] ) {
-			wp_register_style( 'arcw-theme-' . $theme, plugins_url( 'themes/' . $theme . '.css', __FILE__ ), array(), ArcwVersion );
+			wp_register_style( 'arcw-theme-' . $theme, plugins_url( 'themes/' . $theme . '.css', __FILE__ ), array(), ARCWVersion );
 			wp_enqueue_style( 'arcw-theme-' . $theme );
 		}
 
@@ -188,7 +188,7 @@ class ArcwWidget extends WP_Widget {
 						<div class='arcw-view arcw-view--$mode'>
 							<div class='arcw-view__grid arcw-view__grid--$mode'></div>
 						</div>
-						<div class='arcw-error'>$errorMessage</div>
+						<template #id='arcw-error' class='arcw-error'>$errorMessage</template>
 					</div>";
 		return $template;
 	}
