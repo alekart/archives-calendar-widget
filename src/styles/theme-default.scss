@@ -26,6 +26,11 @@ $weekday-height: 25px;
 }
 
 .arcw-view__grid {
+
+  &:not(:first-child) {
+    display: none;
+  }
+
   &--month {
     display: flex;
     flex-wrap: wrap;

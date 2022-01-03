@@ -66,7 +66,8 @@ export default class ArcwHelpers {
     if (date && posts?.length) {
       attributes = {
         ...attributes,
-        'data-date': Date.toString(),
+        // TODO: wht is the date for
+        'data-date': date.toString(),
       };
     } else {
       classes.push(`${monthClass}--empty`);
@@ -79,6 +80,7 @@ export default class ArcwHelpers {
       box.classList.add(`${monthClass}--has-posts`);
       const postCount = ArcwHelpers.createElement('span', null, [`${monthClass}__post-count`]);
       const postNumber = ArcwHelpers.createElement('span', posts.length.toString(), [`${monthClass}__post-count-number`]);
+      // TODO "Posts" text should be WP localized in single an plural
       const postText = ArcwHelpers.createElement('span', 'Posts', [`${monthClass}__post-count-text`]);
       postCount.appendChild(postNumber);
       postCount.appendChild(postText);

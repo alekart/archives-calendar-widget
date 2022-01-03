@@ -188,7 +188,7 @@ class ArcwWidget extends WP_Widget {
 						<div class='arcw-view arcw-view--$mode'>
 							<div class='arcw-view__grid arcw-view__grid--$mode'></div>
 						</div>
-						<template #id='arcw-error' class='arcw-error'>$errorMessage</template>
+						<template id='arcw-error' class='arcw-error'>$errorMessage</template>
 					</div>";
 		return $template;
 	}
