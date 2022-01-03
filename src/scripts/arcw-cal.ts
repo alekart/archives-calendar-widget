@@ -231,12 +231,13 @@ export default class ArcwCalendar {
   static groupPostsByMonth(posts: Post[]): YearPosts['months'] {
     const months: YearPosts['months'] = {};
     const byMonth = groupBy(posts, (post: Post) => parseInt(post.date.slice(5, 7), 10));
-    for (const [month, postList] of Object.entries(byMonth)) {
+    Object.keys(byMonth).forEach((month) => {
+      const postList = byMonth[month];
       months[month] = {
         count: postList.length,
         days: ArcwCalendar.groupPostsByDay(postList),
       };
-    }
+    });
     return months;
   }
 
@@ -308,9 +309,9 @@ export default class ArcwCalendar {
       return monthPosts?.days[day.toString()]?.posts || [];
     }
     const posts: Post[] = [];
-    for (const [, daysPosts] of Object.entries(monthPosts.days)) {
-      posts.push(...daysPosts.posts);
-    }
+    Object.keys(monthPosts.days).forEach((key) => {
+      posts.push(...monthPosts.days[key].posts);
+    });
     return orderBy(posts, ['date'], ['asc']);
   }
 
