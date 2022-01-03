@@ -3,11 +3,10 @@ const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const themesPath = './src/styles';
-
 function getScssEntries() {
   const themes = {};
   fs.readdirSync(themesPath).forEach(file => {
-    if(/^_/.test(file)){
+    if (/^_/.test(file)) {
       return;
     }
     const filename = path.basename(file, '.scss');
@@ -18,16 +17,15 @@ function getScssEntries() {
 
 module.exports = {
   mode: 'development',
-  plugins: [
-    new MiniCssExtractPlugin(),
-  ],
+  devtool: 'source-map',
   entry: {
     arcw: './src/scripts/arcw.ts',
     ...getScssEntries(),
   },
-  devtool: 'source-map',
+  plugins: [
+    new MiniCssExtractPlugin(),
+  ],
   target: ['web', 'es5'],
-  watch: true,
   module: {
     rules: [
       {
@@ -59,5 +57,15 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './src/scripts/dist'),
+  },
+  devServer: {
+    open: true,
+    hot: false,
+    static: [{
+      directory: path.join(__dirname, 'src/scripts'),
+    }, {
+      directory: path.join(__dirname, 'src/scripts/dist'),
+    }],
+    port: 9000,
   },
 };

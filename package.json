@@ -23,7 +23,7 @@
     "setup-php": "npm run install-phpmd && npm run setup-tests",
     "setup-tests": "./bin/install-wp-tests.sh wordpress-unit-test root root 127.0.0.1",
     "install-phpmd": "wget -c https://phpmd.org/static/latest/phpmd.phar -P bin/ && chmod +x bin/phpmd.phar",
-    "start": "webpack",
+    "start": "webpack serve",
     "build": "webpack --config webpack-build.config.js",
     "test": "karma start karama.conf.js ",
     "test-php": "./bin/phpunit.phar --bootstrap tests/bootstrap.php --configuration phpunit.xml",
@@ -68,6 +68,7 @@
     "webpack": "^5.65.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.2",
     "yargs": "^17.3.1"
   }
 }

@@ -7,7 +7,6 @@ module.exports = {
   ...config,
   mode: 'production',
   devtool: false,
-  watch: false,
   plugins: [
     ...config.plugins,
     new BundleAnalyzerPlugin(),
