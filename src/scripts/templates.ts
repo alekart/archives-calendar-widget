@@ -88,4 +88,8 @@ export default class ArcwHelpers {
     }
     return box;
   }
+
+  static getSelectOption(label: string, value: string): HTMLOptionElement {
+    return ArcwHelpers.createElement('option', label, [], { value }) as HTMLOptionElement;
+  }
 }

@@ -1,4 +1,4 @@
-import { groupBy, orderBy } from 'lodash';
+import { cloneDeep, groupBy, orderBy } from 'lodash';
 import { ArcwMode } from './enums';
 import { ArcwConfiguration, DayName, Post } from './interfaces';
 import ArcwHelpers from './templates';
@@ -116,15 +116,20 @@ export default class ArcwCalendar {
    * Posts collection
    */
   private posts: PostCollection;
+
+  /**
+   * The calendar selection menu
+   */
+  private selectMenu: HTMLSelectElement;
+
   /**
    * Calendar container element
    */
-
   private container: HTMLElement;
+
   /**
    * Calendar configuration
    */
-
   private configuration: ArcwConfiguration;
   /**
    * The error message container
@@ -140,16 +145,14 @@ export default class ArcwCalendar {
   constructor(element: HTMLElement, ajaxUrl: string) {
     this.container = element;
     this.errorContainer = element.querySelector('.arcw-error');
+    this.selectMenu = ArcwHelpers.createElement('select', null) as HTMLSelectElement;
     this.ajaxUrl = ajaxUrl;
     this.getConfigurationFromAttributes();
-    console.log('ARCW configuration: ', this.configuration);
     this.getPosts().then((posts) => {
-      console.log('plop');
-      this.posts = posts;
-      this.buildCalendar();
-    }).catch((e) => {
-      console.error('ARCW: posts could not be loaded.');
-      console.error(e);
+      if (posts) {
+        this.posts = posts;
+        this.buildCalendar();
+      }
     });
 
     // #region date hover feature
@@ -159,10 +162,15 @@ export default class ArcwCalendar {
       const targetElem: HTMLElement = <HTMLElement>event.target;
       if (targetElem.dataset.date) {
         const date = new Date(targetElem.dataset.date);
-        console.log(this.getPostsFor(date.getFullYear(), date.getMonth() + 1, date.getDate()));
+        // console.log(this.getPostsFor(date.getFullYear(), date.getMonth() + 1, date.getDate()));
       }
     }, false);
     // #endregion date hover
+
+    this.selectMenu.addEventListener('change', (event: any) => {
+      console.log(event.target.value);
+      console.log(event);
+    });
   }
 
   /**
@@ -271,19 +279,25 @@ export default class ArcwCalendar {
    */
   private getPosts(): Promise<PostCollection> {
     // TODO: temp data mock loader
-    return Promise.resolve(ArcwCalendar.groupPosts(postsMock));
-    //
-    // const reqParams = {
-    //   action: 'arcwGetPosts',
-    //   'post-type': this.configuration['post-type'],
-    //   categories: this.configuration.categories || [],
-    // };
-    // return ArcwCalendar.request(this.ajaxUrl, reqParams)
-    //   .then((posts: Post[]) => {
-    //     this.rawPosts = posts;
-    //     console.log(this.rawPosts);
-    //     return ArcwCalendar.groupPosts(posts);
-    //   });
+    this.rawPosts = postsMock;
+    return Promise.resolve(ArcwCalendar.groupPosts(cloneDeep(postsMock)));
+
+    const reqParams = {
+      action: 'arcwGetPosts',
+      'post-type': this.configuration['post-type'],
+      categories: this.configuration.categories || [],
+    };
+    return new Promise<PostCollection>((resolve) => {
+      ArcwCalendar.request(this.ajaxUrl, reqParams)
+        .then((posts: Post[]) => {
+          this.rawPosts = posts;
+          resolve(ArcwCalendar.groupPosts(posts));
+        }).catch((e) => {
+          console.error('ARCW: posts could not be loaded.');
+          console.error(e);
+          resolve(null);
+        });
+    });
   }
 
   /**
@@ -315,12 +329,23 @@ export default class ArcwCalendar {
     return orderBy(posts, ['date'], ['asc']);
   }
 
-  getMonthName(number: number, short = false): string {
-    const month = this.configuration.months[number];
-    return short ? month.short : month.full;
+  /**
+   * Get the translated month name
+   * @param month from 1 to 12
+   * @param short when true will return short name
+   */
+  getMonthName(month: number | string, short = false): string {
+    const monthNum = typeof month === 'string'
+      ? parseInt(month, 10) - 1
+      : month - 1;
+    const monthI18n = this.configuration.months[monthNum];
+    return short ? monthI18n.short : monthI18n.full;
   }
 
   buildCalendar() {
+    const menuContainer = this.container.querySelector('.arcw-menu__list');
+    menuContainer.appendChild(this.selectMenu);
+
     if (this.configuration.mode === ArcwMode.Year) {
       this.buildYearCalendar();
     } else {
@@ -333,7 +358,6 @@ export default class ArcwCalendar {
     const firstDay = new Date(year, month - 1).getDay();
     const numberOfDays = ArcwHelpers.getNumberOfDaysInMonth(month, year);
     let totalBoxes = 0;
-    const zeroMonth = `0${month}`.slice(-2);
 
     // empty days in the beginning
     for (let i = 1; i !== firstDay; i += 1) {
@@ -372,10 +396,12 @@ export default class ArcwCalendar {
       daysContainer.appendChild(element);
     }
 
-    this.posts.yearsOrdered.forEach((year) => {
+    this.posts.yearsOrdered.forEach((year, index) => {
       const yearPosts = this.posts.years[year];
       yearPosts.monthsOrdered.forEach((month) => {
         const monthPosts = yearPosts.months[month];
+        const label = this.getMonthName(month);
+        this.selectMenu.appendChild(ArcwHelpers.getSelectOption(label, `${index}-${year}-${month}`));
         pageContainer.appendChild(
           this.generateMonthGrid(parseInt(year, 10), parseInt(month, 10), monthPosts.days),
         );
@@ -387,6 +413,7 @@ export default class ArcwCalendar {
     const pageContainer = this.container.querySelector('.arcw-view');
     this.posts.yearsOrdered.forEach((year) => {
       pageContainer.appendChild(this.generateYearGrid(parseInt(year, 10)));
+      this.selectMenu.appendChild(ArcwHelpers.getSelectOption(year, year));
     });
   }
 
@@ -395,18 +422,8 @@ export default class ArcwCalendar {
     for (let i = 1; i <= 12; i += 1) {
       const posts = this.getPostsFor(year, i);
       const date = new Date(`${year}-${i}-1`);
-      console.log(year, date, posts);
       gridContainer.appendChild(ArcwHelpers.buildMonthBox(date, this.configuration, posts));
     }
     return gridContainer;
-  }
-
-  createYearMenu(): HTMLSelectElement {
-    const select = ArcwHelpers.createElement('select', null) as HTMLSelectElement;
-    this.posts.yearsOrdered.forEach((year) => {
-      const option = ArcwHelpers.createElement('option', year.toString(), [], { value: year });
-      select.appendChild(option);
-    });
-    return select;
   }
 }
