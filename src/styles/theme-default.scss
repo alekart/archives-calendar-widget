@@ -1,4 +1,5 @@
 @use 'sass:math';
+@import "base/structure";
 
 $day-box-width: math.div(100, 7) * 1%;
 $day-box-height: 30px;

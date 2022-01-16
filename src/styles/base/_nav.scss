@@ -1,0 +1,29 @@
+.arcw-btn {
+  display: block;
+}
+
+.arcw-nav {
+  display: flex;
+  width: 100%;
+}
+
+.arcw-nav__label {
+  display: block;
+  flex: 1 0 auto;
+  background-color: aquamarine;
+}
+
+.arcw-nav__select {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: none;
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.arcw-nav__btn {
+  flex: 0 0 30px;
+}
