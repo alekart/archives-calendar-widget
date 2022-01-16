@@ -1,8 +1,7 @@
 import { orderBy } from 'lodash';
 import { ArcwMode } from './enums';
-import { ArcwConfiguration, DayName, Post } from './interfaces';
 import Helpers from './helpers';
-import { MonthPosts, PostCollection } from './interfaces/post-collection.interface';
+import { ArcwConfiguration, DayName, MonthPosts, Post, PostCollection } from './interfaces';
 
 export default class ArcwCalendar {
   /**
@@ -68,7 +67,7 @@ export default class ArcwCalendar {
     this.addEventListeners();
   }
 
-  addEventListeners() {
+  private addEventListeners() {
     // #region date hover feature
     // TODO: this is a feature to add hover on date
     const viewContainer = this.container.querySelector('.arcw-view');
@@ -79,6 +78,10 @@ export default class ArcwCalendar {
       }
     }, false);
     // #endregion date hover
+
+    this.elements.nav.addEventListener('click', (event: any) => {
+      console.log(event.target);
+    });
 
     // selectMenu.addEventListener('change', (event: any) => {
     //   console.log(event.target.value);
@@ -119,7 +122,7 @@ export default class ArcwCalendar {
     });
   }
 
-  getPostsFor(year: number | string, month: number | string, day?: number | string): Post[] {
+  private getPostsFor(year: number | string, month: number | string, day?: number | string): Post[] {
     const monthPosts = this.posts?.years[year.toString()]?.months[month.toString()];
     if (!monthPosts) {
       return [];
@@ -139,7 +142,7 @@ export default class ArcwCalendar {
    * @param month from 1 to 12
    * @param short when true will return short name
    */
-  getMonthName(month: number | string, short = false): string {
+  private getMonthName(month: number | string, short = false): string {
     const monthNum = typeof month === 'string'
       ? parseInt(month, 10) - 1
       : month - 1;
@@ -147,7 +150,7 @@ export default class ArcwCalendar {
     return short ? monthI18n.short : monthI18n.full;
   }
 
-  buildCalendar() {
+  private buildCalendar() {
     if (this.configuration.mode === ArcwMode.Year) {
       this.buildYearCalendar();
     } else {
@@ -155,7 +158,7 @@ export default class ArcwCalendar {
     }
   }
 
-  buildMonthCalendar() {
+  private buildMonthCalendar() {
     const daysContainer = this.container.querySelector('.arcw-weekdays');
     const pageContainer = this.container.querySelector('.arcw-view');
 
@@ -180,7 +183,7 @@ export default class ArcwCalendar {
     });
   }
 
-  buildYearCalendar() {
+  private buildYearCalendar() {
     const pageContainer = this.container.querySelector('.arcw-view');
     this.posts.yearsOrdered.forEach((year) => {
       pageContainer.appendChild(this.generateYearGrid(parseInt(year, 10)));
@@ -188,7 +191,7 @@ export default class ArcwCalendar {
     });
   }
 
-  generateMonthGrid(year: number, month: number, daysWithPosts?: MonthPosts['days']): HTMLElement {
+  private generateMonthGrid(year: number, month: number, daysWithPosts?: MonthPosts['days']): HTMLElement {
     const gridContainer = Helpers.createElement('div', '', ['arcw-view__grid', 'arcw-view__grid--month']);
     const noDayElement = Helpers.createElement('div', '', ['arcw-day', 'arcw-day--no-day']);
     const firstDay = new Date(year, month - 1).getDay();
@@ -252,7 +255,7 @@ export default class ArcwCalendar {
     const monthLong = this.configuration?.months?.[month]?.full;
     const monthShort = this.configuration?.months?.[month]?.short;
 
-    const box = this.cloneTemplate(template);
+    const box = Helpers.cloneTemplateToElement(template);
     if (posts?.length) {
       box.querySelector('[data-number]').textContent = `${posts.length}`;
       box.querySelector('[data-label]').textContent = 'Posts';
@@ -276,7 +279,7 @@ export default class ArcwCalendar {
     container: Element,
   ) {
     const isoDate = date.toISOString();
-    const box = this.cloneTemplate(template);
+    const box = Helpers.cloneTemplateToElement(template);
     box.innerHTML = `${date.getDate()}`;
     if (posts.length) {
       Helpers.setAttributes(box, {
@@ -285,12 +288,6 @@ export default class ArcwCalendar {
       });
     }
     container.appendChild(box);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  private cloneTemplate(template: HTMLTemplateElement): Element {
-    const clone = <Element>template.content.cloneNode(true);
-    return clone.querySelector(':first-child');
   }
 
   private prepareNav() {

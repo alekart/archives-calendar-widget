@@ -1,7 +1,5 @@
 import { groupBy } from 'lodash';
-import {
-  Post, MonthPosts, PostCollection, YearPosts,
-} from './interfaces';
+import { MonthPosts, Post, PostCollection, YearPosts } from './interfaces';
 
 export default class Helpers {
   /**
@@ -126,6 +124,12 @@ export default class Helpers {
       element.appendChild(content);
     }
     return element;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  static cloneTemplateToElement(template: HTMLTemplateElement): Element {
+    const clone = <Element>template.content.cloneNode(true);
+    return clone.querySelector(':first-child');
   }
 
   static getSelectOption(label: string, value: string): HTMLOptionElement {
