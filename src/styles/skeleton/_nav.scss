@@ -1,0 +1,104 @@
+@import "variables";
+
+.arcw-btn {
+  display: block;
+  border: none;
+  border-radius: 0;
+
+  color: $nav-btn-color;
+  background-color: $nav-btn-bg;
+}
+
+.arcw-nav {
+  display: flex;
+  width: 100%;
+  height: $nav-height;
+  margin-bottom: $nav-margin-bottom;
+
+  background-color: $nav-bg-color;
+}
+
+.arcw-nav__label {
+  position: relative;
+  display: block;
+  flex: 1 0 auto;
+}
+
+.arcw-nav__menu {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  &:after {
+    content: "▾";
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $nav-menu-trigger-width;
+    height: 100%;
+    text-align: center;
+
+    background-color: orange;
+
+    pointer-events: none;
+  }
+
+  &:hover {
+    &:after {
+      background-color: red;
+    }
+  }
+}
+
+.arcw-nav__link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: $nav-menu-trigger-width;
+
+  background-color: rgba(blue, .3);
+
+  display: none;
+}
+
+.arcw-nav__select {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  outline: none;
+
+  // Remove dropdown arrow in IE10 & IE11
+  // @link https://www.filamentgroup.com/lab/select-css.html
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+.arcw-nav__btn {
+  flex: 0 0 $nav-btn-width;
+
+  &:hover, &:focus {
+    color: $nav-btn-color--hover;
+    background-color: $nav-btn-bg--hover;
+    outline: none;
+  }
+
+  &:disabled {
+    color: $nav-btn-color--disabled;
+    background-color: $nav-btn-bg--disabled;
+  }
+}

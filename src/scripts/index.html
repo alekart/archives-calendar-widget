@@ -15,7 +15,9 @@
     <button class="arcw-nav__btn arcw-nav__btn--prev arcw-btn" data-arcw-prev></button>
     <label class="arw-nav__btn arcw-nav__label">
       <a class="arcw-nav__link" href="" data-arcw-link></a>
-      <select class="arcw-nav__select" data-arcw-select></select>
+      <span class="arcw-nav__menu">
+        <select class="arcw-nav__select" data-arcw-select></select>
+      </span>
     </label>
     <button class="arcw-nav__btn arcw-nav__btn--next arcw-btn" data-arcw-next></button>
   </div>
@@ -31,7 +33,9 @@
     <button class="arcw-nav__btn arcw-nav__btn--prev arcw-btn" data-arcw-prev></button>
     <label class="arw-nav__btn arcw-nav__label">
       <a class="arcw-nav__link" href="" data-arcw-link></a>
-      <select class="arcw-nav__select" data-arcw-select></select>
+      <span class="arcw-nav__menu">
+        <select class="arcw-nav__select" data-arcw-select></select>
+      </span>
     </label>
     <button class="arcw-nav__btn arcw-nav__btn--next arcw-btn" data-arcw-next></button>
   </div>
@@ -39,26 +43,26 @@
 </div>
 
 <template id="arcw-day-empty">
-  <span class="arcw-day arcw-day--empty"></span>
+  <span class="arcw-box arcw-box--day arcw-box--empty"></span>
 </template>
 
 <template id="arcw-day-filled">
-  <a class="arcw-day arcw-day--has-posts"></a>
+  <a class="arcw-box arcw-box--day arcw-box--has-posts"></a>
 </template>
 
 <template id="arcw-month-empty">
-  <span class="arcw-month arcw-month--empty" title="">
+  <span class="arcw-box arcw-box--month arcw-box--empty" title="">
     <span class="arcw-month__name" data-name></span>
   </span>
 </template>
 
 <template id="arcw-month-filled">
-  <a class="arcw-month arcw-month--has-posts" title="" data-date="" href="">
+  <a class="arcw-box arcw-box--month arcw-box--has-posts" data-date="" href="" title="">
+    <span class="arcw-month__name" data-name></span>
     <span class="arcw-month-count">
       <span class="arcw-month-count__number" data-number></span>
       <span class="arcw-month-count__label" data-label></span>
     </span>
-    <span class="arcw-month__name" data-name></span>
   </a>
 </template>
 

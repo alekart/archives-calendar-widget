@@ -1,0 +1,25 @@
+@import "variables";
+
+.arcw-view__grid {
+  background-color: $grid-background;
+  padding: $box-gap;
+
+  &:not(:first-child) {
+    display: none;
+  }
+
+  &--month,
+  &--year {
+    display: grid;
+    column-gap: $box-gap;
+    row-gap: $box-gap;
+  }
+
+  &--month {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  &--year {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

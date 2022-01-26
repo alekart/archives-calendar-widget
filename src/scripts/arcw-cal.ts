@@ -193,7 +193,7 @@ export default class ArcwCalendar {
 
   private generateMonthGrid(year: number, month: number, daysWithPosts?: MonthPosts['days']): HTMLElement {
     const gridContainer = Helpers.createElement('div', '', ['arcw-view__grid', 'arcw-view__grid--month']);
-    const noDayElement = Helpers.createElement('div', '', ['arcw-day', 'arcw-day--no-day']);
+    const noDayElement = Helpers.createElement('div', '', ['arcw-box', 'arcw-box--no-day']);
     const firstDay = new Date(year, month - 1).getDay();
     const numberOfDays = Helpers.getNumberOfDaysInMonth(month, year);
     let totalBoxes = 0;

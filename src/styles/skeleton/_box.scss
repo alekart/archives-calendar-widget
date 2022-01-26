@@ -1,0 +1,71 @@
+@use "sass:selector";
+@import "variables";
+
+@mixin unify-parent($child) {
+  @at-root #{selector.unify(&, $child)} {
+    @content
+  }
+}
+
+.arcw-box {
+  display: block;
+  box-sizing: border-box;
+  border: $box-border;
+  border-radius: $box-border-radius;
+
+  color: $box-text-color;
+  background-color: $box-background;
+
+  &--month {
+    position: relative;
+    display: block;
+    height: $month-box-height;
+  }
+
+  &--day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $day-box-height;
+    border-bottom: $box-border;
+
+    color: $box-text-color;
+    font-weight: $day-box-font-weight;
+    text-align: center;
+  }
+
+  &--no-day {
+    height: $day-box-height;
+    border: none;
+    background-color: transparent;
+  }
+
+  &--has-posts {
+    text-decoration: none;
+    color: $box-text-color--active;
+    background-color: $box-background--active;
+
+    &:hover {
+      color: $box-text-color--hover;
+      background-color: $box-background--hover;
+    }
+  }
+}
+
+.arcw-month__name {
+  display: block;
+  margin-top: $month-name-top-margin;
+  margin-left: $month-name-left-margin;
+}
+
+.arcw-month-count {
+  position: absolute;
+  display: block;
+
+  .arcw-box--has-posts > & {
+    color: $month-count-color;
+  }
+  .arcw-box--has-posts:hover > & {
+    color: $month-count-color--hover;
+  }
+}
