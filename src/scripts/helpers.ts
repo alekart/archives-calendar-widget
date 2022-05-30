@@ -62,17 +62,24 @@ export default class Helpers {
       yearsOrdered: [],
       years: {},
     };
+    const years: string[] = [];
     // For each year group
     Object.entries(byYear).forEach(([year, postList]) => {
       const months = Helpers.groupPostsByMonth(postList);
-      postCollection.yearsOrdered.push(year);
+      years.push(year);
+      const monthsOrdered = Helpers.numbersToStrings(
+        Helpers.sortNumbers(Helpers.stringsToNumbers(Object.keys(months))),
+      );
       postCollection.years[year] = {
         year: parseInt(year, 10),
-        monthsOrdered: Object.keys(months).sort(),
+        monthsOrdered,
         months,
       };
     });
-    postCollection.yearsOrdered.sort();
+    const yearsOrdered = Helpers.numbersToStrings(
+      Helpers.sortNumbers(Helpers.stringsToNumbers(years)),
+    );
+    postCollection.yearsOrdered = yearsOrdered;
     return postCollection;
   }
 
@@ -102,6 +109,18 @@ export default class Helpers {
     return days;
   }
 
+  static sortNumbers(numbers: number[]): number[] {
+    return [...numbers].sort((a, b) => a - b);
+  }
+
+  static stringsToNumbers(strings: string[]): number[] {
+    return [...strings].map((n) => Number(n));
+  }
+
+  static numbersToStrings(numbers: number[]): string[] {
+    return [...numbers].map((n) => n.toString());
+  }
+
   /**
    * Create a div or span element with provided content, classes and attributes.
    */
@@ -129,7 +148,7 @@ export default class Helpers {
   // eslint-disable-next-line class-methods-use-this
   static cloneTemplateToElement(template: HTMLTemplateElement): Element {
     const clone = <Element>template.content.cloneNode(true);
-    return clone.querySelector(':first-child');
+    return clone.firstElementChild;
   }
 
   static getSelectOption(label: string, value: string): HTMLOptionElement {

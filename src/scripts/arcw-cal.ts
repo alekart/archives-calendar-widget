@@ -1,7 +1,8 @@
 import { orderBy } from 'lodash';
+import Navigation from './arcw-nav';
 import { ArcwMode } from './enums';
 import Helpers from './helpers';
-import { ArcwConfiguration, DayName, MonthPosts, Post, PostCollection } from './interfaces';
+import { ArcwConfiguration, DayName, MonthPosts, NavigationItem, Post, PostCollection } from './interfaces';
 
 export default class ArcwCalendar {
   /**
@@ -24,13 +25,7 @@ export default class ArcwCalendar {
    */
   private configuration: ArcwConfiguration;
 
-  private elements: {
-    nav: Element;
-    navNext: Element;
-    navPrev: Element;
-    navLink: Element;
-    navSelect: Element;
-  };
+  private navigationElement: HTMLElement;
 
   private templates: Record<string, HTMLTemplateElement>;
 
@@ -40,7 +35,7 @@ export default class ArcwCalendar {
   ajaxUrl: string;
 
   constructor(element: HTMLElement, ajaxUrl: string, private devMode = false) {
-    const nav = element.querySelector('[data-arcw-nav]');
+    this.navigationElement = element.querySelector('[data-arcw-nav]');
     this.ajaxUrl = ajaxUrl;
     this.templates = {
       dayEmpty: document.querySelector('#arcw-day-empty'),
@@ -49,15 +44,7 @@ export default class ArcwCalendar {
       monthFilled: document.querySelector('#arcw-month-filled'),
     };
     this.container = element;
-    this.elements = {
-      nav,
-      navPrev: nav.querySelector('[data-arcw-prev]'),
-      navNext: nav.querySelector('[data-arcw-next]'),
-      navLink: nav.querySelector('[data-arcw-link]'),
-      navSelect: nav.querySelector('[data-arcw-select]'),
-    };
     this.getConfigurationFromAttributes();
-    this.prepareNav();
     this.getPosts().then((posts) => {
       if (posts) {
         this.posts = posts;
@@ -74,19 +61,10 @@ export default class ArcwCalendar {
     viewContainer.addEventListener('mouseover', (event) => {
       const targetElem: HTMLElement = <HTMLElement>event.target;
       if (targetElem.dataset.date) {
-        const date = new Date(targetElem.dataset.date);
+        // const date = new Date(targetElem.dataset.date);
       }
     }, false);
     // #endregion date hover
-
-    this.elements.nav.addEventListener('click', (event: any) => {
-      console.log(event.target);
-    });
-
-    // selectMenu.addEventListener('change', (event: any) => {
-    //   console.log(event.target.value);
-    //   console.log(event);
-    // });
   }
 
   /**
@@ -122,7 +100,11 @@ export default class ArcwCalendar {
     });
   }
 
-  private getPostsFor(year: number | string, month: number | string, day?: number | string): Post[] {
+  private getPostsFor(
+    year: number | string,
+    month: number | string,
+    day?: number | string,
+  ): Post[] {
     const monthPosts = this.posts?.years[year.toString()]?.months[month.toString()];
     if (!monthPosts) {
       return [];
@@ -150,45 +132,58 @@ export default class ArcwCalendar {
     return short ? monthI18n.short : monthI18n.full;
   }
 
-  private buildCalendar() {
+  private buildCalendar(): Navigation {
+    let navList: NavigationItem[];
     if (this.configuration.mode === ArcwMode.Year) {
-      this.buildYearCalendar();
+      navList = this.buildYearCalendar();
     } else {
-      this.buildMonthCalendar();
+      navList = this.buildMonthCalendar();
     }
+    return new Navigation(this.navigationElement, navList, this.configuration);
   }
 
-  private buildMonthCalendar() {
+  private buildMonthCalendar(): NavigationItem[] {
     const daysContainer = this.container.querySelector('.arcw-weekdays');
     const pageContainer = this.container.querySelector('.arcw-view');
+    const listOfMonth: NavigationItem[] = [];
 
     for (let i = 0; i <= 6; i += 1) {
       const day: DayName['short'] = this.configuration.days[(i + this.configuration.weekStarts) % 7].short;
       const element = Helpers.createElement('div', day, ['arcw-weekday']);
       daysContainer.appendChild(element);
     }
-
     this.posts.yearsOrdered.forEach((year) => {
       const yearPosts = this.posts.years[year];
       yearPosts.monthsOrdered.forEach((month, index) => {
-        const monthPosts = yearPosts.months[month];
-        const label = this.getMonthSelectionLabel(month, year);
-        this.elements.navSelect.appendChild(Helpers.getSelectOption(label, `${index}-${year}-${month}`));
+        const gridElement = this.generateMonthGrid(
+          parseInt(year, 10),
+          parseInt(month, 10),
+          yearPosts.months[month].days,
+        );
+        pageContainer.appendChild(gridElement);
         if (index === 0) {
-          pageContainer.appendChild(
-            this.generateMonthGrid(parseInt(year, 10), parseInt(month, 10), monthPosts.days),
-          );
+          gridElement.classList.toggle('arcw-active');
         }
+        listOfMonth.push({
+          index, element: gridElement, month, year,
+        });
       });
     });
+    return listOfMonth;
   }
 
-  private buildYearCalendar() {
+  private buildYearCalendar(): NavigationItem[] {
+    const listOfYears: NavigationItem[] = [];
     const pageContainer = this.container.querySelector('.arcw-view');
-    this.posts.yearsOrdered.forEach((year) => {
-      pageContainer.appendChild(this.generateYearGrid(parseInt(year, 10)));
-      this.elements.navSelect.appendChild(Helpers.getSelectOption(year, year));
+    this.posts.yearsOrdered.forEach((year, index) => {
+      const gridElement = this.generateYearGrid(parseInt(year, 10));
+      pageContainer.appendChild(gridElement);
+      if (index === 0) {
+        gridElement.classList.toggle('arcw-active');
+      }
+      listOfYears.push({ index, element: gridElement, year });
     });
+    return listOfYears;
   }
 
   private generateMonthGrid(year: number, month: number, daysWithPosts?: MonthPosts['days']): HTMLElement {
@@ -227,21 +222,12 @@ export default class ArcwCalendar {
     const gridContainer = Helpers.createElement('div', '', ['arcw-view__grid', 'arcw-view__grid--year']);
     for (let i = 1; i <= 12; i += 1) {
       const posts = this.getPostsFor(year, i);
-      const date = new Date(`${year}-${i}-1`);
+      const month = `0${i}`.slice(-2);
+      const date = new Date(`${year}-${month}-01`);
       const template = posts.length ? this.templates.monthFilled : this.templates.monthEmpty;
       this.addMonthBox(date, posts, template, gridContainer);
     }
     return gridContainer;
-  }
-
-  /**
-   * Return label for the navigation select menu with the month name and year
-   * if archive year is different from current.
-   */
-  private getMonthSelectionLabel(month: string, year: string): string {
-    const currentYear = new Date().getFullYear();
-    const yearLabel = year === currentYear.toString() ? '' : ` | ${year}`;
-    return this.getMonthName(month) + yearLabel;
   }
 
   private addMonthBox(
@@ -250,7 +236,7 @@ export default class ArcwCalendar {
     template: HTMLTemplateElement,
     container: Element,
   ) {
-    const isoDate = date.toISOString();
+    const isoDate = date?.toISOString();
     const month = date.getMonth();
     const monthLong = this.configuration?.months?.[month]?.full;
     const monthShort = this.configuration?.months?.[month]?.short;
@@ -288,10 +274,5 @@ export default class ArcwCalendar {
       });
     }
     container.appendChild(box);
-  }
-
-  private prepareNav() {
-    this.elements.navPrev.textContent = '<';
-    this.elements.navNext.textContent = '>';
   }
 }

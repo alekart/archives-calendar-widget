@@ -46,6 +46,7 @@ module.exports = {
               // Prefer `dart-sass`
               implementation: require('sass'),
               sourceMap: true,
+              webpackImporter: false,
             },
           },
         ],

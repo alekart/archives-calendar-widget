@@ -4,7 +4,7 @@
   background-color: $grid-background;
   padding: $box-gap;
 
-  &:not(:first-child) {
+  &:not(.arcw-active) {
     display: none;
   }
 
