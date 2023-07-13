@@ -2,7 +2,9 @@ import { orderBy } from 'lodash';
 import Navigation from './arcw-nav';
 import { ArcwMode } from './enums';
 import Helpers from './helpers';
-import { ArcwConfiguration, DayName, MonthPosts, NavigationItem, Post, PostCollection } from './interfaces';
+import {
+  ArcwConfiguration, DayName, MonthPosts, NavigationItem, Post, PostCollection,
+} from './interfaces';
 
 export default class ArcwCalendar {
   /**

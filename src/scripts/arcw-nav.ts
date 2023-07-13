@@ -5,14 +5,23 @@ type Direction = 'next' | 'prev';
 
 export default class Navigation {
   totalPages: number;
+
   currentPage: number;
+
   direction: Direction;
+
   nav: HTMLElement;
+
   prevButton: HTMLButtonElement;
+
   nextButton: HTMLButtonElement;
+
   navLink: HTMLAnchorElement;
+
   selectMenu: HTMLSelectElement;
+
   activeIndex: number;
+
   private selectors = {
     prevButton: '[data-arcw-prev]',
     nextButton: '[data-arcw-next]',
@@ -40,11 +49,19 @@ export default class Navigation {
     });
 
     this.activeIndex = this.items.findIndex((item) => item.element.classList.contains('arcw-active'));
-    console.log(this.activeIndex);
+    this.totalPages = this.items.length;
 
     this.selectMenu.addEventListener('change', (event: any) => {
       const index = parseInt(event.target.value, 10);
       this.goto(index);
+    });
+
+    this.nextButton.addEventListener('click', (event: MouseEvent) => {
+      this.next();
+    });
+    this.prevButton.addEventListener('click', (event: MouseEvent) => {
+      this.prev();
+      console.log('click');
     });
   }
 
@@ -59,15 +76,15 @@ export default class Navigation {
     this.activeIndex = index;
   }
 
-  prev() {
-    if (this.totalPages > 1 && this.currentPage < this.totalPages) {
-      this.currentPage += 1;
+  next() {
+    if (this.totalPages > 0 && (this.activeIndex + 1) < this.totalPages) {
+      this.goto(this.activeIndex + 1);
     }
   }
 
-  next() {
-    if (this.currentPage > 1) {
-      this.currentPage -= 1;
+  prev() {
+    if (this.activeIndex > 0) {
+      this.goto(this.activeIndex - 1);
     }
   }
 
