@@ -1,5 +1,5 @@
 === Archives Calendar Widget ===
-Contributors: alekart
+Contributors: alekart, xelan
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4K6STJNLKBTMU
 Tags: archives, calendar, widget, sidebar, view, plugin, monthly, daily
 Requires at least: 5.0

@@ -1,13 +1,13 @@
 {
   "name": "archives-calendar-widget",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Grunt for building the Archives-Calendar-Widget plugin",
   "scripts": {
     "serve": "grunt serve",
     "build": "grunt build"
   },
   "repository": {
-    "type": "git",
+    "type": "git"
   },
   "keywords": [],
   "author": "alekart",
