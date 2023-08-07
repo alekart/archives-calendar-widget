@@ -84,7 +84,8 @@ function arcw_plugin_action_links( $links ) {
 
 function archivesCalendar_jquery_plugin() {
 	global $archivesCalendar_options;
-	$jQarcw = $archivesCalendar_options['plugin-init'] == 1 ? '/admin/js/jquery.arcw-init.js' : '/admin/js/jquery.arcw.js';
+	$pluginInit = isset($archivesCalendar_options['plugin-init']) ? $archivesCalendar_options['plugin-init'] : null;
+	$jQarcw = $pluginInit == 1 ? '/admin/js/jquery.arcw-init.js' : '/admin/js/jquery.arcw.js';
 	wp_register_script( 'jquery-arcw', plugins_url( $jQarcw, __FILE__ ), array( "jquery" ), ARCWV );
 	wp_enqueue_script( 'jquery-arcw' );
 }
