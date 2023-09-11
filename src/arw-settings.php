@@ -175,7 +175,9 @@ function sideBox() {
 }
 
 /* theme list select */
-function arcw_themes_list($selected = 0, $args)
+// PHP 8.0 fix - David Green STH (30/08/2022)
+// Deprecated: Required parameter $args follows optional parameter $selected
+function arcw_themes_list($selected, $args)
 {
 	global $wpdb, $themes, $archivesCalendar_options;
 
