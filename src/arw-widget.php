@@ -292,7 +292,7 @@ function archives_month_view( $args, $sql ) {
 	$todayMonth = intval( date( 'm', $today ) );
 	$todayYear  = intval( date( 'Y', $today ) );
 
-	if ( is_archive() ) {
+	if ( is_archive() && $post != null ) {
 		$archiveYear  = intval( date( 'Y', strtotime( $post->post_date ) ) );
 		$archiveMonth = intval( date( 'm', strtotime( $post->post_date ) ) );
 
@@ -477,7 +477,10 @@ function archives_month_view( $args, $sql ) {
 	return $cal;
 }
 
-function get_calendar_header( $view = 'months', $pages, $archiveMonth = null, $archiveYear, $args ) {
+function get_calendar_header( $view, $pages, $archiveMonth, $archiveYear, $args ) {
+	if(empty($view)) { 
+		$view = 'months';
+	}
 	global $wp_locale;
 	extract( $args );
 	$cal = "\n<!-- Archives Calendar Widget by Aleksei Polechin - alek´ - http://alek.be -->\n";
