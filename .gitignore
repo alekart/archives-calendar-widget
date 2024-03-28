@@ -261,3 +261,4 @@ spec
 
 # PHP Mess Detector
 bin/phpmd.phar
+.idea/copilot
