@@ -1,1 +1,0 @@
-// index for scss extractor

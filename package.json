@@ -1,73 +1,24 @@
 {
-  "name": "archives-calendar-widget",
-  "version": "2.0.0-snapshot",
-  "description": "A wordpress plugin that displays archives in a calendar",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alekart/archives-calendar-widget.git"
-  },
-  "keywords": [
-    "wordpress",
-    "plugin",
-    "archives",
-    "calendar",
-    "widget"
-  ],
-  "author": "alek <alekart@users.noreply.github.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/alekart/archives-calendar-widget/issues"
-  },
-  "homepage": "https://github.com/alekart/archives-calendar-widget#readme",
-  "scripts": {
-    "setup-php": "npm run install-phpmd && npm run setup-tests",
-    "setup-tests": "./bin/install-wp-tests.sh wordpress-unit-test root root 127.0.0.1",
-    "install-phpmd": "wget -c https://phpmd.org/static/latest/phpmd.phar -P bin/ && chmod +x bin/phpmd.phar",
-    "start": "webpack serve",
-    "build": "webpack --config webpack-build.config.js",
-    "test": "karma start karama.conf.js ",
-    "test-php": "./bin/phpunit.phar --bootstrap tests/bootstrap.php --configuration phpunit.xml",
-    "bump-version": "node ./scripts/bump-version.js",
-    "bump-next": "npm run bump-version next",
-    "bump-release": "npm run bump-version release --relasey"
-  },
+	"name": "arcw",
+	"version": "2.0.0",
+	"description": "Example block scaffolded with Create Block tool.",
+	"author": "alekart",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start --webpack-copy-php"
+	},
   "dependencies": {
-    "lodash": "^4.17.21"
+		"@wordpress/components": "^25.6.0"
   },
-  "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@types/jasmine": "^3.10.2",
-    "@types/lodash": "^4.14.178",
-    "@types/node": "^14.18.3",
-    "@types/sass": "^1.43.1",
-    "@types/yargs": "^17.0.8",
-    "@typescript-eslint/eslint-plugin": "^5.8.1",
-    "@typescript-eslint/parser": "^5.8.1",
-    "babel-loader": "^8.2.3",
-    "babel-plugin-lodash": "^3.3.4",
-    "css-loader": "^6.5.1",
-    "eslint": "^8.5.0",
-    "eslint-config-airbnb-typescript": "^16.1.0",
-    "eslint-plugin-import": "^2.25.3",
-    "jasmine-core": "^3.10.1",
-    "jasmine-spec-reporter": "^7.0.0",
-    "karma": "^6.3.9",
-    "karma-chrome-launcher": "^3.1.0",
-    "karma-coverage-istanbul-reporter": "^3.0.3",
-    "karma-jasmine": "^4.0.1",
-    "karma-jasmine-html-reporter": "^1.7.0",
-    "karma-spec-reporter": "^0.0.32",
-    "karma-webpack": "^5.0.0",
-    "mini-css-extract-plugin": "^2.4.5",
-    "sass": "^1.45.1",
-    "sass-loader": "^12.4.0",
-    "semver": "^7.3.5",
-    "ts-loader": "^9.2.6",
-    "typescript": "^4.5.4",
-    "webpack": "^5.88.1",
-    "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.7.2",
-    "yargs": "^17.3.1"
-  }
+	"devDependencies": {
+		"@wordpress/data": "^9.10.0",
+		"@wordpress/scripts": "^26.11.0"
+	}
 }

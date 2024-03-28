@@ -1,0 +1,1 @@
+{"version":3,"file":"view.js","mappings":";;;;;AAAA;AACAA,OAAO,CAACC,GAAG,CAAE,qCAAsC,CAAC;AACpD,8B","sources":["webpack://arcw/./src/view.js"],"sourcesContent":["/* eslint-disable no-console */\nconsole.log( 'Hello World! (from arcw-arcw block)' );\n/* eslint-enable no-console */\n"],"names":["console","log"],"sourceRoot":""}
