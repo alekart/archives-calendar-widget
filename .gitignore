@@ -261,3 +261,5 @@ tests/wp-tests-config.php.bak
 
 ### PHPUnit Generated files
 .phpunit.result.cache
+
+.idea/copilot/
