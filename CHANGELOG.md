@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.16
+* Security fix. Possible XSS injection via widget title. _Found by: Joshua Chan_
+
+## 1.0.15
+* PHP warnings fix
+
 ## 1.0.14
 * Update Text Domain Header for plugin localization
 * Fix theme preview in plugin settings
