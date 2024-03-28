@@ -68,7 +68,7 @@ class Archives_Calendar extends WP_Widget {
 
 	public function update( $new_instance, $old_instance ) {
 		$instance              = $old_instance;
-		$instance['title']     = strip_tags( $new_instance['title'] );
+		$instance['title']     = htmlspecialchars(strip_tags( $new_instance['title'] ));
 		$instance['next_text'] = htmlspecialchars( $new_instance['next_text'] );
 		$instance['prev_text'] = htmlspecialchars( $new_instance['prev_text'] );
 
