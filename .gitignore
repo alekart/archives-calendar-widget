@@ -1,6 +1,6 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/osx,sass,phpstorm,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=osx,sass,phpstorm,node
+# edit at https://www.toptal.com/developers/gitignore?templates=osx,sass,phpstorm,node
 
 ### Node ###
 # Logs
@@ -262,3 +262,4 @@ spec
 # PHP Mess Detector
 bin/phpmd.phar
 .idea/copilot
+build
