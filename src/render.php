@@ -5,6 +5,5 @@
 ?>
 <p <?php echo get_block_wrapper_attributes(); ?>>
 	<?php esc_html_e( 'Archives Calendar 2 – hello from a dynamic block!', 'arcw' ); ?>
-
 	CCOUCOUCOUOCUOU
 </p>
