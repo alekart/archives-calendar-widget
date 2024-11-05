@@ -38,19 +38,23 @@
     },
     "categories": {
       "type": "object",
-      "properties": {},
       "additionalProperties": {
-        "type": "boolean"
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       },
       "default": {}
     },
     "postTypes": {
-      "type": "object",
-      "properties": {},
-      "additionalProperties": {
-        "type": "boolean"
+      "type": "array",
+      "items": {
+        "type": "string"
       },
-      "default": {}
+      "default": []
+    },
+    "theme": {
+      "type": "string"
     }
   },
   "supports": {

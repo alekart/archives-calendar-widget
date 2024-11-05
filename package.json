@@ -14,12 +14,17 @@
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --webpack-copy-php"
 	},
+	"files": [
+		"[^.]*"
+	],
 	"dependencies": {
-		"@wordpress/components": "^25.6.0",
+		"@wordpress/components": "^28.11.0",
+		"core-js": "^3.39.0",
 		"rxjs": "^7.8.1"
 	},
 	"devDependencies": {
-		"@wordpress/data": "^9.10.0",
-		"@wordpress/scripts": "^27.5.0"
+		"@wordpress/data": "^10.11.0",
+		"@wordpress/interactivity": "^6.11.0",
+		"@wordpress/scripts": "^30.4.0"
 	}
 }
