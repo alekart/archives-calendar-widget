@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "allowUmdGlobalAccess": true,
+    "target": "ES2022",
+    "module": "es2020",
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "types": [
+      "jasmine",
+    ],
+    "paths": {
+    }
+  }
+}
