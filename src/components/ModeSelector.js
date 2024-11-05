@@ -22,7 +22,7 @@ export function ModeSelector({
   const monthSelector = mode === 'month'
     ?
     <SelectControl
-      label="fist month"
+      label={__('First month', 'arcw')}
       value={firstMonth}
       help="Select the first month to display"
       options={[
@@ -38,7 +38,7 @@ export function ModeSelector({
 
   return <>
     <SelectControl
-      label="Display mode"
+      label={__('Display', 'arcw')}
       value={mode}
       options={[
         {label: __('Month', 'arcw'), value: 'month'},
