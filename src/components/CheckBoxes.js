@@ -17,8 +17,7 @@ function addProvidedIfListEmpty(selection = [], autoValue) {
 }
 
 export function CheckBoxes({
-  checkboxes = [], selected = [], autoSelectIfNone, displaySelectAll, onChange: onSelectChange = () => {
-  },
+  checkboxes = [], selected = [], autoSelectIfNone, displaySelectAll, onSelectChange = (values) => {},
 }) {
   const [selectedValues, setSelectedValues] = useState(addProvidedIfListEmpty(selected, autoSelectIfNone));
 
