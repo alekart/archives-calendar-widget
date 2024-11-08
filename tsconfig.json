@@ -1,31 +1,26 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "allowUmdGlobalAccess": true,
-    "target": "ES2022",
-    "module": "es2020",
+    "target": "es6",
     "lib": [
-      "ES2022",
-      "dom"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "types": [
-      "jasmine",
-    ],
-    "paths": {
-    }
-  }
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+  },
+  "include": [
+    "src"
+  ]
 }

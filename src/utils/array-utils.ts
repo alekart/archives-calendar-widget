@@ -1,4 +1,4 @@
-export function removeFromArray(array, value) {
+export function removeFromArray<T>(array: T[], value: T): T[] {
   const arrayPos = array.indexOf(value);
   if (arrayPos === -1) {
     return [...array];
@@ -8,7 +8,7 @@ export function removeFromArray(array, value) {
   return updated;
 }
 
-export function addUniqueToArray(array, value) {
+export function addUniqueToArray<T>(array: T[], value: T): T[] {
   const inArray = array.indexOf(value) !== -1;
   if (inArray) {
     return [...array];

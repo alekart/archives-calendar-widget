@@ -11,30 +11,11 @@
   "attributes": {
     "mode": {
       "type": "string",
-      "anyOf": [
-        {
-          "type": "string",
-          "enum": [
-            "month",
-            "year"
-          ]
-        }
-      ],
-      "default": "month"
+      "enum": ["year", "month"]
     },
     "firstMonth": {
       "type": "string",
-      "anyOf": [
-        {
-          "type": "string",
-          "enum": [
-            "latest",
-            "current",
-            "next",
-            "previous"
-          ]
-        }
-      ]
+      "enum": ["latest", "current", "next", "previous"]
     },
     "categories": {
       "type": "object",
@@ -43,15 +24,13 @@
         "items": {
           "type": "string"
         }
-      },
-      "default": {}
+      }
     },
     "postTypes": {
       "type": "array",
       "items": {
         "type": "string"
-      },
-      "default": []
+      }
     },
     "theme": {
       "type": "string"

@@ -1,27 +1,34 @@
-import {CheckboxControl} from '@wordpress/components';
-import {useState} from 'react';
-import {addUniqueToArray, removeFromArray} from '../utils/array-utils';
-import {__} from '@wordpress/i18n';
+import { CheckboxControl } from '@wordpress/components';
+import { useState } from 'react';
+import { CheckboxOption, CheckboxOptionValue } from '../interfaces';
+import { addUniqueToArray, removeFromArray } from '../utils/array-utils';
+import { __ } from '@wordpress/i18n';
+import { noop } from '../utils/noop';
 
 /**
  * If provided list is empty and if autoValue is provided a new list with the provided value will be returned.
  * In all other cases a new list with the same content will be returned.
- * @param selection
- * @param autoValue
- * @returns {*[]}
  */
-function addProvidedIfListEmpty(selection = [], autoValue) {
+function addProvidedIfListEmpty(selection: CheckboxOptionValue[] = [], autoValue?: CheckboxOptionValue) {
   return autoValue && selection.length === 0
     ? [autoValue]
     : [...selection];
 }
 
-export function CheckBoxes({
-  checkboxes = [], selected = [], autoSelectIfNone, displaySelectAll, onSelectChange = (values) => {},
-}) {
-  const [selectedValues, setSelectedValues] = useState(addProvidedIfListEmpty(selected, autoSelectIfNone));
+interface CheckboxesAttributes {
+  checkboxes: CheckboxOption[];
+  selected?: CheckboxOptionValue[];
+  autoSelectIfNone?: CheckboxOptionValue;
+  displaySelectAll?: boolean;
+  onSelectChange?: (values: CheckboxOptionValue[]) => void;
+}
 
-  function isSelected(value) {
+export function CheckBoxes({
+  checkboxes = [], selected = [], autoSelectIfNone, displaySelectAll, onSelectChange = noop,
+}: CheckboxesAttributes) {
+  const [selectedValues, setSelectedValues] = useState<CheckboxOptionValue[]>(addProvidedIfListEmpty(selected, autoSelectIfNone));
+
+  function isSelected(value: CheckboxOptionValue) {
     return selectedValues.includes(value);
   }
 
@@ -29,7 +36,7 @@ export function CheckBoxes({
     return checkboxes.length === selectedValues.length;
   }
 
-  function handleChecked(value, checked) {
+  function handleChecked(value: CheckboxOptionValue, checked: boolean) {
     setSelectedValues((prevState) => {
       let updated = checked
         ? addUniqueToArray(prevState, value)
@@ -42,8 +49,9 @@ export function CheckBoxes({
 
   function handleSelectAll() {
     const selected = isAllSelected()
-      ? setSelectedValues(addProvidedIfListEmpty([], autoSelectIfNone))
-      : setSelectedValues(checkboxes.map(({value}) => value));
+      ? addProvidedIfListEmpty([], autoSelectIfNone)
+      : checkboxes.map(({value}) => value);
+    setSelectedValues(selected);
     onSelectChange(selected);
   }
 
